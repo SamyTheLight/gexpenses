@@ -4,6 +4,11 @@ Visual estudio -> carpeta -> abrir terminal
 
 2)git status 
 
+3)git add nomArchiu
+
+4)git commit -m ""
+
+5)git push origin nomBranca
 
 
 recomendacion vincular repositorio con ssh
