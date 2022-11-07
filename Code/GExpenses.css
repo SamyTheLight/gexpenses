@@ -1,0 +1,77 @@
+body {
+    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+}
+
+.Card {
+    width: 1700px;
+    height: 750px;
+    background: white;
+    margin-left:100px;
+    margin-top:100px;
+    position: relative;
+    border: 5px solid black;
+}
+
+.eslogan-card{
+    position: absolute;
+    height: 750px;
+    width: 1200px;
+    left:500px;
+    background: #1C3144;
+    
+}
+
+h1
+{
+    background: #1C3144;
+    color:white;
+    text-align: center;
+    margin-top:250px;
+    font-size: 100px;
+}
+
+h2{
+    background: #1C3144;
+    font-size: 30px;
+    color:white;
+    text-align: center;
+}
+
+#h2-text1{
+    margin-top: 70px;
+}
+#h2-text2,#h2-text3{
+    margin-top: 20px;
+}
+
+.rombo {
+    width: 100px; 
+    height: 100px; 
+    border: 3px solid #555; 
+    background: #428bca;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.Data{
+    
+    justify-content: space-between;
+    display: flex;
+  
+    align-items: center;
+}
+
+.SingUp{
+    background: white;
+    border: 2px solid #1C3144;
+    margin-left: 100px;
+    margin-top:50px;
+    height: 600px;
+}
+
+.UsernameBox{
+
+}
