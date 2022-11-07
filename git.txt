@@ -1,0 +1,12 @@
+Visual estudio -> carpeta -> abrir terminal
+
+1) git init
+
+2)git status 
+
+
+
+recomendacion vincular repositorio con ssh
+
+
+Guia estilos con figma -> tutorial
