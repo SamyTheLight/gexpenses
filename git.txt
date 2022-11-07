@@ -15,3 +15,5 @@ recomendacion vincular repositorio con ssh
 
 
 Guia estilos con figma -> tutorial
+
+asciidoc para la meoria
