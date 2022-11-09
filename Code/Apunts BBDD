@@ -25,3 +25,24 @@ $pdo= new PDO('mysql:host=127.16.0.100;dbname=employees',$usr,$pwd,);
 
 $pod->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); habilita try catch
 $pdo=null ( per esborrar la conexio)
+
+
+Transacció: Més de una operacio que se executi en bloc )
+
+try{
+
+}catch(pdoexception $ex){
+
+}
+
+
+
+$pod->beginTransaction() // Aixo va a taula temporal, si algu falla cap enrera
+
+fas les querys i executes
+
+
+$stmt = $pdo-> prepare($sql);
+
+
+bindParameter
