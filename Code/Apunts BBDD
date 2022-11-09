@@ -45,4 +45,4 @@ fas les querys i executes
 $stmt = $pdo-> prepare($sql);
 
 
-bindParameter
+~stmt-> bindValue()
