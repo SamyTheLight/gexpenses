@@ -11,7 +11,7 @@ body {
 .Card {
     width: 1700px;
     height: 750px;
-   
+   border-radius: 20px;
     margin-left:100px;
     margin-top:100px;
     position: relative;
@@ -19,15 +19,7 @@ body {
 }
 
 
-.SingUp{
-    display: flex;
-    justify-content: center;
-}
 
-.Register{
-    display: flex;
-    justify-content: center;
-}
 
 .back-box{
     background: #1C3144;
@@ -52,16 +44,72 @@ body {
     font-size: 25px;
 }
 
+.back-box button{
+    margin-top: 30px;
+    font-size: 40px;
+    padding: 10px;
+}
 
-.data {
-    display: flex;
-    align-items: center;
-}
-.data form{
-    background-color: white;
+
+.data{
+    position: relative;
+    top:-750px;
+    right:850px;
+    
+   display: flex;
     width: 100%;
-    position: absolute;
+    max-width: 850px;
 }
+
+.data form{
+    position: absolute;
+    padding: 80px 20px;
+    border-radius: 20px;
+    position: absolute;
+    background-color: white;
+    width: 670px;
+    height: 590px;
+    
+}
+
+.Login{
+    display: block;
+}
+
+.Login h2{
+    text-align: center;
+    font-size: 50px;
+   
+}
+
+.Login input{
+   
+    width: 630px;
+    margin-top: 20px;
+    font-size: 16px;
+    background:#F2F2F2;
+    border-radius: 20px;
+    outline: none;
+    padding: 8px;
+}
+
+.Login button {
+    margin-top: 20px;
+    margin-left:40%;
+    font-size: 40px;
+    
+}
+
+
+.Register{
+    display: none;
+}
+
+
+
+
+
+
 
 /*
 .eslogan-card{
