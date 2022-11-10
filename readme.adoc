@@ -1,11 +1,27 @@
---- MEMÒRIA ---
+= Proyecto GExpenses
+
+:toc:
+
+== 1.Introducción
+
+Este proyecto está elaborado por Joan Canals, Oscar Ramírez y Samuel García. El propósito central de nuestro proyecto es el desarrollo de una página web para gestionar las cuentas de un grupo de personas al realizar un viaje.
+
+Para una buena navegación por la página web se intentará crear un diseño cómodo, agradable y fácil de entender para todos usuarios que se conecten mediante una pantalla de ordenador convencional o un dispositivo móvil. Éste es el objetivo principal de la aplicación.
+
+La página web  se llamará “GExpenses” y funcionará de la siguiente manera: primeramente, un usuario deberá crear una actividad, después deberá añadir a los integrantes correspondientes y finalmente introducirá los gastos de cada persona. 
+
+Las necesidades que cubrirá nuestro proyecto a lo largo de su desarrollo serán: (1)una base de datos (MySQL) donde se guardará toda la información.
+
+== 2.Diseño
+En la siguiente imagen se muestra una versión muy temprana del modelo de nuestra base de datos:
 
 
-1.INTRODUCCIÓ
-2.DISSENY 
-3.CONFECCIÓ DEL MANUAL D'INSTAL·LACIÓ DE L'APLICACIÓ
-4.MANUAL D'USUARI
-5.LÍNIES FUTURES
-6. CONCLUSIONS
-7.GLOSSARI
-8.PRESENTACIÓ DEL PROJECTE
+== 3.Confección del manual de instalación de la aplicación
+
+== 4.Manual de usuario
+
+== 5.Líneas futuras
+
+== 6. Conclusiones
+
+== 7.Glosario 

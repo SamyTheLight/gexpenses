@@ -10,8 +10,8 @@ Visual estudio -> carpeta -> abrir terminal
 
 5)git push origin nomBranca
 
-
 recomendacion vincular repositorio con ssh
 
-
 Guia estilos con figma -> tutorial
+
+-> git pull
