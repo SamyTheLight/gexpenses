@@ -1,6 +1,6 @@
 
 body {
-    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+    background-image: url(/Code/Images/fondo.jpg);
 }
 .form-register {
     width: 50%;
@@ -8,7 +8,7 @@ body {
     margin: auto;
     margin-top: 100px;
     border-radius: 4px;
-    background-color: white;
+    background-color: rgb(251, 253, 254);
     border: 3px solid #1f53c5;
     color:#1f53c5;
     font-family: 'calibri';
@@ -18,7 +18,7 @@ body {
 }
 
 input{
-    color: white;
+    color: rgb(255, 255, 255);
     width: 95%;
     padding: 10px;
     border-radius:4px;
