@@ -6,14 +6,23 @@
 
 Este proyecto está elaborado por Joan Canals, Oscar Ramírez y Samuel García. El propósito central de nuestro proyecto es el desarrollo de una página web para gestionar las cuentas de un grupo de personas al realizar un viaje.
 
-Para una buena navegación por la página web se intentará crear un diseño cómodo, agradable y fácil de entender para todos usuarios que se conecten mediante una pantalla de ordenador convencional o un dispositivo móvil. Éste es el objetivo principal de la aplicación.
+La página web  se llamará “GExpenses” y funcionará de la siguiente manera: primeramente, un usuario deberá crear una actividad, después deberá añadir a los integrantes correspondientes y finalmente introducirá los gastos de cada persona.
 
-La página web  se llamará “GExpenses” y funcionará de la siguiente manera: primeramente, un usuario deberá crear una actividad, después deberá añadir a los integrantes correspondientes y finalmente introducirá los gastos de cada persona. 
+Para una buena navegación por la página web, se intentará crear un diseño cómodo, agradable y fácil de entender para todos usuarios que se conecten mediante una pantalla de ordenador convencional o un dispositivo móvil.
 
-Las necesidades que cubrirá nuestro proyecto a lo largo de su desarrollo serán: (1)una base de datos (MySQL) donde se guardará toda la información.
+Las necesidades que cubrirá nuestro proyecto a lo largo de su desarrollo serán: (1)uso de MySQLWorkBench para la creación de  los elementos que conformarán nuestra base de datos, (2).
 
 == 2.Diseño
+
 En la siguiente imagen se muestra una versión muy temprana del modelo de nuestra base de datos:
+
+.Base de datos
+image::..\..\Pictures\GExpensesBBDD .png[]
+
+La guia de estilos que utilizaremos para realizar nuestra pagina web sera la siguiente:
+
+.Guia de estilos
+image::..\..\Pictures\guia_estilos_GExpenses.png[]
 
 == 3.Confección del manual de instalación de la aplicación
 
