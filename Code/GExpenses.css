@@ -16,11 +16,12 @@ body {
     margin-top:100px;
     position: relative;
     border: 5px solid black;
+    background-color: #1C3144;
 }
 
 
 
-
+/*
 .back-box{
     background: #1C3144;
     width: 1700px;
@@ -50,30 +51,33 @@ body {
     padding: 10px;
 }
 
+*/
+
+
 
 .data{
-    position: relative;
-    top:-750px;
-    right:850px;
-    
-   display: flex;
-    width: 100%;
-    max-width: 850px;
+    background-color: white;
+    display: flex;
+    margin-top:25px;
+    height: 700px;
+    width: 1200px;
+    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+    border-radius:20px;
 }
 
-.data form{
-    position: absolute;
-    padding: 80px 20px;
-    border-radius: 20px;
-    position: absolute;
-    background-color: white;
-    width: 670px;
-    height: 590px;
-    
-}
+
 
 .Login{
+    margin-left:50px;
+    height: 300px;
+    width: 305px;
     display: block;
+    background-color: white;
+    border: 3px solid black;
+    align-items: center;
+    padding: 100px;
+    
+  
 }
 
 .Login h2{
@@ -84,8 +88,8 @@ body {
 
 .Login input{
    
-    width: 630px;
-    margin-top: 20px;
+    width: 300px;
+    margin-top: 30px;
     font-size: 16px;
     background:#F2F2F2;
     border-radius: 20px;
@@ -94,20 +98,62 @@ body {
 }
 
 .Login button {
-    margin-top: 20px;
-    margin-left:40%;
+    margin-top: 70px;
+    margin-left:27%;
     font-size: 40px;
+    border-radius: 30px;
+    padding: 8px;
     
 }
 
 
 .Register{
-    display: none;
+    margin-left:20px;
+    height: 300px;
+    width: 305px;
+    display: block;
+    background-color: white;
+    border: 3px solid black;
+    align-items: center;
+    padding: 100px;
 }
 
 
 
 
+.Register input{
+   
+    width: 300px;
+    margin-top: 12px;
+    font-size: 14px;
+    background:#F2F2F2;
+    border-radius: 20px;
+    outline: none;
+    padding: 8px;
+}
+
+.Register h2{
+    text-align: center;
+    font-size: 50px;
+   
+}
+
+.Register button {
+    margin-top: 40px;
+    margin-left:27%;
+    font-size: 40px;
+    border-radius: 30px;
+    padding: 8px;
+    
+}
+
+#titol-gexpenses{
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 400px;
+    font-size: 70px;
+    
+}
 
 
 

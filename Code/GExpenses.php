@@ -13,6 +13,7 @@
 
     <div class="Card">
 
+        <!-- 
         <div class="back-box">
             <div class="back-box-register">
                 <h3>¿Aún no tienes cuenta?</h3>
@@ -26,32 +27,33 @@
            
         </div>
 
+-->
 
-
-        <div class="data">
+       <div class="data">
+        <h4 id="titol-gexpenses">GExpenses</h4> 
             <div class="Login">
-                <form action="" class="formulari-login">
+                <form action="PHP\login_usuario_be.php" class="formulari-login" method="POST">
                     <h2>Iniciar Sesión</h2><br>
-                    <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login"><br><br>
-                    <input placeholder="Password" class="input-password-login" placeholder="Password"><br><br>
+                    <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
+                    <input placeholder="Password" class="input-password-login" placeholder="Password" name="passwordLogin">
                     <button id="buttonSingUp">Sign Up</button>
                 </form>
             </div>
 
             <div class="Register">
-                <form action="" class="formulari-register">
+                <form action="PHP\registerUser.php" class="formulari-register" method="POST">
                     <h2>Registrate</h2>
-                    <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register">
-                    <input type="text" placeholder="Apellidos" class="input-lastname-register">
-                    <input type="text" placeholder="Correo electrónico" class="input-mail-register">
-                    <input type="password" placeholder="Contraseña" class="input-password-register">
+                    <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" name="username">
+                    <input type="text" placeholder="Apellidos" class="input-lastname-register"  name="lastname">
+                    <input type="text" placeholder="Correo electrónico" class="input-mail-register" name="email">
+                    <input type="password" placeholder="Contraseña" class="input-password-register" name="password">
                     <button id="buttonRegister">Register</button>
 
                 </form>
             </div>
         </div>
+    
     </div>
-
 
 
 
