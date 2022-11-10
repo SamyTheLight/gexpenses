@@ -2,7 +2,6 @@
 session_start();
 
 
-
 if(!isset($_SESSION['usuario'])){
     echo '
         <script>
@@ -27,11 +26,11 @@ if(!isset($_SESSION['usuario'])){
     <title>Bienvenida</title>
 </head>
 <body>
-    <?php
 
-    ?>
 
     <h1>Bienvenido a mi mundo! </h1>
     <a href="login/cerrar_sesion.php">Cerrar sesión</a>
 </body>
+
 </html>
+

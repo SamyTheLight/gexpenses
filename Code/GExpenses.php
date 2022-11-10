@@ -35,7 +35,7 @@
                 <form action="PHP\login_usuario_be.php" class="formulari-login" method="POST">
                     <h2>Iniciar Sesión</h2><br>
                     <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
-                    <input placeholder="Password" class="input-password-login" placeholder="Password" name="passwordLogin">
+                    <input placeholder="Password" type="password" class="input-password-login" placeholder="Password" name="passwordLogin">
                     <button id="buttonLogin" >Log In</button>
                 </form>
             </div>
