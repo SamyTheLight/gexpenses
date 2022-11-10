@@ -15,7 +15,6 @@ Las necesidades que cubrirá nuestro proyecto a lo largo de su desarrollo serán
 == 2.Diseño
 En la siguiente imagen se muestra una versión muy temprana del modelo de nuestra base de datos:
 
-
 == 3.Confección del manual de instalación de la aplicación
 
 == 4.Manual de usuario
@@ -25,3 +24,6 @@ En la siguiente imagen se muestra una versión muy temprana del modelo de nuestr
 == 6. Conclusiones
 
 == 7.Glosario 
+
+
+

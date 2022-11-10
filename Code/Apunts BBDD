@@ -1,0 +1,48 @@
+crear bbdd por ip
+
+Collation deterina com s0ordenne les coses al fer un order by. Pots fer ordenació sense tenir en compte accents
+
+
+Mirar collections i character set
+
+
+PDO -> conexio base de dades
+
+Statement -> Classe per ficar querys de sql 
+
+pdoexception 
+
+<?php
+
+$usr='admin';
+$pwd='1234';
+
+
+
+
+
+$pdo= new PDO('mysql:host=127.16.0.100;dbname=employees',$usr,$pwd,);
+
+$pod->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); habilita try catch
+$pdo=null ( per esborrar la conexio)
+
+
+Transacció: Més de una operacio que se executi en bloc )
+
+try{
+
+}catch(pdoexception $ex){
+
+}
+
+
+
+$pod->beginTransaction() // Aixo va a taula temporal, si algu falla cap enrera
+
+fas les querys i executes
+
+
+$stmt = $pdo-> prepare($sql);
+
+
+~stmt-> bindValue()

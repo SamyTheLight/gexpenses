@@ -1,0 +1,167 @@
+*{
+    margin: auto;
+    padding: auto;
+}
+
+
+body {
+    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+}
+
+.Card {
+    width: 1700px;
+    height: 750px;
+   border-radius: 20px;
+    margin-left:100px;
+    margin-top:100px;
+    position: relative;
+    border: 5px solid black;
+}
+
+
+
+
+.back-box{
+    background: #1C3144;
+    width: 1700px;
+    height: 750px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    opacity: 0,95;
+}
+
+.back-box h3{
+    color:white;
+    font-size: 50px;
+    
+}
+
+.back-box p{
+    color: white;
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.back-box button{
+    margin-top: 30px;
+    font-size: 40px;
+    padding: 10px;
+}
+
+
+.data{
+    position: relative;
+    top:-750px;
+    right:850px;
+    
+   display: flex;
+    width: 100%;
+    max-width: 850px;
+}
+
+.data form{
+    position: absolute;
+    padding: 80px 20px;
+    border-radius: 20px;
+    position: absolute;
+    background-color: white;
+    width: 670px;
+    height: 590px;
+    
+}
+
+.Login{
+    display: block;
+}
+
+.Login h2{
+    text-align: center;
+    font-size: 50px;
+   
+}
+
+.Login input{
+   
+    width: 630px;
+    margin-top: 20px;
+    font-size: 16px;
+    background:#F2F2F2;
+    border-radius: 20px;
+    outline: none;
+    padding: 8px;
+}
+
+.Login button {
+    margin-top: 20px;
+    margin-left:40%;
+    font-size: 40px;
+    
+}
+
+
+.Register{
+    display: none;
+}
+
+
+
+
+
+
+
+/*
+.eslogan-card{
+    position: absolute;
+    height: 750px;
+    width: 1200px;
+    left:500px;
+    background: #1C3144;
+    
+}
+
+h1
+{
+    background: #1C3144;
+    color:white;
+    text-align: center;
+    margin-top:250px;
+    font-size: 100px;
+}
+
+h2{
+    background: #1C3144;
+    font-size: 30px;
+    color:white;
+    text-align: center;
+}
+
+#h2-text1{
+    margin-top: 70px;
+}
+#h2-text2,#h2-text3{
+    margin-top: 20px;
+}
+
+
+
+.Data{
+    
+    justify-content: space-between;
+    display: flex;
+  
+    align-items: center;
+}
+
+.SingUp{
+    background: white;
+    border: 2px solid #1C3144;
+    margin-left: 100px;
+    margin-top:50px;
+    height: 650px;
+    width: 300;
+    
+}
+*/
+
