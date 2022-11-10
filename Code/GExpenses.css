@@ -68,14 +68,17 @@ body {
 
 
 .Login{
-    margin-left:50px;
-    height: 300px;
-    width: 305px;
+    
+    height: 500px;
+    width: 415px;
     display: block;
     background-color: white;
     border: 3px solid black;
     align-items: center;
     padding: 100px;
+    border-radius: 20px;
+    margin-left: -20px;
+    color:black;
     
   
 }
@@ -86,13 +89,19 @@ body {
    
 }
 
+.Login:hover {
+    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+    color:white;
+    
+}
+
 .Login input{
    
-    width: 300px;
+    width: 320px;
     margin-top: 30px;
     font-size: 16px;
     background:#F2F2F2;
-    border-radius: 20px;
+    margin-left: 35px;
     outline: none;
     padding: 8px;
 }
@@ -100,32 +109,40 @@ body {
 .Login button {
     margin-top: 70px;
     margin-left:27%;
-    font-size: 40px;
+    font-size: 50px;
     border-radius: 30px;
     padding: 8px;
+    color:black;
     
 }
 
 
 .Register{
-    margin-left:20px;
-    height: 300px;
-    width: 305px;
+    height: 500px;
+    width: 415px;
     display: block;
     background-color: white;
     border: 3px solid black;
     align-items: center;
     padding: 100px;
+    
+   
+    margin-left: -20px;
 }
 
-
+.Register:hover{
+    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+    color:white;
+}
 
 
 .Register input{
    
     width: 300px;
-    margin-top: 12px;
+    margin-top: 15px;
     font-size: 14px;
+    margin-left:30px;
+   
     background:#F2F2F2;
     border-radius: 20px;
     outline: none;
@@ -141,15 +158,16 @@ body {
 .Register button {
     margin-top: 40px;
     margin-left:27%;
-    font-size: 40px;
+    font-size: 50px;
     border-radius: 30px;
     padding: 8px;
+    color:black;
     
 }
 
 #titol-gexpenses{
     position: absolute;
-    margin-top: 0px;
+    margin-top: -120px;
     margin-left: 400px;
     font-size: 70px;
     

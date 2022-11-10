@@ -36,7 +36,7 @@
                     <h2>Iniciar Sesión</h2><br>
                     <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
                     <input placeholder="Password" class="input-password-login" placeholder="Password" name="passwordLogin">
-                    <button id="buttonSingUp">Sign Up</button>
+                    <button id="buttonLogin" >Log In</button>
                 </form>
             </div>
 
