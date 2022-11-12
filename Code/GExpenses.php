@@ -27,7 +27,7 @@
            
         </div>
 
--->
+--> 
 
        <div class="data">
         <h4 id="titol-gexpenses">GExpenses</h4> 
@@ -36,7 +36,7 @@
                     <h2>Iniciar Sesión</h2><br>
                     <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
                     <input placeholder="Password" type="password" class="input-password-login" placeholder="Password" name="passwordLogin">
-                    <button id="buttonLogin" >Log In</button>
+                    <button id="buttonLogin"><h3>Log In</h3></button>
                 </form>
             </div>
 
@@ -47,7 +47,7 @@
                     <input type="text" placeholder="Apellidos" class="input-lastname-register"  name="lastname">
                     <input type="text" placeholder="Correo electrónico" class="input-mail-register" name="email">
                     <input type="password" placeholder="Contraseña" class="input-password-register" name="password">
-                    <button id="buttonRegister">Register</button>
+                    <button id="buttonRegister"><h3>Enviar</h3></button>
 
                 </form>
             </div>

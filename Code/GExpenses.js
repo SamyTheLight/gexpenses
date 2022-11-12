@@ -15,7 +15,7 @@ register.addEventListener('mouseover',colorTextoRegister)
 login.addEventListener('mouseout',colorTextoLoginOut);
 register.addEventListener('mouseout',colorTextoRegisterOut)
 
-
+/*
 function colorTextoLogin(){
     button_login.style.color="white";
     button_login.style.background="black";
@@ -37,7 +37,7 @@ function colorTextoRegisterOut(){
     button_register.style.background="white";
 }
 
-
+*/
 
 /*
 function registrar(){

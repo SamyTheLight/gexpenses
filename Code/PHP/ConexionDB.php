@@ -22,7 +22,7 @@
     if($db){
       echo 'Conectado a '.$db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
         echo 'Conectado Crack';
-    }else {
+    }else {git 
         echo 'Try again';
     }
   } catch(PDOException $ex) {
