@@ -30,7 +30,7 @@
 --> 
 
        <div class="data">
-        <h4 id="titol-gexpenses">GExpenses</h4> 
+       
             <div class="Login">
                 <form action="PHP\login_usuario_be.php" class="formulari-login" method="POST">
                     <h2>Iniciar Sesión</h2><br>

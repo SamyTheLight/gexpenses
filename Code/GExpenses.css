@@ -6,7 +6,8 @@
 
 
 body {
-    background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
+    /*background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);*/
+    background-image: url("../viajes.jpg");
 }
 
 .Card {
@@ -66,7 +67,7 @@ body {
     border-radius:20px;
 }
 
-
+/*
 
 .Login{
     
@@ -94,11 +95,10 @@ body {
     background: linear-gradient(212deg, rgba(108,212,181,1) 0%, rgba(22,199,232,1) 100%);
     color:white;
     
+    
 }
 
-.Login:hover > button{
-    color:white;
-}
+
 
 .Login input{
    
