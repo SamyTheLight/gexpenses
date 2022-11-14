@@ -5,7 +5,7 @@ include 'ConexionDB.php';
 
 $nameuserL = $_POST['usernameLogin'];
 $passwordL = $_POST['passwordLogin'];
-//$passwordL= hash('sha512', $passwordL);
+
 
 $conexion -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="GExpenses.css">
+    <link rel="stylesheet" href="PHP/footer.css">
     <title>Document</title>
 </head>
 
@@ -34,22 +37,22 @@
        <div class="data">
        
             
-                <form action="PHP\login_usuario_be.php" class="formulari-login" method="POST">
+                <form action="PHP\LoginRegistro.php" class="formulari-login" method="POST">
                     <h2>Iniciar Sesión</h2><br>
                     <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
                     <input placeholder="Password" type="password" class="input-password-login" placeholder="Password" name="passwordLogin">
-                    <button id="buttonLogin"><h3>Login</h3></button>
+                    <button id="buttonLogin" name="buttonLogin"><h3>Login</h3></button>
                 </form>
            
 
     
-                <form action="PHP\registerUser.php" class="formulari-register" method="POST">
+                <form action="PHP\LoginRegistro.php" class="formulari-register" method="POST">
                     <h2>Registrate</h2>
                     <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" name="username">
                     <input type="text" placeholder="Apellidos" class="input-lastname-register"  name="lastname">
                     <input type="text" placeholder="Correo electrónico" class="input-mail-register" name="email">
                     <input type="password" placeholder="Contraseña" class="input-password-register" name="contrasena">
-                    <button id="buttonRegister"><h3>Registrar</h3></button>
+                    <button id="buttonRegister" name="buttonRegister"><h3>Registrar</h3></button>
 
                 </form>
             
@@ -57,7 +60,7 @@
     
     </div>
 
---> 
+
 
 <script src="GExpenses.js"></script>
 
@@ -67,3 +70,8 @@
 </body>
 
 </html>
+
+<?php
+
+include 'PHP/footer.php';
+?>

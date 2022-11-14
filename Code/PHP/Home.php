@@ -1,18 +1,9 @@
 <?php
 session_start();
+include 'nav.php'
 
 
-if(!isset($_SESSION['usuario'])){
-    echo '
-        <script>
-                alert("Por favor debes iniciar sesión");
-                window.location = "GExpenses.html";
-        </script>
-    ';
-    session_destroy();
-    die();
-   
-}
+
 
 
 ?>
@@ -28,9 +19,20 @@ if(!isset($_SESSION['usuario'])){
 <body>
 
 
-    <h1>Bienvenido a mi mundo! </h1>
+   <h1><?php echo "<h1>Bienvenido - " .$_SESSION['usuario']."</h1>";?></h1>
     <a href="login/cerrar_sesion.php">Cerrar sesión</a>
+
+    <div class="Card">
+
+    
+    </div>
 </body>
 
 </html>
 
+
+
+<?php
+
+include 'footer.php';
+?>

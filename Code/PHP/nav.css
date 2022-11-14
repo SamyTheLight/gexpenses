@@ -1,0 +1,42 @@
+*{
+    margin: auto;
+    padding: auto;
+}
+
+
+nav{
+    background-color: black;
+    color:white;
+    
+    position: relative;
+   
+}
+
+
+
+a {
+    
+    color:white;
+    text-decoration: none;
+}
+
+ul{
+    margin-left:1400px;
+    padding: auto;
+}
+
+li:hover{
+    color:black;
+    background-color: red
+    
+}
+
+li{
+   
+    font-size: 20px;
+    margin: 12px 7px;
+    padding: 10px 20px;
+    list-style: none;
+    display: inline-block;
+    border: 2px solid white;
+}
