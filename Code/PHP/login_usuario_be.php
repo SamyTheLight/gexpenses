@@ -7,16 +7,18 @@ $nameuserL = $_POST['usernameLogin'];
 $passwordL = $_POST['passwordLogin'];
 //$passwordL= hash('sha512', $passwordL);
 
+$conexion -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
 $queryLogin = $conexion->prepare("SELECT * FROM usuario WHERE nombre = :nombreUser and 
- contrasena =:passwordUser");
+ contrasena = :passwordUser");
 
-$consultaLogin -> bindParam(":nombreUser",$nameuserL);
-$consultaLogin -> bindParam(":passwordUser",$passwordL);
+$queryLogin -> bindParam(":nombreUser",$nameuserL);
+$queryLogin -> bindParam(":passwordUser",$passwordL);
 
 
-$consultaLogin-> execute();
+$queryLogin-> execute();
 
-$user= $consultaLogin->fetch(PDO::FETCH_ASSOC);
+$user= $queryLogin->fetch(PDO::FETCH_ASSOC);
 
 
 
