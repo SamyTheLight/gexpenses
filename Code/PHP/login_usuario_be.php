@@ -7,11 +7,21 @@ $nameuserL = $_POST['usernameLogin'];
 $passwordL = $_POST['passwordLogin'];
 //$passwordL= hash('sha512', $passwordL);
 
-$queryLogin = $conexion->query ("SELECT * FROM usuarios WHERE nombre ='$nameuserL' and 
- contrasena ='$passwordL'");
+$queryLogin = $conexion->prepare("SELECT * FROM usuario WHERE nombre = :nombreUser and 
+ contrasena =:passwordUser");
 
- if($dades=$queryLogin->fetch_object()){
-    $_SESSION['usuario'] = $nameuserL;
+$consultaLogin -> bindParam(":nombreUser",$nameuserL);
+$consultaLogin -> bindParam(":passwordUser",$passwordL);
+
+
+$consultaLogin-> execute();
+
+$user= $consultaLogin->fetch(PDO::FETCH_ASSOC);
+
+
+
+ if($user){
+    $_SESSION['usuario'] = $user['nombre'];
     header ("location: bienvenida.php");
  }else {
     echo '

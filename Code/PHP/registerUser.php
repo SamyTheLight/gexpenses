@@ -1,19 +1,39 @@
 <?php
 
+    $firstname = $_POST["username"];
+    $lastname = $_POST["lastname"];
+    $email = $_POST["email"];
+    $password= $_POST["contrasena"];
+
 
     include 'ConexionDB.php';
 
+   
+   
+        
+        $query = "INSERT INTO usuario (nombre,apellidos,email,contrasena) VALUES (:nombre,:apellidos,:email,:contrasena)";
+
+        $consulta = $conexion->prepare($query);
+
+     
+        $consulta->bindParam(':nombre', $firstname);
+        $consulta->bindParam(':apellidos', $lastname);
+        $consulta->bindParam(':email', $email);
+        $consulta->bindParam(':contrasena', $password);
+
+
+       
+        if($consulta->execute()){
+            echo 'Datos guardados correctamente';
+        }else {
+            echo 'Error al subir los datos';
+        };
+
+
+
     
-    $username=  $_POST['username'];
-    $lastname= $_POST['lastname'];
-    $email=  $_POST['email'];
-    $contrasena= $_POST['password'];
+   
 
 
-    //$query= "INSERT INTO  usuarios (id,nombre,apellidos,email,contrasena) values 
-
-$query = "INSERT INTO usuarios (nombre,apellidos,email,contrasena)
-VALUES ('$username', '$lastname', '$email', '$contrasena')"; 
 
 
-$executeQuery= mysqli_query($conexion,$query);

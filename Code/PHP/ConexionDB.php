@@ -1,31 +1,18 @@
 <?php
+define('DATABASE',   'gexpenses');
+define('BD_USUARIO', 'root');
+define('BD_CLAVE',  '');
+define('SERVER_MYSQL', 'mysql:host=localhost;dbname='.DATABASE.';charset=utf8');
+try
+{
+	$conexion = new PDO(SERVER_MYSQL, BD_USUARIO, BD_CLAVE);	
+  echo 'Conectado a '.$conexion->getAttribute(PDO::ATTR_CONNECTION_STATUS);
  
+}
+catch(Exception $e)
+{
 
-  $conexion= mysqli_connect("localhost","root","","gexpenses");
-
-  if($conexion) {
-    echo 'Has entrat a la BBDD';
-  }else {
-    echo 'No has pogut accedir';
-  }
-
-
-
-
-
- /*
- Prueba en pdo
- try {
-    $db = new PDO('mysql:host=localhost;dbname=gexpenses;', 'root', '');
-   
-
-    if($db){
-      echo 'Conectado a '.$db->getAttribute(PDO::ATTR_CONNECTION_STATUS);
-        echo 'Conectado Crack';
-    }else {git 
-        echo 'Try again';
-    }
-  } catch(PDOException $ex) {
-    echo 'Error conectando a la BBDD. '.$ex->getMessage(); 
-  }
-  */
+        echo 'Error conectando a la BBDD. '.$e->getMessage(); 
+}
+ 
+ 
