@@ -112,12 +112,12 @@ body {
     color:black;
 }
 
-.formulari-login{
+.form_block.active{
 
     display: block;
     opacity: 1;
 }
 
-.formulari-register{
+.form_block{
     display: none;
 }
