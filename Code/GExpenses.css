@@ -121,3 +121,7 @@ body {
 .form_block{
     display: none;
 }
+
+.alert-success{
+    background-color: green;
+}
