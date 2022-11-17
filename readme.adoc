@@ -2,7 +2,7 @@
 
 :toc:
 
-== 1.Introducción
+== Introduccion
 
 Este proyecto está elaborado por Joan Canals, Oscar Ramírez y Samuel García. El propósito central de nuestro proyecto es el desarrollo de una página web para gestionar las cuentas de un grupo de personas al realizar un viaje.
 
@@ -12,36 +12,78 @@ Para una buena navegación por la página web, se intentará crear un diseño c�
 
 Las necesidades que cubrirá nuestro proyecto a lo largo de su desarrollo serán: (1)uso de MySQLWorkBench para la creación de  los elementos que conformarán nuestra base de datos, (2).
 
-== 2.Diseño
+== Diseño
 
-En la siguiente imagen se muestra una versión muy temprana del modelo de nuestra base de datos:
-
-.Base de datos
-image::..\..\Pictures\GExpensesBBDD .png[]
+=== Paleta de colores
 
 La guia de estilos que utilizaremos para realizar nuestra pagina web sera la siguiente:
 
-.Guia de estilos
+.Paleta de colores
 image::..\..\Pictures\guia_estilos_GExpenses.png[]
-Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Asi como que transmite natrualeza y pureza.Creemos que un color así le dará un buen contraste a segun que botones.
+
+Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Así como que transmite naturaleza y pureza.Creemos que un color así le dará un buen contraste según qué botones.
 
 Por otro lado, elegimos el azul oscuro y el negro para así dar un toque de elegáncia y refinez.
 
 Por último, elegimos el blanco para hacer un contraste y poder jugar con los colores más oscuros así como para poder aplicarlo en la letra.
 
+=== Pantallas
 
-.Sketchings,Wireframes y Mockups
-https://www.figma.com/file/F0jCsQDcN4v49yFDbC4XKK/GExpenses?node-id=0%3A1&t=YZ0OFF2h1D9uwVv4-1[Sketchings,Wireframes y Mockups]
+En este apartado mostraremos todos los diseños de las pantallas de nuestra aplicación.
 
-== 3.Confección del manual de instalación de la aplicación
+.Tipo de pantallas:
+[NOTE]
+====
+Cada pantalla tendrá sus respectivos apartados, tanto scketching, wireframe y mockup.
 
-== 4.Manual de usuario
+. Pantalla de login y registro.
 
-== 5.Líneas futuras
+. Pantalla Home y formulario.
 
-== 6. Conclusiones
+====
 
-== 7.Glosario 
+En el siguiente enlace se muestran las pantallas: https://www.figma.com/file/F0jCsQDcN4v49yFDbC4XKK/GExpenses?node-id=0%3A1&t=Jf8ytj5PvDdSPTxb-1[Enlace de pantallas].
+
+== Base de datos
+
+=== Diseño
+
+Al diseñar la base de datos, hemos echo uso de MySQL Workbench para crear las tablas y variables necesarias para que nuestra aplicación funcione.
+
+.Base de datos
+image::gexpensesabp\imagesMemoria\GExpensesBBDD .png[]
+
+=== Encriptar contraseña
+
+La estratégia que hemos usado para encriptar la contraseña ha sido la siguiente:
+
+	$hash_password= password_hash($password,PASSWORD_DEFAULT);
+ 
+	$consulta->bindParam(':contrasena', $hash_password);
+    
+   $hash_passwordLogin = password_hash($passwordL,PASSWORD_DEFAULT);
+   
+   if (password_verify($passwordL,$user['contrasena'])) {
+   	$_SESSION['usuario'] = $user['nombre'];
+   	header("location: PHP/Home.php");
+   } else {
+   	echo '
+    	<script>
+        	alert("Usuario no existe,por favor verifique los datos introducidos");
+        	window.location = "../GExpenses.php";
+    	</script>
+        	';
+	}
+    
+== Glosario
+
+=== Repositorio Git
+
+* https://git.copernic.cat/canals.ortiz.joan/gexpensesabp[Repositorio Git:]
+
+=== Enlaces a consultar
+
+* https://es.stackoverflow.com/questions/98329/mostrar-mensaje-de-error-en-un-span-de-un-formulario-en-javascript[Mensasje de error]
 
 
 
