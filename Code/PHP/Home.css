@@ -1,0 +1,124 @@
+body {
+    background-color: #1C3144;
+    color: white;
+}
+
+.act-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    margin-top: 30px;
+
+
+}
+
+.card-header {
+    border: 3px white solid;
+
+}
+
+.card-body {
+    border: 3px white solid;
+
+}
+
+.card-body h4 {
+    font-size: 20px;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    color: #1C3144;
+
+}
+
+.form-control {
+    margin-top: 15px;
+    margin-bottom: 14px;
+    padding: 20px;
+    font-size: 16px;
+    background-color: #1C3144;
+    border: 3px white solid;
+    border-radius: 5px;
+    color: white;
+    margin-left: 16px;
+    margin-right: 16px;
+
+
+}
+
+input[type="submit"] {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 50%;
+    color: #1C3144;
+    background-color: white;
+    border: 3px #1C3144 solid;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+
+}
+
+input[type="submit"]:hover {
+    background-color: #1C3144;
+    color: white;
+    border: 3px white solid;
+
+}
+
+/* --- DATOS ALMACENADOS --- */
+.card-body2 {
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- TABLA --- */
+
+tr,
+td {
+    border: 3px white solid;
+    padding: 15;
+
+}
+
+#table-act {
+    width: 100%;
+}
+
+#act-list {
+    width: 90%;
+    margin-right: 50px;
+    margin-top: 30px;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+/* --- BUTTON --- */
+.btn-delete{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    color:white;
+    border:3px white solid;
+    background-color: #1C3144;
+    border-radius: 5px;
+    padding: 10px;
+}
+.btn-delete:hover {
+    background-color: white;
+    color: #1C3144;
+    border:3px white solid;
+}
