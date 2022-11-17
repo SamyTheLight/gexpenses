@@ -9,6 +9,6 @@
 </head>
 <body>
     
-    <footer> <p> Membres: Oscar Alonso, Joan Canals, Samuel Garcia </p><p>Año de creación: 2022 </p><p>Año actual:2022</p></footer>
+    <footer> <p> Membres: Oscar Ramirez, Joan Canals, Samuel Garcia </p><p>Año de creación: 2022 </p><p>Año actual:2022</p></footer>
 </body>
 </html>
