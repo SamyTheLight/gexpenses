@@ -9,6 +9,7 @@ class Actividad {
 
 class UI {
     addAct(product) {
+       
         const actList = document.getElementById('table-act');
         const element = document.createElement('tr');
         element.innerHTML = `
@@ -19,6 +20,7 @@ class UI {
                         <button name="btn-delete" class="btn-delete">DELETE</button>
         `;
         actList.appendChild(element);
+        e.preventDefault();
 
     }
     resetForm() {
@@ -35,17 +37,23 @@ class UI {
 
 document.getElementById('act-form')
     .addEventListener('submit', function (e) {
+        
+        
+       
+      
         const name = document.getElementById('name').value;
         const description = document.getElementById('description').value;
         const divisa = document.getElementById('divisa').value;
 
-
+      
         const act = new Actividad(name, description, divisa);
         const ui = new UI();
+        
         ui.addAct(act);
-        ui.resetForm();
-
-        e.preventDefault();
+        // ui.resetForm();
+        
+       
+       
     });
 document.getElementById('act-list').addEventListener('click', function (e) {
     const ui = new UI();

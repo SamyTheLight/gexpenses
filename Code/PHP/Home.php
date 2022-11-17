@@ -1,8 +1,40 @@
 <?php
 session_start();
-include 'nav.php'
+//include 'nav.php';
+
+include 'ConexionDB.php';
 
 
+if ((isset($_POST['enviarActivitat']))) {
+  
+
+    $nombreA=$_POST["nomActivitat"];
+    var_dump($nombreA);
+    $descripcioActivitat=$_POST["descripcionActivitat"];
+    var_dump($descripcioActivitat);
+    $tipusDivisa=$_POST["divisa"];
+   
+
+$queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa) VALUES (:nombreA,:descripcionA,:divisaA)";
+
+$consultaActivitat = $conexion->prepare($queryActividad);
+
+
+$consultaActivitat->bindParam(':nombreA', $nombreA);
+$consultaActivitat->bindParam(':descripcionA', $descripcioActivitat);
+$consultaActivitat->bindParam(':divisaA', $tipusDivisa);
+
+
+
+
+if($consultaActivitat->execute()){
+    echo 'se ha insertado en la taula activitat ';
+}else {
+    echo 'no se ha insertado en activitat';
+};
+
+
+}
 
 
 
@@ -15,7 +47,7 @@ include 'nav.php'
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Home.css">
+  <link rel="stylesheet" href="Home.css">
     <title>Home</title>
 </head>
 
@@ -26,21 +58,22 @@ include 'nav.php'
         <div class="card">
             <div class="card-body">
                 <h4>AÑADE UNA ACTIVIDAD</h4>
-                <form id="act-form">
+                <form action="" id="act-form" method="POST">
                     <div class="form-group">
-                        <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control">
+                        <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
                     </div>
                     <div class="form-group">
-                        <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control">
+                        <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control" name="descripcionActivitat">
                     </div>
                     <div class="form-group">
-                        <select name="divisa" id='divisa' class="form-control">
+                        <select name="divisa" id='divisa' class="form-control" name="divisa">
                             <option value="$">$</option>
                             <option value="€">€</option>
                             <option value="¥">¥</option>
                         </select>
                     </div>
-                    <input type="submit" value="ENVIAR" class="btn-card">
+                    <button class="btn-card" id="afegirActivitat"  name="enviarActivitat">Enviar</button>
+                  
                 </form>
             </div>
         </div>
