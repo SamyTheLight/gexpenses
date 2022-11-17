@@ -23,6 +23,15 @@ La guia de estilos que utilizaremos para realizar nuestra pagina web sera la sig
 
 .Guia de estilos
 image::..\..\Pictures\guia_estilos_GExpenses.png[]
+Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Asi como que transmite natrualeza y pureza.Creemos que un color así le dará un buen contraste a segun que botones.
+
+Por otro lado, elegimos el azul oscuro y el negro para así dar un toque de elegáncia y refinez.
+
+Por último, elegimos el blanco para hacer un contraste y poder jugar con los colores más oscuros así como para poder aplicarlo en la letra.
+
+
+.Sketchings,Wireframes y Mockups
+https://www.figma.com/file/F0jCsQDcN4v49yFDbC4XKK/GExpenses?node-id=0%3A1&t=YZ0OFF2h1D9uwVv4-1[Sketchings,Wireframes y Mockups]
 
 == 3.Confección del manual de instalación de la aplicación
 
@@ -33,6 +42,7 @@ image::..\..\Pictures\guia_estilos_GExpenses.png[]
 == 6. Conclusiones
 
 == 7.Glosario 
+
 
 
 

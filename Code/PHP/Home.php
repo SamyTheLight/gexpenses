@@ -47,7 +47,7 @@ include 'nav.php'
         <div id="act-list">
             <table id="table-act">
                 <tr>
-                    <td>NOM</td>
+                    <td>NOMBRE</td>
                     <td>DESCRIPCIÓN</td>
                     <td>DIVISA</td>
                 </tr>
