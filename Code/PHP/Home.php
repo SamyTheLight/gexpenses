@@ -5,13 +5,18 @@ include 'nav.php';
 include 'ConexionDB.php';
 
 
+
+
+
+
+
 if ((isset($_POST['enviarActivitat']))) {
   
 
     $nombreA=$_POST["nomActivitat"];
-    var_dump($nombreA);
+   
     $descripcioActivitat=$_POST["descripcionActivitat"];
-    var_dump($descripcioActivitat);
+    
     $tipusDivisa=$_POST["divisa"];
    
 
@@ -35,6 +40,7 @@ if($consultaActivitat->execute()){
 
 
 }
+
 
 
 
@@ -80,12 +86,14 @@ if($consultaActivitat->execute()){
         <div id="act-list">
             <table id="table-act">
                 <tr>
+                    <td>ID</td>
                     <td>NOMBRE</td>
                     <td>DESCRIPCIÓN</td>
                     <td>DIVISA</td>
                 </tr>
 
             </table>
+            <tbody id="taulaMostrar"></tbody>
         </div>
     </div>
 

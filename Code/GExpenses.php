@@ -66,8 +66,7 @@ if ((isset($_POST['buttonRegister']))) {
     if (password_verify($passwordL,$user['contrasena'])) {
        
         
-        
-       $_SESSION['usuario'] = $user['nombre'];
+     // $_SESSION['usuario'] = $user['nombre'];
         header("location: PHP/Home.php");
     } else {
         echo '
@@ -79,6 +78,11 @@ if ((isset($_POST['buttonRegister']))) {
 ';
     }
 }
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +92,7 @@ if ((isset($_POST['buttonRegister']))) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="GExpenses.css">
+   <link rel="stylesheet" href="GExpenses.css">
     <link rel="stylesheet" href="PHP/footer.css">
     <title>Document</title>
 </head>
