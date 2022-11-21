@@ -1,19 +1,18 @@
 <?php
 session_start();
-include 'nav.php';
+//include 'nav.php';
 
 include 'ConexionDB.php';
 
 
-
-
-
-
+$query= "SELECT * FROM activitat";
+$stmt=$conexion->query($query);
+$registros=$stmt->fetchAll(PDO::FETCH_OBJ);
 
 if ((isset($_POST['enviarActivitat']))) {
   
 
-    $nombreA=$_POST["nomActivitat"];
+    $nombreA=$_POST["nomActivitat"];    
    
     $descripcioActivitat=$_POST["descripcionActivitat"];
     
@@ -34,6 +33,7 @@ $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
 
 if($consultaActivitat->execute()){
     echo 'se ha insertado en la taula activitat ';
+
 }else {
     echo 'no se ha insertado en activitat';
 };
@@ -58,8 +58,7 @@ if($consultaActivitat->execute()){
 </head>
 
 <body>
-    <h1><?php echo "<h1>Bienvenido - " . $_SESSION['usuario'] . "</h1>"; ?></h1>
-
+   
     <div class=act-card>
         <div class="card">
             <div class="card-body">
@@ -91,14 +90,24 @@ if($consultaActivitat->execute()){
                     <td>DESCRIPCIÓN</td>
                     <td>DIVISA</td>
                 </tr>
+                <?php  foreach($registros as $row ) :?>
+           
+           <tr class="tableInsert">
+               <td><?php echo $row->id_activitat ;?></td>
+               <td><?php echo $row->Nombre ;?></td>
+               <td><?php echo $row->Descripcion ;?></td>
+               <td><?php echo $row->Divisa ;?></td>
+               <td><button class="buttonInvitar">Inv</button></td>
+           </tr>
+           <?php endforeach; ?>
 
             </table>
-            <tbody id="taulaMostrar"></tbody>
+                    
         </div>
     </div>
 
 
-    <script src="Home.js"></script>
+    
 </body>
 
 </html>

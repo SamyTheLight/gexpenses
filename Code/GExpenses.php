@@ -53,8 +53,7 @@ if ((isset($_POST['buttonRegister']))) {
 
     $queryLogin->bindParam(":nombreUser", $nameuserL);
    
-  
-   
+
 
     $queryLogin->execute(); 
 
@@ -66,7 +65,7 @@ if ((isset($_POST['buttonRegister']))) {
     if (password_verify($passwordL,$user['contrasena'])) {
        
         
-     // $_SESSION['usuario'] = $user['nombre'];
+      //$_SESSION['usuario'] = $user['nombre'];
         header("location: PHP/Home.php");
     } else {
         echo '

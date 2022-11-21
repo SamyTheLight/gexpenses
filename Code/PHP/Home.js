@@ -1,9 +1,9 @@
-fetch('mostrarActivitat.php')
-.then(mostrarActivitats => mostrarActivitats.json())
-.then(activitat => {
+/*fetch('Home.php')
+.then(resultado => resultado.json())
+.then(dataQ => {
     
     let str= '';
-    activitat.map(item => {
+    dataQ.map(item => {
         str += `
             <tr>
                 <td>${item.id_activitat} </td>
@@ -17,4 +17,4 @@ fetch('mostrarActivitat.php')
 
     document.getElementById("taulaMostrar").innerHTML=str;
 
-});
+});*/
