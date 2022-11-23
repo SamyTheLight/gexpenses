@@ -1,0 +1,86 @@
+body {
+    background-color: #1C3144;
+    float:left;
+    color:white;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.form-target {
+
+    padding: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start ;
+   
+}
+
+#invitaciones-card {
+    background-color: black;
+    display: flex;
+    flex-direction: row-reverse;
+    height: 70%;
+
+
+}
+.label-description{
+    padding: 10px;
+    margin-left:0;
+}
+#invitaciones-table {
+
+    margin:0;
+}
+
+.input-mail {
+    width: 70%;
+    background-color: #1C3144;
+    padding: 10px;
+    border: 3px white solid;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-right: 15%;
+    
+}
+.label-description{
+    margin:0;
+}
+.btn-email {
+    margin-left: 0;
+    background-color: #1C3144;
+    border: 3px white solid;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+}
+h1{
+    margin:0;
+}
+.btn-mail {
+    margin-left: 0;
+    background-color: #1C3144;
+    border: 3px white solid;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 120%;
+    padding: 10px;   
+}
+.btn-enviar{
+    margin-top:10%;
+    margin-bottom: 0;
+    margin-right: 0;
+    background-color: #1C3144;
+    border: 3px white solid;
+    color: white;
+    width: 10%;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px;  
+}
