@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitb77400ec9f129cec2c3ff091491d1553
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Component\\EventDispatcher\\' => 34,
+        ),
         'P' => 
         array (
             'PHPMailer\\PHPMailer\\' => 20,
@@ -14,9 +18,38 @@ class ComposerStaticInitb77400ec9f129cec2c3ff091491d1553
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Component\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'M' => 
+        array (
+            'Mailgun\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/mailgun/mailgun-php/tests',
+            ),
+            'Mailgun' => 
+            array (
+                0 => __DIR__ . '/..' . '/mailgun/mailgun-php/src',
+            ),
+        ),
+        'G' => 
+        array (
+            'Guzzle\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
+            ),
+            'Guzzle' => 
+            array (
+                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
+            ),
         ),
     );
 
@@ -29,6 +62,7 @@ class ComposerStaticInitb77400ec9f129cec2c3ff091491d1553
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb77400ec9f129cec2c3ff091491d1553::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb77400ec9f129cec2c3ff091491d1553::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb77400ec9f129cec2c3ff091491d1553::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitb77400ec9f129cec2c3ff091491d1553::$classMap;
 
         }, null, ClassLoader::class);

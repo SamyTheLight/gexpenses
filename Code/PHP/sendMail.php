@@ -1,37 +1,43 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
-
+require __DIR__ . '/../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 
-try{
+
+
+try {
     $mail = new PHPMailer();
     $mail->isSMTP();
-    $mail->Host = 'smtp.mailtrap.io';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Port = 2525;
-    $mail->Username = '339a6e1c68d7d8';
-    $mail->Password = '6feae4e9376030';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
+    $mail->Username = 'mailcopernicprova@gmail.com';
+    $mail->Password = 'tusuihvzulctfnta';
 
-    //$mail = new PHPMailer();
-    $mail->setFrom('joanc@gmail.cat', 'proves');
-    // $mail->addReplyTo('info@mailtrap.io', 'Mailtrap');
-    $mail->addAddress('josep.queralt@copernic.cat', 'Josep');
-    // $mail->addCC('cc1@example.com', 'Elena');
-    // $mail->addBCC('bcc1@example.com', 'Alex');
-
-    $mail->Subject = 'Test Email via Mailtrap SMTP using PHPMailer';
+    $mail->setFrom('mailcopernicprova@gmail.com');
+    ;
+    $mail->addAddress('mailcopernicprova@gmail.com');
+    
+    $mail->Subject = 'Mail Enviado Correctamente PHPMAILER';
     $mail->isHTML(true);
-    $mailContent = "<h1>Send HTML Email using SMTP in PHP</h1>
-    <p>This is a test email I’m sending using SMTP mail server with PHPMailer.</p>";
+    $mailContent = "<h1>Todo bien todo correcto</h1>
+    <p>Y yo que me alegro.</p>";
     $mail->Body = $mailContent;
 
-    $mail->send();
+   if( $mail->send()){
+    echo 'Correo enviado';
+   }else echo 'error al enviar correo';
+
+
+   $mail->smtpClose();
 } catch (Exception $ex) {
     echo $ex->message;
 }
+
 
 
