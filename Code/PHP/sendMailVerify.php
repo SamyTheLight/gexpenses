@@ -7,8 +7,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 
-
-
 try {
     $mail = new PHPMailer();
     $mail->isSMTP();
@@ -21,13 +19,15 @@ try {
 
     $mail->setFrom('mailcopernicprova@gmail.com');
     ;
-    $mail->addAddress('mailcopernicprova@gmail.com');
+    $mail->addAddress('joancanals23@gmail.com');
     
-    $mail->Subject = 'Mail Enviado Correctamente PHPMAILER';
+    $mail->Subject = 'Verificación actividad';
     $mail->isHTML(true);
-    $mailContent = "<h1>Todo bien todo correcto</h1>
-    <p>Y yo que me alegro.</p>";
-    $mail->Body = $mailContent;
+    $mailContent = "<h1>Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece a continuación.<h1>";
+   
+
+    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php";
+    $mail->Body = $mailContent . "<a href=$mailink >Enviar</a>";
 
    if( $mail->send()){
     echo 'Correo enviado';

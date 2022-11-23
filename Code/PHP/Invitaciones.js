@@ -1,6 +1,6 @@
 class UI {
-    addAct() {
-       
+    addAct(e) {
+        
         const actList = document.getElementById('invitaciones-table');
         const element = document.createElement('tr');
         element.innerHTML = `
@@ -33,7 +33,8 @@ document.getElementById('invitaciones-table').addEventListener('click', function
 
 document.querySelector(".btn-email").addEventListener("click", e => {
     const ui = new UI();
-    ui.addAct();
+    e.preventDefault();
+    ui.addAct(e);
     
 
 });

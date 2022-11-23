@@ -1,6 +1,37 @@
 <?php
 session_start();
-include 'nav.php';
+//include 'nav.php';
+
+include 'ConexionDB.php';
+
+var_dump($_POST['btn-enviar']);
+
+if(isset($_POST['btn-enviar'])){
+
+    var_dump($_POST['btn-enviar']);
+    $emailE=$_POST['enviarCorreo'];
+
+    var_dump($emailE);
+
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
+
+
+    $queryEmail->bindParam(":emailP", $emailE);
+    
+
+    $queryEmail->execute();
+
+    $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+
+    if(!$trobat){
+        include 'sendMailRegister.php';
+    }else{
+       include 'sendMailVerify.php';
+    }
+
+}
 
 //include 'ConexionDB.php';
 ?>
@@ -17,17 +48,19 @@ include 'nav.php';
 </head>
 
 <body>
+<form action="" id="act-form" method="POST">
     <div class="form-target">
         <h1>Nombre Actividad</h1>
         <label class="label-description">Descripción Actividad</label>
         <table id="invitaciones-table">
         </table>
         <button class="btn-email">+</button>
-        <button class="btn-enviar">ENVIAR</button>
+        <input name="enviarCorreo" id="enviarCorreo">
+        <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
     </div>
-
+</form>
 </body>
-<script src=" Invitaciones.js"></script>
+<!-- <script src=" Invitaciones.js"></script> -->
 
 </html>
 <?php

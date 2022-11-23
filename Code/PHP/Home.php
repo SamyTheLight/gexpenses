@@ -9,7 +9,9 @@ $query= "SELECT * FROM activitat";
 $stmt=$conexion->query($query);
 $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
 
-if ((isset($_POST['enviarActivitat']))) {
+var_dump($_POST['enviarActivitat']);
+
+if ((isset($_POST['enviarActivitat'])) && (!empty($_POST["nomActivitat"])&&!empty($_POST['descripcionActivitat']))) {
   
 
     $nombreA=$_POST["nomActivitat"];    
