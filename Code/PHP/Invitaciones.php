@@ -31,6 +31,10 @@ if(isset($_POST['btn-enviar'])){
        include 'sendMailVerify.php';
     }
 
+
+        
+    
+
 }
 
 //include 'ConexionDB.php';
@@ -57,6 +61,36 @@ if(isset($_POST['btn-enviar'])){
         <button class="btn-email">+</button>
         <input name="enviarCorreo" id="enviarCorreo">
         <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
+
+        <?php
+               
+                if(isset($_GET['aceptat'])){
+                ?>
+                    <?php 
+                    if($_GET['aceptat']==='1'){
+                        ?>
+                            <div class="alert-success" id="has_registered">
+                        <p>Se ha aceptado la invitación</p>
+                    </div>
+
+                    <style> 
+                    .alert-success{
+                        text-align: center;
+                        background-color: green;
+                        color:white;
+                        display: block;
+                        border-radius: 20px;
+                        margin-top: 20px;
+                        font-size: 20px;
+                    }
+                </style>
+                        <?php
+                    }
+                    ?>
+                    
+                <?php
+                }
+                ?>
     </div>
 </form>
 </body>

@@ -20,13 +20,15 @@ try {
     $mail->setFrom('mailcopernicprova@gmail.com');
     ;
     $mail->addAddress('joancanals23@gmail.com');
+
+    $aceptat=1;
     
     $mail->Subject = 'Verificación actividad';
     $mail->isHTML(true);
     $mailContent = "<h1>Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece a continuación.<h1>";
    
 
-    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php";
+    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";
     $mail->Body = $mailContent . "<a href=$mailink >Enviar</a>";
 
    if( $mail->send()){
