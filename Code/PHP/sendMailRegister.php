@@ -19,15 +19,18 @@ try {
     $mail->Password = 'tusuihvzulctfnta';
 
     $mail->setFrom('mailcopernicprova@gmail.com');
-    ;
+    
+
+    $perRegistrar=1;
     $mail->addAddress($_POST['enviarCorreo']);
     
+    $correoAdreca=$_POST['enviarCorreo'];
     $mail->Subject = 'Registro GExpenses';
     $mail->isHTML(true);
     $mailContent = "<h1>Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece a continuación.<h1>";
    
 
-    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
+    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?perRegistrar=1?correoAdreca";
     $mail->Body = $mailContent . "<a href=$mailink >Enviar</a>";
 
    if( $mail->send()){

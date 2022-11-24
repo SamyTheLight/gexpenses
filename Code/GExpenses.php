@@ -62,7 +62,7 @@ if ((isset($_POST['buttonRegister']))) {
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
 
    
-    if (password_verify($passwordL,$user['contrasena'])) {
+    if (password_verify($passwordL, $user['contrasena'])) {
        
         
       //$_SESSION['usuario'] = $user['nombre'];
@@ -75,6 +75,28 @@ if ((isset($_POST['buttonRegister']))) {
     </script>
     
 ';
+    }
+}
+
+
+if(isset($_GET['perRegistrar'])){
+   if($_GET['perRegistrar'] === '1'){
+
+        $queryActividadR = "INSERT INTO invitacio (Email) VALUES (:emailR)";
+
+        $consultaActivitatR = $conexion->prepare($queryActividadR);
+
+
+        
+        $consultaActivitatR->bindParam(':emailR', $_GET["correoAdreca"]);
+
+     if($consultaActivitatR->execute()){
+        echo 'se ha insertado en la taula invitacio desde register';
+    
+    }else {
+        echo 'no se ha insertado en invitacio';
+    };
+  
     }
 }
 
