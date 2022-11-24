@@ -6,10 +6,10 @@ include 'ConexionDB.php';
 
 var_dump($_POST['btn-enviar']);
 
-if(isset($_POST['btn-enviar'])){
+if (isset($_POST['btn-enviar'])) {
 
     var_dump($_POST['btn-enviar']);
-    $emailE=$_POST['enviarCorreo'];
+    $emailE = $_POST['enviarCorreo'];
 
     var_dump($emailE);
 
@@ -19,23 +19,21 @@ if(isset($_POST['btn-enviar'])){
 
 
     $queryEmail->bindParam(":emailP", $emailE);
-    
+
 
     $queryEmail->execute();
 
     $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
 
-    if(!$trobat){
+    if (!$trobat) {
         include 'sendMailRegister.php';
-    }else{
-       include 'sendMailVerify.php';
+    } else {
+        include 'sendMailVerify.php';
     }
-
-
-        
-    
-
 }
+
+$nomActivitat = $_POST['nomActivitat'];
+$description = $_POST['descripcionActivitat'];
 
 //include 'ConexionDB.php';
 ?>
@@ -52,47 +50,47 @@ if(isset($_POST['btn-enviar'])){
 </head>
 
 <body>
-<form action="" id="act-form" method="POST">
-    <div class="form-target">
-        <h1>Nombre Actividad</h1>
-        <label class="label-description">Descripción Actividad</label>
-        <table id="invitaciones-table">
-        </table>
-        <button class="btn-email">+</button>
-        <input name="enviarCorreo" id="enviarCorreo">
-        <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
+    <form action="" id="act-form" method="POST">
+        <div class="form-target">
+            <h1 id="nom-activitat"><?php echo $nomActivitat ?></h1>
+            <p id="description"><?php echo $description ?></p>
+            <table id="invitaciones-table">
+            </table>
+            <button class="btn-email">+</button>
+            <input name="enviarCorreo" id="enviarCorreo">
+            <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
 
-        <?php
-               
-                if(isset($_GET['aceptat'])){
+            <?php
+
+            if (isset($_GET['aceptat'])) {
+            ?>
+                <?php
+                if ($_GET['aceptat'] === '1') {
                 ?>
-                    <?php 
-                    if($_GET['aceptat']==='1'){
-                        ?>
-                            <div class="alert-success" id="has_registered">
+                    <div class="alert-success" id="has_registered">
                         <p>Se ha aceptado la invitación</p>
                     </div>
 
-                    <style> 
-                    .alert-success{
-                        text-align: center;
-                        background-color: green;
-                        color:white;
-                        display: block;
-                        border-radius: 20px;
-                        margin-top: 20px;
-                        font-size: 20px;
-                    }
-                </style>
-                        <?php
-                    }
-                    ?>
-                    
+                    <style>
+                        .alert-success {
+                            text-align: center;
+                            background-color: green;
+                            color: white;
+                            display: block;
+                            border-radius: 20px;
+                            margin-top: 20px;
+                            font-size: 20px;
+                        }
+                    </style>
                 <?php
                 }
                 ?>
-    </div>
-</form>
+
+            <?php
+            }
+            ?>
+        </div>
+    </form>
 </body>
 <!-- <script src=" Invitaciones.js"></script> -->
 

@@ -44,6 +44,10 @@ if($consultaActivitat->execute()){
 }
 
 
+if (isset($_POST['enviarActivitat'])){
+    Header("Location: Invitaciones.php");
+    }
+    
 
 
 ?>
@@ -65,7 +69,7 @@ if($consultaActivitat->execute()){
         <div class="card">
             <div class="card-body">
                 <h4>AÑADE UNA ACTIVIDAD</h4>
-                <form action="" id="act-form" method="POST">
+                <form action="Invitaciones.php" id="act-form" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
                     </div>

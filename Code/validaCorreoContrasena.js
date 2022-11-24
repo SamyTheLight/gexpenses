@@ -1,84 +1,56 @@
-/*function validaCorreo(){
-    var expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-    var esValido = expReg.test(correo);
-    if(esValido == true){
-        alert("El correo electronico es valido")
-    } else {
-        alert("El correo electronico no es valido")
-    }
-}
+const nombreUsuario = document.getElementById('input-nameuser-register').value;
+const contrasena1 = document.getElementById('input-password-register').value;
+const contrasena2 = document.getElementById('input-password2-register').value;
+const email = document.getElementById('input-mail-register').value;
 
-function validaContrasena(valor){
-    //valida contraseñas de al menos una letra, al menos
-    // un numero, al menos una letra mayúscula, al menos 
-    //8 caracteres, no permite espacios.
-    var expReg =/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/;
-    if(myregex.test(contraseña)){
-        alert(valor+" es valido :-) !");
-        return true;        
-    }else{
-       alert(valor+" NO es valido!");
-        return false;        
-    }  
-}*/
 
-const formulario = document.getElementById('formulario-register');
-const inputs = document.querySelectorAll('#formulario-register input');
+// -- VALIDAR CORREO --
+function validarCorreo(correo) {
+	const expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+	const esValido = expReg.test(correo);
 
-const expresiones = {
-	usuario: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras, numeros, guion y guion_bajo
-	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{4,12}$/, // 4 a 12 digitos.
-	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-}
 
-const campos = {
-	usuario: false,
-	nombre: false,
-	password: false,
-	correo: false,
-	
-}
-
-const validarFormulario = (e) => {
-	switch (e.target.name) {
-		case "usuario":
-			validarCampo(expresiones.usuario, e.target, 'usuario');
-		break;
-		case "nombre":
-			validarCampo(expresiones.nombre, e.target, 'nombre');
-		break;
-		case "password":
-			validarCampo(expresiones.password, e.target, 'password');
-		break;
-		
-		case "correo":
-			validarCampo(expresiones.correo, e.target, 'correo');
-		break;
-		
+	const mail = document.getElementById('input-mail-register');
+	if (esValido == false) {
+		const p = document.createElement('p');
+		p.append('El correo no es correcto, porfavor introduzca los carácteres necesarios');
+		mail.appendChild(p);
+		mail.insertAdjacentElement('afterend',p);
 	}
 }
+// -- VALIDAR CONTRASEÑA -- 
+function validarContrasena(contrasena) {
+	const expReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;
+	const esValido = expReg.test(contrasena);
 
-const validarCampo = (expresion, input, campo) => {
-	if(expresion.test(input.value)){
-		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
-		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
-		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
-		campos[campo] = true;
-	} else {
-		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
-		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
-		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
-		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
-		campos[campo] = false;
+
+	const contrasena1 = document.getElementById('input-password-register');
+	if (esValido == false) {
+		const p = document.createElement('p');
+		p.append('La contraseña no es correcta, porfavor introduzca los carácteres necesarios.');
+		contrasena1.appendChild(p);
+		contrasena1.insertAdjacentElement('afterend',p);
+	}
+}
+// --VALIDAR  QUE SE REPITA LA CONTRASEÑA -- 
+function validarContrasenas(contrasena, contrasena2) {
+
+	const contrasenas = document.getElementById('input-password2-register');
+	if (contrasena != contrasena2) {
+		const p = document.createElement('p');
+		p.append('Las contraseñas no coinciden,por favor revíselas.');
+		contrasenas.appendChild(p);
+		contrasenas.insertAdjacentElement('afterend',p);
 	}
 }
 
 
-inputs.forEach((input) => {
-	input.addEventListener('keyup', validarFormulario);
-	input.addEventListener('blur', validarFormulario);
+
+document.querySelector(".btn-enviar").addEventListener("click", e => {
+	e.preventDefault();
+	validarContrasena(contrasena1);
+	validarContrasenas(contrasena1, contrasena2);
+	validarCorreo(email);
+
+
 });
