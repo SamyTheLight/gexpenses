@@ -136,9 +136,9 @@ if ((isset($_POST['buttonRegister']))) {
                
                 <h2>Registrate</h2>
                 <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" id="input-nameuser-register" name="username">
-                <input type="text" placeholder="Apellidos" class="input-password-register" id="input-password-register" name="contraseña">
-                <input type="password" placeholder="Contraseña" class="input-password2-register" id ="input-password2-register" name="Repita su contraseña">
-                <input type="text" placeholder="Correo electrónico" class="input-mail-register" id ="input-mail-register"name="email">
+                <input type="text" placeholder="Apellidos" class="input-password-register" id="input-password-register" name="lastname">
+                <input type="text" placeholder="Correo electrónico" class="input-password2-register" id ="input-password2-register" name="email">
+                <input type="password" placeholder="Contrasena" class="input-mail-register" id ="input-mail-register"name="contrasena">
 
                 <?php
                 if ($registered) {

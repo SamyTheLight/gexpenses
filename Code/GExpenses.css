@@ -50,10 +50,12 @@ body {
 
 .back-box button{
     margin-top: 30px;
-    font-size: 40px;
-    padding: 10px;
+    margin-left:10%;
+    font-size: 30px;
+    border-radius: 30px;
+    padding: 8px;
+    color:black;
 }
-
 .data {
     display: flex;
     align-items: center;

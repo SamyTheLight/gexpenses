@@ -7,7 +7,7 @@ try
 {
 	$conexion = new PDO(SERVER_MYSQL, BD_USUARIO, BD_CLAVE);	
  
-        echo 'conexion correcte';
+        
 }
 catch(Exception $e)
 {

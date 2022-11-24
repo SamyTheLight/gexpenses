@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
+//include 'Invitaciones.php';
 
 try {
     $mail = new PHPMailer();
@@ -19,7 +20,7 @@ try {
 
     $mail->setFrom('mailcopernicprova@gmail.com');
     ;
-    $mail->addAddress('joancanals23@gmail.com');
+    $mail->addAddress($_POST['enviarCorreo']);
     
     $mail->Subject = 'Registro GExpenses';
     $mail->isHTML(true);
