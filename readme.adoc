@@ -1,6 +1,9 @@
+
+:toc: left 
+
 = Proyecto GExpenses
 
-:toc:
+
 
 == Introduccion
 
