@@ -2,19 +2,27 @@
     margin: 0;
     padding: 0;
 }
+body{
+    position: relative;
+    min-height: 100vh;
+   
+}
+
 
 .header {
+    margin: auto;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #0a141d;
+    background-color:  #1C3144;;
     color: white;
     font-family:  'Inter', sans-serif;
     font-weight: bold;
     padding:20px;
-    position:fixed;
+    
+  
     
 }
 
@@ -25,7 +33,7 @@
 
 .header-tittle {
     display:flex;
-    font-size: 25px;
+    font-size: 45px;
     float: left;
     
 }
@@ -39,23 +47,25 @@
 .GE {
     margin-left: 15px;
     margin-right: 0;
-    font-size: 25px;
+    font-size: 45px;
     color:#6CD4B5;
 }
 
 .xpenses {
-    font-size: 25px;
+    font-size: 45px;
     margin-left: 0px;
     color:white;
 }
 
 .navbar-bar a {
+    border:2px solid #6CD4B5;
     display: inline-block;
     color: white;
     text-decoration: none;
+    margin: 5px;
     padding: 10px 20px;
     line-height: normal;
-    font-size: 16px;
+    font-size: 26px;
     font-weight: bold;
     
 

@@ -143,7 +143,7 @@ if($consultaActivitat->execute()){
         </div>
     </form>
 </body>
-<!-- <script src=" Invitaciones.js"></script>  -->
+ <!-- <script src=" Invitaciones.js"></script>  --> 
 
 </html>
 <?php

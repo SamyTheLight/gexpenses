@@ -4,10 +4,14 @@
     box-sizing: border-box;
     font-family:  'Inter', sans-serif;
 }
-
-.footer {
+body{
+    position: relative;
+}
+footer {
+    position: absolute;
+    bottom: 0px;
     width: 100%;
-    background-color: #0a141d;
+    background-color: #1C3144;;
 }
 
 .footer .group-1 {

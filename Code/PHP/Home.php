@@ -1,6 +1,6 @@
 <?php
 session_start();
-//include 'nav.php';
+include 'nav.php';
 
 include 'ConexionDB.php';
 
@@ -9,7 +9,6 @@ $query= "SELECT * FROM activitat";
 $stmt=$conexion->query($query);
 $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
 
-var_dump($_POST['enviarActivitat']);
 
 if ((isset($_POST['enviarActivitat'])) && (!empty($_POST["nomActivitat"])&&!empty($_POST['descripcionActivitat']))) {
   
@@ -69,7 +68,7 @@ if (isset($_POST['enviarActivitat'])){
         <div class="card">
             <div class="card-body">
                 <h4>AÑADE UNA ACTIVIDAD</h4>
-                <form action="Invitaciones.php" id="act-form" method="POST">
+                <form action="" id="act-form" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
                     </div>
@@ -77,7 +76,7 @@ if (isset($_POST['enviarActivitat'])){
                         <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control" name="descripcionActivitat">
                     </div>
                     <div class="form-group">
-                        <select name="divisa" id='divisa' class="form-control" name="divisa">
+                        <select name="divisa" id="divisa" class="form-control" name="divisa">
                             <option value="$">$</option>
                             <option value="€">€</option>
                             <option value="¥">¥</option>
