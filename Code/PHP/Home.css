@@ -3,6 +3,44 @@ body {
     color: white;
 }
 
+#btn-eliminar{
+    display: flex;
+   margin-right: 10px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+}
+#btn-anadir:hover{
+    color: white;
+    background-color: #1C3144;
+}
+.btn-eliminar{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    border: 3px white solid;
+    background-color: #1C3144;
+    border-radius: 5px;
+    padding: 10px;
+}
+.btn-eliminar:hover{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    color: #1C3144;
+    border: 3px #1C3144 solid;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#act-form {
+    display: none;
+    color:white;
+}
+
 .act-card {
     display: flex;
     flex-direction: row;
@@ -94,7 +132,7 @@ td {
 
 #table-act {
     width: 100%;
-    margin-top:-100px;
+    margin-top: -100px;
 }
 
 #act-list {
@@ -105,27 +143,29 @@ td {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     text-align: center;
-   
+
 }
+
 /* --- BUTTON --- */
-.btn-delete{
+.btn-delete {
     text-align: center;
     font-size: 16px;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
-    color:white;
-    border:3px white solid;
+    color: white;
+    border: 3px white solid;
     background-color: #1C3144;
     border-radius: 5px;
     padding: 10px;
 }
+
 .btn-delete:hover {
     background-color: white;
     color: #1C3144;
-    border:3px white solid;
+    border: 3px white solid;
 }
 
-td:last-child{
-    background-color:red;
+td:last-child {
+    background-color: red;
     padding: 0px;
 }

@@ -92,8 +92,8 @@ $description = $_POST['descripcionActivitat'];
         </div>
     </form>
 </body>
-<!-- <script src=" Invitaciones.js"></script> -->
-
+ <script src=" Invitaciones.js"></script> 
+ <script src=" validaCorreo.js"></script> 
 </html>
 <?php
 
