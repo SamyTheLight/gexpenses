@@ -1,8 +1,8 @@
 <?php
-define('DATABASE',   'gexpenses');
-define('BD_USUARIO', 'root');
-define('BD_CLAVE',  '');
-define('SERVER_MYSQL', 'mysql:host=localhost;dbname='.DATABASE.';charset=utf8');
+define('DATABASE',   'GExpensesBBDD');
+define('BD_USUARIO', 'gexpensesUser');
+define('BD_CLAVE',  '1234');
+define('SERVER_MYSQL', 'mysql:host=172.16.0.10;dbname='.DATABASE.';charset=utf8');
 try
 {
 	$conexion = new PDO(SERVER_MYSQL, BD_USUARIO, BD_CLAVE);	

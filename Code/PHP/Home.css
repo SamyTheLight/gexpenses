@@ -1,49 +1,17 @@
 body {
-    background-color: #1C3144;
-    color: white;
-}
-
-#btn-eliminar{
-    display: flex;
-   margin-right: 10px;
-   margin-bottom: 10px;
-   margin-top: 10px;
-}
-#btn-anadir:hover{
-    color: white;
-    background-color: #1C3144;
-}
-.btn-eliminar{
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
-    color: white;
-    border: 3px white solid;
-    background-color: #1C3144;
-    border-radius: 5px;
-    padding: 10px;
-}
-.btn-eliminar:hover{
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
-    color: #1C3144;
-    border: 3px #1C3144 solid;
     background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-}
+    color:  #1C3144;
+    position: absolute;
 
-#act-form {
-    display: none;
-    color:white;
 }
 
 .act-card {
+   
+    margin-top: 150px;
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
+  
 }
 
 .card {
@@ -52,31 +20,37 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    margin-top: 30px;
+    margin-top: -65px;
 
 
 }
 
 .card-header {
-    border: 3px white solid;
+    border: 3px solid  #1C3144;
+  
 
 }
 
 .card-body {
-    border: 3px white solid;
+    border: 3px solid #1C3144;
+   
 
 }
-
+#divisa {
+    width: 88%;
+}
 .card-body h4 {
     font-size: 20px;
     padding: 20px;
     font-family: 'Inter', sans-serif;
-    background-color: white;
-    color: #1C3144;
+    background-color:#1C3144;
+    color: white    ;
 
 }
 
 .form-control {
+    justify-content:center;
+    align-items:center;
     margin-top: 15px;
     margin-bottom: 14px;
     padding: 20px;
@@ -90,28 +64,36 @@ body {
 
 
 }
+ ::placeholder {
+    color:white;
+}
 
 .btn-card {
-    display: flex;
-    justify-content: center;
+    float:none;
+	text-align:center;
+    margin-left: 28%;
     margin-top: 15px;
     margin-bottom: 15px;
-    padding: 10px;
-    width: 50%;
-    color: #1C3144;
-    background-color: white;
+    padding: 8px;
+    
+    background-color: #1C3144;
+    color: white;
     border: 3px #1C3144 solid;
-    border-radius: 5px;
+    border-radius: 20px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 36px;
     text-align: center;
 
 }
+
 
 .btn-card:hover {
     background-color: #1C3144;
     color: white;
     border: 3px white solid;
+    color: white;
+    background-color: #6CD4B5;
+    border: 3px #1C3144 solid;
 
 }
 
@@ -127,12 +109,25 @@ tr,
 td {
     border: 3px white solid;
     padding: 15px;
+    border: 3px solid  #1C3144;
 
 }
 
 #table-act {
     width: 100%;
-    margin-top: -100px;
+    margin-top:-100px;
+    border: 3px solid #1C3144;
+}
+
+#table-act tr:first-child {
+    background-color: #1C3144;
+    color:white;
+}
+#table-act tr:first-child :last-child{
+    background-color: #1C3144;
+    width: 15%;
+
+    color:white;
 }
 
 #act-list {
@@ -140,32 +135,31 @@ td {
     margin-right: 50px;
     margin-top: 30px;
     font-size: 20px;
+   
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     text-align: center;
-
+   
 }
-
 /* --- BUTTON --- */
-.btn-delete {
+.btn-delete{
     text-align: center;
     font-size: 16px;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
-    color: white;
-    border: 3px white solid;
+    color:white;
+    border:3px white solid;
     background-color: #1C3144;
     border-radius: 5px;
     padding: 10px;
 }
-
 .btn-delete:hover {
     background-color: white;
     color: #1C3144;
-    border: 3px white solid;
+    border:3px white solid;
 }
 
-td:last-child {
-    background-color: red;
+td:last-child{
+    background-color:red;
     padding: 0px;
 }

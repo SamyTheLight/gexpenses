@@ -1,15 +1,14 @@
 <?php
 session_start();
-//include 'nav.php';
+include 'nav.php';
 
-//include 'ConexionDB.php';
+include 'ConexionDB.php';
 
 
-/*$query= "SELECT * FROM activitat";
+$query= "SELECT * FROM activitat";
 $stmt=$conexion->query($query);
 $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
 
-var_dump($_POST['enviarActivitat']);
 
 if ((isset($_POST['enviarActivitat'])) && (!empty($_POST["nomActivitat"])&&!empty($_POST['descripcionActivitat']))) {
   
@@ -49,7 +48,7 @@ if (isset($_POST['enviarActivitat'])){
     }
     
 
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -59,38 +58,33 @@ if (isset($_POST['enviarActivitat'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Home.css">
+  <link rel="stylesheet" href="Home.css">
     <title>Home</title>
 </head>
 
 <body>
-
+   
     <div class=act-card>
         <div class="card">
             <div class="card-body">
-                <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
-                <form action="Invitaciones.php" id="act-form" method="POST">
+                <h4>AÑADE UNA ACTIVIDAD</h4>
+                <form action="" id="act-form" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
                     </div>
                     <div class="form-group">
                         <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control" name="descripcionActivitat">
                     </div>
-                    <div class="form-group" id="form-group">
-                        <select name="divisa" id='divisa' class="form-control" name="divisa">
-                            <option value="" disabled selected>seleccione la divisa</option>
+                    <div class="form-group">
+                        <select name="divisa" id="divisa" class="form-control" name="divisa">
                             <option value="$">$</option>
                             <option value="€">€</option>
                             <option value="¥">¥</option>
                         </select>
                     </div>
-                    <button class="btn-card" id="afegirActivitat" name="enviarActivitat">Enviar</button>
-
+                    <button class="btn-card" id="afegirActivitat"  name="enviarActivitat">Enviar</button>
+                  
                 </form>
-
-                <div id="btn-eliminar">
-                    <button class="btn-eliminar" id="btn-eliminar">-</button>
-                </div>
             </div>
         </div>
         <div id="act-list">
@@ -101,28 +95,34 @@ if (isset($_POST['enviarActivitat'])){
                     <td>DESCRIPCIÓN</td>
                     <td>DIVISA</td>
                 </tr>
-                <?php foreach ($registros as $row) : ?>
-
-                    <tr class="tableInsert">
-                        <td><?php echo $row->id_activitat; ?></td>
-                        <td><?php echo $row->Nombre; ?></td>
-                        <td><?php echo $row->Descripcion; ?></td>
-                        <td><?php echo $row->Divisa; ?></td>
-                        <td><button class="buttonInvitar">Inv</button></td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php  foreach($registros as $row ) :?>
+           
+           <tr class="tableInsert">
+               <td><?php echo $row->id_activitat ;?></td>
+               <td><?php echo $row->Nombre ;?></td>
+               <td><?php echo $row->Descripcion ;?></td>
+               <td><?php echo $row->Divisa ;?></td>
+               <td><button class="buttonInvitar">Inv</button></td>
+           </tr>
+           <?php endforeach; ?>
 
             </table>
-
+                    
         </div>
     </div>
 
 
-
+    
 </body>
-<script src="Home.js"></script>
 
 </html>
+
+
+
+<?php
+
+include 'footer.php';
+?>html>
 
 
 
