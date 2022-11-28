@@ -1,16 +1,17 @@
 <?php
 session_start();
-include 'nav.php';
+//include 'nav.php';
 
 include 'ConexionDB.php';
 
+var_dump($_POST['btn-enviar']);
 
 if (isset($_POST['btn-enviar'])) {
 
-
-    $nomInvitacio = $_POST['nomActivitat'];
-    $descriptionInvitacio = $_POST['descripcionActivitat'];
+    var_dump($_POST['btn-enviar']);
     $emailE = $_POST['enviarCorreo'];
+
+    var_dump($emailE);
 
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -29,36 +30,12 @@ if (isset($_POST['btn-enviar'])) {
     } else {
         include 'sendMailVerify.php';
     }
-
-    if (isset($_GET['aceptat'])) {
-        if ($_GET['aceptat'] === '1') {
-
-            $queryActividad = "INSERT INTO invitacio (Nombre,Descripcion,Email) VALUES (:nombreI,:descripcionI,:emailI)";
-
-            $consultaActivitat = $conexion->prepare($queryActividad);
-
-
-            $consultaActivitat->bindParam(':nombreI', $nomInvitacio);
-            $consultaActivitat->bindParam(':descripcionI', $descriptionInvitacio);
-            $consultaActivitat->bindParam(':emailI', $emailE);
-
-
-
-
-
-            if ($consultaActivitat->execute()) {
-                echo 'se ha insertado en la taula invitacio ';
-            } else {
-                echo 'no se ha insertado en invitacio';
-            };
-        }
-    }
 }
 
+$nomActivitat = $_POST['nomActivitat'];
+$description = $_POST['descripcionActivitat'];
 
-
-
-
+//include 'ConexionDB.php';
 ?>
 
 <!DOCTYPE html>
@@ -73,28 +50,15 @@ if (isset($_POST['btn-enviar'])) {
 </head>
 
 <body>
-
-
-
     <form action="" id="act-form" method="POST">
         <div class="form-target">
-            <div class="NameInvitacio">
-                <h1>Nombre Actividad</h1>
-                <input type="text" class="inputName">
-            </div>
-            <div class="DescripcioInvitacio">
-                <h1 class="label-description">Descripción Actividad</h1>
-                <input type="textarea" class="inputDescripcion">
-            </div>
-            <div class="Emailnvitacio">
-                <h1 class="label-description">Email</h1>
-                <input name="enviarCorreo" id="enviarCorreo">
-            </div>
-
-
-
+            <h1 id="nom-activitat"><?php echo $nomActivitat ?></h1>
+            <p id="description"><?php echo $description ?></p>
+            <table id="invitaciones-table">
+            </table>
+            <button class="btn-email">+</button>
+            <input name="enviarCorreo" id="enviarCorreo">
             <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
-
 
             <?php
 
@@ -104,44 +68,32 @@ if (isset($_POST['btn-enviar'])) {
                 if ($_GET['aceptat'] === '1') {
                 ?>
                     <div class="alert-success" id="has_registered">
-
-                        <?php
-                        if ($_GET['aceptat'] === '1') {
-
-
-                        ?>
-                            <div class="alert-success" id="has_registered">
-
-                                <p>Se ha aceptado la invitación</p>
-                            </div>
-
-                            <style>
-                                .alert-success {
-                                    text-align: center;
-                                    background-color: green;
-                                    color: white;
-                                    display: block;
-                                    border-radius: 20px;
-                                    margin-top: 20px;
-                                    font-size: 20px;
-                                }
-                            </style>
-                        <?php
-                        }
-                        ?>
-
-                    <?php
-                }
-                    ?>
-                <?php
-            }
-                ?>
+                        <p>Se ha aceptado la invitación</p>
                     </div>
+
+                    <style>
+                        .alert-success {
+                            text-align: center;
+                            background-color: green;
+                            color: white;
+                            display: block;
+                            border-radius: 20px;
+                            margin-top: 20px;
+                            font-size: 20px;
+                        }
+                    </style>
+                <?php
+                }
+                ?>
+
+            <?php
+            }
+            ?>
+        </div>
     </form>
 </body>
-<script src=" Invitaciones.js"></script>
-<script src=" validaCorreo.js"></script>
-
+ <script src=" Invitaciones.js"></script> 
+ <script src=" validaCorreo.js"></script> 
 </html>
 <?php
 

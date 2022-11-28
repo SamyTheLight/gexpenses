@@ -8,17 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <footer class="footer">
-        <div class="group-1">
-           
-            <div class="box-2">
-                <h2>SOBRE NOSOTROS</h2>
-                <p>Grupo formado por Joan Canals, Samuel García & Oscar Ramírez.</p>
-            </div>
-            <div class="box-3">
-                <p>Año creación: 2022-2023</p>
-            </div>
-        </div>
-    </footer>
+    
+    <footer> <p> Membres: Oscar Ramirez, Joan Canals, Samuel Garcia </p><p>Año de creación: 2022 </p><p>Año actual:2022</p></footer>
 </body>
 </html>

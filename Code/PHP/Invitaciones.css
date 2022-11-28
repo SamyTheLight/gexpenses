@@ -1,13 +1,6 @@
-*{
-    margin:auto;
-    padding: auto;
-    box-sizing: border-box;
-}
-
-
 body {
     background-color: #1C3144;
-   
+    float:left;
     color:white;
     font-family: 'Inter', sans-serif;
     font-weight: bold;
@@ -15,36 +8,13 @@ body {
 }
 
 
-form {
-    background-color: aquamarine;
-    width: 70%;
-    height: 600px;
-    margin-top:40px;
-    padding: 40px;
-    text-align: left;
-}
+.form-target {
 
-form input{
-    margin: 10px;
-    padding: 10px;
-    width: 100%;
-}
-
-.inputDescripcion{
-    height: 200px;
-}
-
-form button {
-    margin-left: 50%;
-}
-/*
-
-.NameInvitacio{
+    padding: 90px;
     display: flex;
-}
-
-.DescripcionInvitacio{
-    display: flex;
+    flex-direction: column;
+    align-items: flex-start ;
+   
 }
 
 #invitaciones-card {
@@ -114,4 +84,3 @@ h1{
     font-size: 20px;
     padding: 15px;  
 }
-*/

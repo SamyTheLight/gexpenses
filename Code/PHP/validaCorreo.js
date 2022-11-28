@@ -1,5 +1,5 @@
 function validarCorreo(correo) {
-	const expReg = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+	const expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 	const esValido = expReg.test(correo);
 
 
@@ -8,9 +8,7 @@ function validarCorreo(correo) {
 		const p = document.createElement('p');
 		p.append('El correo no es correcto, porfavor introduzca los carácteres necesarios');
 		td.appendChild(p);
-	}else {
-        window.location.href = "Home.php";
-    }
+	}
 }
 
 
