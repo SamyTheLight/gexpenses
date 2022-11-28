@@ -25,15 +25,13 @@ if (isset($_POST['btn-enviar'])) {
     $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
 
     if (!$trobat) {
-        include 'sendMailRegister.php'; 
-        
+        include 'sendMailRegister.php';
     } else {
         include 'sendMailVerify.php';
-
     }
 
-    if(isset($_GET['aceptat'])){
-        if ($_GET['aceptat'] === '1'){
+    if (isset($_GET['aceptat'])) {
+        if ($_GET['aceptat'] === '1') {
 
             $queryActividad = "INSERT INTO invitacio (Nombre,Descripcion,Email) VALUES (:nombreI,:descripcionI,:emailI)";
 
@@ -43,20 +41,18 @@ if (isset($_POST['btn-enviar'])) {
             $consultaActivitat->bindParam(':nombreI', $nomInvitacio);
             $consultaActivitat->bindParam(':descripcionI', $descriptionInvitacio);
             $consultaActivitat->bindParam(':emailI', $emailE);
-          
 
 
 
 
-if($consultaActivitat->execute()){
-    echo 'se ha insertado en la taula invitacio ';
 
-}else {
-    echo 'no se ha insertado en invitacio';
-};
+            if ($consultaActivitat->execute()) {
+                echo 'se ha insertado en la taula invitacio ';
+            } else {
+                echo 'no se ha insertado en invitacio';
+            };
         }
     }
-
 }
 
 
@@ -78,26 +74,26 @@ if($consultaActivitat->execute()){
 
 <body>
 
-   
 
-<form action="" id="act-form" method="POST">
-    <div class="form-target">
-        <div class="NameInvitacio">
-            <h1>Nombre Actividad</h1>
-            <input type="text" class="inputName">
-        </div>
-        <div class="DescripcioInvitacio">
-            <h1 class="label-description">Descripción Actividad</h1>
-            <input type="textarea" class="inputDescripcion">
-        </div>
-        <div class="Emailnvitacio">
-            <h1 class="label-description">Email</h1>
-            <input name="enviarCorreo" id="enviarCorreo">
-        </div>
-       
-        
-        
-        <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
+
+    <form action="" id="act-form" method="POST">
+        <div class="form-target">
+            <div class="NameInvitacio">
+                <h1>Nombre Actividad</h1>
+                <input type="text" class="inputName">
+            </div>
+            <div class="DescripcioInvitacio">
+                <h1 class="label-description">Descripción Actividad</h1>
+                <input type="textarea" class="inputDescripcion">
+            </div>
+            <div class="Emailnvitacio">
+                <h1 class="label-description">Email</h1>
+                <input name="enviarCorreo" id="enviarCorreo">
+            </div>
+
+
+
+            <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
 
 
             <?php
@@ -106,44 +102,45 @@ if($consultaActivitat->execute()){
             ?>
                 <?php
                 if ($_GET['aceptat'] === '1') {
-                    ?>
+                ?>
                     <div class="alert-success" id="has_registered">
 
-                    <?php 
-                    if($_GET['aceptat']==='1'){
+                        <?php
+                        if ($_GET['aceptat'] === '1') {
 
 
                         ?>
                             <div class="alert-success" id="has_registered">
 
-                        <p>Se ha aceptado la invitación</p>
-                    </div>
+                                <p>Se ha aceptado la invitación</p>
+                            </div>
 
-                    <style>
-                        .alert-success {
-                            text-align: center;
-                            background-color: green;
-                            color: white;
-                            display: block;
-                            border-radius: 20px;
-                            margin-top: 20px;
-                            font-size: 20px;
+                            <style>
+                                .alert-success {
+                                    text-align: center;
+                                    background-color: green;
+                                    color: white;
+                                    display: block;
+                                    border-radius: 20px;
+                                    margin-top: 20px;
+                                    font-size: 20px;
+                                }
+                            </style>
+                        <?php
                         }
-                    </style>
-                <?php
-                }
-                ?>
+                        ?>
 
-            <?php
+                    <?php
+                }
+                    ?>
+                <?php
             }
-            ?>
-            <?php
-            }
-            ?>
-        </div>
+                ?>
+                    </div>
     </form>
 </body>
- <!-- <script src=" Invitaciones.js"></script>  --> 
+<script src=" Invitaciones.js"></script>
+<script src=" validaCorreo.js"></script>
 
 </html>
 <?php
