@@ -62,7 +62,7 @@ if ((isset($_POST['buttonRegister']))) {
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
 
    
-    if (password_verify($passwordL,$user['contrasena'])) {
+    if (password_verify($passwordL, $user['contrasena'])) {
        
         
       //$_SESSION['usuario'] = $user['nombre'];
@@ -75,6 +75,28 @@ if ((isset($_POST['buttonRegister']))) {
     </script>
     
 ';
+    }
+}
+
+
+if(isset($_GET['perRegistrar'])){
+   if($_GET['perRegistrar'] === '1'){
+
+        $queryActividadR = "INSERT INTO invitacio (Email) VALUES (:emailR)";
+
+        $consultaActivitatR = $conexion->prepare($queryActividadR);
+
+
+        
+        $consultaActivitatR->bindParam(':emailR', $_GET["correoAdreca"]);
+
+     if($consultaActivitatR->execute()){
+        echo 'se ha insertado en la taula invitacio desde register';
+    
+    }else {
+        echo 'no se ha insertado en invitacio';
+    };
+  
     }
 }
 
@@ -136,9 +158,9 @@ if ((isset($_POST['buttonRegister']))) {
                
                 <h2>Registrate</h2>
                 <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" id="input-nameuser-register" name="username">
-                <input type="text" placeholder="Apellidos" class="input-password-register" id="input-password-register" name="contraseña">
-                <input type="password" placeholder="Contraseña" class="input-password2-register" id ="input-password2-register" name="Repita su contraseña">
-                <input type="text" placeholder="Correo electrónico" class="input-mail-register" id ="input-mail-register"name="email">
+                <input type="text" placeholder="Apellidos" class="input-password-register" id="input-password-register" name="lastname">
+                <input type="text" placeholder="Correo electrónico" class="input-password2-register" id ="input-password2-register" name="email">
+                <input type="password" placeholder="Contrasena" class="input-mail-register" id ="input-mail-register"name="contrasena">
 
                 <?php
                 if ($registered) {

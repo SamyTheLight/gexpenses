@@ -36,6 +36,9 @@ $nomActivitat = $_POST['nomActivitat'];
 $description = $_POST['descripcionActivitat'];
 
 //include 'ConexionDB.php';
+
+$arrayCorreos = $_POST["emailEnviados[]"];
+
 ?>
 
 <!DOCTYPE html>

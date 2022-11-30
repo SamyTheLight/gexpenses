@@ -1,32 +1,14 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 23-11-2022 a las 20:50:34
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `gexpenses`
---
-
--- --------------------------------------------------------
+CREATE USER 'gexpensesuser'@'%' IDENTIFIED BY '1234';
+GRANT CREATE, ALTER, INSERT, UPDATE, SELECT, REFERENCES, RELOAD ON * . * TO 'gexpensesuser'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+DROP DATABASE IF EXISTS GExpensesBBDD;
+CREATE DATABASE GExpensesBBDD;
+USE GExpensesBBDD; 
 
 --
 -- Estructura de tabla para la tabla `activitat`
 --
-
+DROP TABLE IF EXISTS `activitat`;
 CREATE TABLE `activitat` (
   `id_activitat` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
@@ -45,34 +27,34 @@ INSERT INTO `activitat` (`id_activitat`, `Nombre`, `Descripcion`, `Divisa`) VALU
 (52, 'fgfg', 'fgfgf', '$'),
 (53, 'fgfg', 'fgfgf', '$'),
 (54, 'fgfg', 'fgfgf', '$'),
-(55, 'fgfg', 'fgfgf', '$');
-
--- --------------------------------------------------------
+(55, 'fgfg', 'fgfgf', '$'),
+(56, 'Realizar sprint 3', 'Hacer mochila , vagrant, diseños de páginas ', '$'),
+(57, 'Ver partidos del mundial', 'Juega españa versus Alemania donde la roja viene de ganar 7-0 a la costa rica de keylor navas', '€');
 
 --
 -- Estructura de tabla para la tabla `invitacio`
 --
-
+DROP TABLE IF EXISTS `invitacio`; 
 CREATE TABLE `invitacio` (
   `id_invitacio` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL
+  `Email` varchar(255) NOT NULL,
+  `Aceptado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `invitacio`
 --
 
-INSERT INTO `invitacio` (`id_invitacio`, `Nombre`, `Descripcion`, `Email`) VALUES
-(1, '', '', 'oscarferram@gmail.com');
-
--- --------------------------------------------------------
+INSERT INTO `invitacio` (`id_invitacio`, `Nombre`, `Descripcion`, `Email`, `Aceptado`) VALUES
+(1, '', '', 'oscarferram@gmail.com', 0),
+(3, '', '', 'joancanals23@gmail.com', 0);
 
 --
 -- Estructura de tabla para la tabla `usuario`
 --
-
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `nombre` varchar(30) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
@@ -161,47 +143,14 @@ INSERT INTO `usuario` (`nombre`, `apellidos`, `email`, `contrasena`) VALUES
 ('josep', 'queralt', 'jqueralt@gmail.com', '$2y$10$LKAF6Y04Tsj988hkkstlMuotVzOn50y7rx6uzw74ocQh1KCDKcgPu'),
 ('frgtg', 'gbgb', 'gtth', '$2y$10$hBHNECMiZbJAvlR8n.gUiO/lUDwNZXRHoPmMmG4D8rfng.u7vVesC'),
 ('frgtg', 'gbgb', 'gtth', '$2y$10$vNrjaN8nUpENYU7.4AkjCO5FBivMQpp8d8l2XPzTTBRtgy47p51ZK'),
-('pedro', 'lopez', 'plopez@gmail.com', '$2y$10$VzsRUP.DAV2tCsnQ3gtpYeJADUwe/TxAcloPN0d8e7g1Rx1Rxxj3C');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `nombre` varchar(20) NOT NULL,
-  `apellidos` varchar(40) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `contrasena` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`nombre`, `apellidos`, `email`, `contrasena`) VALUES
-('danieldee', 'rodriguezss', 'rodriguncljad@gmail.com', ''),
-('joan', 'canals', 'jcanals@gmail.com', ''),
-('manuel', 'carrasco', 'mcarrasco22@gmail.com', ''),
-('manuelito', 'carrascos', 'mcarrafffsco22@gmail.com', ''),
-('paco', 'sanz', 'paquito@gmail.com', ''),
-('martin', 'caceres', 'martincaceres@gmail.com', ''),
-('jcnal23@gmail.com', 'caODPIPODSAA', 'FWWFV', ''),
-('samu', 'vdfod', 'dgggggrg', ''),
-('rdddd', 'dddd', 'ddddd', ''),
-('joan', 'canalls', 'jcanals@gmail.com', ''),
-('daniel', 'rodriguez', 'rrodriguez@gmail.com', ''),
-('diego', 'fernandez', 'fernan@gmail.com', ''),
-('jose', 'curtido', 'jcurtido@gmail.com', ''),
-('joan', 'canals', 'jcanals@gmail.com', ''),
-('pp', 'pp', 'pp', ''),
-('maria dolores', 'ortiz garcia', 'putaloli@gmail.com', ''),
-('', '', '', ''),
-('', '', '', ''),
-('', '', '', ''),
-('sheyla', 'jimenez', 'puton@gmail.com', ''),
-('', '', '', '');
+('pedro', 'lopez', 'plopez@gmail.com', '$2y$10$VzsRUP.DAV2tCsnQ3gtpYeJADUwe/TxAcloPN0d8e7g1Rx1Rxxj3C'),
+('joan', 'canals', 'jco98web@gmail.com', '$2y$10$iAkzqTsjGTqENmKxXnurc.68e5mS4gGcRy/sEoSQL9ByPdD2akw5q'),
+('pepito1', 'dffdf', 'dfdfdf', '$2y$10$1XHf5Xzem6nynn3fHzr0..KaFy/ezxVh9CjyuMnDsMT22DdZz4riO'),
+('joancanals23', 'scadfsdf', 'joancanals23@gmail.com', '$2y$10$Fz70YDb3mWWyaAzP5Nio6.vTdP81fSaq19N6a/kkwVHT1Ds6vwZv6'),
+('jcnal23@gmail.com', '', '', '$2y$10$m2XoRFxnKqHM.Kwn7n43lea9MGkPaH.R5nvZHssYJ1t4SuKvfb77i'),
+('alfonso', 'rodriguez', 'jco98@gmail.com', '$2y$10$5xFo6UXuo2Hwk/W6IRG2GO012aT3fRRcyz9bjSoQ5J2NDxg7YEPJ.'),
+('joan11', 'canals', 'jco98web@gmail.com', '$2y$10$R/.hofpBA.lDytTzjYb6LOyTQ7NcoUVsFEro/zw.qoVrO4fm.De0a'),
+('jcnal23@gmail.com', '', '', '$2y$10$Cw9AiE1ga7ZKrUNgafVzhuwEeAy/tMJ2x/W6O0OdnfrOi2SWtRRFK');
 
 --
 -- Índices para tablas volcadas
@@ -227,15 +176,11 @@ ALTER TABLE `invitacio`
 -- AUTO_INCREMENT de la tabla `activitat`
 --
 ALTER TABLE `activitat`
-  MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `invitacio`
 --
 ALTER TABLE `invitacio`
-  MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
