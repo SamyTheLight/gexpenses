@@ -152,6 +152,8 @@ INSERT INTO `usuario` (`nombre`, `apellidos`, `email`, `contrasena`) VALUES
 ('joan11', 'canals', 'jco98web@gmail.com', '$2y$10$R/.hofpBA.lDytTzjYb6LOyTQ7NcoUVsFEro/zw.qoVrO4fm.De0a'),
 ('jcnal23@gmail.com', '', '', '$2y$10$Cw9AiE1ga7ZKrUNgafVzhuwEeAy/tMJ2x/W6O0OdnfrOi2SWtRRFK');
 
+
+GRANT CREATE, ALTER, INSERT, UPDATE, SELECT, REFERENCES, RELOAD ON * . * TO 'ruben'@'%' WITH GRANT OPTION;
 --
 -- Índices para tablas volcadas
 --
