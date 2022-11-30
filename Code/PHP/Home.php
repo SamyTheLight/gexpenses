@@ -67,27 +67,18 @@ if (isset($_POST['enviarActivitat'])){
     <div class=act-card>
         <div class="card">
             <div class="card-body">
-<<<<<<< HEAD
                 <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
                 <form action="Invitaciones.php" id="act-form" method="POST">
-=======
-                <h4>AÑADE UNA ACTIVIDAD</h4>
-                <form action="" id="act-form" method="POST">
->>>>>>> 2fb73afc9445518f265d9f740491be5635336c8b
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
                     </div>
                     <div class="form-group">
                         <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control" name="descripcionActivitat">
                     </div>
-<<<<<<< HEAD
+
                     <div class="form-group" id="form-group">
                         <select name="divisa" id='divisa' class="form-control" name="divisa">
                             <option value="" disabled selected>seleccione la divisa</option>
-=======
-                    <div class="form-group">
-                        <select name="divisa" id="divisa" class="form-control" name="divisa">
->>>>>>> 2fb73afc9445518f265d9f740491be5635336c8b
                             <option value="$">$</option>
                             <option value="€">€</option>
                             <option value="¥">¥</option>
