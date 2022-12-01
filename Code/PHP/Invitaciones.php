@@ -1,10 +1,10 @@
 <?php
-//session_start();
-//include 'nav.php';
 
-//include 'ConexionDB.php';
+include 'nav.php';
 
-//var_dump($_POST['btn-enviar']);
+include 'ConexionDB.php';
+
+
 
 if (isset($_POST['btn-enviar'])) {
 
@@ -42,11 +42,9 @@ if (isset($_POST['btn-enviar'])) {
 
 
 
-
-//include 'ConexionDB.php';
-
 $arrayCorreos = $_POST["emailEnviados[]"];
-
+$nomActivitat = $_POST["nomActivitat"];
+$description = $_POST["descripcionActivitat"];
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +66,6 @@ $arrayCorreos = $_POST["emailEnviados[]"];
             <table id="invitaciones-table">
             </table>
             <button class="btn-email">+</button>
-            <input name="enviarCorreo" id="enviarCorreo">
             <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
 
             <?php

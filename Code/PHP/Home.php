@@ -48,7 +48,6 @@ if (isset($_POST['enviarActivitat'])){
     }
     
 
-
 ?>
 
 <!DOCTYPE html>
@@ -81,13 +80,12 @@ if (isset($_POST['enviarActivitat'])){
                         <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control" name="descripcionActivitat">
                     </div>
 
-                    <div class="form-group" id="form-group">
-                        <select name="divisa" id='divisa' class="form-control" name="divisa">
-                            <option value="" disabled selected>seleccione la divisa</option>
+                  
+                            
 
                     <div class="form-group">
                         <select name="divisa" id="divisa" class="form-control" name="divisa">
-
+                        <option value="" selected>seleccione la divisa</option>
                             <option value="$">$</option>
                             <option value="€">€</option>
                             <option value="¥">¥</option>
