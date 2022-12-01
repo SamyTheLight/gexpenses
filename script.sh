@@ -12,5 +12,5 @@ sudo apt-get install -y mysql-server
 sudo mysql < /vagrant/GExpensesBBDD.sql
 
 #Accedemos remotamente a la base de datos
-cp -f /vagrant//mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf 
+#cp -f /vagrant//mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf 
 systemctl restart mysql

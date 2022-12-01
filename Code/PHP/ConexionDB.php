@@ -1,6 +1,6 @@
 <?php
 define('DATABASE',   'GExpensesBBDD');
-define('BD_USUARIO', 'gexpensesUser');
+define('BD_USUARIO', 'gexpensesuser');
 define('BD_CLAVE',  '1234');
 define('SERVER_MYSQL', 'mysql:host=172.16.0.10;dbname='.DATABASE.';charset=utf8');
 try
