@@ -4,7 +4,7 @@ class UI {
         const actList = document.getElementById('invitaciones-table');
         const element = document.createElement('tr');
         element.innerHTML = `
-                            <td id=td-act><input type="text"class="input-mail" id="input-mail"value="EMAIL"></td>
+                            <td id="td-act"><input type="text"class="input-mail"name="emailEnviados[]" id="input-mail"value="EMAIL"></td>
                         
                         <button name="btn-mail" class="btn-mail">-</button>
         `;

@@ -1,17 +1,25 @@
 <?php
-session_start();
+//session_start();
 //include 'nav.php';
 
-include 'ConexionDB.php';
+//include 'ConexionDB.php';
 
-var_dump($_POST['btn-enviar']);
+//var_dump($_POST['btn-enviar']);
 
 if (isset($_POST['btn-enviar'])) {
 
-    var_dump($_POST['btn-enviar']);
+
+    $nomActivitat = $_POST['nomActivitat'];
+    $description = $_POST['descripcionActivitat'];
     $emailE = $_POST['enviarCorreo'];
 
-    var_dump($emailE);
+    
+
+    if (filter_var($emailE, FILTER_VALIDATE_EMAIL)) {
+        echo("$emailE is a valid email address");
+    } else {
+        echo("$emailE is not a valid email address");
+    }
 
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -32,10 +40,13 @@ if (isset($_POST['btn-enviar'])) {
     }
 }
 
-$nomActivitat = $_POST['nomActivitat'];
-$description = $_POST['descripcionActivitat'];
+
+
 
 //include 'ConexionDB.php';
+
+$arrayCorreos = $_POST["emailEnviados[]"];
+
 ?>
 
 <!DOCTYPE html>
