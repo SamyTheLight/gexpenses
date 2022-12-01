@@ -14,9 +14,9 @@ recomendacion vincular repositorio con ssh
 
 Guia estilos con figma -> tutorial
 
-<<<<<<< HEAD
+
 -> git pull
-=======
+
 Guia estilos con figma -> tutorial
 
 asciidoc para la memoria
