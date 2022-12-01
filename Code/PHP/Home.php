@@ -1,6 +1,6 @@
 <?php
 session_start();
-//include 'nav.php';
+include 'nav.php';
 
 include 'ConexionDB.php';
 
@@ -65,13 +65,13 @@ if (isset($_POST['enviarActivitat'])){
 <body>
 
     <div class=act-card>
-        <div class="card">
-            <div class="card-body">
+        <div id="card" class="card">
+            <div  class="card-body">
 
                 <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
                 <form action="Invitaciones.php" id="act-form" method="POST">
 
-                <h4>AÑADE UNA ACTIVIDAD</h4>
+               
                 <form action="" id="act-form" method="POST">
 
                     <div class="form-group">
@@ -95,11 +95,13 @@ if (isset($_POST['enviarActivitat'])){
                     </div>
                     <button class="btn-card" id="afegirActivitat" name="enviarActivitat">Enviar</button>
 
-                </form>
+                    
 
+                </form>
                 <div id="btn-eliminar">
-                    <button class="btn-eliminar" id="btn-eliminar">-</button>
-                </div>
+                    <button class="btn-eliminarHome" id="btn-eliminar">-</button>
+                    </div>
+                
             </div>
         </div>
         <div id="act-list">
@@ -127,22 +129,16 @@ if (isset($_POST['enviarActivitat'])){
     </div>
 
 
-
 </body>
 <script src="Home.js"></script>
-
-</html>
-
-
-
-<?php
-
-include 'footer.php';
-?>html>
-
-
 
 <?php
 
 include 'footer.php';
 ?>
+
+</html>
+
+
+
+
