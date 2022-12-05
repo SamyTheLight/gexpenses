@@ -13,12 +13,12 @@ if (isset($_POST['btn-enviar'])) {
     $description = $_POST['descripcionActivitat'];
     $emailE = $_POST['enviarCorreo'];
 
-    
+
 
     if (filter_var($emailE, FILTER_VALIDATE_EMAIL)) {
-        echo("$emailE is a valid email address");
+        echo ("$emailE is a valid email address");
     } else {
-        echo("$emailE is not a valid email address");
+        echo ("$emailE is not a valid email address");
     }
 
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,6 +44,7 @@ if (isset($_POST['btn-enviar'])) {
 
 $arrayCorreos = $_POST["emailEnviados[]"];
 $nomActivitat = $_POST["nomActivitat"];
+$nomActivitat = strtoupper($nomActivitat);
 $description = $_POST["descripcionActivitat"];
 ?>
 
@@ -61,10 +62,14 @@ $description = $_POST["descripcionActivitat"];
 <body>
     <form action="" id="act-form" method="POST">
         <div class="form-target">
-            <h1 id="nom-activitat"><?php echo $nomActivitat ?></h1>
-            <p id="description"><?php echo $description ?></p>
-            <table id="invitaciones-table">
-            </table>
+            <div class="container">
+                <h1 id="nom-activitat"><?php echo $nomActivitat ?></h1>
+            </div>
+            <div class="ex1" <textarea id="description"><?php echo $description ?></textarea>
+            </div>
+            <div class="ex2" <table id="invitaciones-table">
+                </table>
+            </div>
             <button class="btn-email">+</button>
             <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
 
@@ -100,8 +105,9 @@ $description = $_POST["descripcionActivitat"];
         </div>
     </form>
 </body>
- <script src=" Invitaciones.js"></script> 
- <script src=" validaCorreo.js"></script> 
+<script src=" Invitaciones.js"></script>
+<script src=" validaCorreo.js"></script>
+
 </html>
 <?php
 
