@@ -25,7 +25,7 @@ try {
     
     $mail->Subject = 'Verificación actividad';
     $mail->isHTML(true);
-    $mailContent = "<h1>Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece a continuación.<h1>";
+    $mailContent = "<h1>Para aceptar la invitación a la actividad, por favor, haga click al enlace que  aparece a continuación <h1>";
    
 
     $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";

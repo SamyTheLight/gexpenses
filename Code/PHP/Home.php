@@ -123,10 +123,10 @@ if($consultaActivitat->execute()){
  
 include 'footer.php';
 ?>
-<<<<<<< Updated upstream
+
 
 </html>
-=======
+
  
 </html>
->>>>>>> Stashed changes
+
