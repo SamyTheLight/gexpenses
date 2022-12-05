@@ -23,7 +23,7 @@ if ((isset($_POST['buttonRegister']))) {
 
     if ($consulta->execute()) {
         echo 'Datos guardados correctamente';
-        header("location: GExpenses.php");
+        header("location: index.php");
     } else {
         echo 'Error al subir los datos';
     };
@@ -58,7 +58,7 @@ if ((isset($_POST['buttonRegister']))) {
         echo '
     <script>
         alert("Usuario no existe,por favor verifique los datos introducidos");
-        window.location = "../GExpenses.php";
+        window.location = "../index.php";
     </script>
     
 ';

@@ -24,12 +24,12 @@ $user= $queryLogin->fetch(PDO::FETCH_ASSOC);
 
  if($user){
     $_SESSION['usuario'] = $user['nombre'];
-    header ("location: bienvenida.php");
+    header ("location: Home.php");
  }else {
     echo '
     <script>
         alert("Usuario no existe,por favor verifique los datos introducidos");
-        window.location = "../GExpenses.php";
+        window.location = "../index.php";
     </script>
     
 ';

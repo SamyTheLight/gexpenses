@@ -17,31 +17,23 @@ if ((isset($_POST['buttonRegister']))) {
     $query = "INSERT INTO usuario (nombre,apellidos,email,contrasena) VALUES (:nombre,:apellidos,:email,:contrasena)";
 
     $consulta = $conexion->prepare($query);
-
-
     $consulta->bindParam(':nombre', $firstname);
     $consulta->bindParam(':apellidos', $lastname);
     $consulta->bindParam(':email', $email);
     $consulta->bindParam(':contrasena', $hash_password);
 
-
-
     if ($consulta->execute()) {
         $registered = true;
         echo 'Datos guardados correctamente';
-          
-      
     } else {
         echo 'Error al subir los datos';
     };
 
-
 } else if ((isset($_POST['buttonLogin']))) {
 
-
     $nameuserL = $_POST['usernameLogin'];
-    $passwordL = $_POST['passwordLogin'];
 
+    $passwordL = $_POST['passwordLogin'];
     
     $hash_passwordLogin= password_hash($passwordL,PASSWORD_DEFAULT);
 
@@ -49,29 +41,20 @@ if ((isset($_POST['buttonRegister']))) {
 
     $queryLogin = $conexion->prepare("SELECT contrasena FROM usuario WHERE nombre = :nombreUser");
 
-    
-
     $queryLogin->bindParam(":nombreUser", $nameuserL);
-   
-
 
     $queryLogin->execute(); 
 
-    
-
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
-
    
     if (password_verify($passwordL, $user['contrasena'])) {
-       
-        
-      //$_SESSION['usuario'] = $user['nombre'];
+
         header("location: PHP/Home.php");
     } else {
         echo '
     <script>
         alert("Usuario no existe,por favor verifique los datos introducidos");
-        window.location = "../GExpenses.php";
+        window.location = "../index.php";
     </script>
     
 ';
@@ -86,8 +69,6 @@ if(isset($_GET['perRegistrar'])){
 
         $consultaActivitatR = $conexion->prepare($queryActividadR);
 
-
-        
         $consultaActivitatR->bindParam(':emailR', $_GET["correoAdreca"]);
 
      if($consultaActivitatR->execute()){
@@ -99,11 +80,6 @@ if(isset($_GET['perRegistrar'])){
   
     }
 }
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>

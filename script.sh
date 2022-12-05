@@ -2,7 +2,7 @@ sudo apt-get update
 sudo apt-get ugrade
 
 #Instalamos apache2
-sudo apt-get install apache2 -y
+#sudo apt-get install apache2 -y
 
 #Instalamos la GuestAdditions
 sudo apt-get install virtualbox-guest-additions-iso
