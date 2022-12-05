@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'nav.php';
+//include 'nav.php';
 
 include 'ConexionDB.php';
 
@@ -10,9 +10,11 @@ $stmt=$conexion->query($query);
 $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
 
 
+
 if ((isset($_POST['enviarActivitat'])) && (!empty($_POST["nomActivitat"])&&!empty($_POST['descripcionActivitat']))) {
   
-
+   
+    
     $nombreA=$_POST["nomActivitat"];    
    
     $descripcioActivitat=$_POST["descripcionActivitat"];
@@ -24,16 +26,13 @@ $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa) VALUES (:no
 
 $consultaActivitat = $conexion->prepare($queryActividad);
 
-
 $consultaActivitat->bindParam(':nombreA', $nombreA);
 $consultaActivitat->bindParam(':descripcionA', $descripcioActivitat);
 $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
 
 
-
-
 if($consultaActivitat->execute()){
-    echo 'se ha insertado en la taula activitat ';
+    Header("Location: Invitaciones.php");
 
 }else {
     echo 'no se ha insertado en activitat';
@@ -42,11 +41,6 @@ if($consultaActivitat->execute()){
 
 }
 
-
-if (isset($_POST['enviarActivitat'])){
-    Header("Location: Invitaciones.php");
-    }
-    
 
 ?>
 
@@ -68,10 +62,8 @@ if (isset($_POST['enviarActivitat'])){
             <div  class="card-body">
 
                 <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
-                <form action="Invitaciones.php" id="act-form" method="POST">
-
-               
                 <form action="" id="act-form" method="POST">
+
 
                     <div class="form-group">
                         <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
@@ -81,8 +73,6 @@ if (isset($_POST['enviarActivitat'])){
                     </div>
 
                   
-                            
-
                     <div class="form-group">
                         <select name="divisa" id="divisa" class="form-control" name="divisa">
                         <option value="" selected>seleccione la divisa</option>

@@ -198,7 +198,7 @@ if(isset($_GET['perRegistrar'])){
     
 
 
-    <script src="GExpenses.js"></script>
+    <script src="index.js"></script>
 
 
 
