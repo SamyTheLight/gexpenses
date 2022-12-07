@@ -7,7 +7,7 @@
 # you're doing.
 
 Vagrant.configure("2") do |config| 
-  config.vm.box = "hashicorp/bionic64"
+  config.vm.box = "ubuntu/bionic64"
   config.vm.hostname = "GExpenses"
   config.vm.define "GExpenses"
   #config.vm.synced_folder "html/", "/var/www/html"

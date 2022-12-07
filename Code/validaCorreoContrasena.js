@@ -1,3 +1,4 @@
+/*
 const nombreUsuario = document.getElementById('input-nameuser-register').value;
 const contrasena1 = document.getElementById('input-password-register').value;
 const contrasena2 = document.getElementById('input-password2-register').value;
@@ -53,4 +54,4 @@ document.querySelector(".btn-enviar").addEventListener("click", e => {
 	validarCorreo(email);
 
 
-});
+});*/

@@ -11,6 +11,12 @@ if ((isset($_POST['buttonRegister']))) {
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $password = $_POST["contrasena"];
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo ("$email is a valid email address");
+    } else {
+        echo ("$email is not a valid email address");
+    }
     
 
     $hash_password= password_hash($password,PASSWORD_DEFAULT);
@@ -134,9 +140,9 @@ if(isset($_GET['perRegistrar'])){
                
                 <h2>Registrate</h2>
                 <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" id="input-nameuser-register" name="username">
-                <input type="text" placeholder="Apellidos" class="input-password-register" id="input-password-register" name="lastname">
-                <input type="text" placeholder="Correo electrónico" class="input-password2-register" id ="input-password2-register" name="email">
-                <input type="password" placeholder="Contrasena" class="input-mail-register" id ="input-mail-register"name="contrasena">
+                <input type="text" placeholder="Apellidos" class="input-lastname" id="input-lastname" name="lastname">
+                <input type="email" placeholder="Correo electrónico" class="input-mail-register" id ="input-mail-register" name="email">
+                <input type="password" placeholder="Contrasena" class="input-password2-register" id ="input-password2-register"name="contrasena">
 
                 <?php
                 if ($registered) {

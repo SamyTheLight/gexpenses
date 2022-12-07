@@ -13,7 +13,7 @@ if (isset($_POST['btn-enviar'])) {
     $description = $_POST['descripcionActivitat'];
     $emailE = $_POST['enviarCorreo'];
 
-
+    
 
     if (filter_var($emailE, FILTER_VALIDATE_EMAIL)) {
         echo ("$emailE is a valid email address");

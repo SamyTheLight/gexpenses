@@ -10,6 +10,12 @@ const register = document.querySelector('.Register');
 const buttonBackLogin = document.querySelector('#BackBoxButtonLogin');
 const buttonBackRegister = document.querySelector('#BackBoxButtonRegister');
 const registeredAlert = document.getElementById('has_registered');
+const email=document.getElementById("input-mail-register");
+const alert = document.querySelector('.alert-success');
+
+const password= document.getElementById('input-password2-register');
+const buttonRegister=document.getElementById('buttonRegister');
+const exprMail= /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
 
 
 buttonBackRegister.addEventListener('click', registrar);
@@ -17,13 +23,32 @@ buttonBackLogin.addEventListener('click', loguear);
 
 if (registeredAlert) registrar(true); else loguear(true);
 
+function validarDades(email){
+   
+    
+    
+    if(exprMail.test(email.value)) email.style.backgroundColor= 'green';
+    else email.style.backgroundColor= 'red';
+    
+}
+
+buttonRegister.addEventListener('click', e=>{
+   
+    validarDades(email);
+    
+});
+
+setTimeout(function() {
+    $(".alert-success").fadeOut(1500);
+},2000)
+
 function registrar(first_time = false) {
     document.querySelectorAll(".form_block").forEach(element => {
         element.classList.remove('active')
-    });;
+    });
     data_register.classList.add('active');
     
-    data.style.left = "300px"
+    data.style.left = "300px";
   
     back_login.style.opacity = "1";
     back_register.style.opacity = "0";
@@ -32,10 +57,17 @@ function registrar(first_time = false) {
 function loguear(first_time = false) {
     document.querySelectorAll(".form_block").forEach(element => {
         element.classList.remove('active')
-    });;
+    });
     data_login.classList.add('active');
     data.style.left = "-380px"
     back_login.style.opacity = "0";
     back_register.style.opacity = "1";
 }
+
+
+
+
+
+
+
 
