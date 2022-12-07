@@ -61,49 +61,57 @@ $description = $_POST["descripcionActivitat"];
 
 <body>
     <form action="" id="act-form" method="POST">
-        <div class="form-target">
-            <div class="container">
-                <h1 id="nom-activitat"><?php echo $nomActivitat ?></h1>
+        <div class="card">
+            <img class="card-image" src="/Code/Images/Viaje_Combinado.png">
+            <div class="card-text">
+                <span class="date">4 days ago</span>
+                <h1><?php echo $nomActivitat ?></h1>
+                <hr>
+                <div class="ex1" <p id="description"><?php echo $description ?></p>
+                </div>
+                <div class="ex2" <table id="invitaciones-table">
+                    </table>
+                </div>
+                <button class="btn-email">+</button>
             </div>
-            <div class="ex1" <textarea id="description"><?php echo $description ?></textarea>
+            <div class="card-stats">
+                <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
             </div>
-            <div class="ex2" <table id="invitaciones-table">
-                </table>
-            </div>
-            <button class="btn-email">+</button>
-            <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
+        </div>
+        </div>
 
+        <?php
+
+        if (isset($_GET['aceptat'])) {
+        ?>
             <?php
-
-            if (isset($_GET['aceptat'])) {
+            if ($_GET['aceptat'] === '1') {
             ?>
-                <?php
-                if ($_GET['aceptat'] === '1') {
-                ?>
-                    <div class="alert-success" id="has_registered">
-                        <p>Se ha aceptado la invitación</p>
-                    </div>
+                <div class="alert-success" id="has_registered">
+                    <p>Se ha aceptado la invitación</p>
+                </div>
 
-                    <style>
-                        .alert-success {
-                            text-align: center;
-                            background-color: green;
-                            color: white;
-                            display: block;
-                            border-radius: 20px;
-                            margin-top: 20px;
-                            font-size: 20px;
-                        }
-                    </style>
-                <?php
-                }
-                ?>
-
+                <style>
+                    .alert-success {
+                        text-align: center;
+                        background-color: green;
+                        color: white;
+                        display: block;
+                        border-radius: 20px;
+                        margin-top: 20px;
+                        font-size: 20px;
+                    }
+                </style>
             <?php
             }
             ?>
+
+        <?php
+        }
+        ?>
         </div>
     </form>
+
 </body>
 <script src=" Invitaciones.js"></script>
 <script src=" validaCorreo.js"></script>

@@ -1,6 +1,6 @@
 <?php
-/*session_start();
-//include 'nav.php';
+session_start();
+include 'nav.php';
  
 include 'ConexionDB.php';
  
@@ -38,8 +38,7 @@ if($consultaActivitat->execute()){
     echo 'no se ha insertado en activitat';
 };
  
- 
- */
+} 
  
 ?>
  
@@ -123,10 +122,5 @@ if($consultaActivitat->execute()){
  
 include 'footer.php';
 ?>
-<<<<<<< Updated upstream
-
-</html>
-=======
  
 </html>
->>>>>>> Stashed changes
