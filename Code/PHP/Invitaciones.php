@@ -13,7 +13,7 @@ if (isset($_POST['btn-enviar'])) {
     $description = $_POST['descr ipcionActivitat'];
     $emailE = $_POST['enviarCorreo'];
 
-    
+
 
     if (filter_var($emailE, FILTER_VALIDATE_EMAIL)) {
         echo ("$emailE is a valid email address");
@@ -60,7 +60,7 @@ $description = $_POST["descripcionActivitat"];
 </head>
 
 <body>
-    <form action="" id="act-form" method="POST">
+    <form action="Invitaciones.php" id="act-form" method="POST">
         <div class="card">
             <img class="card-image" src="/Code/Images/Viaje_Combinado.png">
             <div class="card-text">
@@ -70,9 +70,10 @@ $description = $_POST["descripcionActivitat"];
                 <div class="ex1" <p id="description"><?php echo $description ?></p>
                 </div>
                 <div class="ex2" <table id="invitaciones-table">
+                    <td id="td-act"><input type="text" class="input-mail" name="emailEnviados[]" id="input-mail" placeholder="EMAIL"></td>
                     </table>
                 </div>
-                <button class="btn-email">+</button>
+                <button class="btn-email" id="btn-emial">+</button>
             </div>
             <div class="card-stats">
                 <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>

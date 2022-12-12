@@ -4,11 +4,6 @@ body {
 
 .card {
     width: 500px;
-    height: 850px;
-    display: grid;
-    grid-template-columns: 500px;
-    grid-template-rows: 210px 210px 80px;
-    grid-template-areas: "image" "text" "stats";
     border-radius: 18px;
     background: white;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
@@ -17,24 +12,20 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-.card-image {
-    grid-area: image;
-}
+
 
 .card-text {
     color: black;
-    grid-area: text;
+
 }
 
 .card-stats {
-    grid-area: stats;
     margin-top: 210px;
     width: 500px;
     height: 70px;
 }
 
 .card-image {
-    grid-area: image;
     width: 500px;
     height: 235px;
     border-top-left-radius: 15px;
@@ -43,7 +34,6 @@ body {
 }
 
 .card-text {
-    grid-area: text;
     margin: 25px;
 }
 
@@ -68,11 +58,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-area: stats;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    margin-top:360px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     background: #1C3144;
@@ -101,7 +86,6 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     color: white;
     padding: 10px;
 }
@@ -110,7 +94,6 @@ body {
     width: 100px;
     height: 40px;
     border: 3px white solid;
-    margin-top: 50px;
     border-radius: 5px;
     background-color: #1C3144;
     color: white;
@@ -144,7 +127,6 @@ body {
     margin-right: 15%;
 
 }
-
 .btn-mail {
     border: 2px white solid;
     margin-left: 0;
@@ -174,8 +156,6 @@ div .ex1 {
     height: 100px;
     resize: none;
 }
-
-div .ex2 {
-    height: 180px;
-    overflow-y:scroll;
+input{
+    margin:0;
 }

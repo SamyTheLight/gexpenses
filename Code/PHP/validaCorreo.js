@@ -2,7 +2,7 @@ function validarCorreo(correo) {
 	const expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 	const esValido = expReg.test(correo);
 
-
+	console.log(esValido);
 	const td = document.getElementById('td-act');
 	if (esValido == false) {
 		const p = document.createElement('p');
@@ -10,12 +10,18 @@ function validarCorreo(correo) {
 		td.appendChild(p);
 	}
 }
-
-
 const correo = document.getElementById('input-mail');
-document.querySelector(".btn-enviar").addEventListener("click", e => {
+document.querySelector(".btn-email").addEventListener("click", e => {
     e.preventDefault();
     validarCorreo(correo);
     
 
 });
+
+/*const correo = document.getElementById('input-mail');
+document.querySelector(".btn-enviar").addEventListener("click", e => {
+    e.preventDefault();
+    validarCorreo(correo);
+    
+
+});*/
