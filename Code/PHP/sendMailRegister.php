@@ -16,6 +16,8 @@ try {
     $mail->Port = 587;
     $mail->Username = 'mailcopernicprova@gmail.com';
     $mail->Password = 'tusuihvzulctfnta';
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
 
     $mail->setFrom('mailcopernicprova@gmail.com');
     ;
@@ -23,11 +25,26 @@ try {
     
     $mail->Subject = 'Registro GExpenses';
     $mail->isHTML(true);
+
     $mailContent = "<h1>Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece a continuación.<h1>";
+
+    
+
+    $mailLogo->AddEmbeddedImage("Images/Logo.php","Logo");
+    
    
 
-    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/index.php?aceptado=true";
-    $mail->Body = $mailContent . "<a href=$mailink >Enviar</a>";
+    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
+    $mail->Body = '<img src="cid:Logo">'.$mailContent . "<a href=$mailink >Enviar</a>";
+
+    $mail->AltBody ="Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece a continuación.";
+
+    
+
+
+
+    
+
 
    if( $mail->send()){
     echo 'Correo enviado';

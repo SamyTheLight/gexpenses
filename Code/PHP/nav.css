@@ -6,7 +6,7 @@
 .header {
     display: flex;
     flex-direction: row;
-    background-color: black;
+    background-color: #1C3144;
     color: white;
     font-family:  'Inter', sans-serif;
     font-weight: bold;

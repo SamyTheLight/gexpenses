@@ -12,8 +12,8 @@ $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
  
  
 if ((isset($_POST['enviarActivitat'])) && (!empty($_POST["nomActivitat"])&&!empty($_POST['descripcionActivitat']))) {
- 
-   
+
+    var_dump($nomActivitat);
    
     $nombreA=$_POST["nomActivitat"];    
    
@@ -108,6 +108,8 @@ if($consultaActivitat->execute()){
                         <td><button class="buttonInvitar">Inv</button></td>
                     </tr>
                 <?php endforeach; ?>
+
+                
  
             </table>
  

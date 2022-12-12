@@ -16,6 +16,7 @@ const alert = document.querySelector('.alert-success');
 const password= document.getElementById('input-password2-register');
 const buttonRegister=document.getElementById('buttonRegister');
 const exprMail= /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+const exprPassword= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
 
 
 buttonBackRegister.addEventListener('click', registrar);
@@ -29,18 +30,23 @@ function validarDades(email){
     
     if(exprMail.test(email.value)) email.style.backgroundColor= 'green';
     else email.style.backgroundColor= 'red';
+
+    if(exprPassword.test(password.value)) password.style.backgroundColor= 'green';
+    else password.style.backgroundColor= 'red';
+    
     
 }
 
 buttonRegister.addEventListener('click', e=>{
-   
+    
+    
+
     validarDades(email);
+    
     
 });
 
-setTimeout(function() {
-    $(".alert-success").fadeOut(1500);
-},2000)
+
 
 function registrar(first_time = false) {
     document.querySelectorAll(".form_block").forEach(element => {

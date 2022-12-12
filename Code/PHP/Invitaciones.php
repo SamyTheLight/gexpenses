@@ -10,7 +10,7 @@ if (isset($_POST['btn-enviar'])) {
 
 
     $nomActivitat = $_POST['nomActivitat'];
-    $description = $_POST['descripcionActivitat'];
+    $description = $_POST['descr ipcionActivitat'];
     $emailE = $_POST['enviarCorreo'];
 
     

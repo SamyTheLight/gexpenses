@@ -172,11 +172,10 @@ body {
 
 div .ex1 {
     height: 100px;
-    overflow-y: scroll;
     resize: none;
 }
 
 div .ex2 {
-    height: 140px;
-    overflow-y: auto;
+    height: 180px;
+    overflow-y:scroll;
 }

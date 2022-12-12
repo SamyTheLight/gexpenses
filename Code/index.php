@@ -3,43 +3,64 @@ session_start();
 include 'PHP/ConexionDB.php';
 $registered = false;
 
-
+var_dump('buttonRegister');
 
 if ((isset($_POST['buttonRegister']))) {
     
     $firstname = $_POST["username"];
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
-    $password = $_POST["contrasena"];
+    $passwordReg = $_POST["contrasena"];
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo ("$email is a valid email address");
-    } else {
-        echo ("$email is not a valid email address");
+   
+    $error_clave = "";
+    $valid = true;
+
+
+
+    if((empty($firstname))&&(empty($lastname))){
+        $valid = false;
     }
-    
+    if(empty($email)){
+        $valid = false;
+    }else if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $valid = false;
+    }
 
-    $hash_password= password_hash($password,PASSWORD_DEFAULT);
-    $query = "INSERT INTO usuario (nombre,apellidos,email,contrasena) VALUES (:nombre,:apellidos,:email,:contrasena)";
+    if(empty($passwordReg)){
+        $valid = false;
+    }  
 
-    $consulta = $conexion->prepare($query);
-    $consulta->bindParam(':nombre', $firstname);
-    $consulta->bindParam(':apellidos', $lastname);
-    $consulta->bindParam(':email', $email);
-    $consulta->bindParam(':contrasena', $hash_password);
+    if($valid==true){
+        $hash_password = password_hash($passwordReg, PASSWORD_DEFAULT);
+        $query = "INSERT INTO usuario (nombre,apellidos,email,contrasena) VALUES (:nombre,:apellidos,:email,:contrasena)";
 
-    if ($consulta->execute()) {
-        $registered = true;
-        echo 'Datos guardados correctamente';
-    } else {
-        echo 'Error al subir los datos';
-    };
+        $consulta = $conexion->prepare($query);
+        $consulta->bindParam(':nombre', $firstname);
+        $consulta->bindParam(':apellidos', $lastname);
+        $consulta->bindParam(':email', $email);
+        $consulta->bindParam(':contrasena', $hash_password);
 
-} else if ((isset($_POST['buttonLogin']))) {
+        if ($consulta->execute()) {
+            $registered = true;
+            echo 'Datos guardados correctamente';
+        } else {
+            echo 'Error al subir los datos';
+        }
+        ;
+    }
+
+}
+
+
+    if ((isset($_POST['buttonLogin']))) {
 
     $nameuserL = $_POST['usernameLogin'];
 
     $passwordL = $_POST['passwordLogin'];
+
+
+   
     
     $hash_passwordLogin= password_hash($passwordL,PASSWORD_DEFAULT);
 
@@ -47,11 +68,18 @@ if ((isset($_POST['buttonRegister']))) {
 
     $queryLogin = $conexion->prepare("SELECT contrasena FROM usuario WHERE nombre = :nombreUser");
 
-    $queryLogin->bindParam(":nombreUser", $nameuserL);
+    $queryLogin->bindParam(':nombreUser', $nameuserL);
 
-    $queryLogin->execute(); 
+    $queryLogin->execute();
+
+    //var_dump($queryLogin);
+    
 
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
+
+    var_dump($user);
+
+    die();
    
     if (password_verify($passwordL, $user['contrasena'])) {
 
@@ -68,24 +96,8 @@ if ((isset($_POST['buttonRegister']))) {
 }
 
 
-if(isset($_GET['perRegistrar'])){
-   if($_GET['perRegistrar'] === '1'){
 
-        $queryActividadR = "INSERT INTO invitacio (Email) VALUES (:emailR)";
 
-        $consultaActivitatR = $conexion->prepare($queryActividadR);
-
-        $consultaActivitatR->bindParam(':emailR', $_GET["correoAdreca"]);
-
-     if($consultaActivitatR->execute()){
-        echo 'se ha insertado en la taula invitacio desde register';
-    
-    }else {
-        echo 'no se ha insertado en invitacio';
-    };
-  
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +137,7 @@ if(isset($_GET['perRegistrar'])){
         <div class="data">
 
 
-            <form action="" class="form_block formulari-login " method="POST">
+            <form action="" class="form_block formulari-login" method="POST">
                 <h2>Iniciar Sesión</h2><br>
                 <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
                 <input placeholder="Password" type="password" class="input-password-login" placeholder="Password" name="passwordLogin">
