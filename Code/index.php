@@ -79,7 +79,7 @@ if ((isset($_POST['buttonRegister']))) {
 
     var_dump($user);
 
-    die();
+    
    
     if (password_verify($passwordL, $user['contrasena'])) {
 

@@ -11,15 +11,22 @@ $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
  
  
  
-if ((isset($_POST['enviarActivitat'])) && (!empty($_POST["nomActivitat"])&&!empty($_POST['descripcionActivitat']))) {
+if ((isset($_POST['enviarActivitat'])) ) {
 
-    var_dump($nomActivitat);
-   
+    if((!empty($_POST['nomActivitat']))&&(!empty($_POST['descripcionActivitat']))){
+           
     $nombreA=$_POST["nomActivitat"];    
    
     $descripcioActivitat=$_POST["descripcionActivitat"];
    
     $tipusDivisa=$_POST["divisa"];
+
+
+        var_dump($nombreA);
+        var_dump($descripcioActivitat);
+        var_dump($tipusDivisa);
+
+        
    
  
 $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa) VALUES (:nombreA,:descripcionA,:divisaA)";
@@ -37,6 +44,8 @@ if($consultaActivitat->execute()){
 }else {
     echo 'no se ha insertado en activitat';
 };
+    }
+
  
 } 
  
@@ -60,7 +69,7 @@ if($consultaActivitat->execute()){
             <div  class="card-body">
  
                 <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
-                <form action="Invitaciones.php" id="act-form" method="POST">
+                <form action="" id="act-form" method="POST">
  
  
                     <div class="form-group">
@@ -73,7 +82,7 @@ if($consultaActivitat->execute()){
                  
                     <div class="form-group">
                         <select name="divisa" id="divisa" class="form-control" name="divisa">
-                        <option value="" selected>seleccione la divisa</option>
+                        
                             <option value="$">$</option>
                             <option value="€">€</option>
                             <option value="¥">¥</option>

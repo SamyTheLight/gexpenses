@@ -11,8 +11,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "GExpenses"
   config.vm.define "GExpenses"
   #config.vm.synced_folder "html/", "/var/www/html"
-  config.vm.network "private_network", ip: "172.16.0.10",
-  virtualbox__intnet: true
+  config.vm.network "private_network", ip: "172.16.0.10"
   config.vm.provision "shell", path: "script.sh"
   config.vm.provider "virtualbox" do |vb|
 	vb.name = "GExpenses"
