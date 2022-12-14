@@ -48,8 +48,8 @@ INSERT INTO `invitacio` (`id_invitacio`, `Nombre`, `Descripcion`, `Email`, `Acep
 --
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
-  `apellidos` varchar(50) NOT NULL,
   `email` varchar(120) NOT NULL,
   `contrasena` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -71,6 +71,9 @@ CREATE TABLE `usuario` (
 ALTER TABLE `activitat`
   ADD PRIMARY KEY (`id_activitat`);
 
+  ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
 --
 -- Indices de la tabla `invitacio`
 --
@@ -86,6 +89,11 @@ ALTER TABLE `invitacio`
 --
 ALTER TABLE `activitat`
   MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `invitacio`
