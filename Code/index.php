@@ -150,9 +150,8 @@ if ((isset($_POST['buttonRegister']))) {
 
             <form action="" class="form_block formulari-register" method="POST">
                
-                <h2>Registrate</h2>
+                <h2>Regístrate</h2>
                 <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" id="input-nameuser-register" name="username">
-                <input type="text" placeholder="Apellidos" class="input-lastname" id="input-lastname" name="lastname">
                 <input type="email" placeholder="Correo electrónico" class="input-mail-register" id ="input-mail-register" name="email">
                 <input type="password" placeholder="Contrasena" class="input-password2-register" id ="input-password2-register"name="contrasena">
 

@@ -69,7 +69,7 @@ if($consultaActivitat->execute()){
             <div  class="card-body">
  
                 <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
-                <form action="" id="act-form" method="POST">
+                <form action="Invitaciones.php" id="act-form" method="POST">
  
  
                     <div class="form-group">

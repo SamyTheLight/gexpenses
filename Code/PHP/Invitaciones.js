@@ -1,19 +1,28 @@
+const error = document.getElementById('error');
+error.className= "error";
 
 function addAct() {
 
-    const actList = document.getElementById('invitaciones-table');
-    const element = document.createElement('tr');
-    element.innerHTML = `
+    const value = document.getElementById('mails').value;
+    const actList = document.getElementById('emails');
+    const element = document.createElement('div');
+    const btn = document.createElement('btn');
+    const input = document.createElement('input');
 
-                            <td id="td-act"><input type="text"class="input-mail"name="emailEnviados[]" id="input-mail"placeholder="EMAIL"></td>
-
-                        
-                        <button name="btn-mail" class="btn-mail">-</button>
-        `;
+    element.classList.add('news-mails');
     actList.appendChild(element);
-
-
+    input.type = "text";
+    input.classList.add('input-mail');
+    input.setAttribute("id", "input-mail");
+    input.value = value;
+    element.appendChild(input);
+    btn.classList.add('btn-mail');
+    btn.setAttribute("id", "btn-mail");
+    btn.name = "btn-mail";
+    btn.append("BORRAR");
+    element.appendChild(btn);
 }
+
 function deleteAct(element) {
     if (element.name === 'btn-mail') {
         element.parentElement.remove();
@@ -25,34 +34,39 @@ function deleteAct(element) {
 
 
 
-// VALIDAR CORREO //
-function validarCorreo(correo) {
+
+function validarCorreo(mail) {
     const expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-    const esValido = expReg.test(correo);
+    const esValido = expReg.test(mail);
+    console.log(mail);
+    console.log(esValido);
 
 
-
+   
     if (esValido == true) {
+        error.className = "error";
         addAct();
-
-    } else if (esValido == false) {
-        const td = document.getElementById('td-act');
-        const p = document.createElement('p');
-        p.append('El correo no es correcto, porfavor introduzca los carácteres necesarios');
-        td.appendChild(p);
+        const mail = document.getElementById('mails');
+        mail.value = "";
+        
     }
+    else if (esValido == false) {
+        error.className = "mostrar-error";
+        
+    }
+    
 }
-document.getElementById('invitaciones-table').addEventListener('click', function (e) {
-    deleteAct(e.target);
-});
 
-
-const input = document.getElementById('input-mail').value;
-console.log(input);
 document.querySelector(".btn-email").addEventListener("click", e => {
-    validarCorreo(input);
+    const correo = document.getElementById('mails').value;
+    e.preventDefault();
+    validarCorreo(correo);
 
 
+});
+document.getElementById('emails').addEventListener('click', function (e) {
+
+    deleteAct(e.target);
 });
 
 

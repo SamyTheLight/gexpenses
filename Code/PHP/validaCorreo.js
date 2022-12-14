@@ -3,14 +3,13 @@ function validarCorreo(correo) {
 	const esValido = expReg.test(correo);
 
 	console.log(esValido);
-	const td = document.getElementById('td-act');
+	const error = document.querySelector(".error")
 	if (esValido == false) {
-		const p = document.createElement('p');
-		p.append('El correo no es correcto, porfavor introduzca los carácteres necesarios');
-		td.appendChild(p);
+		error.className = "mostrar-error";
+			
 	}
 }
-const correo = document.getElementById('input-mail');
+const correo = document.getElementById('mails');
 document.querySelector(".btn-email").addEventListener("click", e => {
     e.preventDefault();
     validarCorreo(correo);

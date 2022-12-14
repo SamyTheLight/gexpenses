@@ -60,7 +60,7 @@ $description = $_POST["descripcionActivitat"];
 </head>
 
 <body>
-    <form action="Invitaciones.php" id="act-form" method="POST">
+    <form action="" id="act-form" method="POST">
         <div class="card">
             <img class="card-image" src="/Code/Images/Viaje_Combinado.png">
             <div class="card-text">
@@ -69,11 +69,18 @@ $description = $_POST["descripcionActivitat"];
                 <hr>
                 <div class="ex1" <p id="description"><?php echo $description ?></p>
                 </div>
-                <div class="ex2" <table id="invitaciones-table">
-                    <td id="td-act"><input type="text" class="input-mail" name="emailEnviados[]" id="input-mail" placeholder="EMAIL"></td>
-                    </table>
+                <div class="afegir-mail" id="addmail">
+                    <input type="email" class="mails" name="emailEnviados[]" id="mails" placeholder="EMAIL">
+                    <button class="btn-email" id="btn-emial">+</button>
+                    
                 </div>
-                <button class="btn-email" id="btn-emial">+</button>
+                <div class="missage-error" id="missage-error">
+                    <p id="error">¡El correo no es correcto, porfavor introduzca los carácteres necesarios!</p>
+                </div>
+                <hr>
+                <div class="emails" id="emails">
+                    <h3 id="title-emails">¡ESTOS SON LOS CORREOS A LOS QUE DESEAS ENVIAR LA INVITACIÓN!</h3>
+                </div>
             </div>
             <div class="card-stats">
                 <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
@@ -115,7 +122,6 @@ $description = $_POST["descripcionActivitat"];
 
 </body>
 <script src=" Invitaciones.js"></script>
-<script src=" validaCorreo.js"></script>
 
 </html>
 <?php

@@ -20,7 +20,12 @@ body {
 }
 
 .card-stats {
-    margin-top: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #1C3144;
     width: 500px;
     height: 70px;
 }
@@ -54,14 +59,6 @@ body {
     font-size: 30px;
 }
 
-.card-stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background: #1C3144;
-}
 
 .btn-enviar {
     margin-left: 200px;
@@ -99,6 +96,8 @@ body {
     color: white;
     font-size: 20px;
     font-weight: bold;
+    margin:0;
+    margin-top: 10px;
 }
 
 .btn-email:hover {
@@ -116,18 +115,34 @@ body {
     width: 300px;
 }
 
-.input-mail {
-    width: 70%;
+.input-mail{
+    width: 60%;
     padding: 10px;
     border: 3px gray solid;
     border-radius: 5px;
     color: gray;
     font-size: 20px;
-    margin-bottom: 30px;
-    margin-right: 15%;
+    margin:0;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    pointer-events: none;
+}
 
+.mails{
+    width: 60%;
+    padding: 10px;
+    border: 3px gray solid;
+    border-radius: 5px;
+    color: gray;
+    font-size: 20px;
+    margin:0;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 .btn-mail {
+    margin-top: 10px;
     border: 2px white solid;
     margin-left: 0;
     font-size: 20px;
@@ -138,14 +153,20 @@ body {
     color: white;
     background-color: #1C3144;
 }
+#title-emails{
+    margin-top: 20px;
+}
 
 .btn-mail:hover {
     color: white;
     background-color: #6CD4B5;
-    border: 2px #1C3144 solid;
+    border: 3px #1C3144 solid;
 
 }
-
+.news-mails{
+    display: flex;
+    flex-direction: row;
+}
 #invitaciones-table {
     margin-left: 50px;
 }
@@ -153,9 +174,26 @@ body {
 /* --- SCROLL DEL DIV DE DESCRIPCIÓN ---*/
 
 div .ex1 {
-    height: 100px;
+    height: 80px;
     resize: none;
 }
 input{
     margin:0;
+}
+.afegir-mail{
+    display:flex;
+    flex-direction: row;
+}
+
+/* --- MISSATGE D'ERROR --- */
+.error{
+    display:none;
+}
+.mostrar-error{
+    display:block;
+    margin-bottom: 10px;
+}
+#error{
+    font-weight: bold;
+    color:red;
 }

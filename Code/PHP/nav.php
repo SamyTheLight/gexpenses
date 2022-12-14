@@ -35,7 +35,7 @@
     <div class="container-menu">
         <div class="cont-menu">
             <nav>
-                <a href="Home.php">Home</a></li>
+                <a class="menu-home" href="Home.php">Home</a></li>
                 <a href="../index.php">Landing Page</a>
                 <a href="Invitaciones.php">Inviatciones</a>
             </nav>
