@@ -14,33 +14,31 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
 
     $nomActivitat = $_POST['nomActivitat'];
     $description = $_POST['descr ipcionActivitat'];
-    $emailE = $_POST['enviarCorreo'];
+
+    $emailE = $_POST['emailEnviados'];
 
 
+    $cont = 0;
 
-    if (filter_var($emailE, FILTER_VALIDATE_EMAIL)) {
-        echo ("$emailE is a valid email address");
-    } else {
-        echo ("$emailE is not a valid email address");
-    }
+    foreach ($emailE as $rowEmail) :
+        if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
 
-    $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
+            $queryEmail->bindParam(":emailP", $rowEmail);
 
+            $queryEmail->execute();
 
-    $queryEmail->bindParam(":emailP", $emailE);
+            $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
 
-
-    $queryEmail->execute();
-
-    $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
-
-    if (!$trobat) {
-        include 'sendMailRegister.php';
-    } else {
-        include 'sendMailVerify.php';
-    }
+            if (!$trobat) {
+                include 'sendMailRegister.php';
+            } else {
+                include 'sendMailVerify.php';
+            }
+        }
+    endforeach;
 }
 
 
@@ -70,11 +68,11 @@ $description = $_POST["descripcionActivitat"];
                 <span class="date">4 days ago</span>
 
                 <?php foreach ($registroActivitat as $rowR) { ?>
-                <h1><?php echo $rowR->Nombre; ?></h1>
-                <hr>
-                <div class="ex1">
-                    <p id="description"><?php echo $rowR->Descripcion ?></p>
-                </div>
+                    <h1><?php echo $rowR->Nombre; ?></h1>
+                    <hr>
+                    <div class="ex1">
+                        <p id="description"><?php echo $rowR->Descripcion ?></p>
+                    </div>
                 <?php }
                 ?>
                 <div class="afegir-mail" id="addmail">
@@ -100,25 +98,25 @@ $description = $_POST["descripcionActivitat"];
 
         if (isset($_GET['aceptat'])) {
         ?>
-        <?php
+            <?php
             if ($_GET['aceptat'] === '1') {
             ?>
-        <div class="alert-success" id="has_registered">
-            <p>Se ha aceptado la invitación</p>
-        </div>
+                <div class="alert-success" id="has_registered">
+                    <p>Se ha aceptado la invitación</p>
+                </div>
 
-        <style>
-        .alert-success {
-            text-align: center;
-            background-color: green;
-            color: white;
-            display: block;
-            border-radius: 20px;
-            margin-top: 20px;
-            font-size: 20px;
-        }
-        </style>
-        <?php
+                <style>
+                    .alert-success {
+                        text-align: center;
+                        background-color: green;
+                        color: white;
+                        display: block;
+                        border-radius: 20px;
+                        margin-top: 20px;
+                        font-size: 20px;
+                    }
+                </style>
+            <?php
             }
             ?>
 
