@@ -20,7 +20,7 @@ try {
     $mail->Encoding = 'base64';
 
     $mail->setFrom('mailcopernicprova@gmail.com');
-    $mail->addAddress($rowEmail["Email"]);
+    $mail->addAddress($rowEmail);
 
     $mail->Subject = 'Registro GExpenses';
     $mail->isHTML(true);

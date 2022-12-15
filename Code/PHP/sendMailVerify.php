@@ -17,8 +17,8 @@ try {
     $mail->Username = 'mailcopernicprova@gmail.com';
     $mail->Password = 'tusuihvzulctfnta';
 
-    $mail->setFrom('mailcopernicprova@gmail.com');;
-    $mail->addAddress($rowEmail['Email']);
+    $mail->setFrom('mailcopernicprova@gmail.com');
+    $mail->addAddress($rowEmail);
 
     $aceptat = 1;
 
@@ -72,7 +72,7 @@ try {
         </div>
     </body>;";
 
-    $mailLogo->AddEmbeddedImage("Images/Logo.php", "Logo");
+    $mail->AddEmbeddedImage("Images/logo.PNG", "Logo");
 
     $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";
     $mail->Body = '<img src="cid:Logo">' . $mailContent . "<a href=$mailink >Enviar</a>";

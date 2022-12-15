@@ -31,12 +31,16 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
             $queryEmail->execute();
 
             $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+
+
             var_dump($trobat);
             if (!$trobat) {
                 echo 'Registre';
+
                 include 'sendMailRegister.php';
             } else {
                 echo 'Verify';
+
                 include 'sendMailVerify.php';
             }
         }
