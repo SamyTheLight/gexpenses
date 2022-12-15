@@ -9,8 +9,6 @@ $query= "SELECT * FROM activitat";
 $stmt=$conexion->query($query);
 $registros=$stmt->fetchAll(PDO::FETCH_OBJ);
  
- 
- 
 if ((isset($_POST['enviarActivitat'])) ) {
 
     if((!empty($_POST['nomActivitat']))&&(!empty($_POST['descripcionActivitat']))){
@@ -41,12 +39,8 @@ $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
 if($consultaActivitat->execute()){
     Header("Location: Invitaciones.php");
  
-}else {
-    echo 'no se ha insertado en activitat';
-};
+}
     }
-
- 
 } 
  
 ?>

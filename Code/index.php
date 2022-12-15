@@ -6,7 +6,7 @@ $registered = false;
 function validarDadesFormulari($firstname, $email, $passwordReg, $valid)
 {
     $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
-    if ((empty($firstname)) && (empty($lastname))) {
+    if ((empty($firstname))) {
         $valid = false;
     }
     if (empty($email)) {
@@ -48,9 +48,7 @@ if ((!empty($_POST))) {
 
         if ($consulta->execute()) {
             $registered = true;
-        } else {
-            echo 'Error al subir los datos';
-        };
+        } 
     }
 }
 
@@ -83,15 +81,7 @@ if ((isset($_POST['buttonLogin']))) {
     if (password_verify($passwordL, $user['contrasena'])) {
 
         header("location: PHP/Home.php");
-    } else {
-        echo '
-    <script>
-        alert("Usuario no existe,por favor verifique los datos introducidos");
-        window.location = "../index.php";
-    </script>
-    
-';
-    }
+    } 
 }
 
 

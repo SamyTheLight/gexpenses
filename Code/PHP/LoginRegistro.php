@@ -22,11 +22,8 @@ if ((isset($_POST['buttonRegister']))) {
 
 
     if ($consulta->execute()) {
-        echo 'Datos guardados correctamente';
         header("location: index.php");
-    } else {
-        echo 'Error al subir los datos';
-    };
+    } 
 
 
 } else if ((isset($_POST['buttonLogin']))) {
@@ -54,13 +51,5 @@ if ((isset($_POST['buttonRegister']))) {
     if ($user) {
         $_SESSION['usuario'] = $user['nombre'];
         header("location: bienvenida.php");
-    } else {
-        echo '
-    <script>
-        alert("Usuario no existe,por favor verifique los datos introducidos");
-        window.location = "../index.php";
-    </script>
-    
-';
-    }
+    } 
 }
