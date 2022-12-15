@@ -25,7 +25,54 @@ try {
     
     $mail->Subject = 'Verificación actividad';
     $mail->isHTML(true);
-    $mailContent = "<h1>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla. <h1>";
+    $mailContent = "<head>
+    <style>
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            .mail{
+                display:flex;
+                flex-direction: column;
+            }
+            .title-logo{
+                display:flex;
+                flex-direction: row;
+            }
+            .title1{
+                color:#6CD4B5;
+    
+            }
+            .title2{
+            color: #1C3144;
+            }
+            .img-logo {
+                margin-top: 15px;
+                margin-right: 5px;
+                width: 40px;
+                height: 40px;
+    
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class='mail'>
+            <div class='title-logo'>
+                <img class='img-logo' src='../Images/logo.PNG' />
+                <h1 class='title1'>GE</h1>
+                <h1 class='title2'>XPENSES</h1>
+             </div>
+            <div class='texto'>
+                <h1 class=' inline m-L'>Hola $nombre</h1>
+                <p class='text'>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</p>
+           <br />
+                <h4 class='bold'>Atentamente:</h4>
+                <p>Oscar Ramírez, Joan Canals y Samuel García</p>
+               <p>Saludos.</p><br />
+            </div>
+        </div>
+    </body>;";
+
     $mailLogo->AddEmbeddedImage("Images/Logo.php","Logo");
 
     $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";

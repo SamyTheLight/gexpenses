@@ -37,7 +37,6 @@
             <nav>
                 <a class="menu-home" href="Home.php">Home</a></li>
                 <a href="../index.php">Landing Page</a>
-                <a href="Invitaciones.php">Inviatciones</a>
             </nav>
             <label for="btn-menu" class="icon-x">X</label>
         </div>

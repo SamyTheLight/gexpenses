@@ -42,7 +42,7 @@ if (isset($_POST['btn-enviar'])) {
 
 
 
-$arrayCorreos = $_POST["emailEnviados[]"];
+
 $nomActivitat = $_POST["nomActivitat"];
 $nomActivitat = strtoupper($nomActivitat);
 $description = $_POST["descripcionActivitat"];
