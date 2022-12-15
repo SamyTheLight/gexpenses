@@ -48,7 +48,6 @@ if ((!empty($_POST))) {
 
         if ($consulta->execute()) {
             $registered = true;
-            echo 'Datos guardados correctamente';
         } else {
             echo 'Error al subir los datos';
         };
