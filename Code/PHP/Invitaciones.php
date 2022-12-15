@@ -4,9 +4,12 @@ include 'nav.php';
 
 include 'ConexionDB.php';
 
+$queryRegistro = "SELECT * FROM activitat ORDER BY id_activitat DESC limit 1";
+$stmtRegistro = $conexion->query($queryRegistro);
+$registroActivitat = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
 
 
-if (isset($_POST['btn-enviar'])) {
+if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
 
 
     $nomActivitat = $_POST['nomActivitat'];
@@ -65,14 +68,19 @@ $description = $_POST["descripcionActivitat"];
             <img class="card-image" src="/Code/Images/Viaje_Combinado.png">
             <div class="card-text">
                 <span class="date">4 days ago</span>
-                <h1><?php echo $nomActivitat ?></h1>
+
+                <?php foreach ($registroActivitat as $rowR) { ?>
+                <h1><?php echo $rowR->Nombre; ?></h1>
                 <hr>
-                <div class="ex1" <p id="description"><?php echo $description ?></p>
+                <div class="ex1">
+                    <p id="description"><?php echo $rowR->Descripcion ?></p>
                 </div>
+                <?php }
+                ?>
                 <div class="afegir-mail" id="addmail">
                     <input type="email" class="mails" name="emailEnviados[]" id="mails" placeholder="EMAIL">
                     <button class="btn-email" id="btn-emial">+</button>
-                    
+
                 </div>
                 <div class="missage-error" id="missage-error">
                     <p id="error">¡El correo no es correcto, porfavor introduzca los carácteres necesarios!</p>
@@ -92,25 +100,25 @@ $description = $_POST["descripcionActivitat"];
 
         if (isset($_GET['aceptat'])) {
         ?>
-            <?php
+        <?php
             if ($_GET['aceptat'] === '1') {
             ?>
-                <div class="alert-success" id="has_registered">
-                    <p>Se ha aceptado la invitación</p>
-                </div>
+        <div class="alert-success" id="has_registered">
+            <p>Se ha aceptado la invitación</p>
+        </div>
 
-                <style>
-                    .alert-success {
-                        text-align: center;
-                        background-color: green;
-                        color: white;
-                        display: block;
-                        border-radius: 20px;
-                        margin-top: 20px;
-                        font-size: 20px;
-                    }
-                </style>
-            <?php
+        <style>
+        .alert-success {
+            text-align: center;
+            background-color: green;
+            color: white;
+            display: block;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        </style>
+        <?php
             }
             ?>
 

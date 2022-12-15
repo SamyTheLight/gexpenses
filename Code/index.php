@@ -5,7 +5,7 @@ $registered = false;
 
 function validarDadesFormulari($firstname, $email, $passwordReg, $valid)
 {
-    $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+    $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/";
     if ((empty($firstname))) {
         $valid = false;
     }
@@ -48,7 +48,7 @@ if ((!empty($_POST))) {
 
         if ($consulta->execute()) {
             $registered = true;
-        } 
+        }
     }
 }
 
@@ -81,7 +81,7 @@ if ((isset($_POST['buttonLogin']))) {
     if (password_verify($passwordL, $user['contrasena'])) {
 
         header("location: PHP/Home.php");
-    } 
+    }
 }
 
 
