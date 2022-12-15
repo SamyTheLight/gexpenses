@@ -17,12 +17,11 @@ try {
     $mail->Username = 'mailcopernicprova@gmail.com';
     $mail->Password = 'tusuihvzulctfnta';
 
-    $mail->setFrom('mailcopernicprova@gmail.com');
-    ;
-    $mail->addAddress('joancanals23@gmail.com');
+    $mail->setFrom('mailcopernicprova@gmail.com');;
+    $mail->addAddress($rowEmail['Email']);
 
-    $aceptat=1;
-    
+    $aceptat = 1;
+
     $mail->Subject = 'Verificación actividad';
     $mail->isHTML(true);
     $mailContent = "<head>
@@ -73,22 +72,19 @@ try {
         </div>
     </body>;";
 
-    $mailLogo->AddEmbeddedImage("Images/Logo.php","Logo");
+    $mailLogo->AddEmbeddedImage("Images/Logo.php", "Logo");
 
-    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";
-    $mail->Body = '<img src="cid:Logo">'.$mailContent . "<a href=$mailink >Enviar</a>";
+    $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";
+    $mail->Body = '<img src="cid:Logo">' . $mailContent . "<a href=$mailink >Enviar</a>";
 
-    $mail->AltBody ="Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
+    $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 
-   if( $mail->send()){
-    echo 'Correo enviado';
-   }else echo 'error al enviar correo';
+    if ($mail->send()) {
+        echo 'Correo enviado';
+    } else echo 'error al enviar correo';
 
 
-   $mail->smtpClose();
+    $mail->smtpClose();
 } catch (Exception $ex) {
     echo $ex->message;
 }
-
-
-

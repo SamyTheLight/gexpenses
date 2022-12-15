@@ -20,9 +20,8 @@ try {
     $mail->Encoding = 'base64';
 
     $mail->setFrom('mailcopernicprova@gmail.com');
-    ;
-    $mail->addAddress('joancanals23@gmail.com');
-    
+    $mail->addAddress($rowEmail["Email"]);
+
     $mail->Subject = 'Registro GExpenses';
     $mail->isHTML(true);
 
@@ -64,7 +63,7 @@ try {
                 <h1 class='title2'>XPENSES</h1>
              </div>
             <div class='texto'>
-                <h1 class=' inline m-L'>Hola $nombre</h1>
+                <h1 class=' inline m-L'>Bienvenido Usuario</h1>
                 <p class='text'>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</p>
            <br />
                 <h4 class='bold'>Atentamente:</h4>
@@ -74,33 +73,30 @@ try {
         </div>
     </body>;";
 
-    
 
-    $mailLogo->AddEmbeddedImage("Images/Logo.php","Logo");
-    
-   
 
-    $mailink="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
-    $mail->Body = '<img src="cid:Logo">'.$mailContent . "<a href=$mailink >Enviar</a>";
-
-    $mail->AltBody ="Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
-
-    
+    $mailLogo->AddEmbeddedImage("Images/Logo.php", "Logo");
 
 
 
-    
+    $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
+    $mail->Body = '<img src="cid:Logo">' . $mailContent . "<a href=$mailink >Enviar</a>";
+
+    $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 
 
-   if( $mail->send()){
-    echo 'Correo enviado';
-   }else echo 'error al enviar correo';
 
 
-   $mail->smtpClose();
+
+
+
+
+    if ($mail->send()) {
+        echo 'Correo enviado';
+    } else echo 'error al enviar correo';
+
+
+    $mail->smtpClose();
 } catch (Exception $ex) {
     echo $ex->message;
 }
-
-
-

@@ -31,10 +31,12 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
             $queryEmail->execute();
 
             $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
-
+            var_dump($trobat);
             if (!$trobat) {
+                echo 'Registre';
                 include 'sendMailRegister.php';
             } else {
+                echo 'Verify';
                 include 'sendMailVerify.php';
             }
         }
@@ -68,11 +70,11 @@ $description = $_POST["descripcionActivitat"];
                 <span class="date">4 days ago</span>
 
                 <?php foreach ($registroActivitat as $rowR) { ?>
-                    <h1><?php echo $rowR->Nombre; ?></h1>
-                    <hr>
-                    <div class="ex1">
-                        <p id="description"><?php echo $rowR->Descripcion ?></p>
-                    </div>
+                <h1><?php echo $rowR->Nombre; ?></h1>
+                <hr>
+                <div class="ex1">
+                    <p id="description"><?php echo $rowR->Descripcion ?></p>
+                </div>
                 <?php }
                 ?>
                 <div class="afegir-mail" id="addmail">
@@ -98,25 +100,25 @@ $description = $_POST["descripcionActivitat"];
 
         if (isset($_GET['aceptat'])) {
         ?>
-            <?php
+        <?php
             if ($_GET['aceptat'] === '1') {
             ?>
-                <div class="alert-success" id="has_registered">
-                    <p>Se ha aceptado la invitación</p>
-                </div>
+        <div class="alert-success" id="has_registered">
+            <p>Se ha aceptado la invitación</p>
+        </div>
 
-                <style>
-                    .alert-success {
-                        text-align: center;
-                        background-color: green;
-                        color: white;
-                        display: block;
-                        border-radius: 20px;
-                        margin-top: 20px;
-                        font-size: 20px;
-                    }
-                </style>
-            <?php
+        <style>
+        .alert-success {
+            text-align: center;
+            background-color: green;
+            color: white;
+            display: block;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        </style>
+        <?php
             }
             ?>
 
