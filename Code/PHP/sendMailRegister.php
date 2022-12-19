@@ -75,12 +75,12 @@ try {
 
 
 
-    $mailLogo->AddEmbeddedImage("Images/Logo.php", "Logo");
+    //$mail->AddEmbeddedImage("Images/Logo.php", "Logo");
 
 
 
     $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
-    $mail->Body = '<img src="cid:Logo">' . $mailContent . "<a href=$mailink >Enviar</a>";
+    $mail->Body =  $mailContent . "<a href=$mailink >Enviar</a>";
 
     $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 

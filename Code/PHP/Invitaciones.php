@@ -12,8 +12,7 @@ $registroActivitat = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
 if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
 
 
-    $nomActivitat = $_POST['nomActivitat'];
-    $description = $_POST['descr ipcionActivitat'];
+
 
     $emailE = $_POST['emailEnviados'];
 
@@ -50,9 +49,6 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
 
 
 
-$nomActivitat = $_POST["nomActivitat"];
-$nomActivitat = strtoupper($nomActivitat);
-$description = $_POST["descripcionActivitat"];
 ?>
 
 <!DOCTYPE html>
