@@ -58,7 +58,7 @@ try {
     <body>
         <div class='mail'>
             <div class='title-logo'>
-                <img class='img-logo' src='../Images/logo.PNG' />
+                <img class='img-logo' src='./Images/logo.PNG' />
                 <h1 class='title1'>GE</h1>
                 <h1 class='title2'>XPENSES</h1>
              </div>
@@ -69,6 +69,7 @@ try {
                 <h4 class='bold'>Atentamente:</h4>
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
                <p>Saludos.</p><br />
+               <a href='http://localhost:8000/Code/GExpenses.php?aceptado=true' >Enviar</a>
             </div>
         </div>
     </body>;";
@@ -79,8 +80,8 @@ try {
 
 
 
-    $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
-    $mail->Body =  $mailContent . "<a href=$mailink >Enviar</a>";
+    // $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/GExpenses.php?aceptado=true";
+    $mail->Body =  $mailContent;
 
     $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 
