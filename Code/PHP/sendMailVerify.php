@@ -47,8 +47,8 @@ try {
             .img-logo {
                 margin-top: 15px;
                 margin-right: 5px;
-                width: 40px;
-                height: 40px;
+                width: 90px;
+                height: 90px;
     
             }
         </style>
@@ -62,8 +62,8 @@ try {
                 <h1 class='title2'>XPENSES</h1>
              </div>
             <div class='texto'>
-                <h1 class=' inline m-L'>Hola $nombre</h1>
-                <p class='text'>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</p>
+                <h1 class=' inline m-L'>Saludos $nombre</h1>
+                <h2 class='text'>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</h2>
            <br />
                 <h4 class='bold'>Atentamente:</h4>
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
