@@ -16,11 +16,14 @@
 
         <!--Imagen/Logo-->
         <div class="header-img">
-            <img class="img-logo" src="Images/logo.PNG">
-            <div class="header-tittle">
-                <h1>GE</h1>
-                <h1 class="h1">XPENSES</h1>
-            </div>
+            <img class="img-logo" src="./Images/logo.PNG">
+        </div>
+        <div class="header-tittle">
+            <h1>GE</h1>
+            <h1 class="h1">XPENSES</h1>
+        </div>
+        <div class="btn-menu">
+            <label for="btn-menu" class="icon-menu"><i class="fa-solid fa-bars"></i></label>
         </div>
 
         <!--Menu del header-->
@@ -34,11 +37,11 @@
                     <li><a class="nav-item" href="#">Logout</a></li>
                 </ul>
 
-                 <div class="hamburger">
+                <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
-                 </div>
+                </div>
             </nav>
         </div>
 
