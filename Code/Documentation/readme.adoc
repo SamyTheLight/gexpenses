@@ -13,20 +13,37 @@ Para una buena navegación por la página web, se intentará crear un diseño c�
 
 Las necesidades que cubrirá nuestro proyecto a lo largo de su desarrollo serán: (1)uso de MySQLWorkBench para la creación de  los elementos que conformarán nuestra base de datos, (2).
 
-== Diseño
+== Guia de estilo
 
 === Paleta de colores
 
-La guia de estilos que utilizaremos para realizar nuestra pagina web sera la siguiente:
-
-.Paleta de colores
-image::..\..\Pictures\guia_estilos_GExpenses.png[]
+image::paletaColores.jpg[]
 
 Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Así como que transmite naturaleza y pureza.Creemos que un color así le dará un buen contraste según qué botones.
 
 Por otro lado, elegimos el azul oscuro y el negro para así dar un toque de elegáncia y refinez.
 
 Por último, elegimos el blanco para hacer un contraste y poder jugar con los colores más oscuros así como para poder aplicarlo en la letra.
+
+=== Texto
+
+image::Texto1.jpg[]
+
+image::Texto2.jpg[]
+
+=== Logo
+
+image::Logo1.jpg[]
+
+image::Logo2.jpg[]
+
+=== Botones
+
+image::botones1.jpg[]
+
+=== Iconos
+
+image::iconos1.jpg[]
 
 === Pantallas
 
@@ -51,10 +68,7 @@ En el siguiente enlace se muestran las pantallas: https://www.figma.com/file/F0j
 
 Al diseñar la base de datos, hemos echo uso de MySQL Workbench para crear las tablas y variables necesarias para que nuestra aplicación funcione.
 
-.Base de datos
-image::gexpensesabp\imagesMemoria\GExpensesBBDD .png[]
-
-=== Encriptar contraseña
+= Encriptar contraseña
 
 La estratégia que hemos usado para encriptar la contraseña ha sido la siguiente:
 
@@ -75,8 +89,55 @@ La estratégia que hemos usado para encriptar la contraseña ha sido la siguient
     	</script>
         	';
 	}
+
+= Vagrant
+
+    vagrant init ubuntu/bionic64
+    vagrant up
+
+=== Vagrantfile
+
+    Vagrant.configure("2") do |config| 
+      config.vm.box = "ubuntu/bionic64"
+      config.vm.hostname = "GExpenses"
+      config.vm.define "GExpenses"
+      #config.vm.synced_folder "html/", "/var/www/html"
+      config.vm.network "private_network", ip: "172.16.0.10"
+      config.vm.provision "shell", path: "script.sh"
+      config.vm.provider "virtualbox" do |vb|
+    	vb.name = "GExpenses44"
+        vb.memory = "512"
+        vb.cpus = 1
+      end
+    end
+
+=== Script.sh
+
+    sudo apt-get update
+    sudo apt-get ugrade
     
-== Glosario
+    #Instalamos la GuestAdditions
+    sudo apt-get install virtualbox-guest-additions-iso
+    
+    #Instalamos MySql
+    sudo apt-get install -y mysql-server
+    sudo mysql < /vagrant/GExpensesBBDD.sql
+    
+    #Accedemos remotamente a la base de datos
+    cp -f /vagrant/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf 
+    systemctl restart mysql
+
+=== Conexion a la Base de Datos
+
+Creacion de usuario:
+
+    CREATE USER 'gexpensesuser'@'%' IDENTIFIED BY '1234';
+    GRANT CREATE,ALTER,INSERT,UPDATE,SELECT,DELETE,DROP,REFERENCES, RELOAD  ON * . * TO 'gexpensesuser'@'%' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
+
+mysqld.cnf
+
+= Glosario
 
 === Repositorio Git
 
@@ -85,7 +146,3 @@ La estratégia que hemos usado para encriptar la contraseña ha sido la siguient
 === Enlaces a consultar
 
 * https://es.stackoverflow.com/questions/98329/mostrar-mensaje-de-error-en-un-span-de-un-formulario-en-javascript[Mensasje de error]
-
-
-
-
