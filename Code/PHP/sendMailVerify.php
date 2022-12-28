@@ -62,7 +62,7 @@ try {
                 <h1 class='title2'>XPENSES</h1>
              </div>
             <div class='texto'>
-                <h1 class=' inline m-L'>Saludos $nombre</h1>
+                <h1 class=' inline m-L'>Saludos </h1>
                 <h2 class='text'>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</h2>
            <br />
                 <h4 class='bold'>Atentamente:</h4>
