@@ -28,8 +28,10 @@
             <nav class="navbar">
 
                 <ul class="navbar-bar">
+                <li><a class="nav-item" href="#">Bienvenido, <?php $_SESSION['usuario'] = $user['nombre'];?></a></li>
                     <li><a class="nav-item" href="#">Home</a></li>
-                    <li><a class="nav-item" href="#">Sign in</a></li>
+                    <li><a class="nav-item" href="#">Activitats</a></li>
+                    <li><a class="nav-item" href="#">Logout</a></li>
                 </ul>
 
                  <div class="hamburger">
