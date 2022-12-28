@@ -62,36 +62,31 @@ try {
                 <h1 class='title2'>XPENSES</h1>
              </div>
             <div class='texto'>
-<<<<<<< HEAD
                 <h1 class=' inline m-L'>Saludos </h1>
-=======
-                <h1 class=' inline m-L'>Saludos $nombre</h1>
->>>>>>> 176742b (Canvi ruta imatges)
                 <h2 class='text'>Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</h2>
            <br />
                 <h4 class='bold'>Atentamente:</h4>
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
-<<<<<<< HEAD
+
                <p>Saludos.</p><br/>
                <a href='http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1'>Enviar</a>
-=======
-               <p>Saludos.</p> </br>
-               <a href='http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1' >Enviar</a>
->>>>>>> e0de1ff (link email done)
+
+    
+
             </div>
         </div>
     </body>";
 
     $mail->AddEmbeddedImage("Images/logo.PNG", "Logo");
 
-<<<<<<< HEAD
+
     // $mailink = "http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1";
     $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
-=======
-    // $mailink = 'localhost:8000/Code/PHP/Invitaciones.php?aceptat=1';
-    $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
 
->>>>>>> e0de1ff (link email done)
+
+    // $mailink = 'localhost:8000/Code/PHP/Invitaciones.php?aceptat=1';
+
+
     $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 
     if ($mail->send()) {
