@@ -6,42 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="nav.css">
-    <script src="https://kit.fontawesome.com/c5d9a8512e.js" crossorigin="anonymous"></script>
+
     <title>Document</title>
 </head>
 
 <body>
+
     <div class="header">
+
+        <!--Imagen/Logo-->
         <div class="header-img">
-            <img class="img-logo" src="../Images/logo.PNG">
+            <img class="img-logo" src="Images/logo.PNG">
+            <div class="header-tittle">
+                <h1>GE</h1>
+                <h1 class="h1">XPENSES</h1>
+            </div>
         </div>
-        <div class="header-tittle">
-            <h1>GE</h1>
-            <h1 class="h1">XPENSES</h1>
-        </div>
-        <div class="btn-menu">
-            <label for="btn-menu" class="icon-menu"><i class="fa-solid fa-bars"></i></label>
-        </div>
+
+        <!--Menu del header-->
         <div class="header-nav">
             <nav class="navbar">
+
                 <ul class="navbar-bar">
-                    <li><a href="cerrar_sesion.php"><i class="fa-solid fa-user"></i></a></li>
+                    <li><a class="nav-item" href="#">Home</a></li>
+                    <li><a class="nav-item" href="#">Sign in</a></li>
                 </ul>
+
+                 <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                 </div>
             </nav>
         </div>
-    </div>
 
-    <input type="checkbox" id="btn-menu">
-    <div class="container-menu">
-        <div class="cont-menu">
-            <nav>
-                <a class="menu-home" href="Home.php">Home</a></li>
-                <a href="../index.php">Landing Page</a>
-            </nav>
-            <label for="btn-menu" class="icon-x">X</label>
-        </div>
     </div>
-
+    <script src="nav.js"></script>
 </body>
 
 </html>
