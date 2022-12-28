@@ -22,7 +22,7 @@ try {
 
     $aceptat = 1;
 
-    $mail->Subject = 'Verificación actividad';
+    $mail->Subject = 'Verificacion actividad';
     $mail->isHTML(true);
     $mailContent = "<head>
     <style>
@@ -67,16 +67,16 @@ try {
            <br />
                 <h4 class='bold'>Atentamente:</h4>
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
-               <p>Saludos.</p><br />
+               <p>Saludos.</p><br/>
+               <a href='http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1'>Enviar</a>
             </div>
         </div>
-    </body>;";
+    </body>";
 
     $mail->AddEmbeddedImage("Images/logo.PNG", "Logo");
 
-    $mailink = "http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1";
-    $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent . "<a href=$mailink >Enviar</a>";
-
+    // $mailink = "http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1";
+    $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
     $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 
     if ($mail->send()) {
