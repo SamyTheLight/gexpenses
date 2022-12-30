@@ -13,7 +13,8 @@ CREATE TABLE `activitat` (
   `id_activitat` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(150) NOT NULL,
-  `Divisa` char(1) NOT NULL
+  `Divisa` char(1) NOT NULL,
+  `Fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
