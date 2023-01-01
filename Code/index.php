@@ -70,16 +70,10 @@ if ((isset($_POST['buttonLogin']))) {
 
     $queryLogin->execute();
 
-
-
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
 
-
-
-
-
     if (password_verify($passwordL, $user['contrasena'])) {
-
+        $_SESSION['usuario'] = $user['nombre'];
         header("location: PHP/Home.php");
     }
 }
@@ -129,8 +123,7 @@ if ((isset($_POST['buttonLogin']))) {
             <form action="" class="form_block formulari-login" method="POST">
                 <h2>Iniciar Sesión</h2><br>
                 <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-login" name="usernameLogin">
-                <input placeholder="Password" type="password" class="input-password-login" placeholder="Password"
-                    name="passwordLogin">
+                <input placeholder="Password" type="password" class="input-password-login" placeholder="Password" name="passwordLogin">
                 <button id="buttonLogin" name="buttonLogin" value="1">
                     <h3>Login</h3>
                 </button>
@@ -141,32 +134,29 @@ if ((isset($_POST['buttonLogin']))) {
             <form action="" id="formRegistre" class="form_block formulari-register" method="POST">
 
                 <h2>Regístrate</h2>
-                <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register"
-                    id="input-nameuser-register" name="username">
-                <input type="email" placeholder="Correo electrónico" class="input-mail-register"
-                    id="input-mail-register" name="email">
-                <input type="password" placeholder="Contrasena" class="input-password2-register"
-                    id="input-password2-register" name="contrasena">
+                <input type="text" placeholder="Nombre de Usuario" class="input-nameuser-register" id="input-nameuser-register" name="username">
+                <input type="email" placeholder="Correo electrónico" class="input-mail-register" id="input-mail-register" name="email">
+                <input type="password" placeholder="Contrasena" class="input-password2-register" id="input-password2-register" name="contrasena">
 
                 <?php
                 if ($registered) {
                 ?>
 
-                <div class="alert-success" id="has_registered">
-                    <p>Se ha registrado correctamente</p>
-                </div>
+                    <div class="alert-success" id="has_registered">
+                        <p>Se ha registrado correctamente</p>
+                    </div>
 
-                <style>
-                .alert-success {
-                    text-align: center;
-                    background-color: green;
-                    color: white;
-                    display: block;
-                    border-radius: 20px;
-                    margin-top: 20px;
-                    font-size: 20px;
-                }
-                </style>
+                    <style>
+                        .alert-success {
+                            text-align: center;
+                            background-color: green;
+                            color: white;
+                            display: block;
+                            border-radius: 20px;
+                            margin-top: 20px;
+                            font-size: 20px;
+                        }
+                    </style>
                 <?php
                 }
                 ?>
