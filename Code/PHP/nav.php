@@ -1,3 +1,7 @@
+<?php
+include 'ConexionDB.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="Styles/nav.css">
 
     <title>Document</title>
 </head>
@@ -31,11 +35,14 @@
             <nav class="navbar">
 
                 <ul class="navbar-bar">
-                    <li><a class="nav-item" href="#">Bienvenido, <?php $_SESSION['usuario'] = $user['nombre']; ?></a>
+                    <li>
+                        <a class="nav-item" href="#">Bienvenido, </a>
+                        <?php echo ($_SESSION['usuario'] = $user['nombre']); ?>
+                        <a class="nav-item" href="#">Home</a>
+                        <a class="nav-item" href="#">Activitats</a>
+                        <a class="nav-item" href="">Logout</a>
                     </li>
-                    <li><a class="nav-item" href="#">Home</a></li>
-                    <li><a class="nav-item" href="#">Activitats</a></li>
-                    <li><a class="nav-item" href="#">Logout</a></li>
+                    
                 </ul>
 
                 <div class="hamburger">
