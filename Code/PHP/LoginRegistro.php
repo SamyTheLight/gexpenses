@@ -22,7 +22,7 @@ if ((isset($_POST['buttonRegister']))) {
 
 
     if ($consulta->execute()) {
-        header("location: index.php");
+        header("location: ../index.php");
     } 
 
 
