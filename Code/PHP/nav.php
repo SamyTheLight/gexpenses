@@ -9,7 +9,7 @@ include 'ConexionDB.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/nav.css">
+    <link rel="stylesheet" href="/Code/Styles/nav.css">
 
     <title>Document</title>
 </head>
@@ -20,7 +20,7 @@ include 'ConexionDB.php';
 
         <!--Imagen/Logo-->
         <div class="header-img">
-            <img class="img-logo" src="../Images/logo.PNG">
+            <img class="img-logo" src="./Images/logo.PNG">
         </div>
         <div class="header-tittle">
             <h1>GE</h1>
@@ -37,7 +37,7 @@ include 'ConexionDB.php';
                 <ul class="navbar-bar">
                     <li>
                         <a class="nav-item" href="#">Bienvenido, </a>
-                        <?php echo ($_SESSION['usuario'] = $user['nombre']); ?>
+                        <?php //echo ($_SESSION['usuario'] = $user['nombre']); ?>
                         <a class="nav-item" href="#">Home</a>
                         <a class="nav-item" href="#">Activitats</a>
                         <a class="nav-item" href="">Logout</a>
@@ -54,7 +54,7 @@ include 'ConexionDB.php';
         </div>
 
     </div>
-    <script src="../Scripts/nav.js"></script>
+    <script src="Scripts/nav.js"></script>
 </body>
 
 </html>

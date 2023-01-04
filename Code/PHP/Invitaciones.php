@@ -59,13 +59,13 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitaciones</title>
-    <link rel="stylesheet" href="../Styles/Invitaciones.css">
+    <link rel="stylesheet" href="Invitaciones.css">
 </head>
 
 <body>
     <form action="" id="act-form" method="POST">
         <div class="card">
-            <img class="card-image" src="Images/Viaje_Combinado.png">
+            <img class="card-image" src="./Images/Viaje_Combinado.png">
             <div class="card-text">
                 <span class="date">4 days ago</span>
 
@@ -129,7 +129,7 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
     </form>
 
 </body>
-<script src=" ../Scripts/Invitaciones.js"></script>
+<script src=" Invitaciones.js"></script>
 
 </html>
 <?php
