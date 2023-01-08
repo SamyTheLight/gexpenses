@@ -1,7 +1,5 @@
 <?php
-ini_set("session.cookie_lifetime","7200");
-ini_set("session.gc_maxlifetime","7200");
-
+include 'caduca_sesion.php';
 session_start();
 include 'ConexionDB.php';
 $registered = false;
