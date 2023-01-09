@@ -4,8 +4,8 @@ include 'nav.php';
 
 include 'ConexionDB.php';
 
-//Where nombre usuario de la session 
-$query = "SELECT * FROM activitat ";
+
+$query = "SELECT * FROM activitat ORDER BY Fecha DESC";
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -18,16 +18,26 @@ if ((isset($_POST['enviarActivitat']))) {
         $descripcioActivitat = $_POST["descripcionActivitat"];
 
         $tipusDivisa = $_POST["divisa"];
+        $tiposActivitat = $_POST["tipusActivitat"];
 
+<<<<<<< Updated upstream
 
         $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa) VALUES (:nombreA,:descripcionA,:divisaA)";
+=======
+        var_dump("nomActivitat");
+        var_dump("descripcionActivitat");
+        var_dump("divisa");
+        var_dump("tipusActivitat");
+
+        $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa,TipusAct) VALUES (:nombreA,:descripcionA,:divisaA,:tiposA)";
+>>>>>>> Stashed changes
 
         $consultaActivitat = $conexion->prepare($queryActividad);
 
         $consultaActivitat->bindParam(':nombreA', $nombreA);
         $consultaActivitat->bindParam(':descripcionA', $descripcioActivitat);
         $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
-
+        $consultaActivitat->bindParam(':tiposA', $tiposActivitat);
 
         if ($consultaActivitat->execute()) {
             echo 'Envio bien';
@@ -35,6 +45,7 @@ if ((isset($_POST['enviarActivitat']))) {
         }
     }
 }
+
 
 ?>
 
@@ -50,75 +61,61 @@ if ((isset($_POST['enviarActivitat']))) {
 </head>
 
 <body>
-
-    <div class=act-card>
-        <div id="card" class="card">
-            <div class="card-body">
-
-                <h4 id="btn-anadir">AÑADE UNA ACTIVIDAD</h4>
-                <form action="" id="act-form" method="POST">
-
-
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Nombre de la actividad" class="form-control" name="nomActivitat">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="description" placeholder="Descripción de la actividad" class="form-control" name="descripcionActivitat">
-                    </div>
-
-
-                    <div class="form-group">
-                        <select name="divisa" id="divisa" class="form-control" name="divisa">
-
-                            <option value="$">$</option>
-                            <option value="€">€</option>
-                            <option value="¥">¥</option>
-                        </select>
-                    </div>
-                    <button class="btn-card" id="afegirActivitat" name="enviarActivitat">Enviar</button>
-
-
-
-                </form>
-                <div id="btn-eliminar">
-                    <button class="btn-eliminarHome" id="btn-eliminar">-</button>
-                </div>
-
-            </div>
+    <!-- POPUP -->
+    <div class="act-card">
+        <div class="btn-form">
+            <button id="form-btn" class="form-btn">AÑADIR</button>
+            <button name="asc" id="btn-ordenar">ASC</button>
         </div>
+        <?php
+        $btn = $_POST['asc'];
+        var_dump($btn);
+        if ((isset($_POST['asc']))) {
+            $queryasc = "SELECT * FROM activitat ORDER BY Fecha ASC";
+            $stmt = $conexion->query($queryasc);
+            $ordena = $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
+
+
+        ?>
+        <!-- CARDS DE LES ACTIVITATS -->
         <div id="act-list">
-            <table id="table-act">
-                <tr>
-                    <td>ID</td>
-                    <td>NOMBRE</td>
-                    <td>DESCRIPCIÓN</td>
-                    <td>DIVISA</td>
-                </tr>
-                <?php foreach ($registros as $row) : ?>
+            <?php foreach ($registros as $row) : ?>
+                <div class="card">
+                    <div class="face front">
+                        <?php
+                        /*$tiposActivitat = $_POST["tipusActivitat"];
+                        $queryEmail = $conexion->prepare("SELECT TipusAct FROM activitat ");
 
-                    <tr class="tableInsert">
-                        <td><?php echo $row->id_activitat; ?></td>
-                        <td><?php echo $row->Nombre; ?></td>
-                        <td><?php echo $row->Descripcion; ?></td>
-                        <td><?php echo $row->Divisa; ?></td>
-                        <td><button class="buttonInvitar">Inv</button></td>
-                    </tr>
-                <?php endforeach; ?>
+                        $queryEmail->bindParam(":tiposA", $tiposActivitat);
+            
+                        $queryEmail->execute();
+                        $user = $queryLogin->fetch(PDO::FETCH_ASSOC);*/
+                        ?>
+                        <img src="/Code/PHP/Images/Viaje_Combinado.png" alt="">
+                        <h3><?php echo strtoupper($row->Nombre) ?></h3>
+                    </div>
+                    <div class="face back">
+                        <h1><?php echo strtoupper($row->Nombre) ?></h1>
+                        <hr>
+                        <p id="description"><?php echo $row->Descripcion ?></p>
+                        <p class="divisa"><b>Divisa: </b><?php echo $row->Divisa ?></p>
+                        <div class="link"><a href="detallActivitat.php"><b>DETAILS</b></a>
+                        </div>
+                    </div>
 
-
-
-            </table>
-
+                </div>
+            <?php endforeach; ?>
         </div>
-    </div>
 
+    </div>
 
 </body>
 <script src="/Code/Scripts/Home.js"></script>
 
+</html>
 <?php
 
 include 'footer.php';
 ?>
-
-</html>

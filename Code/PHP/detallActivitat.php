@@ -15,13 +15,14 @@ include 'nav.php';
 
 <body>
     <div class="details">
-        <div class="card-act">
-            <table class="act-table">
+        <div class="card-txt">
+            <h3 id="act-eslogan">¡Elige el importe de tu despesa para que tus amigos no sean unos morosoos!</h3>
+        </div>
+        <div class="activity">
 
-            
-            </table>
         </div>
     </div>
+    
 </body>
 <?php
 include 'footer.php';

@@ -114,6 +114,7 @@ ALTER TABLE `usuario`
 ALTER TABLE `invitacio`
   MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
+<<<<<<< Updated upstream
 
 --
 -- FOREIGN KEY de la tabla `invitacio`
@@ -132,3 +133,7 @@ ALTER TABLE 'activitat'
 ALTER TABLE `activitat_usuario`
   ADD CONTRAINT fk_activitat_usuario_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
   ADD CONTRAINT fk_activitat_usuario_activitat FOREIGN KEY (activitat_id) REFERENCES activitat (id_activitat);
+=======
+ALTER TABLE `activitat`
+  ADD `TipusAct` varchar(20) NOT NULL;
+>>>>>>> Stashed changes
