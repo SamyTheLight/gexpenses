@@ -1,5 +1,7 @@
 <?php
+session_start();
 include 'ConexionDB.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +38,7 @@ include 'ConexionDB.php';
 
                 <ul class="navbar-bar">
                     <li>
-                        <a class="nav-item" href="#">Bienvenido, </a>
-                        <?php //echo ($_SESSION['usuario'] = $user['nombre']); ?>
+                        <a class="nav-item" href="#"><?php echo "Bienvenido, ". $_SESSION['usuario'];?></a>
                         <a class="nav-item" href="#">Home</a>
                         <a class="nav-item" href="#">Activitats</a>
                         <a class="nav-item" href="">Logout</a>
