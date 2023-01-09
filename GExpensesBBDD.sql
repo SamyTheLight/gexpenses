@@ -14,7 +14,8 @@ CREATE TABLE `activitat` (
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(150) NOT NULL,
   `Divisa` char(1) NOT NULL,
-  `Fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  `Fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `usuario_id` INT(11) NOT NULL AUTO_INCREMENT; 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -123,6 +124,11 @@ ALTER TABLE `invitacio`
   --
   -- FOREIGN KEY de la tabla `activitat_usuario`
   --
+
+ALTER TABLE 'activitat' 
+  ADD ADD CONTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
+
+
 ALTER TABLE `activitat_usuario`
   ADD CONTRAINT fk_activitat_usuario_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
   ADD CONTRAINT fk_activitat_usuario_activitat FOREIGN KEY (activitat_id) REFERENCES activitat (id_activitat);
