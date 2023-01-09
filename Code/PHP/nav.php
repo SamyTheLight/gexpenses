@@ -38,12 +38,12 @@ include 'ConexionDB.php';
 
                 <ul class="navbar-bar">
                     <li>
-                        <a class="nav-item" href="#"><?php echo "Bienvenido, " . $_SESSION['usuario']; ?></a>
+                        <a class="nav-item" href="#"><?php echo "Bienvenido, ". $_SESSION['usuario'];?></a>
                         <a class="nav-item" href="#">Home</a>
                         <a class="nav-item" href="#">Activitats</a>
                         <a class="nav-item" href="">Logout</a>
                     </li>
-
+                    
                 </ul>
 
                 <div class="hamburger">

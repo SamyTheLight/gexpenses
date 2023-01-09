@@ -58,7 +58,6 @@ if ((isset($_POST['buttonLogin']))) {
 
     $nameuserL = $_POST['usernameLogin'];
 
-
     $passwordL = $_POST['passwordLogin'];
 
 
@@ -66,18 +65,16 @@ if ((isset($_POST['buttonLogin']))) {
 
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $queryLogin = $conexion->prepare("SELECT nombre,contrasena FROM usuario WHERE nombre = :nombreUser");
+    $queryLogin = $conexion->prepare("SELECT contrasena FROM usuario WHERE nombre = :nombreUser");
 
     $queryLogin->bindParam(':nombreUser', $nameuserL);
-
 
     $queryLogin->execute();
 
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
 
     if (password_verify($passwordL, $user['contrasena'])) {
-
-        $_SESSION['nombre'] = $nameuserL;
+        $_SESSION['usuario'] = $nameuserL;
 
         header("location: PHP/Home.php");
         

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 
@@ -73,7 +74,7 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitaciones</title>
-    <link rel="stylesheet" href="Invitaciones.css">
+    <link rel="stylesheet" href="/Code/Styles/Invitaciones.css">
 </head>
 
 <body>
@@ -83,7 +84,7 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
             <div class="card-text">
                 <span class="date">4 days ago</span>
 
-                <?php foreach ($registroActivitat as $rowR) { ?>
+                <?php foreach ($registroInvitacio as $rowR) { ?>
                     <h1><?php echo $rowR->Nombre; ?></h1>
                     <hr>
                     <div class="ex1">
@@ -143,7 +144,7 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
     </form>
 
 </body>
-<script src=" Invitaciones.js"></script>
+<script src="/Code/Scripts/Invitaciones.js"></script>
 
 </html>
 <?php

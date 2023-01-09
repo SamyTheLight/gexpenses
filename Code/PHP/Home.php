@@ -19,10 +19,6 @@ if ((isset($_POST['enviarActivitat']))) {
 
         $tipusDivisa = $_POST["divisa"];
 
-        var_dump("nomActivitat");
-        var_dump("descripcionActivitat");
-        var_dump("divisa");
-
 
         $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa) VALUES (:nombreA,:descripcionA,:divisaA)";
 

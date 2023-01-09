@@ -33,16 +33,16 @@ CREATE TABLE `invitacio` (
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Aceptado` tinyint(1) NOT NULL
+  `usuario_id` int(11) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `invitacio`
 --
 
-INSERT INTO `invitacio` (`id_invitacio`, `Nombre`, `Descripcion`, `Email`, `Aceptado`) VALUES
-(1, '', '', 'oscarferram@gmail.com', 0),
-(3, '', '', 'joancanals23@gmail.com', 0);
+INSERT INTO `invitacio` (`id_invitacio`, `Nombre`, `Descripcion`, `Email`) VALUES
+(1, '', '', 'oscarferram@gmail.com'),
+(3, '', '', 'joancanals23@gmail.com');
 
 --
 -- Estructura de tabla para la tabla `usuario`
@@ -59,8 +59,19 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
+--
+-- Estructura de tabla para la tabla `actividad_usuario`
+--
+DROP TABLE IF EXISTS `activitat_usuario`;
+CREATE TABLE `activitat_usuario` (
+  `usuario_id` int(11) NOT NULL,
+  `activitat_id` int(11) NOT NULL,
+  `import` decimal(6, 2)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
+--
+-- Volcado de datos para la tabla `activitat_usuario`
+--
 
 --
 -- Índices para tablas volcadas
@@ -92,7 +103,7 @@ ALTER TABLE `activitat`
   MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 
---
+
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
@@ -102,3 +113,16 @@ ALTER TABLE `usuario`
 ALTER TABLE `invitacio`
   MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
+
+--
+-- FOREIGN KEY de la tabla `invitacio`
+--
+ALTER TABLE `invitacio`
+  ADD CONTRAINT fk_invitacio_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
+
+  --
+  -- FOREIGN KEY de la tabla `activitat_usuario`
+  --
+ALTER TABLE `activitat_usuario`
+  ADD CONTRAINT fk_activitat_usuario_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
+  ADD CONTRAINT fk_activitat_usuario_activitat FOREIGN KEY (activitat_id) REFERENCES activitat (id_activitat);
