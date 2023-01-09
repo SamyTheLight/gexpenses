@@ -74,13 +74,12 @@ if ((isset($_POST['buttonLogin']))) {
     $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
 
     if (password_verify($passwordL, $user['contrasena'])) {
-        $_SESSION['usuario'] = $user['nombre'];
+        $_SESSION['usuario'] = $nameuserL;
+
         header("location: PHP/Home.php");
+        
     }
 }
-
-
-
 
 ?>
 
