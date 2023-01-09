@@ -1,21 +1,38 @@
 <?php
-
 include 'nav.php';
-
 include 'ConexionDB.php';
 
 $queryRegistro = "SELECT * FROM activitat ORDER BY id_activitat DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
-$registroActivitat = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
+$registroInvitacio = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
 
 
 if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
 
+    if ((!empty($_POST['nomInvitacio'])) && (!empty($_POST['descripcionInvitacio']))) {
+
+        $nombreI = $_POST["nomInvitacio"];
+
+        $descripcioI = $_POST["descripcionInvitacio"];
+
+        $emailI = $_POST["emailInvitacio"];
 
 
+        $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email) VALUES (:nombreI,:descripcioI,:emailI)";
+
+        $consultaInvitacio = $conexion->prepare($queryInvitacio);
+
+        $consultaInvitacio->bindParam(':nombreI', $nombreI);
+        $consultaInvitacio->bindParam(':descripcionI', $descripcioI);
+        $consultaInvitacio->bindParam(':emailI', $emailI);
+
+
+        $consultaInvitacio->execute();
+    
+        
+    }    
 
     $emailE = $_POST['emailEnviados'];
-
 
     $cont = 0;
 
@@ -45,9 +62,6 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
         }
     endforeach;
 }
-
-
-
 
 ?>
 
