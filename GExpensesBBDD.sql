@@ -14,16 +14,16 @@ CREATE TABLE `activitat` (
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(150) NOT NULL,
   `Divisa` char(1) NOT NULL,
-  `Fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `usuario_id` INT(11) NOT NULL AUTO_INCREMENT; 
+  `Fecha` TIMESTAMP ,
+  `usuario_id` INT(11) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `activitat`
 --
 
-INSERT INTO `activitat` (`id_activitat`, `Nombre`, `Descripcion`, `Divisa`) VALUES
-(49, 'Jugar', 'a cartas', '$');
+INSERT INTO `activitat` (`id_activitat`, `Nombre`, `Descripcion`, `Divisa`,`Fecha`) VALUES
+(1, 'Jugar', 'a cartas', '$', current_timestamp());
 
 --
 -- Estructura de tabla para la tabla `invitacio`
@@ -34,7 +34,7 @@ CREATE TABLE `invitacio` (
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
+  `usuario_id` int(11) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -56,31 +56,8 @@ CREATE TABLE `usuario` (
   `contrasena` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `usuario`
---
 
---
--- Estructura de tabla para la tabla `actividad_usuario`
---
-DROP TABLE IF EXISTS `activitat_usuario`;
-CREATE TABLE `activitat_usuario` (
-  `usuario_id` int(11) NOT NULL,
-  `activitat_id` int(11) NOT NULL,
-  `import` decimal(6, 2)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `activitat_usuario`
---
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `activitat`
---
 ALTER TABLE `activitat`
   ADD PRIMARY KEY (`id_activitat`);
 
@@ -113,27 +90,20 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `invitacio`
   MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-<<<<<<< Updated upstream
+
+ALTER TABLE `activitat`
+  ADD `TipusAct` varchar(20) NOT NULL;
 
 --
 -- FOREIGN KEY de la tabla `invitacio`
 --
 ALTER TABLE `invitacio`
-  ADD CONTRAINT fk_invitacio_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
+  ADD CONSTRAINT fk_invitacio_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
 
   --
   -- FOREIGN KEY de la tabla `activitat_usuario`
   --
 
-ALTER TABLE 'activitat' 
-  ADD ADD CONTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
-
-
-ALTER TABLE `activitat_usuario`
-  ADD CONTRAINT fk_activitat_usuario_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
-  ADD CONTRAINT fk_activitat_usuario_activitat FOREIGN KEY (activitat_id) REFERENCES activitat (id_activitat);
-=======
 ALTER TABLE `activitat`
-  ADD `TipusAct` varchar(20) NOT NULL;
->>>>>>> Stashed changes
+   ADD CONSTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
+

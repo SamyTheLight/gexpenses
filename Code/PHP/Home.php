@@ -20,17 +20,12 @@ if ((isset($_POST['enviarActivitat']))) {
         $tipusDivisa = $_POST["divisa"];
         $tiposActivitat = $_POST["tipusActivitat"];
 
-<<<<<<< Updated upstream
-
-        $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa) VALUES (:nombreA,:descripcionA,:divisaA)";
-=======
         var_dump("nomActivitat");
         var_dump("descripcionActivitat");
         var_dump("divisa");
         var_dump("tipusActivitat");
 
         $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa,TipusAct) VALUES (:nombreA,:descripcionA,:divisaA,:tiposA)";
->>>>>>> Stashed changes
 
         $consultaActivitat = $conexion->prepare($queryActividad);
 
@@ -82,9 +77,9 @@ if ((isset($_POST['enviarActivitat']))) {
         <!-- CARDS DE LES ACTIVITATS -->
         <div id="act-list">
             <?php foreach ($registros as $row) : ?>
-                <div class="card">
-                    <div class="face front">
-                        <?php
+            <div class="card">
+                <div class="face front">
+                    <?php
                         /*$tiposActivitat = $_POST["tipusActivitat"];
                         $queryEmail = $conexion->prepare("SELECT TipusAct FROM activitat ");
 
@@ -93,19 +88,19 @@ if ((isset($_POST['enviarActivitat']))) {
                         $queryEmail->execute();
                         $user = $queryLogin->fetch(PDO::FETCH_ASSOC);*/
                         ?>
-                        <img src="/Code/PHP/Images/Viaje_Combinado.png" alt="">
-                        <h3><?php echo strtoupper($row->Nombre) ?></h3>
-                    </div>
-                    <div class="face back">
-                        <h1><?php echo strtoupper($row->Nombre) ?></h1>
-                        <hr>
-                        <p id="description"><?php echo $row->Descripcion ?></p>
-                        <p class="divisa"><b>Divisa: </b><?php echo $row->Divisa ?></p>
-                        <div class="link"><a href="detallActivitat.php"><b>DETAILS</b></a>
-                        </div>
-                    </div>
-
+                    <img src="/Code/PHP/Images/Viaje_Combinado.png" alt="">
+                    <h3><?php echo strtoupper($row->Nombre) ?></h3>
                 </div>
+                <div class="face back">
+                    <h1><?php echo strtoupper($row->Nombre) ?></h1>
+                    <hr>
+                    <p id="description"><?php echo $row->Descripcion ?></p>
+                    <p class="divisa"><b>Divisa: </b><?php echo $row->Divisa ?></p>
+                    <div class="link"><a href="detallActivitat.php"><b>DETAILS</b></a>
+                    </div>
+                </div>
+
+            </div>
             <?php endforeach; ?>
         </div>
 
