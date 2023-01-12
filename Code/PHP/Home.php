@@ -1,11 +1,12 @@
 <?php
 session_start();
 include 'nav.php';
-
+$sessionUserId = $_SESSION['id_usuario'];
 include 'ConexionDB.php';
+var_dump($_SESSION['id_usuario']);
 
 
-$query = "SELECT * FROM activitat ORDER BY Fecha DESC";
+$query = "SELECT * FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -25,13 +26,14 @@ if ((isset($_POST['enviarActivitat']))) {
         var_dump("divisa");
         var_dump("tipusActivitat");
 
-        $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa,TipusAct) VALUES (:nombreA,:descripcionA,:divisaA,:tiposA)";
+        $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa,usuario_id,TipusAct) VALUES (:nombreA,:descripcionA,:divisaA,:userIdA,:tiposA)";
 
         $consultaActivitat = $conexion->prepare($queryActividad);
 
         $consultaActivitat->bindParam(':nombreA', $nombreA);
         $consultaActivitat->bindParam(':descripcionA', $descripcioActivitat);
         $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
+        $consultaActivitat->bindParam(':userIdA', $sessionUserId);
         $consultaActivitat->bindParam(':tiposA', $tiposActivitat);
 
         if ($consultaActivitat->execute()) {
