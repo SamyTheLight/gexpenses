@@ -14,8 +14,13 @@ CREATE TABLE `activitat` (
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(150) NOT NULL,
   `Divisa` char(1) NOT NULL,
+<<<<<<< Updated upstream
   `Fecha` TIMESTAMP ,
   `usuario_id` INT(11) 
+=======
+  `Fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `usuario_id` INT(11) NOT NULL AUTO_INCREMENT 
+>>>>>>> Stashed changes
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -34,7 +39,11 @@ CREATE TABLE `invitacio` (
   `Nombre` varchar(50) NOT NULL,
   `Descripcion` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
+<<<<<<< Updated upstream
   `usuario_id` int(11) 
+=======
+  `usuario_id` int(11) NOT NULL
+>>>>>>> Stashed changes
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -90,9 +99,13 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `invitacio`
   MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+<<<<<<< Updated upstream
 
 ALTER TABLE `activitat`
   ADD `TipusAct` varchar(20) NOT NULL;
+=======
+COMMIT;
+>>>>>>> Stashed changes
 
 --
 -- FOREIGN KEY de la tabla `invitacio`
@@ -104,6 +117,11 @@ ALTER TABLE `invitacio`
   -- FOREIGN KEY de la tabla `activitat_usuario`
   --
 
+<<<<<<< Updated upstream
 ALTER TABLE `activitat`
    ADD CONSTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
 
+=======
+ALTER TABLE 'activitat' 
+  ADD ADD CONTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
+>>>>>>> Stashed changes
