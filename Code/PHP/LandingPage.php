@@ -36,8 +36,6 @@ if ((!empty($_POST))) {
 
     $resultatvalidacio = validarDadesFormulari($firstname, $email, $passwordReg, $valid);
 
-
-
     if ($resultatvalidacio == true) {
         $hash_password = password_hash($passwordReg, PASSWORD_DEFAULT);
         $query = "INSERT INTO usuario (nombre,email,contrasena) VALUES (:nombre,:email,:contrasena)";

@@ -1,5 +1,7 @@
 <?php
 
+
+session_start();
 require __DIR__ . '/../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\Exception;
@@ -19,6 +21,18 @@ try {
 
     $mail->setFrom('mailcopernicprova@gmail.com');
     $mail->addAddress($rowEmail);
+
+    $mailEnviat = $_SESSION['mailEnviat'];
+    var_dump($mailEnviat);
+
+    $queryUserId = $conexion->prepare("SELECT id_invitacio FROM invitacio WHERE email = :emailUser");
+
+    $queryUserId->bindParam(':emailUser', $mailEnviat);
+
+    $queryUserId->execute();
+
+    $userId = $queryUserId->fetch(PDO::FETCH_ASSOC);
+
 
     $aceptat = 1;
 
@@ -69,7 +83,7 @@ try {
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
 
                <p>Saludos.</p><br/>
-               <a href='http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1'>Enviar</a>
+               <a href='http://localhost:8000/Code/PHP/detallActivitat.php?user_id='" . $userId . "'>Enviar</a>
 
     
 
@@ -80,7 +94,7 @@ try {
     $mail->AddEmbeddedImage("Images/logo.PNG", "Logo");
 
 
-    // $mailink = "http://localhost:8000/Code/PHP/Invitaciones.php?aceptat=1";
+    // $mailink = "http://localhost:8000/Code/PHP/detallActtivitat.php?aceptat=1";
     $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
 
 
@@ -96,5 +110,5 @@ try {
 
     $mail->smtpClose();
 } catch (Exception $ex) {
-    echo $ex->message;
+    //echo $ex->message;
 }

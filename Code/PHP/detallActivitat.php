@@ -1,5 +1,12 @@
 <?php
 include 'nav.php';
+
+
+
+$query = "SELECT Fecha FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
+$stmt = $conexion->query($query);
+$registros = $stmt->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,11 +40,29 @@ include 'nav.php';
             <div class="members">
 
                 <span class="material-icons">person</span>
+                <?php
+                if (isset($_GET['aceptat'])) {
+                ?>
+                <?php
+                    if ($_GET['aceptat'] === '1') {
+                    ?>
+                < <span class="material-icons">person</span>
+
+
+                    <?php
+                    }
+                        ?>
+
+                    <?php
+                }
+                    ?>
 
             </div>
             <div class="paymentsList">
 
             </div>
+
+
 
 
 

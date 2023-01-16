@@ -7,62 +7,126 @@ $queryRegistro = "SELECT * FROM activitat ORDER BY id_activitat DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
 $registroInvitacio = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
 
+function idUserInvitacion($conexion, $emailI)
+{
+    $queryUserInvitacio = $conexion->prepare("SELECT id_usuario FROM usuario WHERE email =:emailUserInvitacio ");
 
-if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
+    $queryUserInvitacio->bindParam(":emailUserInvitacio", $emailI);
 
-    if ((!empty($_POST['nomInvitacio'])) && (!empty($_POST['descripcionInvitacio']))) {
 
-        $nombreI = $_POST["nomInvitacio"];
+    $queryUserInvitacio->execute();
 
-        $descripcioI = $_POST["descripcionInvitacio"];
+    $userIdInvitacio =  $queryUserInvitacio->fetch(PDO::FETCH_ASSOC);
+
+
+    return $userIdInvitacio;
+}
+/*
+var_dump($_POST['submit']);
+var_dump($_POST['emailEnviados']);
+
+if ((isset($_POST['emailEnviados'])) && isset($_POST['submit'])) {
+    echo 'hola';
+    if ((!empty($_POST['nomActivitat'])) && (!empty($_POST['descripcionActivitat']))) {
+        echo 'adios';
+        $nombreI = $_POST["nomActivitat"];
+
+        $descripcioI = $_POST["descripcionActivitat"];
 
         $emailI = $_POST["emailInvitacio"];
 
+        echo 'error no muestra id';
+        $idUserIvitacio = idUserInvitacion($conexion, $emailI);
+        var_dump($idUserIvitacio);
 
-        $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email) VALUES (:nombreI,:descripcioI,:emailI)";
+        $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email,usuario_id) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
 
         $consultaInvitacio = $conexion->prepare($queryInvitacio);
 
         $consultaInvitacio->bindParam(':nombreI', $nombreI);
         $consultaInvitacio->bindParam(':descripcionI', $descripcioI);
         $consultaInvitacio->bindParam(':emailI', $emailI);
+        $consultaInvitacio->bindParam(':userIdA',  $idUserIvitacio);
 
 
         $consultaInvitacio->execute();
-    
-        
-    }    
+    }
+*/
+$emailE = $_POST['emailEnviados'];
 
-    $emailE = $_POST['emailEnviados'];
-
-    $cont = 0;
-
-    foreach ($emailE as $rowEmail) :
-        if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
-
-            $queryEmail->bindParam(":emailP", $rowEmail);
-
-            $queryEmail->execute();
-
-            $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+$cont = 0;
 
 
-            var_dump($trobat);
-            if (!$trobat) {
-                echo 'Registre';
 
-                include 'sendMailRegister.php';
-            } else {
-                echo 'Verify';
+function insertarInvitacio($conexion, $mail, $registroInvitacio)
+{
+    foreach ($registroInvitacio as $rowR)
+        $nombreI = $rowR->Nombre;
+    //var_dump($rowR->Nombre);
+    //die();
+    $descripcioI =  $rowR->Descripcion;
+    //var_dump($descripcioI);
+    //die();
+    $idUserIvitacio = idUserInvitacion($conexion, $mail);
+    //var_dump($idUserIvitacio);
+    //die();
 
-                include 'sendMailVerify.php';
-            }
-        }
-    endforeach;
+
+
+    $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email,usuario_id) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
+
+    $consultaInvitacio = $conexion->prepare($queryInvitacio);
+
+    $consultaInvitacio->bindParam(':nombreI', $nombreI);
+    //var_dump($nombreI);
+    //die();
+    $consultaInvitacio->bindParam(':descripcionI', $descripcioI);
+    // var_dump($descripcioI);
+    // die();
+    $consultaInvitacio->bindParam(':emailI', $mail);
+    // var_dump($mail);
+    // die();
+    $consultaInvitacio->bindParam(':userIdA',  $idUserIvitacio);
+    var_dump($idUserIvitacio);
+    die();
+
+    $consultaInvitacio->execute();
+    var_dump($consultaInvitacio);
+    die();
 }
+
+
+foreach ($emailE as $rowEmail) :
+    if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
+
+        insertarInvitacio($conexion, $rowEmail, $registroInvitacio);
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        var_dump("stop");
+        die();
+
+        $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
+
+        $queryEmail->bindParam(':emailP', $rowEmail);
+
+        $queryEmail->execute();
+
+        $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+
+
+        $_SESSION['mailEnviat'] = $trobat;
+        if (!$trobat) {
+            echo 'Registre';
+
+            include 'sendMailRegister.php';
+        } else {
+            echo 'Verify';
+
+            include 'sendMailVerify.php';
+        }
+    }
+endforeach;
+
 
 ?>
 
@@ -85,11 +149,11 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
                 <span class="date">4 days ago</span>
 
                 <?php foreach ($registroInvitacio as $rowR) { ?>
-                    <h1><?php echo $rowR->Nombre; ?></h1>
-                    <hr>
-                    <div class="ex1">
-                        <p id="description"><?php echo $rowR->Descripcion ?></p>
-                    </div>
+                <h1><?php echo $rowR->Nombre; ?></h1>
+                <hr>
+                <div class="ex1">
+                    <p id="description"><?php echo $rowR->Descripcion ?></p>
+                </div>
                 <?php }
                 ?>
                 <div class="afegir-mail" id="addmail">
@@ -106,41 +170,13 @@ if ((isset($_POST['btn-enviar'])) && (isset($_POST['emailEnviados']))) {
                 </div>
             </div>
             <div class="card-stats">
-                <button class="btn-enviar" name="btn-enviar" id="btn-enviar">ENVIAR</button>
+                <button type="submit" class="btn-enviar" name="submit" id="btn-enviar">ENVIAR</button>
             </div>
         </div>
-        </div>
 
-        <?php
 
-        if (isset($_GET['aceptat'])) {
-        ?>
-            <?php
-            if ($_GET['aceptat'] === '1') {
-            ?>
-                <div class="alert-success" id="has_registered">
-                    <p>Se ha aceptado la invitación</p>
-                </div>
 
-                <style>
-                    .alert-success {
-                        text-align: center;
-                        background-color: green;
-                        color: white;
-                        display: block;
-                        border-radius: 20px;
-                        margin-top: 20px;
-                        font-size: 20px;
-                    }
-                </style>
-            <?php
-            }
-            ?>
 
-        <?php
-        }
-        ?>
-        </div>
     </form>
 
 </body>

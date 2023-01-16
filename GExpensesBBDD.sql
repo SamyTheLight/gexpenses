@@ -49,17 +49,17 @@ CREATE TABLE `invitacio` (
 --
 -- Volcado de datos para la tabla `invitacio`
 --
-
+/*
 INSERT INTO `invitacio` (`id_invitacio`, `Nombre`, `Descripcion`, `Email`) VALUES
 (1, '', '', 'oscarferram@gmail.com'),
 (3, '', '', 'joancanals23@gmail.com');
-
+*/
 --
 -- Estructura de tabla para la tabla `usuario`
 --
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL ,
   `nombre` varchar(30) NOT NULL,
   `email` varchar(120) NOT NULL,
   `contrasena` varchar(60) NOT NULL
@@ -87,19 +87,23 @@ ALTER TABLE `invitacio`
 -- AUTO_INCREMENT de la tabla `activitat`
 --
 ALTER TABLE `activitat`
-  MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT;
 
 
 
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_usuario` int(11) NOT NULL  AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `invitacio`
 --
 ALTER TABLE `invitacio`
+<<<<<<< Updated upstream
   MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 <<<<<<< Updated upstream
+=======
+  MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> Stashed changes
 
 ALTER TABLE `activitat`
   ADD `TipusAct` varchar(20) NOT NULL;
