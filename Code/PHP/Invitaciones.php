@@ -7,6 +7,16 @@ $queryRegistro = "SELECT * FROM activitat ORDER BY id_activitat DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
 $registroInvitacio = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
 
+$nombreActividadR = "";
+$descripcionActividadR = "";
+
+foreach ($registroInvitacio as $row) {
+    $nombreActividadR = $row->Nombre;
+    $descripcionActividadR = $row->Descripcion;
+}
+var_dump($nombreActividadR);
+var_dump($descripcionActividadR);
+
 function idUserInvitacion($conexion, $emailI)
 {
     $queryUserInvitacio = $conexion->prepare("SELECT id_usuario FROM usuario WHERE email =:emailUserInvitacio ");
@@ -17,6 +27,7 @@ function idUserInvitacion($conexion, $emailI)
     $queryUserInvitacio->execute();
 
     $userIdInvitacio =  $queryUserInvitacio->fetch(PDO::FETCH_ASSOC);
+
 
 
     return $userIdInvitacio;
@@ -58,52 +69,56 @@ $cont = 0;
 
 
 
-function insertarInvitacio($conexion, $mail, $registroInvitacio)
+function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR)
 {
-    foreach ($registroInvitacio as $rowR)
-        $nombreI = $rowR->Nombre;
+
+    $nombreI = $nombreActividadR;
     //var_dump($rowR->Nombre);
     //die();
-    $descripcioI =  $rowR->Descripcion;
+    $descripcioI =  $descripcionActividadR;
     //var_dump($descripcioI);
     //die();
-    $idUserIvitacio = idUserInvitacion($conexion, $mail);
-    //var_dump($idUserIvitacio);
-    //die();
-
-
+    $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
+    var_dump($idUserInvitacio1);
+    // die();
 
     $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email,usuario_id) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
 
     $consultaInvitacio = $conexion->prepare($queryInvitacio);
 
     $consultaInvitacio->bindParam(':nombreI', $nombreI);
-    //var_dump($nombreI);
-    //die();
-    $consultaInvitacio->bindParam(':descripcionI', $descripcioI);
-    // var_dump($descripcioI);
+    var_dump($nombreI);
+    // die();
+    $consultaInvitacio->bindParam(':descripcioI', $descripcioI);
+    var_dump($descripcioI);
     // die();
     $consultaInvitacio->bindParam(':emailI', $mail);
-    // var_dump($mail);
+    var_dump($mail);
     // die();
-    $consultaInvitacio->bindParam(':userIdA',  $idUserIvitacio);
-    var_dump($idUserIvitacio);
-    die();
+    $nullV = null;
+    if ($idUserInvitacio1 == false) $consultaInvitacio->bindParam(':userIdA',  $nullV);
+    else {
+        $aux = (int) $idUserInvitacio1;
+        $consultaInvitacio->bindParam(':userIdA', $aux);
+        //$consultaInvitacio->bindParam(':userIdA', $idUserInvitacio1);
+        var_dump($idUserInvitacio1);
+    }
 
-    $consultaInvitacio->execute();
-    var_dump($consultaInvitacio);
-    die();
+    //die();
+
+    if ($consultaInvitacio->execute())
+        echo 'Execute correcte';
 }
 
 
 foreach ($emailE as $rowEmail) :
     if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
 
-        insertarInvitacio($conexion, $rowEmail, $registroInvitacio);
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if (insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR))
+            echo 'invitacio insertada';
+        // $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        var_dump("stop");
-        die();
+
 
         $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
 
@@ -149,10 +164,12 @@ endforeach;
                 <span class="date">4 days ago</span>
 
                 <?php foreach ($registroInvitacio as $rowR) { ?>
-                <h1><?php echo $rowR->Nombre; ?></h1>
+                <h1><?php echo $rowR->Nombre;
+                        ?></h1>
                 <hr>
                 <div class="ex1">
-                    <p id="description"><?php echo $rowR->Descripcion ?></p>
+                    <p id="description"><?php echo $rowR->Descripcion;
+                                            ?></p>
                 </div>
                 <?php }
                 ?>

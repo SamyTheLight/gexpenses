@@ -10,6 +10,8 @@ const buttonBackLogin = document.querySelector("#BackBoxButtonLogin");
 const buttonBackRegister = document.querySelector("#BackBoxButtonRegister");
 const registeredAlert = document.getElementById("has_registered");
 const email = document.getElementById("input-mail-register");
+const usernameRegister = document.getElementById("input-nameuser-register");
+const passwordRegister = document.getElementById("input-password2-register");
 const alert = document.querySelector(".alert-success");
 const formRegistre = document.getElementById("formRegistre");
 const password = document.getElementById("input-password2-register");
@@ -53,6 +55,7 @@ formRegistre.addEventListener("submit", (e) => {
   if (dadesvalidades == 0) {
     formRegistre.submit();
   }
+  formRegistre.reset();
 });
 
 function registrar(first_time = false) {
