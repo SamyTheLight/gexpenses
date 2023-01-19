@@ -22,16 +22,32 @@ try {
     $mail->setFrom('mailcopernicprova@gmail.com');
     $mail->addAddress($rowEmail);
 
+    function generateToken($length = 10)
+    {
+        return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
+    }
+
+    $token = generateToken($length = 10);
+
+
+
+
+
     $mailEnviat = $_SESSION['mailEnviat'];
-    var_dump($mailEnviat);
+    //var_dump($mailEnviat);
 
-    $queryUserId = $conexion->prepare("SELECT id_invitacio FROM invitacio WHERE email = :emailUser");
+    $queryUserId = $conexion->prepare("SELECT  id_usuario FROM usuario WHERE email = :emailUser");
 
-    $queryUserId->bindParam(':emailUser', $mailEnviat);
+    $queryUserId->bindParam(':emailUser', $rowEmail);
 
     $queryUserId->execute();
 
     $userId = $queryUserId->fetch(PDO::FETCH_ASSOC);
+
+    var_dump($userId);
+
+
+
 
 
     $aceptat = 1;
@@ -83,7 +99,8 @@ try {
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
 
                <p>Saludos.</p><br/>
-               <a href='http://localhost:8000/Code/PHP/detallActivitat.php?user_id='" . $userId . "'>Enviar</a>
+               <h2>Código de verificación: " . $token . "</h2>
+               <a href='http://localhost:8000/Code/PHP/VerificarCuenta.php?userId'>Enviar</a>
 
     
 

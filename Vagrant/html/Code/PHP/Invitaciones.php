@@ -23,51 +23,16 @@ function idUserInvitacion($conexion, $emailI)
 
     $queryUserInvitacio->bindParam(":emailUserInvitacio", $emailI);
 
-
     $queryUserInvitacio->execute();
 
     $userIdInvitacio =  $queryUserInvitacio->fetch(PDO::FETCH_ASSOC);
 
-
-
     return $userIdInvitacio;
 }
-/*
-var_dump($_POST['submit']);
-var_dump($_POST['emailEnviados']);
 
-if ((isset($_POST['emailEnviados'])) && isset($_POST['submit'])) {
-    echo 'hola';
-    if ((!empty($_POST['nomActivitat'])) && (!empty($_POST['descripcionActivitat']))) {
-        echo 'adios';
-        $nombreI = $_POST["nomActivitat"];
-
-        $descripcioI = $_POST["descripcionActivitat"];
-
-        $emailI = $_POST["emailInvitacio"];
-
-        echo 'error no muestra id';
-        $idUserIvitacio = idUserInvitacion($conexion, $emailI);
-        var_dump($idUserIvitacio);
-
-        $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email,usuario_id) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
-
-        $consultaInvitacio = $conexion->prepare($queryInvitacio);
-
-        $consultaInvitacio->bindParam(':nombreI', $nombreI);
-        $consultaInvitacio->bindParam(':descripcionI', $descripcioI);
-        $consultaInvitacio->bindParam(':emailI', $emailI);
-        $consultaInvitacio->bindParam(':userIdA',  $idUserIvitacio);
-
-
-        $consultaInvitacio->execute();
-    }
-*/
 $emailE = $_POST['emailEnviados'];
 
 $cont = 0;
-
-
 
 function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR)
 {
@@ -114,23 +79,25 @@ function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionAct
 foreach ($emailE as $rowEmail) :
     if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
 
-        if (insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR))
+        if (insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR)) {
             echo 'invitacio insertada';
-        // $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
 
 
-
-        $queryEmail = $conexion->prepare("SELECT email FROM invitacio WHERE email = :emailP ");
+        $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
 
         $queryEmail->bindParam(':emailP', $rowEmail);
+
+        var_dump($rowEmail);
 
         $queryEmail->execute();
 
         $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+        var_dump($trobat);
 
 
         $_SESSION['mailEnviat'] = $trobat;
-        if (!$trobat) {
+        if ($trobat == false) {
             echo 'Registre';
 
             include 'sendMailRegister.php';
@@ -153,7 +120,7 @@ endforeach;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitaciones</title>
-    <link rel="stylesheet" href="../Styles/Invitaciones.css">
+    <link rel="stylesheet" href="/Code/Styles/Invitaciones.css">
 </head>
 
 <body>
@@ -197,7 +164,7 @@ endforeach;
     </form>
 
 </body>
-<script src="../Scripts/Invitaciones.js"></script>
+<script src="/Code/Scripts/Invitaciones.js"></script>
 
 </html>
 <?php

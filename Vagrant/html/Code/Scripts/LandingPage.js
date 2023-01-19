@@ -55,6 +55,7 @@ formRegistre.addEventListener("submit", (e) => {
   if (dadesvalidades == 0) {
     formRegistre.submit();
   }
+
   formRegistre.reset();
 });
 

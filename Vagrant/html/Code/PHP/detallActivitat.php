@@ -18,7 +18,7 @@ $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="../Styles/detallActivitat.css">
+    <link rel="stylesheet" href="/Code/Styles/detallActivitat.css">
     <title>Detall Activitat</title>
 </head>
 
@@ -61,6 +61,12 @@ $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
             <div class="paymentsList">
 
             </div>
+
+
+
+
+
+
 
         </div>
 

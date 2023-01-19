@@ -14,17 +14,25 @@ body {
   color: white;
   font-family: "Inter", sans-serif;
   font-weight: bold;
-  
+  position: fixed;
   top: 0;
 }
 
 .header-img {
-  
+  display: flex;
   align-items: center;
 }
 
 .header-img p {
   font-size: 22px;
+}
+
+.header-tittle {
+  display: flex;
+  flex-direction: row;
+  width: 15px;
+  margin-left: 5px;
+  color: #6cd4b5;
 }
 
 .h1 {
