@@ -13,6 +13,14 @@ Para una buena navegación por la página web, se intentará crear un diseño c�
 
 = Manual de instalación
 
+Para que el usuario pueda hacer uso de nuestra aplicación primero deberá dirigirse a nuestro repositorio git y descargar nuestro proyecto.
+
+https://git.copernic.cat/canals.ortiz.joan/gexpensesabp[Repositorio Git]
+
+Una vez descargado, deberá acceder a este mediante un editor de codigo y dirigirse a la carpeta Vagrant. Dentro de esta, unicamente tendrá que ejecutari el comando "vagrant up" para levantar la máquina virtual. El proceso para la creación de la máquina puede demorar entre 2 a 4 minutos.
+
+Cuando se haya creado el vagrant, solo quedará abrir un navegador web y poner la siguiente ip: 172.16.0.10.
+
 = Manual de usuario
 
 == Acceso a nuestro sitio web
@@ -23,7 +31,12 @@ Para acceder a nuestro sitio web, primeramente, el usuario debe crear una cuenta
 
 === Creacion de actividad
 
-Ordenacion actividades.
+Una vez el usuario haya iniciado sesión, se le redirigirá a la página principal donde podrá crear las actividades. Para crear una actividad, deberá darle al botón "Añadir actividad" ubicado en la parte superior derecha de la página.
+
+Una vez le da click, aparecerá un pop-up "Añade una actividad" donde el usuario podrá rellenar los siguientes campos: 
+
+Ordenacion actividades
+
 
 Detalle actividad
     - Añadir gasto
@@ -32,7 +45,6 @@ Detalle actividad
 === Invitaciones
 
 Enviar invitación.
-
 
 === Pagos
 
@@ -43,9 +55,9 @@ repartir pago.
 
 == Paleta de colores
 
-image::imagesmemoria/paletaColores.jpg[]
+image::imagesMemoria/paletaColores.jpg[]
 
-Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Así como que transmite naturaleza y pureza.Creemos que un color así le dará un buen contraste según qué botones.
+Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Así como que transmite naturaleza y pureza. Creemos que un color así le dará un buen contraste según qué botones.
 
 Por otro lado, elegimos el azul oscuro y el negro para así dar un toque de elegáncia y refinez.
 
@@ -57,7 +69,7 @@ image::Texto1.jpg[]
 
 image::Texto2.jpg[]
 
-==Logo
+== Logo
 
 image::Logo1.jpg[]
 
@@ -128,13 +140,13 @@ La estratégia que hemos usado para encriptar la contraseña ha sido la siguient
 
 Vagrant es una herramienta que nos permite crear y configurar entornos de desarrollo virtualizados que se pueden ejecutar y compartir de forma sencilla.
 
-Por ello, nosotros hemos decidido crear un entorno Vagrant para configurar y compartir nuestra página web.
+Por ello, hemos creado un entorno Vagrant para configurar y compartir nuestra página web.
 
 Para crear este entorno Vagrant, primeramente es necesario descargarse la herramienta en la página oficial:
 
 https://developer.hashicorp.com/vagrant/downloads[Install Vagrant]
 
-Una vez instalado, accedemos a nuestra area de trabajo y allí, ejecutamos un comando para instalar nuestro entorno. En nuestro caso. elegimos una maquina virtual Ubuntu:
+Una vez instalado, accedemos a nuestra area de trabajo y ejecutamos un comando para instalar nuestro entorno. En nuestro caso, usamos una maquina virtual Ubuntu:
 
     vagrant init ubuntu/bionic64
     vagrant up
@@ -239,12 +251,16 @@ Creacion de usuario:
 
 mysqld.cnf
 
+= Conclusión
+
+= Líneas futuras
+
 = Glosario
 
 == Repositorio Git
 
 * https://git.copernic.cat/canals.ortiz.joan/gexpensesabp[Repositorio Git:]
 
-=== Enlaces a consultar
+== Enlaces a consultar
 
 * https://es.stackoverflow.com/questions/98329/mostrar-mensaje-de-error-en-un-span-de-un-formulario-en-javascript[Mensasje de error]

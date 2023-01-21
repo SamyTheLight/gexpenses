@@ -29,7 +29,6 @@
             <br />
             <a href="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1" class="link">ACEPTA LA INVITACIÓN</a>
             <br />
-
             <h4 class=bold>Atentamente:</h4>
             <span class=grey>Equipo Mi_dominio </span><br />
             Saludos.<br />

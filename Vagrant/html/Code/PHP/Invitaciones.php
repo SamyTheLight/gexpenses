@@ -2,7 +2,7 @@
 session_start();
 include 'nav.php';
 include 'ConexionDB.php';
-
+include 'user_is_logued.php';
 $queryRegistro = "SELECT * FROM activitat ORDER BY id_activitat DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
 $registroInvitacio = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
@@ -120,7 +120,7 @@ endforeach;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitaciones</title>
-    <link rel="stylesheet" href="/Code/Styles/Invitaciones.css">
+    <link rel="stylesheet" href="../Styles/Invitaciones.css">
 </head>
 
 <body>
@@ -135,8 +135,7 @@ endforeach;
                         ?></h1>
                 <hr>
                 <div class="ex1">
-                    <p id="description"><?php echo $rowR->Descripcion;
-                                            ?></p>
+                    <p id="description"><?php echo $rowR->Descripcion;?></p>
                 </div>
                 <?php }
                 ?>
@@ -158,13 +157,11 @@ endforeach;
             </div>
         </div>
 
-
-
-
     </form>
 
 </body>
-<script src="/Code/Scripts/Invitaciones.js"></script>
+
+<script src="../Scripts/Invitaciones.js"></script>
 
 </html>
 <?php

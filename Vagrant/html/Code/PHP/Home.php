@@ -3,7 +3,8 @@ session_start();
 include 'nav.php';
 $sessionUserId = $_SESSION['id_usuario'];
 include 'ConexionDB.php';
-var_dump($_SESSION['id_usuario']);
+include 'user_is_logued.php';
+//var_dump($_SESSION['id_usuario']);
 
 
 $query = "SELECT * FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
@@ -53,7 +54,7 @@ if ((isset($_POST['enviarActivitat']))) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Code/Styles/Home.css">
+    <link rel="stylesheet" href="../Styles/Home.css">
     <title>Home</title>
 </head>
 
@@ -72,9 +73,6 @@ if ((isset($_POST['enviarActivitat']))) {
             $stmt = $conexion->query($queryasc);
             $ordena = $stmt->fetchAll(PDO::FETCH_OBJ);
         }
-
-
-
         ?>
         <!-- CARDS DE LES ACTIVITATS -->
         <div id="act-list">
@@ -90,7 +88,7 @@ if ((isset($_POST['enviarActivitat']))) {
                         $queryEmail->execute();
                         $user = $queryLogin->fetch(PDO::FETCH_ASSOC);*/
                         ?>
-                    <img src="/Code/PHP/Images/Viaje_Combinado.png" alt="">
+                    <img src="Images/Viaje_Combinado.png" alt="">
                     <h3><?php echo strtoupper($row->Nombre) ?></h3>
                 </div>
                 <div class="face back">
@@ -109,7 +107,7 @@ if ((isset($_POST['enviarActivitat']))) {
     </div>
 
 </body>
-<script src="/Code/Scripts/Home.js"></script>
+<script src="../Scripts/Home.js"></script>
 
 </html>
 <?php

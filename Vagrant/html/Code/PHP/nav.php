@@ -11,7 +11,7 @@ include 'ConexionDB.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Code/Styles/nav.css">
+    <link rel="stylesheet" href="../Styles/nav.css">
 
 </head>
 
@@ -22,11 +22,10 @@ include 'ConexionDB.php';
         <!--Imagen/Logo-->
         <div class="header-img">
             <img class="img-logo" src="./Images/logo.PNG">
-        </div>
-        <div class="header-tittle">
             <h1>GE</h1>
             <h1 class="h1">XPENSES</h1>
         </div>
+        
         <div class="btn-menu">
             <label for="btn-menu" class="icon-menu"><i class="fa-solid fa-bars"></i></label>
         </div>
@@ -34,15 +33,11 @@ include 'ConexionDB.php';
         <!--Menu del header-->
         <div class="header-nav">
             <nav class="navbar">
-
                 <ul class="navbar-bar">
-                    <li>
-                        <a class="nav-item" href="#"><?php echo "Bienvenido, ". $_SESSION['usuario'];?></a>
-                        <a class="nav-item" href="#">Home</a>
-                        <a class="nav-item" href="#">Activitats</a>
-                        <a class="nav-item" href="">Logout</a>
-                    </li>
-                    
+                    <a class="nav-item" href="#"><?php echo "Bienvenido, ". $_SESSION['usuario'];?></a>
+                    <li><a class="nav-item" href="#">Home</a></li>
+                    <li><a class="nav-item" href="pagos.php">Pagos</a></li>
+                    <li><a class="nav-item" href="cerrar_sesion.php">Logout</a></li>
                 </ul>
 
                 <div class="hamburger">
