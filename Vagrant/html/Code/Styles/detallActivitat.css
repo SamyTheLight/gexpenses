@@ -53,6 +53,7 @@
   border-radius: 20px;
   padding: 5px;
 }
+
 .members {
   height: 300px;
   width: 350px;
@@ -75,4 +76,23 @@
   margin-top: -300px;
   margin-left: 380px;
   border-radius: 20px;
+}
+
+table {
+  color: black;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  height: 300px;
+}
+
+tr,
+th {
+  width: 100%;
+  color: black;
+  border: 2px solid black;
+  display: flex;
+  text-align: left;
+  font-size: 16px;
+  padding: 3px;
 }

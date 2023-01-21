@@ -2,7 +2,7 @@
 
 
 session_start();
-require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -21,13 +21,6 @@ try {
 
     $mail->setFrom('mailcopernicprova@gmail.com');
     $mail->addAddress($rowEmail);
-
-    function generateToken($length = 10)
-    {
-        return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
-    }
-
-    $token = generateToken($length = 10);
 
 
 

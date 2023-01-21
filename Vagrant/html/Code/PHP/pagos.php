@@ -1,5 +1,70 @@
 <?php
 include 'nav.php';
+include 'ConexionDB.php';
+
+if ((isset($_POST['enviarActivitat2']))) {
+
+    if ((!empty($_POST['concepto'])) && (!empty($_POST['import']))) {
+
+        $concepto = $_POST["concepto"];
+        var_dump("concepto");
+        $cantidad = $_POST["import"];
+        var_dump("import");
+        $pagador = $_POST["pagador"];
+        var_dump("pagador");
+        $membersPago = $_POST["members"];
+
+
+
+
+        $countPago = count($membersPago);
+        var_dump($countPago);
+
+
+        $queryActividad = "INSERT INTO pagos (concepto,cantidad,pagador) VALUES (:conceptoA,:cantidadA,:pagadorA)";
+
+        $consultaActivitat = $conexion->prepare($queryActividad);
+
+        $consultaActivitat->bindParam(':conceptoA', $concepto);
+
+        $consultaActivitat->bindParam(':cantidadA', $cantidad);
+
+        $consultaActivitat->bindParam(':pagadorA', $pagador);
+
+        $consultaActivitat->execute();
+
+
+
+        $queryPago = $conexion->prepare("SELECT MAX(id_pago) FROM pagos 
+            ");
+
+        $queryPago->execute();
+
+        $id_pago = $queryPago->fetch(PDO::FETCH_OBJ);
+        var_dump($id_pago);
+
+
+
+        foreach ($membersPago as $rowMembers) :
+            $queryActividad1 = "INSERT INTO reparto (members,cantidad_pago,user_member,importe_repartido,pago_id) VALUES (:RowMembers,:cantidadA,:membersPagoA,:importeA,:id_pago)";
+
+            $consultaActivitat1 = $conexion->prepare($queryActividad1);
+
+            $consultaActivitat1->bindParam(':RowMembers', $countPago);
+            $consultaActivitat1->bindParam(':cantidadA', $cantidad);
+            $consultaActivitat1->bindParam(':membersPagoA', $rowMembers);
+            $importe_repartidoA = $cantidad / $countPago;
+            $consultaActivitat1->bindParam(':importeA', $importe_repartidoA);
+            $auxPago = (int) $id_pago;
+            $consultaActivitat1->bindParam(':id_pago', $auxPago);
+
+            $consultaActivitat1->execute();
+        endforeach;
+        if ($consultaActivitat->execute()) {
+            Header("Location: /Code/PHP/reparto.php");
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +73,7 @@ include 'nav.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/pagos.css">
+    <link rel="stylesheet" href="/Code/Styles/pagos.css">
     <title>Pagos</title>
 </head>
 
@@ -31,29 +96,33 @@ include 'nav.php';
                 <h2>Actividad 3</h2>
                 <div class=" user_info">
                     <label for="names">Concepto </label>
-                    <input type="text" id="concepto" placeholder="Elige un concepto" class="form-control" name="concepto">
+                    <input type="text" id="concepto" placeholder="Elige un concepto" class="form-control"
+                        name="concepto">
 
                     <label for="description">Importe</label>
-                    <input type="number" placeholder="Elige un importe" class="form-control" id="importe" name="descripcionActivitat">
+                    <input type="number" placeholder="Elige un importe" class="form-control" id="importe" name="import">
 
                     <label for="mensaje">Pagador</label>
-                    <select name="" id="divisa" class="pagadores">
+                    <select name="pagador" id="divisa" class="pagadores">
                         <option selected disabled value="" class="pagador">Elige un pagador</option>
                         <option value="Oscar" class="pagador">Oscar</option>
                         <option value="Joan" class="pagador">Joan</option>
                         <option value="Samuel" class="pagador">Samuel</option>
                     </select>
                     <label for="tipusAct">Miembros</label>
-                    <input type="checkbox" value="1"> <label id="user" for="">Oscar</label>
-                    <input type="checkbox" value="2"> <label id="user" for="">Joan</label>
-                    <input type="checkbox" value="3"> <label id="user" for="">Samuel</label>
+                    <input type="checkbox" value="Oscar" name="members[]" id="users" class="users"> <label id="user"
+                        for="">Oscar</label>
+                    <input type="checkbox" value="Joan" name="members[]" id="users" class="users"> <label id="user"
+                        for="">Joan</label>
+                    <input type="checkbox" value="Samuel" name="members[]" id="users" class="users"> <label id="user"
+                        for="">Samuel</label>
 
-                    <button class="btn-card" id="afegirActivitat" name="enviarActivitat">GUARDAR</button>
+                    <button class="btn-card" name="enviarActivitat2">GUARDAR</button>
                 </div>
             </form>
         </div>
 </body>
-<script src="../Scripts/pagos.js"></script>
+<!-- <script src="/Code/Scripts/pagos.js"></script> -->
 <?php
 include 'footer.php';
 ?>

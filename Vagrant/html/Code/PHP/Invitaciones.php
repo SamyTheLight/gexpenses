@@ -2,7 +2,7 @@
 session_start();
 include 'nav.php';
 include 'ConexionDB.php';
-include 'user_is_logued.php';
+
 $queryRegistro = "SELECT * FROM activitat ORDER BY id_activitat DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
 $registroInvitacio = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
@@ -34,54 +34,100 @@ $emailE = $_POST['emailEnviados'];
 
 $cont = 0;
 
-function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR)
-{
+$idUserInvitacio1 = idUserInvitacion($conexion, $mail);
 
+
+function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR, $idUserInvitacio1)
+{
     $nombreI = $nombreActividadR;
-    //var_dump($rowR->Nombre);
-    //die();
+
     $descripcioI =  $descripcionActividadR;
-    //var_dump($descripcioI);
-    //die();
+
     $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
-    var_dump($idUserInvitacio1);
+
+    // var_dump($idUserInvitacio1);
     // die();
+
 
     $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email,usuario_id) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
 
     $consultaInvitacio = $conexion->prepare($queryInvitacio);
 
     $consultaInvitacio->bindParam(':nombreI', $nombreI);
-    var_dump($nombreI);
-    // die();
+
     $consultaInvitacio->bindParam(':descripcioI', $descripcioI);
-    var_dump($descripcioI);
-    // die();
+
     $consultaInvitacio->bindParam(':emailI', $mail);
-    var_dump($mail);
-    // die();
+
     $nullV = null;
     if ($idUserInvitacio1 == false) $consultaInvitacio->bindParam(':userIdA',  $nullV);
     else {
         $aux = (int) $idUserInvitacio1;
         $consultaInvitacio->bindParam(':userIdA', $aux);
-        //$consultaInvitacio->bindParam(':userIdA', $idUserInvitacio1);
-        var_dump($idUserInvitacio1);
     }
 
-    //die();
 
     if ($consultaInvitacio->execute())
         echo 'Execute correcte';
 }
 
+function generateToken($length = 10)
+{
+    return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
+}
+
+$tokenI = generateToken($length = 10);
+
+
+
+
+
+
+function guardarToken($conexion, $token, $idUserInvitacio1, $mail)
+{
+    $boolCreat = 1;
+    $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
+
+    $CurrentDateInv = date_create("now")->format("Y-m-d H:i:s");
+
+    $queryToken = "INSERT INTO Token (token,invitacio_id,fecha,estado) VALUES (:tokenI,:invitacio_idI,:fechaInv,:estadoI)";
+
+    $consultaToken = $conexion->prepare($queryToken);
+
+    $consultaToken->bindParam(':tokenI', $token);
+    // var_dump($token);
+    // die();
+
+    $auxInvit = (int) $idUserInvitacio1;
+    var_dump($idUserInvitacio1);
+    $consultaToken->bindParam(':invitacio_idI', $auxInvit);
+
+    // var_dump($auxInvit);
+    // die();
+
+    $consultaToken->bindParam(':fechaInv', $CurrentDateInv);
+
+    // var_dump($CurrentDateInv);
+    // die();
+
+    $consultaToken->bindParam(':estadoI', $boolCreat);
+
+    // var_dump($boolCreat);
+    // die();
+
+    $consultaToken->execute();
+}
+
+
 
 foreach ($emailE as $rowEmail) :
     if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
 
-        if (insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR)) {
-            echo 'invitacio insertada';
-        }
+
+        insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1);
+
+        guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
+
 
 
         $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
@@ -120,7 +166,7 @@ endforeach;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitaciones</title>
-    <link rel="stylesheet" href="../Styles/Invitaciones.css">
+    <link rel="stylesheet" href="/html/Code/Styles/Invitaciones.css">
 </head>
 
 <body>
@@ -135,7 +181,8 @@ endforeach;
                         ?></h1>
                 <hr>
                 <div class="ex1">
-                    <p id="description"><?php echo $rowR->Descripcion;?></p>
+                    <p id="description"><?php echo $rowR->Descripcion;
+                                            ?></p>
                 </div>
                 <?php }
                 ?>
@@ -157,11 +204,13 @@ endforeach;
             </div>
         </div>
 
+
+
+
     </form>
 
 </body>
-
-<script src="../Scripts/Invitaciones.js"></script>
+<script src="/html/Code/Scripts/Invitaciones.js"></script>
 
 </html>
 <?php

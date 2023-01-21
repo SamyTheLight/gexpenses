@@ -1,11 +1,22 @@
 <?php
 include 'nav.php';
 
+include 'ConexionDB.php';
+
+// $query = "SELECT Fecha FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
+// $stmt = $conexion->query($query);
+// $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+$queryPago1 = $conexion->prepare("SELECT concepto,cantidad,pagador FROM pagos ORDER BY fecha DESC ");
+
+$queryPago1->execute();
+
+$registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 
 
-$query = "SELECT Fecha FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
-$stmt = $conexion->query($query);
-$registros = $stmt->fetchAll(PDO::FETCH_OBJ);
+// foreach ($registros1 as $row) : 
+//     echo($row);
+// endforeach; 
 
 ?>
 
@@ -59,15 +70,21 @@ $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
             </div>
             <div class="paymentsList">
-
+                <table class="registros">
+                    <tr>
+                        <th class="concepto"><b>Concepto</b></th>
+                        <th id="cantidad"><b>Cantidad</b></th>
+                        <th class="pagador"><b>Pagador</b></th>
+                    </tr>
+                    <?php foreach ($registros11 as $rowPago) : ?>
+                    <tr>
+                        <th class=""><?php echo ($rowPago->concepto) ?></th>
+                        <th id="description"><?php echo $rowPago->cantidad ?></th>
+                        <th class="divisa"><?php echo $rowPago->pagador ?></th>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
             </div>
-
-
-
-
-
-
-
         </div>
 
 
@@ -78,5 +95,3 @@ $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 <?php
 include 'footer.php';
 ?>
-
-</html>
