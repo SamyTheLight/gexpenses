@@ -7,18 +7,9 @@ USE GExpensesBBDD;
 
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS `Token`;
-CREATE TABLE `Token` (
-  `token` varchar(10) NOT NULL,
-  `invitacio_id` int(11)  ,
-  `fecha` TIMESTAMP,
-  `estado` tinyint (1)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
---
--- Estructura de tabla para la tabla `activitat`
---
+
 DROP TABLE IF EXISTS `activitat`;
 CREATE TABLE `activitat` (
   `id_activitat` int(11) NOT NULL,
@@ -44,6 +35,16 @@ CREATE TABLE `invitacio` (
   `Email` varchar(255) NOT NULL,
   `usuario_id` int(11) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `Token`;
+CREATE TABLE `Token` (
+  `token` varchar(10) NOT NULL,
+  `invitacio_id` int(11)  ,
+  `fecha` TIMESTAMP,
+  `estado` tinyint (1),
+  `EmailInvitacio` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 
 DROP TABLE IF EXISTS `usuario`;
@@ -118,13 +119,12 @@ ALTER TABLE `invitacio`
 
 
 
-
-
 ALTER TABLE `invitacio`
   ADD CONSTRAINT fk_invitacio_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
 
 ALTER TABLE `Token`
   ADD CONSTRAINT fk_Token_invitacio FOREIGN KEY (invitacio_id) REFERENCES invitacio (id_invitacio);
+
 
 ALTER TABLE `activitat`
    ADD CONSTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);

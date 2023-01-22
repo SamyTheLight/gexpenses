@@ -25,7 +25,7 @@ include 'ConexionDB.php';
             <h1>GE</h1>
             <h1 class="h1">XPENSES</h1>
         </div>
-        
+
         <div class="btn-menu">
             <label for="btn-menu" class="icon-menu"><i class="fa-solid fa-bars"></i></label>
         </div>
@@ -34,7 +34,7 @@ include 'ConexionDB.php';
         <div class="header-nav">
             <nav class="navbar">
                 <ul class="navbar-bar">
-                    <a class="nav-item" href="#"><?php echo "Bienvenido, ". $_SESSION['usuario'];?></a>
+                    <a class="nav-item" href="#"><?php echo "Bienvenido, " . $_SESSION['usuario']; ?></a>
                     <li><a class="nav-item" href="#">Home</a></li>
                     <li><a class="nav-item" href="pagos.php">Pagos</a></li>
                     <li><a class="nav-item" href="cerrar_sesion.php">Logout</a></li>

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 include 'nav.php';
 include 'ConexionDB.php';
 
@@ -14,14 +16,14 @@ foreach ($registroInvitacio as $row) {
     $nombreActividadR = $row->Nombre;
     $descripcionActividadR = $row->Descripcion;
 }
-var_dump($nombreActividadR);
-var_dump($descripcionActividadR);
+
 
 function idUserInvitacion($conexion, $emailI)
 {
     $queryUserInvitacio = $conexion->prepare("SELECT id_usuario FROM usuario WHERE email =:emailUserInvitacio ");
 
     $queryUserInvitacio->bindParam(":emailUserInvitacio", $emailI);
+
 
     $queryUserInvitacio->execute();
 
@@ -34,7 +36,7 @@ $emailE = $_POST['emailEnviados'];
 
 $cont = 0;
 
-$idUserInvitacio1 = idUserInvitacion($conexion, $mail);
+
 
 
 function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR, $idUserInvitacio1)
@@ -45,8 +47,7 @@ function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionAct
 
     $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
 
-    // var_dump($idUserInvitacio1);
-    // die();
+
 
 
     $queryInvitacio = "INSERT INTO invitacio (Nombre,Descripcion,Email,usuario_id) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
@@ -80,80 +81,80 @@ $tokenI = generateToken($length = 10);
 
 
 
-
-
-
-function guardarToken($conexion, $token, $idUserInvitacio1, $mail)
+function guardarToken($conexion, $token, $idUserInvitacio1, $rowEmail)
 {
     $boolCreat = 1;
-    $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
 
+    $idUserInvitacio1 = idUserInvitacion($conexion, $rowEmail);
     $CurrentDateInv = date_create("now")->format("Y-m-d H:i:s");
 
-    $queryToken = "INSERT INTO Token (token,invitacio_id,fecha,estado) VALUES (:tokenI,:invitacio_idI,:fechaInv,:estadoI)";
+    $queryToken = "INSERT INTO Token (token,invitacio_id,fecha,estado,EmailInvitacio) VALUES (:tokenI,:invitacio_idI,:fechaInv,:estadoI,:emailInvitacio)";
 
     $consultaToken = $conexion->prepare($queryToken);
 
     $consultaToken->bindParam(':tokenI', $token);
-    // var_dump($token);
-    // die();
+
 
     $auxInvit = (int) $idUserInvitacio1;
     var_dump($idUserInvitacio1);
+
     $consultaToken->bindParam(':invitacio_idI', $auxInvit);
 
-    // var_dump($auxInvit);
-    // die();
 
     $consultaToken->bindParam(':fechaInv', $CurrentDateInv);
 
-    // var_dump($CurrentDateInv);
-    // die();
 
     $consultaToken->bindParam(':estadoI', $boolCreat);
 
-    // var_dump($boolCreat);
-    // die();
+    $consultaToken->bindParam(':emailInvitacio', $rowEmail);
+
+
 
     $consultaToken->execute();
 }
 
 
+if (!empty($emailE)) {
+    foreach ($emailE as $rowEmail) :
+        if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
 
-foreach ($emailE as $rowEmail) :
-    if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
-
-
-        insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1);
-
-        guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
+            $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
+            var_dump($idUserInvitacio1);
 
 
 
-        $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
+            insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1);
 
-        $queryEmail->bindParam(':emailP', $rowEmail);
-
-        var_dump($rowEmail);
-
-        $queryEmail->execute();
-
-        $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
-        var_dump($trobat);
+            guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
 
 
-        $_SESSION['mailEnviat'] = $trobat;
-        if ($trobat == false) {
-            echo 'Registre';
+            $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
 
-            include 'sendMailRegister.php';
-        } else {
-            echo 'Verify';
+            $queryEmail->bindParam(':emailP', $rowEmail);
 
-            include 'sendMailVerify.php';
+
+
+            $queryEmail->execute();
+
+            $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+
+
+
+            $_SESSION['mailEnviat'] = $trobat;
+            if ($trobat == false) {
+
+
+                include 'sendMailRegister.php';
+            } else {
+
+
+                include 'sendMailVerify.php';
+                echo 'enviado correctamente';
+            }
         }
-    }
-endforeach;
+    endforeach;
+}
+
 
 
 ?>

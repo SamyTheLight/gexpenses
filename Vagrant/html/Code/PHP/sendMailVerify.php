@@ -1,7 +1,9 @@
 <?php
 
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 require __DIR__ . '/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\Exception;
@@ -29,7 +31,7 @@ try {
     $mailEnviat = $_SESSION['mailEnviat'];
     //var_dump($mailEnviat);
 
-    $queryUserId = $conexion->prepare("SELECT  id_usuario FROM usuario WHERE email = :emailUser");
+    $queryUserId = $conexion->prepare("SELECT  usuario_id FROM invitacio WHERE email = :emailUser");
 
     $queryUserId->bindParam(':emailUser', $rowEmail);
 
@@ -37,7 +39,7 @@ try {
 
     $userId = $queryUserId->fetch(PDO::FETCH_ASSOC);
 
-    var_dump($userId);
+
 
 
 
@@ -92,8 +94,8 @@ try {
                 <p>Oscar Ramírez, Joan Canals y Samuel García</p>
 
                <p>Saludos.</p><br/>
-               <h2>Código de verificación: " . $token . "</h2>
-               <a href='http://localhost:8000/Code/PHP/VerificarCuenta.php?userId'>Enviar</a>
+               <h2>Código de verificación: " . $tokenI . "</h2>
+               <a href='http://localhost:8000/html/Code/PHP/VerificarCuenta.php?'>Enviar</a>
 
     
 
@@ -104,7 +106,7 @@ try {
     $mail->AddEmbeddedImage("Images/logo.PNG", "Logo");
 
 
-    // $mailink = "http://localhost:8000/Code/PHP/detallActtivitat.php?aceptat=1";
+
     $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
 
 
@@ -122,3 +124,5 @@ try {
 } catch (Exception $ex) {
     //echo $ex->message;
 }
+
+//header("location: PHP/VerificarCuenta.php");

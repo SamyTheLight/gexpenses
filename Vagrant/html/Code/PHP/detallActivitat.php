@@ -3,6 +3,10 @@ include 'nav.php';
 
 include 'ConexionDB.php';
 
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 // $query = "SELECT Fecha FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
 // $stmt = $conexion->query($query);
 // $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -29,7 +33,7 @@ $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="/Code/Styles/detallActivitat.css">
+    <link rel="stylesheet" href="/html/Code/Styles/detallActivitat.css">
     <title>Detall Activitat</title>
 </head>
 
