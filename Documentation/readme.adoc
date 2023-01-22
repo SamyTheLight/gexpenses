@@ -269,6 +269,14 @@ mysqld.cnf
 
 = Conclusión
 
+Como conslusión general del proyecto, nuestro grupo ha ido en todo momento atrasado, por lo cuál no hemos podido llevar a cabo todos los requerimentos propuesto en los diferentes sprints. 
+
+Por una banda, hemos tenido muchas dificultades a lo largo del proyecto, aunque hemos podido resolver gran parte de ellos gracias a la ayuda del cuerpo docente y de las horas extras del horario establecido por la formación de ABP. 
+
+Nuestro mayor problema ha sido , la mala coordinación y reparto de tareas entre los integrantes del grupo, aunque al final todos nosotros hemos ido tocando las diferentes áreas que se nos pedían, ya sea programació del lado del cliente o del servidor, gestionar la base de datos y el entorno Vagrant o otro tipo de tareas relacionadas con el diseño o documentació de nuestro sito web.
+
+
+
 = Líneas futuras
 
 = Glosario
