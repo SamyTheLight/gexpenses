@@ -29,27 +29,43 @@ Para acceder a nuestro sitio web, primeramente, el usuario debe crear una cuenta
 
 == Uso de nuestro sitio web
 
-=== Creacion de actividad
+=== Creación de actividad
 
 Una vez el usuario haya iniciado sesión, se le redirigirá a la página principal donde podrá crear las actividades. Para crear una actividad, deberá darle al botón "Añadir actividad" ubicado en la parte superior derecha de la página.
 
 Una vez le da click, aparecerá un pop-up "Añade una actividad" donde el usuario podrá rellenar los siguientes campos: 
 
-Ordenacion actividades
 
 
-Detalle actividad
-    - Añadir gasto
-    - Balance
+
+=== Detalle actividad
+
+Una vez el usuario esté en nuestra Landing page se le mostrarán todas las actividades asociadas a dicho usuario, en ellas, podrá ver un pequeño resumen de la actividad. En la tarjeta aparecerá un botón “Details” donde si el usuario lo pulsa, se le redireccionará a la página de Detalles.
+
+Cuando el usuario esté en esta página, se le mostrará un contenedor con varios campos. Por un lado tendrá la fecha en la que se creó la actividad. Por otro lado, encontrará una lista de los pagos realizados, así como una casilla con el importe de todos los gastos de esa actividad. 
+
+También podrá consultar los usuarios que están en la actividad y por último, encontrará un botón “añadir gasto”.
+
+    
 
 === Invitaciones
 
-Enviar invitación.
+Dentro de la página de invitaciones, hallaremos un formulario donde podremos introducir el correo electrónico de la persona que queremos que se una a nuestra actividad.
+
+Dependiendo de si el correo electrónico está registrado o no en nuestra base de datos, se enviará un mail de confirmación de la actividad o de registro.
+En el mail de confirmación, encontraremos una url donde al hacer click, nos redirigirá a una pantalla de verificación, donde nos pedirá un código, el cual se encontrará ubicado en dicho mail. Una vez introducido el código, accederemos a la pantalla de detalles de la actividad a la que nos han invitado.
+
+Si por el contrario, se envía un mail de registro, la url asociada a dicho mail redirigirá a la Landing Page de nuestra web, donde tendrá que registrar sus datos y hacer login para poder ver los detalles de la actividad a la cual ha sido invitado.
+
 
 === Pagos
 
-registrar pago.
-repartir pago.
+Una vez el usuario haya pulsado el botón de “añadir gasto”,se le redirigirá a una página en la cual podrá crear un pago. Una vez en esa página el usuario deberá introducir un concepto de ese pago, un importe, deberá elegir un pagador y por último tendrá que elegir los miembros que participan en ese gasto. 
+
+Una vez el usuario haya introducido estos datos, se le redirigirá a una página mediante el botón de “guardar” en la que se le mostrará una repartición por igual del importe que previamente ha seleccionado. En esta repartición aparecerán los usuarios que participan en el gasto y su proporción a pagar. 
+
+Por último el usuario deberá pulsar el botón “aceptar”, para que se le redirigirá  a la página de detalles nuevamente, pero con el nuevo pago añadido a la “lista de pagos”.
+
 
 = Guia de estilo
 
@@ -118,11 +134,11 @@ image::GExpensesBBDD2.jpg[]
 
 La estratégia que hemos usado para encriptar la contraseña ha sido la siguiente:
 
+1) Generar el hash de la contraseña mediante la función password_hash().
+
 	$hash_password= password_hash($password,PASSWORD_DEFAULT);
  
-	$consulta->bindParam(':contrasena', $hash_password);
-    
-   $hash_passwordLogin = password_hash($passwordL,PASSWORD_DEFAULT);
+2) Con la función password_verify(), comparamos el valor del password introducido por el usuario, con el mismo password convertido a hash.
    
    if (password_verify($passwordL,$user['contrasena'])) {
    	$_SESSION['usuario'] = $user['nombre'];
