@@ -1,11 +1,8 @@
 <?php
+session_start();
 include 'nav.php';
 
 include 'ConexionDB.php';
-
-if (!isset($_SESSION)) {
-    session_start();
-}
 
 // $query = "SELECT Fecha FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
 // $stmt = $conexion->query($query);
@@ -18,9 +15,18 @@ $queryPago1->execute();
 $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 
 
-// foreach ($registros1 as $row) : 
-//     echo($row);
-// endforeach; 
+
+$queryImporte = $conexion->prepare("SELECT cantidad FROM pagos ");
+
+$queryImporte->execute();
+
+$registroImporte = $queryImporte->fetchAll(PDO::FETCH_OBJ);
+
+$resultado = 0;
+foreach ($registroImporte as $rowImportes) :
+    $resultado += ($rowImportes->cantidad);
+endforeach;
+
 
 ?>
 
@@ -43,48 +49,51 @@ $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 
 
             <div class="date">
-                <h3>2023-01-11 18:23:15.437</h3>
+
+                <h3>22/01/2023 22:50</h3>
+
             </div>
             <div class="buttonPayment">
-                <button type="submit">Añadir Gasto +</button>
+                <button id="btn-pagos">Añadir Gasto +</button>
             </div>
             <div class="import">
-                <h3>Importe</h3>
+                <h3><?php echo $resultado; ?></h3>
             </div>
 
             <div class="members">
 
                 <span class="material-icons">person</span>
-                <?php
-                if (isset($_GET['aceptat'])) {
-                ?>
-                <?php
-                    if ($_GET['aceptat'] === '1') {
-                    ?>
                 < <span class="material-icons">person</span>
-
-
-                    <?php
-                    }
+                    < <span class="material-icons">person</span>
+                        <?php
+                        if (isset($_GET['aceptat'])) {
                         ?>
+                        <?php
+                            if ($_GET['aceptat'] === '1') {
+                            ?>
+                        < <span class="material-icons">person</span>
 
-                    <?php
-                }
-                    ?>
+                            <?php
+                            }
+                                ?>
+
+                            <?php
+                        }
+                            ?>
 
             </div>
             <div class="paymentsList">
                 <table class="registros">
-                    <tr>
-                        <th class="concepto"><b>Concepto</b></th>
-                        <th id="cantidad"><b>Cantidad</b></th>
-                        <th class="pagador"><b>Pagador</b></th>
+                    <tr id="rows">
+                        <th class="concepto1"><b>Concepto</b></th>
+                        <th class="cantidad1"><b>Cantidad</b></th>
+                        <th class="pagador1"><b>Pagador</b></th>
                     </tr>
                     <?php foreach ($registros11 as $rowPago) : ?>
                     <tr>
-                        <th class=""><?php echo ($rowPago->concepto) ?></th>
-                        <th id="description"><?php echo $rowPago->cantidad ?></th>
-                        <th class="divisa"><?php echo $rowPago->pagador ?></th>
+                        <th class="concepto"><?php echo ($rowPago->concepto) ?></th>
+                        <th class="cantidad"><?php echo $rowPago->cantidad ?></th>
+                        <th class="pagador"><?php echo $rowPago->pagador ?></th>
                     </tr>
                     <?php endforeach; ?>
                 </table>
@@ -96,6 +105,9 @@ $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 
 
 </body>
+<script src="/html/Code/Scripts/detallActivitat.js"></script>
 <?php
 include 'footer.php';
 ?>
+
+</html>

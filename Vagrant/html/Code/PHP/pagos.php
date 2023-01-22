@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 
@@ -31,9 +32,8 @@ if ((isset($_POST['enviarActivitat2']))) {
 
         $consultaActivitat->bindParam(':pagadorA', $pagador);
 
+
         $consultaActivitat->execute();
-
-
 
         $queryPago = $conexion->prepare("SELECT MAX(id_pago) FROM pagos 
             ");
@@ -57,12 +57,11 @@ if ((isset($_POST['enviarActivitat2']))) {
             $consultaActivitat1->bindParam(':importeA', $importe_repartidoA);
             $auxPago = (int) $id_pago;
             $consultaActivitat1->bindParam(':id_pago', $auxPago);
-
             $consultaActivitat1->execute();
+
         endforeach;
-        if ($consultaActivitat->execute()) {
-            Header("Location: /Code/PHP/reparto.php");
-        }
+
+        Header("Location: /Code/PHP/reparto.php");
     }
 }
 ?>
@@ -73,7 +72,7 @@ if ((isset($_POST['enviarActivitat2']))) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Code/Styles/pagos.css">
+    <link rel="stylesheet" href="/html/Code/Styles/pagos.css">
     <title>Pagos</title>
 </head>
 

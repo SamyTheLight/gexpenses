@@ -391,7 +391,7 @@ form#act-form1 h2 {
   border-radius: 5px;
 }
 .despesa_total {
-  margin-left: 15px;
+  margin-left: 0px;
 }
 #despeses_ind {
   display: flex;
@@ -417,4 +417,31 @@ form#act-form1 h2 {
 }
 .oculto {
   visibility: hidden;
+}
+.btn-oculto {
+  visibility: hidden;
+}
+.btn-card2 {
+  visibility: hidden;
+}
+.visible1 {
+  visibility: visible;
+  margin-top: 20px;
+  width: 180px;
+  background: white;
+  color: #1c3144;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  align-self: flex-end;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.visible1:hover {
+  background: #3371b6;
+  color: white;
+}
+.pago-individual {
+  margin-top: 15px;
 }

@@ -1,6 +1,8 @@
 <?php
+session_start();
 include 'nav.php';
 include 'ConexionDB.php';
+
 
 
 $queryPago = $conexion->prepare("SELECT cantidad FROM pagos order by id_pago desc");
@@ -28,7 +30,7 @@ endforeach;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Code/Styles/pagos.css">
+    <link rel="stylesheet" href="/html/Code/Styles/pagos.css">
     <title>Pagos</title>
 </head>
 
@@ -56,10 +58,12 @@ endforeach;
                 <div id="reparto" class="oculto">
                     <div class="pago-total">
                         <label for="" class="despesa_total">Pago total: </label>
+
                         <?php foreach ($cantidad as $row) : ?>
                         <input type="number" value="<?php echo $row; ?>" id="despesaTotal" readOnly=true>
                         <?php endforeach; ?>
                     </div>
+                    <hr>
                     <div class="pago-individual">
                         <?php foreach ($reparto as $rowReparto) : ?>
                         <label for="" id="memberind"><?php echo  $rowReparto->user_member ?></label>
@@ -69,12 +73,13 @@ endforeach;
                     </div>
                 </div>
                 <button class="btn-card1" id="afegirActivitat1">SELECCIONAR</button>
+                <button class="btn-card2" id="aceptar">ACEPTAR</button>
         </div>
         </form>
     </div>
 
 </body>
-<script src="/Code/Scripts/reparto.js"></script>
+<script src="/html/Code/Scripts/reparto.js"></script>
 <?php
 include 'footer.php';
 ?>
