@@ -72,15 +72,15 @@ if ((isset($_POST['enviarActivitat']))) {
         <div id="act-list">
             <?php foreach ($registros as $row) : ?>
             <div class="card">
-                <div class="face front">
+            <div class="face front">
                     <?php
-                        $tiposActivitat = $_POST["tipusActivitat"];
+                        /*$tiposActivitat = $_POST["tipusActivitat"];
                         $queryEmail = $conexion->prepare("SELECT TipusAct FROM activitat ");
 
                         $queryEmail->bindParam(":tiposA", $tiposActivitat);
             
                         $queryEmail->execute();
-                        $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
+                        $user = $queryLogin->fetch(PDO::FETCH_ASSOC);*/
                         ?>
                     <img src="Images/Viaje_Combinado.png" alt="">
                     <h3><?php echo strtoupper($row->Nombre) ?></h3>
