@@ -1,6 +1,4 @@
 <?php
-
-
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -10,40 +8,22 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-
 try {
     $mail = new PHPMailer();
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'sandbox.smtp.mailtrap.io';
     $mail->SMTPAuth = true;
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
-    $mail->Username = 'mailcopernicprova@gmail.com';
-    $mail->Password = 'tusuihvzulctfnta';
+    $mail->Port = 2525;
+    $mail->Username = '6fd09533c812db';
+    $mail->Password = '6a8a04d6628e29';
 
     $mail->setFrom('mailcopernicprova@gmail.com');
     $mail->addAddress($rowEmail);
-
-
-
-
-
     $mailEnviat = $_SESSION['mailEnviat'];
-    //var_dump($mailEnviat);
-
     $queryUserId = $conexion->prepare("SELECT  usuario_id FROM invitacio WHERE email = :emailUser");
-
     $queryUserId->bindParam(':emailUser', $rowEmail);
-
     $queryUserId->execute();
-
     $userId = $queryUserId->fetch(PDO::FETCH_ASSOC);
-
-
-
-
-
-
 
     $aceptat = 1;
 
@@ -64,7 +44,6 @@ try {
             }
             .title1{
                 color:#6CD4B5;
-    
             }
             .title2{
             color: #1C3144;
@@ -82,7 +61,6 @@ try {
     <body>
         <div class='mail'>
         
-            
                 <h1 class='title1'>GE</h1>
                 <h1 class='title2'>XPENSES</h1>
              </div>
@@ -95,9 +73,7 @@ try {
 
                <p>Saludos.</p><br/>
                <h2>Código de verificación: " . $tokenI . "</h2>
-               <a href='http://localhost:8000/html/Code/PHP/VerificarCuenta.php?'>Enviar</a>
-
-    
+               <a href='http://localhost:3306/html/Code/PHP/VerificarCuenta.php?'>Enviar</a>
 
             </div>
         </div>
@@ -105,13 +81,9 @@ try {
 
     $mail->AddEmbeddedImage("Images/logo.PNG", "Logo");
 
-
-
     $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
 
-
     // $mailink = 'localhost:8000/Code/PHP/Invitaciones.php?aceptat=1';
-
 
     $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 
@@ -119,10 +91,9 @@ try {
         echo 'Correo enviado';
     } else echo 'error al enviar correo';
 
-
     $mail->smtpClose();
 } catch (Exception $ex) {
-    //echo $ex->message;
+    echo $ex->message;
 }
 
-//header("location: PHP/VerificarCuenta.php");
+header("location: PHP/VerificarCuenta.php");

@@ -7,9 +7,6 @@ USE GExpensesBBDD;
 
 SET FOREIGN_KEY_CHECKS=0;
 
-
-
-
 DROP TABLE IF EXISTS `activitat`;
 CREATE TABLE `activitat` (
   `id_activitat` int(11) NOT NULL,
@@ -20,12 +17,6 @@ CREATE TABLE `activitat` (
   `usuario_id` int(11) ,
   `TipusAct` varchar(50) not null default "Viajes"
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-INSERT INTO `activitat` (`id_activitat`, `Nombre`, `Descripcion`, `Divisa`,`Fecha`,`usuario_id`,`TipusAct`) VALUES
-(1, 'Jugar', 'a cartas', '$', current_timestamp(),666,'Viajes');
-
 
 DROP TABLE IF EXISTS `invitacio`; 
 CREATE TABLE `invitacio` (
