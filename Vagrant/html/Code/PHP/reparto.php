@@ -3,18 +3,15 @@ session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 
-
-
 $queryPago = $conexion->prepare("SELECT cantidad FROM pagos order by id_pago desc");
 
 $queryPago->execute();
 
 $cantidad = $queryPago->fetch(PDO::FETCH_OBJ);
 
-
 foreach ($cantidad as $rowImport) :
-    $queryReparto = $conexion->prepare("SELECT user_member,importe_repartido FROM reparto WHERE cantidad_pago = :cantidadP
-            ");
+    $queryReparto = $conexion->prepare("SELECT user_member,importe_repartido FROM reparto 
+                                        WHERE cantidad_pago = :cantidadP");
 
     $queryReparto->bindParam(':cantidadP', $rowImport);
     $queryReparto->execute();

@@ -1,3 +1,4 @@
+//Formulario Pop Up donde se muestra la información para añadir una actividad
 const formulario = `
 <div id="back-form">
             <div id="form-act">
@@ -39,35 +40,23 @@ const formulario = `
         </div>
 `;
 
+//Seleccionamos los elementos DOM necesarios para mostrar y ocultar el Pop Up
 const btn_cerrar = document.getElementById("btn-cerrar");
 const btn_form = document.querySelector(".btn-form");
 const div = document.querySelector(".face");
 const face_card = document.querySelector(".img-card");
 
+// Se añade un event listener al botón 'form-btn' que inserta el formulario en el DOM 
+//cuando se hace clic en él.
 document.getElementById("form-btn").addEventListener("click", function () {
   btn_form.insertAdjacentHTML("afterend", formulario);
   const act = document.getElementById("tipusActivitat");
+  //Se añade otro event listener al botón 'afegirActivitat' que redirige 
+  //a la página invitaciones.
   document
     .getElementById("afegirActivitat")
     .addEventListener("click", function (e) {
       let selectedOption = act.options[act.selectedIndex];
-      if (selectedOption.value == "Viajes") {
-        const img = document.createElement("img");
-        img.src = "/Code/PHP/Images/Viaje_Combinado.png";
-        div.insertAdjacentElement("afterbegin", img);
-      } else if (selectedOption.value == "Comida") {
-        const img = document.createElement("img");
-        img.src = "/Code/PHP/Images/comida.jpg";
-        div.insertAdjacentElement("afterbegin", img);
-      } else if (selectedOption.value == "Deportes") {
-        const img = document.createElement("img");
-        img.src = "/Code/PHP/Images/deportes.jpg";
-        div.insertAdjacentElement("afterbegin", img);
-      } else if (selectedOption.value == "Ocio") {
-        const img = document.createElement("img");
-        img.src = "/Code/PHP/Images/ocio.webp";
-        div.insertAdjacentElement("afterbegin", img);
-      }
       window.location.href = "Invitaciones.php";
     });
 });
