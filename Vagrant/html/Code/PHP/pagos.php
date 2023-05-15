@@ -14,42 +14,23 @@ if ((isset($_POST['enviarActivitat2']))) {
         $pagador = $_POST["pagador"];
         var_dump("pagador");
         $membersPago = $_POST["members"];
-
-
-
-
         $countPago = count($membersPago);
         var_dump($countPago);
-
-
         $queryActividad = "INSERT INTO pagos (concepto,cantidad,pagador) VALUES (:conceptoA,:cantidadA,:pagadorA)";
-
         $consultaActivitat = $conexion->prepare($queryActividad);
-
         $consultaActivitat->bindParam(':conceptoA', $concepto);
-
         $consultaActivitat->bindParam(':cantidadA', $cantidad);
-
         $consultaActivitat->bindParam(':pagadorA', $pagador);
-
-
         $consultaActivitat->execute();
-
-        $queryPago = $conexion->prepare("SELECT MAX(id_pago) FROM pagos 
-            ");
-
+        $queryPago = $conexion->prepare("SELECT MAX(id_pago) FROM pagos");
         $queryPago->execute();
-
         $id_pago = $queryPago->fetch(PDO::FETCH_OBJ);
         var_dump($id_pago);
 
-
-
         foreach ($membersPago as $rowMembers) :
+
             $queryActividad1 = "INSERT INTO reparto (members,cantidad_pago,user_member,importe_repartido,pago_id) VALUES (:RowMembers,:cantidadA,:membersPagoA,:importeA,:id_pago)";
-
             $consultaActivitat1 = $conexion->prepare($queryActividad1);
-
             $consultaActivitat1->bindParam(':RowMembers', $countPago);
             $consultaActivitat1->bindParam(':cantidadA', $cantidad);
             $consultaActivitat1->bindParam(':membersPagoA', $rowMembers);
@@ -58,10 +39,9 @@ if ((isset($_POST['enviarActivitat2']))) {
             $auxPago = (int) $id_pago;
             $consultaActivitat1->bindParam(':id_pago', $auxPago);
             $consultaActivitat1->execute();
-
         endforeach;
 
-        Header("Location: /Code/PHP/reparto.php");
+        Header("Location: reparto.php");
     }
 }
 ?>
@@ -109,13 +89,15 @@ if ((isset($_POST['enviarActivitat2']))) {
                         <option value="Samuel" class="pagador">Samuel</option>
                     </select>
                     <label for="tipusAct">Miembros</label>
-                    <input type="checkbox" value="Oscar" name="members[]" id="users" class="users"> <label id="user"
-                        for="">Oscar</label>
-                    <input type="checkbox" value="Joan" name="members[]" id="users" class="users"> <label id="user"
-                        for="">Joan</label>
-                    <input type="checkbox" value="Samuel" name="members[]" id="users" class="users"> <label id="user"
-                        for="">Samuel</label>
-
+                    <label id="user" for="">Oscar
+                        <input type="checkbox" value="Oscar" name="members[]" id="users" class="users">
+                    </label>
+                    <label id="user" for="">Joan
+                        <input type="checkbox" value="Joan" name="members[]" id="users" class="users">
+                    </label>
+                    <label id="user" for="">Samuel
+                        <input type="checkbox" value="Samuel" name="members[]" id="users" class="users">
+                    </label>
                     <button class="btn-card" name="enviarActivitat2">GUARDAR</button>
                 </div>
             </form>

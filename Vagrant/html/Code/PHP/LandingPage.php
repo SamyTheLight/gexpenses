@@ -51,7 +51,6 @@ if ((!empty($_POST))) {
     }
 }
 
-
 if ((isset($_POST['buttonLogin']))) {
 
     $nameuserL = $_POST['usernameLogin'];
