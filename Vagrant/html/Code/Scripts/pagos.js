@@ -1,3 +1,4 @@
+//Formulario para repartir gastos
 const formulario = `
 <div id="back-form1">
             <div id="form-act1">
@@ -28,10 +29,14 @@ const formulario = `
 const btn_form = document.getElementById("btn-form");
 const form_act1 = document.getElementById("form-act");
 
+// Función "repartir" que calcula el importe a pagar por cada miembro 
+// dadas la cantidad total y el número de miembros
 function repartir(importe, miembros) {
   const resultado = importe / miembros;
   return resultado;
 }
+
+// Insertamos la actividad en el formulario
 document.querySelector(".btn-card").addEventListener("click", function (e) {
   e.preventDefault();
   btn_form.insertAdjacentHTML("afterend", formulario);
