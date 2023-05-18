@@ -1,139 +1,130 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- User gexpensesbbdd
+-- -----------------------------------------------------
+
 CREATE USER 'gexpensesuser'@'%' IDENTIFIED BY '1234';
 GRANT CREATE,ALTER,INSERT,UPDATE,SELECT,DELETE,DROP,REFERENCES, RELOAD  ON * . * TO 'gexpensesuser'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+
+-- -----------------------------------------------------
+-- Schema gexpensesbbdd
+-- -----------------------------------------------------
+
 DROP DATABASE IF EXISTS GExpensesBBDD;
 CREATE DATABASE GExpensesBBDD;
 USE GExpensesBBDD; 
 
-SET FOREIGN_KEY_CHECKS=0;
+-- -----------------------------------------------------
+-- Table `usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `usuario` ;
 
-DROP TABLE IF EXISTS `activitat`;
-CREATE TABLE `activitat` (
-  `id_activitat` int(11) NOT NULL,
-  `Nombre` varchar(50) NOT NULL,
-  `Descripcion` varchar(150) NOT NULL,
-  `Divisa` char(1) NOT NULL,
-  `Fecha` TIMESTAMP ,
-  `usuario_id` int(11) ,
-  `TipusAct` varchar(50) not null default "Viajes"
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(16) NOT NULL,
+  `contrasena` VARCHAR(60) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_usuario`)
+  )ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS `invitacio`; 
-CREATE TABLE `invitacio` (
-  `id_invitacio` int(11) NOT NULL,
-  `Nombre` varchar(50) NOT NULL,
-  `Descripcion` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `usuario_id` int(11) 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- -----------------------------------------------------
+-- Table `actividad`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `actividad` ;
 
-DROP TABLE IF EXISTS `Token`;
-CREATE TABLE `Token` (
-  `token` varchar(10) NOT NULL,
-  `invitacio_id` int(11)  ,
-  `fecha` TIMESTAMP,
-  `estado` tinyint (1),
-  `EmailInvitacio` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `actividad` (
+  `id_actividad` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(200) NOT NULL,
+  `divisa` CHAR(1) NOT NULL,
+  `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tipo_actividad` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_actividad`)
+  )ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `category` ;
 
+CREATE TABLE IF NOT EXISTS `category` (
+  `category_id` INT NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`category_id`)
+  )ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE `usuario` (
-  `id_usuario` int(11) NOT NULL ,
-  `nombre` varchar(30) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `contrasena` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- -----------------------------------------------------
+-- Table `invitacion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `invitacion` ;
 
+CREATE TABLE IF NOT EXISTS `invitacion` (
+  `usuario_id_usuario` INT NOT NULL,
+  `actividad_id_actividad` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  PRIMARY KEY (`usuario_id_usuario`, `actividad_id_actividad`),
+  CONSTRAINT `fk_usuario_has_actividad_usuario1`
+    FOREIGN KEY (`usuario_id_usuario`)
+    REFERENCES `usuario` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_has_actividad_actividad1`
+    FOREIGN KEY (`actividad_id_actividad`)
+    REFERENCES `actividad` (`id_actividad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    )ENGINE = InnoDB;
 
--- Estructura de la tabla `pagos`
-DROP TABLE IF EXISTS `pagos`;
+-- -----------------------------------------------------
+-- Table `gasto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `gasto` ;
 
-CREATE TABLE `pagos` (
-  `id_pago` int(11) NOT NULL,
-  `concepto` varchar(100) NOT NULL,
-  `cantidad` decimal(6, 2) NOT NULL,
-  `pagador` varchar(30) NOT NULL,
-  `fecha` TIMESTAMP
-  
-  
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+CREATE TABLE IF NOT EXISTS `gasto` (
+  `actividad_id_actividad` INT NOT NULL,
+  `concepto` VARCHAR(200) NULL,
+  `pagador` VARCHAR(45) NULL,
+  `cantidad` DECIMAL(6,2) NULL,
+  `fecha` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`actividad_id_actividad`),
+  CONSTRAINT `fk_actividad_has_usuario_actividad1`
+    FOREIGN KEY (`actividad_id_actividad`)
+    REFERENCES `actividad` (`id_actividad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    )ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `reparto`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `reparto` ;
 
-DROP TABLE IF EXISTS `reparto`;
+CREATE TABLE IF NOT EXISTS `reparto` (
+  `usuario_id_usuario` INT NOT NULL,
+  `gasto_actividad_id_actividad` INT NOT NULL,
+  `miembros` INT NOT NULL,
+  `gasto` DECIMAL(6,2) NOT NULL,
+  `importe` DECIMAL(6,2) NOT NULL,
+  PRIMARY KEY (`usuario_id_usuario`, `gasto_actividad_id_actividad`),
+  CONSTRAINT `fk_usuario_has_gasto_usuario1`
+    FOREIGN KEY (`usuario_id_usuario`)
+    REFERENCES `usuario` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_has_gasto_gasto1`
+    FOREIGN KEY (`gasto_actividad_id_actividad`)
+    REFERENCES `gasto` (`actividad_id_actividad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    )ENGINE = InnoDB;
 
-CREATE TABLE `reparto` (
-  `id_reparto` int(11) not null,
-  `members` int(10) NOT NULL,
-  `cantidad_pago` decimal(6, 2) NOT NULL,
-  `user_member` varchar(100) NOT NULL,
-  `importe_repartido` decimal(6, 2) NOT NULL,
-  `pago_id` int(11) NOT NULL
-  
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
-
-
-ALTER TABLE `reparto`
-  ADD PRIMARY KEY(`id_reparto`);
-
-  ALTER TABLE `reparto`
-  MODIFY `id_reparto` int(11) NOT NULL  AUTO_INCREMENT;
-
-
-
-ALTER TABLE `Token`
-  ADD PRIMARY KEY (`token`);
-
-ALTER TABLE `activitat`
-  ADD PRIMARY KEY (`id_activitat`);
-
-  ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`);
-
-
-ALTER TABLE `invitacio`
-  ADD PRIMARY KEY (`id_invitacio`);
-
-ALTER TABLE `activitat`
-  MODIFY `id_activitat` int(11) NOT NULL AUTO_INCREMENT;
-
-
-
-ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL  AUTO_INCREMENT;
-
-
-ALTER TABLE `invitacio`
-
-  MODIFY `id_invitacio` int(11) NOT NULL AUTO_INCREMENT;
-
-
-
-ALTER TABLE `invitacio`
-  ADD CONSTRAINT fk_invitacio_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
-
-ALTER TABLE `Token`
-  ADD CONSTRAINT fk_Token_invitacio FOREIGN KEY (invitacio_id) REFERENCES invitacio (id_invitacio);
-
-
-ALTER TABLE `activitat`
-   ADD CONSTRAINT fk_activitat_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id_usuario);
-
-
-ALTER TABLE
-  `pagos`
-ADD
-  PRIMARY KEY (`id_pago`);
-
-
-ALTER TABLE
-  `pagos`
-MODIFY
-  `id_pago` int(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE
-  `reparto`
-ADD
-  CONSTRAINT fk_reparto_pagos FOREIGN KEY (pago_id) REFERENCES pagos (id_pago);
-
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

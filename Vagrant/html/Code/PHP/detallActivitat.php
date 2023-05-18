@@ -4,14 +4,17 @@ include 'nav.php';
 include 'ConexionDB.php';
 
 // Consulta para seleccionar la fecha de la actividad del usuario
-$query = "SELECT Fecha FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
+$query = "SELECT fecha FROM actividad
+          INNER JOIN invitacion ON id_actividad = actividad_id_actividad
+          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
+
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-$queryPago1 = $conexion->prepare("SELECT concepto,cantidad,pagador FROM pagos ORDER BY fecha DESC ");
+$queryPago1 = $conexion->prepare("SELECT concepto,cantidad,pagador FROM gasto ORDER BY fecha DESC ");
 $queryPago1->execute();
 $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
-$queryImporte = $conexion->prepare("SELECT cantidad FROM pagos ");
+$queryImporte = $conexion->prepare("SELECT cantidad FROM gasto");
 $queryImporte->execute();
 $registroImporte = $queryImporte->fetchAll(PDO::FETCH_OBJ);
 

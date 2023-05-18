@@ -7,31 +7,38 @@ include 'ConexionDB.php';
 include 'user_is_logued.php';
 
 //Consulta para recuperar todas las actividades del usuario logueado (por id) de la base de datos
-$query = "SELECT * FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
+$query = "SELECT * FROM actividad
+          INNER JOIN invitacion ON id_actividad = actividad_id_actividad
+          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY actividad.fecha DESC";
+
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-//Si el formulario "enviarActivitat" se ha enviado...
-if ((isset($_POST['enviarActivitat']))) {
+//Si el formulario "enviarActividad" se ha enviado...
+if ((isset($_POST['enviarActividad']))) {
 
-    if ((!empty($_POST['nomActivitat'])) && (!empty($_POST['descripcionActivitat']))) {
+    if ((!empty($_POST['nombreActividad'])) && (!empty($_POST['descripcionActividad']))) {
 
         //Obtenemos los valores del formulario 
-        $nombreA = $_POST["nomActivitat"];
-        $descripcioActivitat = $_POST["descripcionActivitat"];
-        $tipusDivisa = $_POST["divisa"];
-        $tiposActivitat = $_POST["tipusActivitat"];
+        $nombreA = $_POST["nombreActividad"];
+        $descripcioActividad = $_POST["descripcionActividad"];
+        $tipoDivisa = $_POST["divisa"];
+        $tipoActividad = $_POST["tipoActividad"];
 
         //Insertamos una nueva actividad a la BD
-        $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa,usuario_id,TipusAct) VALUES (:nombreA,:descripcionA,:divisaA,:userIdA,:tiposA)";
-        $consultaActivitat = $conexion->prepare($queryActividad);
-        $consultaActivitat->bindParam(':nombreA', $nombreA);
-        $consultaActivitat->bindParam(':descripcionA', $descripcioActivitat);
-        $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
-        $consultaActivitat->bindParam(':userIdA', $sessionUserId);
-        $consultaActivitat->bindParam(':tiposA', $tiposActivitat);
+        $queryActividad = "INSERT INTO actividad (nombre,descripcion,divisa,tipo_actividad)
+                           SELECT :nombreA,:descripcionA,:divisaA,:tipo_actividadA
+                           FROM usuario
+                           INNER JOIN invitacion on id_usuario = usuario_id_usuario
+                           WHERE id_usuario = :userIdA";
+        $consultaActividad = $conexion->prepare($queryActividad);
+        $consultaActividad->bindParam(':nombreA', $nombreA);
+        $consultaActividad->bindParam(':descripcionA', $descripcioActividad);
+        $consultaActividad->bindParam(':divisaA', $tipoDivisa);
+        $consultaActividad->bindParam(':tipo_actividadA', $tipoActividad);
+        $consultaActividad->bindParam(':userIdA', $sessionUserId);
 
-        if ($consultaActivitat->execute()) {
+        if ($consultaActividad->execute()) {
             echo 'Envio bien';
             Header("Location: Invitaciones.php");
         }
@@ -63,7 +70,7 @@ if ((isset($_POST['enviarActivitat']))) {
         $btn = $_POST['asc'];
         var_dump($btn);
         if ((isset($_POST['asc']))) {
-            $queryasc = "SELECT * FROM activitat ORDER BY Fecha ASC";
+            $queryasc = "SELECT * FROM actividad ORDER BY fecha ASC";
             $stmt = $conexion->query($queryasc);
             $ordena = $stmt->fetchAll(PDO::FETCH_OBJ);
         }
