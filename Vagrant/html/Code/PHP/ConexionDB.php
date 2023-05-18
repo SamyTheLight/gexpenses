@@ -6,6 +6,8 @@ if (!defined('SERVER_MYSQL')) define('SERVER_MYSQL',   'mysql:host=172.16.0.10;d
 
 try {
         $conexion = new PDO(SERVER_MYSQL, BD_USUARIO, BD_CLAVE);
+        //Almacenar correctamente carácteres extraños en la base de datos
+        $conexion->exec("SET NAMES 'utf8'");
 } catch (Exception $e) {
 
         echo 'Error conectando a la BBDD. ' . $e->getMessage();
