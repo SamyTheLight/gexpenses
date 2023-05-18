@@ -44,18 +44,13 @@ CREATE TABLE IF NOT EXISTS `actividad` (
   `divisa` CHAR(1) NOT NULL,
   `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo_actividad` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_actividad`)
-  )ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `category`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `category` ;
-
-CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` INT NOT NULL,
-  `name` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`category_id`)
+  `usuario_id_usuario` INT NOT NULL,
+  PRIMARY KEY (`id_actividad`),
+  CONSTRAINT `fk_actividad_usuario`
+    FOREIGN KEY (`usuario_id_usuario`)
+    REFERENCES `usuario` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
   )ENGINE = InnoDB;
 
 -- -----------------------------------------------------

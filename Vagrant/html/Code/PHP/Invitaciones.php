@@ -13,8 +13,8 @@ $nombreActividadR = "";
 $descripcionActividadR = "";
 
 foreach ($registroInvitacio as $row) {
-    $nombreActividadR = $row->Nombre;
-    $descripcionActividadR = $row->Descripcion;
+    $nombreActividadR = $row->nombre;
+    $descripcionActividadR = $row->descripcion;
 }
 
 function idUserInvitacion($conexion, $emailI)
@@ -37,7 +37,7 @@ function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionAct
     $descripcioI =  $descripcionActividadR;
     $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
 
-    $queryInvitacio = "INSERT INTO invitacion (nombre,descripcion,email,usuario_id_usuario) VALUES (:nombreI,:descripcioI,:emailI,:userIdA)";
+    $queryInvitacio = "INSERT INTO invitacion (usuario_id_usuario,nombre,descripcion,email) VALUES (:userIdA,:nombreI,:descripcioI,:emailI)";
     $consultaInvitacio = $conexion->prepare($queryInvitacio);
     $consultaInvitacio->bindParam(':nombreI', $nombreI);
     $consultaInvitacio->bindParam(':descripcioI', $descripcioI);
@@ -59,7 +59,7 @@ function generateToken($length = 10)
 {
     return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
 }
-
+/*
 $tokenI = generateToken($length = 10);
 
 function guardarToken($conexion, $token, $idUserInvitacio1, $rowEmail)
@@ -84,7 +84,7 @@ function guardarToken($conexion, $token, $idUserInvitacio1, $rowEmail)
 
     $consultaToken->execute();
 }
-
+*/
 
 if (!empty($emailE)) {
     foreach ($emailE as $rowEmail) :
@@ -94,9 +94,7 @@ if (!empty($emailE)) {
             var_dump($idUserInvitacio1);
 
             insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1);
-
             guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
-
 
             $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
             $queryEmail->bindParam(':emailP', $rowEmail);
@@ -139,15 +137,13 @@ if (!empty($emailE)) {
                         ?></h1>
                 <hr>
                 <div class="ex1">
-                    <p id="description"><?php echo $rowR->Descripcion;
-                                            ?></p>
+                    <p id="description"><?php echo $rowR->Descripcion;?></p>
                 </div>
                 <?php }
                 ?>
                 <div class="afegir-mail" id="addmail">
                     <input type="email" class="mails" name="emailEnviados[]" id="mails" placeholder="EMAIL">
                     <button class="btn-email" id="btn-emial">+</button>
-
                 </div>
                 <div class="missage-error" id="missage-error">
                     <p id="error">¡El correo no es correcto, porfavor introduzca los carácteres necesarios!</p>
@@ -161,10 +157,6 @@ if (!empty($emailE)) {
                 <button type="submit" class="btn-enviar" name="submit" id="btn-enviar">ENVIAR</button>
             </div>
         </div>
-
-
-
-
     </form>
 
 </body>

@@ -6,6 +6,10 @@ $sessionUserId = $_SESSION['id_usuario'];
 include 'ConexionDB.php';
 include 'user_is_logued.php';
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //Consulta para recuperar todas las actividades del usuario logueado (por id) de la base de datos
 $query = "SELECT * FROM actividad
           INNER JOIN invitacion ON id_actividad = actividad_id_actividad
@@ -15,27 +19,27 @@ $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 //Si el formulario "enviarActividad" se ha enviado...
-if ((isset($_POST['enviarActividad']))) {
+if ((isset($_POST['enviarActivitat']))) {
 
-    if ((!empty($_POST['nombreActividad'])) && (!empty($_POST['descripcionActividad']))) {
+    if ((!empty($_POST['nomActivitat'])) && (!empty($_POST['descripcionActivitat']))) {
 
         //Obtenemos los valores del formulario 
-        $nombreA = $_POST["nombreActividad"];
-        $descripcioActividad = $_POST["descripcionActividad"];
-        $tipoDivisa = $_POST["divisa"];
-        $tipoActividad = $_POST["tipoActividad"];
+        $nombreA = $_POST["nomActivitat"];
+        $descripcioActivitat = $_POST["descripcionActivitat"];
+        $tipusDivisa = $_POST["divisa"];
+        $tiposActivitat = $_POST["tipusActivitat"];
 
         //Insertamos una nueva actividad a la BD
-        $queryActividad = "INSERT INTO actividad (nombre,descripcion,divisa,tipo_actividad)
-                           SELECT :nombreA,:descripcionA,:divisaA,:tipo_actividadA
+        $queryActividad = "INSERT INTO actividad (nombre, descripcion, divisa, fecha, tipo_actividad)
+                           SELECT :nombreA, :descripcionA, :divisaA, :fechaA, :tipo_actividadA
                            FROM usuario
-                           INNER JOIN invitacion on id_usuario = usuario_id_usuario
-                           WHERE id_usuario = :userIdA";
+                           INNER JOIN invitacion ON usuario.id_usuario = invitacion.usuario_id_usuario
+                           WHERE usuario.id_usuario = :userIdA";
         $consultaActividad = $conexion->prepare($queryActividad);
         $consultaActividad->bindParam(':nombreA', $nombreA);
-        $consultaActividad->bindParam(':descripcionA', $descripcioActividad);
-        $consultaActividad->bindParam(':divisaA', $tipoDivisa);
-        $consultaActividad->bindParam(':tipo_actividadA', $tipoActividad);
+        $consultaActividad->bindParam(':descripcionA', $descripcioActivitat);
+        $consultaActividad->bindParam(':divisaA', $tipusDivisa);
+        $consultaActividad->bindParam(':tipo_actividadA', $tiposActivitat);
         $consultaActividad->bindParam(':userIdA', $sessionUserId);
 
         if ($consultaActividad->execute()) {
