@@ -4,9 +4,9 @@ include 'nav.php';
 include 'ConexionDB.php';
 
 // Consulta para seleccionar la fecha de la actividad del usuario
-$query = "SELECT fecha FROM actividad
-          INNER JOIN invitacion ON id_actividad = actividad_id_actividad
-          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
+// $query = "SELECT fecha FROM actividad
+//           INNER JOIN invitacion ON id_actividad = actividad_id_actividad
+//           WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
 
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);

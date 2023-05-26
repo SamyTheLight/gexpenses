@@ -94,7 +94,6 @@ if ((isset($_POST['enviarActivitat']))) {
                 </div>
                 <div class="face back">
                     <h1><?php echo strtoupper($row->nombre) ?></h1>
-                    <hr>
                     <p id="description"><?php echo $row->descripcion ?></p>
                     <p class="divisa"><b>Divisa: </b><?php echo $row->divisa ?></p>
                     <div class="link"><a href="detallActivitat.php"><b>DETAILS</b></a>
