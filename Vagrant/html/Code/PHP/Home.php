@@ -6,12 +6,18 @@ $sessionUserId = $_SESSION['id_usuario'];
 include 'ConexionDB.php';
 include 'user_is_logued.php';
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //Consulta para recuperar todas las actividades del usuario logueado (por id) de la base de datos
-$query = "SELECT * FROM activitat  where usuario_id='" . $_SESSION['id_usuario'] . "' ORDER BY Fecha DESC";
+$query = "SELECT * FROM actividad
+          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
+
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-//Si el formulario "enviarActivitat" se ha enviado...
+//Si el formulario "enviarActividad" se ha enviado...
 if ((isset($_POST['enviarActivitat']))) {
 
     if ((!empty($_POST['nomActivitat'])) && (!empty($_POST['descripcionActivitat']))) {
@@ -23,15 +29,15 @@ if ((isset($_POST['enviarActivitat']))) {
         $tiposActivitat = $_POST["tipusActivitat"];
 
         //Insertamos una nueva actividad a la BD
-        $queryActividad = "INSERT INTO activitat (Nombre,Descripcion,Divisa,usuario_id,TipusAct) VALUES (:nombreA,:descripcionA,:divisaA,:userIdA,:tiposA)";
-        $consultaActivitat = $conexion->prepare($queryActividad);
-        $consultaActivitat->bindParam(':nombreA', $nombreA);
-        $consultaActivitat->bindParam(':descripcionA', $descripcioActivitat);
-        $consultaActivitat->bindParam(':divisaA', $tipusDivisa);
-        $consultaActivitat->bindParam(':userIdA', $sessionUserId);
-        $consultaActivitat->bindParam(':tiposA', $tiposActivitat);
+        $queryActividad = "INSERT INTO actividad (nombre, descripcion, divisa, tipo_actividad, usuario_id_usuario) VALUES (:nombre, :descripcion, :divisa, :tipo_actividad, :id_usuario)";
+        $consultaActividad = $conexion->prepare($queryActividad);
+        $consultaActividad->bindParam(':nombre', $nombreA);
+        $consultaActividad->bindParam(':descripcion', $descripcioActivitat);
+        $consultaActividad->bindParam(':divisa', $tipusDivisa);
+        $consultaActividad->bindParam(':tipo_actividad', $tiposActivitat);
+        $consultaActividad->bindParam(':id_usuario', $sessionUserId);
 
-        if ($consultaActivitat->execute()) {
+        if ($consultaActividad->execute()) {
             echo 'Envio bien';
             Header("Location: Invitaciones.php");
         }
@@ -59,11 +65,11 @@ if ((isset($_POST['enviarActivitat']))) {
             <button id="form-btn" class="form-btn">AÑADIR</button>
             <button name="asc" id="btn-ordenar">ASC</button>
         </div>
-        <?php
-        $btn = $_POST['asc'];
-        var_dump($btn);
+        <?php        
         if ((isset($_POST['asc']))) {
-            $queryasc = "SELECT * FROM activitat ORDER BY Fecha ASC";
+            $btn = $_POST['asc'];
+            var_dump($btn);
+            $queryasc = "SELECT * FROM actividad ORDER BY fecha ASC";
             $stmt = $conexion->query($queryasc);
             $ordena = $stmt->fetchAll(PDO::FETCH_OBJ);
         }
@@ -83,13 +89,13 @@ if ((isset($_POST['enviarActivitat']))) {
                         $user = $queryLogin->fetch(PDO::FETCH_ASSOC);*/
                         ?>
                     <img src="Images/Viaje_Combinado.png" alt="">
-                    <h3><?php echo strtoupper($row->Nombre) ?></h3>
+                    
+                    <h3><?php echo strtoupper($row->nombre) ?></h3>
                 </div>
                 <div class="face back">
-                    <h1><?php echo strtoupper($row->Nombre) ?></h1>
-                    <hr>
-                    <p id="description"><?php echo $row->Descripcion ?></p>
-                    <p class="divisa"><b>Divisa: </b><?php echo $row->Divisa ?></p>
+                    <h1><?php echo strtoupper($row->nombre) ?></h1>
+                    <p id="description"><?php echo $row->descripcion ?></p>
+                    <p class="divisa"><b>Divisa: </b><?php echo $row->divisa ?></p>
                     <div class="link"><a href="detallActivitat.php"><b>DETAILS</b></a>
                     </div>
                 </div>

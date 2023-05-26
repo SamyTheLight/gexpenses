@@ -2,6 +2,11 @@
 include 'caduca_sesion.php';
 session_start();
 include 'ConexionDB.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $registered = false;
 
 function validarDadesFormulari($firstname, $email, $passwordReg, $valid)
@@ -29,8 +34,8 @@ if ((!empty($_POST))) {
 
 
     $firstname = $_POST["username"];
-    $email = $_POST["email"];
     $passwordReg = $_POST["contrasena"];
+    $email = $_POST["email"];
 
     $valid = true;
 
@@ -38,12 +43,12 @@ if ((!empty($_POST))) {
 
     if ($resultatvalidacio == true) {
         $hash_password = password_hash($passwordReg, PASSWORD_DEFAULT);
-        $query = "INSERT INTO usuario (nombre,email,contrasena) VALUES (:nombre,:email,:contrasena)";
+        $query = "INSERT INTO usuario (nombre,contrasena,email) VALUES (:nombre,:contrasena,:email)";
 
         $consulta = $conexion->prepare($query);
         $consulta->bindParam(':nombre', $firstname);
-        $consulta->bindParam(':email', $email);
         $consulta->bindParam(':contrasena', $hash_password);
+        $consulta->bindParam(':email', $email);
 
         if ($consulta->execute()) {
             $registered = true;
@@ -56,7 +61,6 @@ if ((isset($_POST['buttonLogin']))) {
     $nameuserL = $_POST['usernameLogin'];
 
     $passwordL = $_POST['passwordLogin'];
-
 
     $hash_passwordLogin = password_hash($passwordL, PASSWORD_DEFAULT);
 
