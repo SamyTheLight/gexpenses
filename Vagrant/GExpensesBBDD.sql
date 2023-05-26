@@ -83,18 +83,18 @@ CREATE TABLE IF NOT EXISTS `invitacion` (
 DROP TABLE IF EXISTS `gasto` ;
 
 CREATE TABLE IF NOT EXISTS `gasto` (
+  `id_gasto` INT NOT NULL AUTO_INCREMENT,
   `actividad_id_actividad` INT NOT NULL,
-  `concepto` VARCHAR(200) NULL,
-  `pagador` VARCHAR(45) NULL,
-  `cantidad` DECIMAL(6,2) NULL,
+  `concepto` VARCHAR(200) NULL DEFAULT NULL,
+  `pagador` VARCHAR(45) NULL DEFAULT NULL,
+  `cantidad` DECIMAL(6,2) NULL DEFAULT NULL,
   `fecha` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`actividad_id_actividad`),
-  CONSTRAINT `fk_actividad_has_usuario_actividad1`
+  PRIMARY KEY (`id_gasto`),
+  CONSTRAINT `fk_gasto_actividad1`
     FOREIGN KEY (`actividad_id_actividad`)
     REFERENCES `actividad` (`id_actividad`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-    )ENGINE = InnoDB;
+    ON UPDATE NO ACTION)ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `reparto`

@@ -4,7 +4,7 @@ include 'nav.php';
 include 'ConexionDB.php';
 
 //Consulta para seleccionar la fecha de la actividad del usuario
-$query = "SELECT fecha FROM actividad
+$query = "SELECT fecha, id_actividad FROM actividad
           WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
 
 $stmt = $conexion->query($query);

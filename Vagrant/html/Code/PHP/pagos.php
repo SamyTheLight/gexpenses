@@ -7,6 +7,8 @@ if ((isset($_POST['enviarActivitat2']))) {
 
     if ((!empty($_POST['concepto'])) && (!empty($_POST['import']))) {
 
+        $id_actividad = $_POST["id_actividad"];
+        var_dump("id_actividad");
         $concepto = $_POST["concepto"];
         var_dump("concepto");
         $cantidad = $_POST["import"];
@@ -16,8 +18,9 @@ if ((isset($_POST['enviarActivitat2']))) {
         $membersPago = $_POST["members"];
         $countGasto = count($membersPago);
         var_dump($countGasto);
-        $queryActividad = "INSERT INTO gasto (concepto, pagador, cantidad) VALUES (:conceptoA, :pagadorA, :cantidadA)";
+        $queryActividad = "INSERT INTO gasto (actividad_id_actividad, concepto, pagador, cantidad) VALUES (:id_actividad, :conceptoA, :pagadorA, :cantidadA)";
         $consultaActivitat = $conexion->prepare($queryActividad);
+        $consultaActivitat->bindParam(':id_actividad', $id_actividad);
         $consultaActivitat->bindParam(':conceptoA', $concepto);
         $consultaActivitat->bindParam(':pagadorA', $pagador);
         $consultaActivitat->bindParam(':cantidadA', $cantidad);
@@ -27,21 +30,21 @@ if ((isset($_POST['enviarActivitat2']))) {
         $id_gasto = $queryPago->fetch(PDO::FETCH_COLUMN);
         var_dump($id_gasto);
 
-        foreach ($membersPago as $rowUsuario) :
+        // foreach ($membersPago as $rowUsuario) :
 
-            $queryActividad1 = "INSERT INTO reparto (usuario_id_usuario,gasto_actividad_id_actividad,miembros,gasto, importe) VALUES (:rowUsuario,:idGasto,:miembros,:gasto,:importeA)";
-            $consultaActivitat1 = $conexion->prepare($queryActividad1);
-            $consultaActivitat1->bindParam(':rowUsuario', $rowUsuario);
-            $consultaActivitat1->bindParam(':cantidadA', $cantidad);
-            $consultaActivitat1->bindParam(':miembros', $miembros);
-            $importe = $cantidad / $countGasto;
-            $consultaActivitat1->bindParam(':importeA', $importe);
-            $auxPago = (int) $id_gasto;
-            $consultaActivitat1->bindParam(':idGasto', $auxPago);
-            $consultaActivitat1->execute();
-        endforeach;
+        //     $queryActividad1 = "INSERT INTO reparto (usuario_id_usuario,gasto_actividad_id_actividad,miembros,gasto, importe) VALUES (:rowUsuario,:idGasto,:miembros,:gasto,:importeA)";
+        //     $consultaActivitat1 = $conexion->prepare($queryActividad1);
+        //     $consultaActivitat1->bindParam(':rowUsuario', $rowUsuario);
+        //     $consultaActivitat1->bindParam(':cantidadA', $cantidad);
+        //     $consultaActivitat1->bindParam(':miembros', $miembros);
+        //     $importe = $cantidad / $countGasto;
+        //     $consultaActivitat1->bindParam(':importeA', $importe);
+        //     $auxPago = (int) $id_gasto;
+        //     $consultaActivitat1->bindParam(':idGasto', $auxPago);
+        //     $consultaActivitat1->execute();
+        // endforeach;
 
-        Header("Location: reparto.php");
+        // Header("Location: reparto.php");
     }
 }
 ?>
