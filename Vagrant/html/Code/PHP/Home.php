@@ -1,49 +1,35 @@
 <?php
 session_start();
 include 'nav.php';
-//Obtiene el id del usuario que ha iniciado sesion
-$sessionUserId = $_SESSION['id_usuario'];
 include 'ConexionDB.php';
 include 'user_is_logued.php';
+include 'Repositories/ActividadRepository.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-//Consulta para recuperar todas las actividades del usuario logueado (por id) de la base de datos
-$query = "SELECT * FROM actividad
-          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
+//Crear instancia clase ActividadRepository
+$actividadRepository = new ActividadRepository($conexion);
 
-$stmt = $conexion->query($query);
-$registros = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-//Si el formulario "enviarActividad" se ha enviado...
+// Llamar a la función insertarActividad si se ha enviado el formulario
 if ((isset($_POST['enviarActivitat']))) {
-
     if ((!empty($_POST['nomActivitat'])) && (!empty($_POST['descripcionActivitat']))) {
-
-        //Obtenemos los valores del formulario 
-        $nombreA = $_POST["nomActivitat"];
+        $nombreActividad = $_POST["nomActivitat"];
         $descripcioActivitat = $_POST["descripcionActivitat"];
-        $tipusDivisa = $_POST["divisa"];
-        $tiposActivitat = $_POST["tipusActivitat"];
+        $tipoDivisa = $_POST["divisa"];
+        $tipoActividad = $_POST["tipusActivitat"];
 
-        //Insertamos una nueva actividad a la BD
-        $queryActividad = "INSERT INTO actividad (nombre, descripcion, divisa, tipo_actividad, usuario_id_usuario) VALUES (:nombre, :descripcion, :divisa, :tipo_actividad, :id_usuario)";
-        $consultaActividad = $conexion->prepare($queryActividad);
-        $consultaActividad->bindParam(':nombre', $nombreA);
-        $consultaActividad->bindParam(':descripcion', $descripcioActivitat);
-        $consultaActividad->bindParam(':divisa', $tipusDivisa);
-        $consultaActividad->bindParam(':tipo_actividad', $tiposActivitat);
-        $consultaActividad->bindParam(':id_usuario', $sessionUserId);
-
-        if ($consultaActividad->execute()) {
+        if ($actividadRepository->insertarActividad($nombreActividad, $descripcioActivitat, $tipoDivisa, $tipoActividad, $_SESSION['id_usuario'])) {
             echo 'Envio bien';
             Header("Location: Invitaciones.php");
+            exit();
         }
     }
 }
 
+// Obtener lista de actividades
+$registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
 
 ?>
 
