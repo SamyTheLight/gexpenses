@@ -3,15 +3,14 @@ session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 
-// Consulta para seleccionar la fecha de la actividad del usuario
-// $query = "SELECT fecha FROM actividad
-//           INNER JOIN invitacion ON id_actividad = actividad_id_actividad
-//           WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
+//Consulta para seleccionar la fecha de la actividad del usuario
+$query = "SELECT fecha FROM actividad
+          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
 
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-$queryPago1 = $conexion->prepare("SELECT concepto,cantidad,pagador FROM gasto ORDER BY fecha DESC ");
+$queryPago1 = $conexion->prepare("SELECT concepto,pagador,cantidad FROM gasto ORDER BY fecha DESC ");
 $queryPago1->execute();
 $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 $queryImporte = $conexion->prepare("SELECT cantidad FROM gasto");
@@ -76,8 +75,8 @@ endforeach;
                     <?php foreach ($registros11 as $rowPago) : ?>
                     <tr>
                         <th class="concepto"><?php echo ($rowPago->concepto) ?></th>
-                        <th class="cantidad"><?php echo $rowPago->cantidad ?></th>
                         <th class="pagador"><?php echo $rowPago->pagador ?></th>
+                        <th class="cantidad"><?php echo $rowPago->cantidad ?></th>
                     </tr>
                     <?php endforeach; ?>
                 </table>

@@ -14,30 +14,30 @@ if ((isset($_POST['enviarActivitat2']))) {
         $pagador = $_POST["pagador"];
         var_dump("pagador");
         $membersPago = $_POST["members"];
-        $countPago = count($membersPago);
-        var_dump($countPago);
-        $queryActividad = "INSERT INTO pagos (concepto,cantidad,pagador) VALUES (:conceptoA,:cantidadA,:pagadorA)";
+        $countGasto = count($membersPago);
+        var_dump($countGasto);
+        $queryActividad = "INSERT INTO gasto (concepto, pagador, cantidad) VALUES (:conceptoA, :pagadorA, :cantidadA)";
         $consultaActivitat = $conexion->prepare($queryActividad);
         $consultaActivitat->bindParam(':conceptoA', $concepto);
-        $consultaActivitat->bindParam(':cantidadA', $cantidad);
         $consultaActivitat->bindParam(':pagadorA', $pagador);
+        $consultaActivitat->bindParam(':cantidadA', $cantidad);
         $consultaActivitat->execute();
-        $queryPago = $conexion->prepare("SELECT MAX(id_pago) FROM pagos");
+        $queryPago = $conexion->prepare("SELECT MAX(actividad_id_actividad) FROM gasto");
         $queryPago->execute();
-        $id_pago = $queryPago->fetch(PDO::FETCH_OBJ);
-        var_dump($id_pago);
+        $id_gasto = $queryPago->fetch(PDO::FETCH_COLUMN);
+        var_dump($id_gasto);
 
-        foreach ($membersPago as $rowMembers) :
+        foreach ($membersPago as $rowUsuario) :
 
-            $queryActividad1 = "INSERT INTO reparto (members,cantidad_pago,user_member,importe_repartido,pago_id) VALUES (:RowMembers,:cantidadA,:membersPagoA,:importeA,:id_pago)";
+            $queryActividad1 = "INSERT INTO reparto (usuario_id_usuario,gasto_actividad_id_actividad,miembros,gasto, importe) VALUES (:rowUsuario,:idGasto,:miembros,:gasto,:importeA)";
             $consultaActivitat1 = $conexion->prepare($queryActividad1);
-            $consultaActivitat1->bindParam(':RowMembers', $countPago);
+            $consultaActivitat1->bindParam(':rowUsuario', $rowUsuario);
             $consultaActivitat1->bindParam(':cantidadA', $cantidad);
-            $consultaActivitat1->bindParam(':membersPagoA', $rowMembers);
-            $importe_repartidoA = $cantidad / $countPago;
-            $consultaActivitat1->bindParam(':importeA', $importe_repartidoA);
-            $auxPago = (int) $id_pago;
-            $consultaActivitat1->bindParam(':id_pago', $auxPago);
+            $consultaActivitat1->bindParam(':miembros', $miembros);
+            $importe = $cantidad / $countGasto;
+            $consultaActivitat1->bindParam(':importeA', $importe);
+            $auxPago = (int) $id_gasto;
+            $consultaActivitat1->bindParam(':idGasto', $auxPago);
             $consultaActivitat1->execute();
         endforeach;
 

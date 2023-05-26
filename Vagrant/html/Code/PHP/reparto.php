@@ -3,17 +3,17 @@ session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 
-$queryPago = $conexion->prepare("SELECT cantidad FROM pagos order by id_pago desc");
+$queryPago = $conexion->prepare("SELECT cantidad FROM gasto order by actividad_id_actividad DESC");
 
 $queryPago->execute();
 
 $cantidad = $queryPago->fetch(PDO::FETCH_OBJ);
 
 foreach ($cantidad as $rowImport) :
-    $queryReparto = $conexion->prepare("SELECT user_member,importe_repartido FROM reparto 
-                                        WHERE cantidad_pago = :cantidadP");
+    $queryReparto = $conexion->prepare("SELECT usuario_id_usuario, importe FROM reparto 
+                                        WHERE gasto = :gasto");
 
-    $queryReparto->bindParam(':cantidadP', $rowImport);
+    $queryReparto->bindParam(':gasto', $rowImport->cantidad);
     $queryReparto->execute();
 
     $reparto = $queryReparto->fetchAll(PDO::FETCH_OBJ);
@@ -63,8 +63,8 @@ endforeach;
                     <hr>
                     <div class="pago-individual">
                         <?php foreach ($reparto as $rowReparto) : ?>
-                        <label for="" id="memberind"><?php echo  $rowReparto->user_member ?></label>
-                        <input type="number" value="<?php echo $rowReparto->importe_repartido; ?>" id="despesaTotal"
+                        <label for="" id="memberind"><?php echo  $rowReparto->usuario_id_usuario ?></label>
+                        <input type="number" value="<?php echo $rowReparto->importe; ?>" id="despesaTotal"
                             readOnly=true><br>
                         <?php endforeach; ?>
                     </div>
