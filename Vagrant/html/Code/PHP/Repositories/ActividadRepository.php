@@ -24,9 +24,9 @@ class ActividadRepository{
 
     public function consultarActividad($id_actividad){
         //Consulta para recuperar todas las actividades del usuario
-        $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha DESC";
+        $query = "SELECT * FROM actividad WHERE id_actividad = :id_actividad ORDER BY fecha DESC";
         $consulta->$this->conexionDB->preprare($query);
-        $consulta->bindParam(':id_usuario', $_SESSION['id_usuario']);
+        $consulta->bindParam(':id_actividad', $id_actividad);
         $consulta->execute();
         
         return $consulta -> fetchAll(PDO::FETCH_OBJ);

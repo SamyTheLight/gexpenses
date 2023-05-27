@@ -2,15 +2,23 @@
 session_start();
 include 'nav.php';
 include 'ConexionDB.php';
+include 'Repositories/GastoRepository.php';
+
+if(isset($_GET['id_actividad'])){
+    $id_actividad = $_GET['id_actividad'];
+}
 
 //Consulta para seleccionar la fecha de la actividad del usuario
+// TODO Cambiar por ActividadRepository consultarActividad
 $query = "SELECT fecha, id_actividad FROM actividad
           WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
 
 $stmt = $conexion->query($query);
 $registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-$queryPago1 = $conexion->prepare("SELECT concepto,pagador,cantidad FROM gasto ORDER BY fecha DESC ");
+//TODO usar el GastoRepository con el ListarGasto
+
+$queryPago1 = $conexion->prepare("SELECT concepto,pagador,cantidad FROM gasto WHERE actividad_id_actividad = $id_actividad ORDER BY fecha DESC ");
 $queryPago1->execute();
 $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 $queryImporte = $conexion->prepare("SELECT cantidad FROM gasto");
@@ -41,6 +49,7 @@ endforeach;
                 <h3><?php echo $registros[0]->Fecha; ?></h3>
             </div>
             <div class="buttonPayment">
+                <!-- TODO cambiar el botón por un link al que se le puede pasar una variable como en el caso del link DETAILS de home-->
                 <button id="btn-pagos">Añadir Gasto +</button>
             </div>
             <div class="import">

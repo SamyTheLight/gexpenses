@@ -2,33 +2,49 @@
 session_start();
 include 'nav.php';
 include 'ConexionDB.php';
+include 'Repositories/GastoRepository.php';
+
+if(isset($_GET['actividad_id_actividad'])){
+    $actividad_id_actividad = $_GET["actividad_id_actividad"];
+    var_dump("actividad_id_actividad");
+}
 
 if ((isset($_POST['enviarActivitat2']))) {
 
     if ((!empty($_POST['concepto'])) && (!empty($_POST['import']))) {
 
-        $id_actividad = $_POST["id_actividad"];
-        var_dump("id_actividad");
+        $actividad_id_actividad = $_GET["actividad_id_actividad"];
+        var_dump("actividad_id_actividad");
         $concepto = $_POST["concepto"];
         var_dump("concepto");
-        $cantidad = $_POST["import"];
-        var_dump("import");
         $pagador = $_POST["pagador"];
         var_dump("pagador");
+        $cantidad = $_POST["import"];
+        var_dump("import");
         $membersPago = $_POST["members"];
-        $countGasto = count($membersPago);
-        var_dump($countGasto);
-        $queryActividad = "INSERT INTO gasto (actividad_id_actividad, concepto, pagador, cantidad) VALUES (:id_actividad, :conceptoA, :pagadorA, :cantidadA)";
-        $consultaActivitat = $conexion->prepare($queryActividad);
-        $consultaActivitat->bindParam(':id_actividad', $id_actividad);
-        $consultaActivitat->bindParam(':conceptoA', $concepto);
-        $consultaActivitat->bindParam(':pagadorA', $pagador);
-        $consultaActivitat->bindParam(':cantidadA', $cantidad);
-        $consultaActivitat->execute();
-        $queryPago = $conexion->prepare("SELECT MAX(actividad_id_actividad) FROM gasto");
-        $queryPago->execute();
-        $id_gasto = $queryPago->fetch(PDO::FETCH_COLUMN);
-        var_dump($id_gasto);
+        // $countGasto = count($membersPago);
+        // var_dump($countGasto);
+
+        echo '\n actividad_id_actividad';
+        print_r($actividad_id_actividad);
+        echo '\n concepto';
+        print_r($concepto);
+        echo '\n pagador';
+        print_r($pagador);
+        echo '\n cantidad';
+        print_r($cantidad);
+        echo '\n membersPago';
+        print_r($membersPago);
+
+        $gasto_repository = new GastoRepository($conexion);
+        $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
+
+        //Insertar gastos
+
+        // $queryPago = $conexion->prepare("SELECT MAX(actividad_id_actividad) FROM gasto");
+        // $queryPago->execute();
+        // $id_gasto = $queryPago->fetch(PDO::FETCH_COLUMN);
+        // var_dump($id_gasto);
 
         // foreach ($membersPago as $rowUsuario) :
 
@@ -101,6 +117,7 @@ if ((isset($_POST['enviarActivitat2']))) {
                     <label id="user" for="">Samuel
                         <input type="checkbox" value="Samuel" name="members[]" id="users" class="users">
                     </label>
+                        <input type="hidden" name="actividad_id_actividad" value="<?php echo $actividad_id_actividad  ?>">
                     <button class="btn-card" name="enviarActivitat2">GUARDAR</button>
                 </div>
             </form>
