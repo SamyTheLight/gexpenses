@@ -52,11 +52,11 @@ document.getElementById("form-btn").addEventListener("click", function () {
   btn_form.insertAdjacentHTML("afterend", formulario);
   const act = document.getElementById("tipusActivitat");
   //Se añade otro event listener al botón 'afegirActivitat' que redirige 
-  //a la página invitaciones.
+  //a la página invitacion.php.
   document
     .getElementById("afegirActivitat")
     .addEventListener("click", function (e) {
       let selectedOption = act.options[act.selectedIndex];
-      window.location.href = "Invitaciones.php";
+      window.location.href = "invitacion.php";
     });
 });

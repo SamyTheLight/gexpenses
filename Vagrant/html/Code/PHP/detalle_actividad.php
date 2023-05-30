@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'nav.php';
-include 'ConexionDB.php';
+include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/ActividadRepository.php';
 
@@ -37,7 +37,7 @@ endforeach;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../Styles/detallActivitat.css">
+    <link rel="stylesheet" href="../Styles/detalle_actividad.css">
     <title>Detall Activitat</title>
 </head>
 
@@ -49,7 +49,7 @@ endforeach;
             </div>
             <div class="buttonPayment">
                 <!-- TODO cambiar el botón por un link al que se le puede pasar una variable como en el caso del link DETAILS de home-->
-                <button id="btn-pagos">Añadir Gasto +</button>
+                <button id="btn-gasto">Añadir Gasto +</button>
             </div>
             <div class="import">
                 <h3><?php echo $resultado; ?></h3>
@@ -92,7 +92,7 @@ endforeach;
         </div>
     </div>
 </body>
-<script src="../Scripts/detallActivitat.js"></script>
+<script src="../Scripts/detalle_actividad.js"></script>
 <?php
 include 'footer.php';
 ?>

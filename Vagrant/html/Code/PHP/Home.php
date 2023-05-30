@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'nav.php';
-include 'ConexionDB.php';
+include 'conexion_db.php';
 include 'user_is_logued.php';
 include 'Repositories/ActividadRepository.php';
 
@@ -22,7 +22,7 @@ if ((isset($_POST['enviarActivitat']))) {
 
         if ($actividadRepository->insertarActividad($nombreActividad, $descripcioActivitat, $tipoDivisa, $tipoActividad, $_SESSION['id_usuario'])) {
             echo 'Envio bien';
-            Header("Location: Invitaciones.php");
+            Header("Location: invitacion.php");
             exit();
         }
     }
@@ -40,7 +40,7 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/Home.css">
+    <link rel="stylesheet" href="../Styles/home.css">
     <title>Home</title>
 </head>
 
@@ -82,7 +82,7 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
                     <h1><?php echo strtoupper($row->nombre) ?></h1>
                     <p id="description"><?php echo $row->descripcion ?></p>
                     <p class="divisa"><b>Divisa: </b><?php echo $row->divisa ?></p>
-                    <div class="link"><a href="detallActivitat.php?id_actividad=<?php echo $row->id_actividad?>"><b>DETAILS</b></a>
+                    <div class="link"><a href="detalle_actividad.php?id_actividad=<?php echo $row->id_actividad?>"><b>DETAILS</b></a>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
     </div>
 
 </body>
-<script src="../Scripts/Home.js"></script>
+<script src="../Scripts/home.js"></script>
 
 </html>
 <?php

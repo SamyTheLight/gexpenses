@@ -83,7 +83,7 @@ try {
 
     $mail->Body = '<img class=img-logo src=cid:Logo  height= 140px width=140px />' . $mailContent;
 
-    // $mailink = 'localhost:8000/Code/PHP/Invitaciones.php?aceptat=1';
+    // $mailink = 'localhost:8000/Code/PHP/invitacion.php?aceptat=1';
 
     $mail->AltBody = "Si desea crear una cuenta en GExpenses, por favor, acceda al enlace que aparece en pantalla.";
 

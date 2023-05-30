@@ -27,7 +27,7 @@
             <h1 class='inline m-L'>Hola $nombre</h1>
             <p class="text">Para aceptar la invitación a la actividad, por favor, haga click al enlace que aparece en pantalla.</p>
             <br />
-            <a href="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/Invitaciones.php?aceptat=1" class="link">ACEPTA LA INVITACIÓN</a>
+            <a href="http://localhost/php/M07/GExpensesABP/gexpensesabp/Code/PHP/invitacion.php?aceptat=1" class="link">ACEPTA LA INVITACIÓN</a>
             <br />
             <h4 class=bold>Atentamente:</h4>
             <span class=grey>Equipo Mi_dominio </span><br />

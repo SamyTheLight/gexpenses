@@ -1,6 +1,6 @@
 <?php
 
-include 'ConexionDB.php';
+include 'conexion_db.php';
 
 
 $mostrarActivitats=$conexion->prepare("SELECT * FROM actividad");

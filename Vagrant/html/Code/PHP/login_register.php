@@ -1,7 +1,7 @@
 <?php
 include 'caduca_sesion.php';
 session_start();
-include 'ConexionDB.php';
+include 'conexion_db.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -78,7 +78,7 @@ if ((isset($_POST['buttonLogin']))) {
         $_SESSION['usuario'] = $nameuserL;
         $_SESSION['id_usuario'] = $user['id_usuario'];
 
-        header("location: PHP/Home.php");
+        header("location: PHP/home.php");
     }
 }
 
@@ -91,7 +91,7 @@ if ((isset($_POST['buttonLogin']))) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/LandingPage.css">
+    <link rel="stylesheet" href="../Styles/login_registro.css">
     <title>Document</title>
 </head>
 
@@ -176,7 +176,7 @@ if ((isset($_POST['buttonLogin']))) {
 
     </div>
 
-    <script src="../Scripts/LandingPage.js"></script>
+    <script src="../Scripts/login_registro.js"></script>
 
 </body>
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'ConexionDB.php';
+include 'conexion_db.php';
 
 function verificarToken($conexion,  $inputTokenI)
 {
@@ -18,7 +18,7 @@ if (isset($_POST['buttonVerify'])) {
         $userId = verificarToken($conexion, $inputToken);
         $_SESSION['usuario'] = $userId;
 
-        header("location: detallActivitat.php");
+        header("location: detalle_actividad.php");
     }
 }
 ?>

@@ -42,7 +42,7 @@ Una vez le da click, aparecerá un pop-up "Añade una actividad" donde el usuari
 
 Una vez el usuario esté en nuestra Landing page se le mostrarán todas las actividades asociadas a dicho usuario, en ellas, podrá ver un pequeño resumen de la actividad. En la tarjeta aparecerá un botón “Details” donde si el usuario lo pulsa, se le redireccionará a la página de Detalles.
 
-Cuando el usuario esté en esta página, se le mostrará un contenedor con varios campos. Por un lado tendrá la fecha en la que se creó la actividad. Por otro lado, encontrará una lista de los pagos realizados, así como una casilla con el importe de todos los gastos de esa actividad. 
+Cuando el usuario esté en esta página, se le mostrará un contenedor con varios campos. Por un lado tendrá la fecha en la que se creó la actividad. Por otro lado, encontrará una lista de los gasto realizados, así como una casilla con el importe de todos los gastos de esa actividad. 
 
 También podrá consultar los usuarios que están en la actividad y por último, encontrará un botón “añadir gasto”.
 
@@ -58,13 +58,13 @@ En el mail de confirmación, encontraremos una url donde al hacer click, nos red
 Si por el contrario, se envía un mail de registro, la url asociada a dicho mail redirigirá a la Landing Page de nuestra web, donde tendrá que registrar sus datos y hacer login para poder ver los detalles de la actividad a la cual ha sido invitado.
 
 
-=== Pagos
+=== gasto
 
 Una vez el usuario haya pulsado el botón de “añadir gasto”,se le redirigirá a una página en la cual podrá crear un pago. Una vez en esa página el usuario deberá introducir un concepto de ese pago, un importe, deberá elegir un pagador y por último tendrá que elegir los miembros que participan en ese gasto. 
 
 Una vez el usuario haya introducido estos datos, se le redirigirá a una página mediante el botón de “guardar” en la que se le mostrará una repartición por igual del importe que previamente ha seleccionado. En esta repartición aparecerán los usuarios que participan en el gasto y su proporción a pagar. 
 
-Por último el usuario deberá pulsar el botón “aceptar”, para que se le redirigirá  a la página de detalles nuevamente, pero con el nuevo pago añadido a la “lista de pagos”.
+Por último el usuario deberá pulsar el botón “aceptar”, para que se le redirigirá  a la página de detalles nuevamente, pero con el nuevo pago añadido a la “lista de gasto”.
 
 
 = Guia de estilo

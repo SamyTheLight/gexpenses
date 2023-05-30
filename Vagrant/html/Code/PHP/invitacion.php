@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 include 'nav.php';
-include 'ConexionDB.php';
+include 'conexion_db.php';
 
 $queryRegistro = "SELECT * FROM actividad ORDER BY id_actividad DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);

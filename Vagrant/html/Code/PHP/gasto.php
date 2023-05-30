@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'nav.php';
-include 'ConexionDB.php';
+include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 //inclusdo deudor repository
 
@@ -12,6 +12,7 @@ if(isset($_GET['actividad_id_actividad'])){
 
 //TODO del id_actividad obtener los adscritos
 //con esos datos rellenar el formulario de miembros
+
 
 if ((isset($_POST['enviarActivitat2']))) {
 
@@ -55,8 +56,8 @@ if ((isset($_POST['enviarActivitat2']))) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/pagos.css">
-    <title>Pagos</title>
+    <link rel="stylesheet" href="../Styles/gasto.css">
+    <title>Gastos</title>
 </head>
 
 <body>
