@@ -7,35 +7,33 @@ class DeudorRepository{
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarDeudor($adscrito_id_adscrito, $gasto_id_gasto){
+    public function insertarDeudor($id_deudor, $cantidad_deuda, $adscrito_id_adscrito, $gasto_id_gasto){
         
-        //Insertamos una nueva actividad a la BD
-        $queryActividad = "INSERT INTO deudor (adscrito_id_adscrito, gasto_id_gasto) VALUES (:adscrito_id_adscrito, :gasto_id_gasto, :divisa, :tipo_actividad, :usuario_id_usuario)";
+        $query = "INSERT INTO deudor (id_deudor, cantidad_deuda, adscrito_id_adscrito, gasto_id_gasto) VALUES (:id_deudor, :cantidad_deuda, :divisa, :adscrito_id_adscrito, :gasto_id_gasto)";
 
-        $consulta = $this->conexionDB->prepare($queryActividad);
-        $consulta->bindParam(':nombre', $nombre);
-        $consulta->bindParam(':descripcion', $descripcion);
-        $consulta->bindParam(':divisa', $divisa);
-        $consulta->bindParam(':tipo_actividad', $tipo_actividad);
-        $consulta->bindParam(':usuario_id_usuario', $id_usuario);
+        $consulta = $this->conexionDB->prepare($query);
+        $consulta->bindParam(':id_deudor', $id_deudor);
+        $consulta->bindParam(':cantidad_deuda', $cantidad_deuda);
+        $consulta->bindParam(':adscrito_id_adscrito', $adscrito_id_adscrito);
+        $consulta->bindParam(':gasto_id_gasto', $gasto_id_gasto);
 
         return $consulta->execute();
     }
 
-    public function consultarActividad($id_actividad){
+    public function consultarDeudor($id_deudor){
         //Consulta para recuperar todas las actividades del usuario
-        $query = "SELECT * FROM actividad WHERE id_actividad = :id_actividad ORDER BY fecha DESC";
+        $query = "SELECT * FROM deudor WHERE id_deudor = :id_deudor";
         $consulta->$this->conexionDB->preprare($query);
-        $consulta->bindParam(':id_actividad', $id_actividad);
+        $consulta->bindParam(':id_deudor', $id_deudor);
         $consulta->execute();
         
         return $consulta -> fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarActividades($id_usuario){
-        $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha DESC";
+    public function listarDeudor($id_adscrito){
+        $query = "SELECT * FROM deudor WHERE adscrito_id_adscrito = :id_adscrito";
         $consulta = $this->conexionDB->prepare($query);
-        $consulta->bindParam(':id_usuario', $id_usuario);
+        $consulta->bindParam(':id_adscrito', $id_adscrito);
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
