@@ -30,8 +30,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` VARCHAR(255) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_usuario`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -121,16 +120,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `adscritos`
+-- Table `adscrito`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `adscritos` ;
+DROP TABLE IF EXISTS `adscrito` ;
 
-CREATE TABLE IF NOT EXISTS `adscritos` (
-  `id_adscritos` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `adscrito` (
+  `id_adscrito` INT NOT NULL AUTO_INCREMENT,
   `usuario_id_usuario` INT NULL,
   `nombre_adscrito` VARCHAR(45) NOT NULL,
   `actividad_id_actividad` INT NOT NULL,
-  PRIMARY KEY (`id_adscritos`),
+  PRIMARY KEY (`id_adscrito`),
   CONSTRAINT `fk_adscritos_usuario1`
     FOREIGN KEY (`usuario_id_usuario`)
     REFERENCES `usuario` (`id_usuario`)
@@ -144,6 +143,25 @@ CREATE TABLE IF NOT EXISTS `adscritos` (
 ENGINE = InnoDB;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- -----------------------------------------------------
+-- Table `deudor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `deudor` ;
+
+CREATE TABLE IF NOT EXISTS `deudor` (
+  `id_deudor` INT NOT NULL AUTO_INCREMENT,
+  `cantidad_deuda` DECIMAL(6,2) NOT NULL DEFAULT 0 ,
+  `adscrito_id_adscrito` INT NOT NULL,
+  `gasto_id_gasto` INT NOT NULL,
+  PRIMARY KEY (`id_deudor`),
+  CONSTRAINT `fk_adscritos_has_gasto_adscritos1`
+    FOREIGN KEY (`adscrito_id_adscrito`)
+    REFERENCES `adscrito` (`id_adscrito`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adscritos_has_gasto_gasto1`
+    FOREIGN KEY (`gasto_id_gasto`)
+    REFERENCES `gasto` (`id_gasto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;

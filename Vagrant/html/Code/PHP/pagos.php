@@ -3,11 +3,15 @@ session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 include 'Repositories/GastoRepository.php';
+//inclusdo deudor repository
 
 if(isset($_GET['actividad_id_actividad'])){
     $actividad_id_actividad = $_GET["actividad_id_actividad"];
     var_dump("actividad_id_actividad");
 }
+
+//TODO del id_actividad obtener los adscritos
+//con esos datos rellenar el formulario de miembros
 
 if ((isset($_POST['enviarActivitat2']))) {
 
@@ -21,46 +25,26 @@ if ((isset($_POST['enviarActivitat2']))) {
         var_dump("pagador");
         $cantidad = $_POST["import"];
         var_dump("import");
-        $membersPago = $_POST["members"];
-        // $countGasto = count($membersPago);
-        // var_dump($countGasto);
+        $members_gasto = $_POST["members"];
 
-        echo '\n actividad_id_actividad';
-        print_r($actividad_id_actividad);
-        echo '\n concepto';
-        print_r($concepto);
-        echo '\n pagador';
-        print_r($pagador);
-        echo '\n cantidad';
-        print_r($cantidad);
-        echo '\n membersPago';
-        print_r($membersPago);
+        // echo '\n actividad_id_actividad';
+        // print_r($actividad_id_actividad);
+        // echo '\n concepto';
+        // print_r($concepto);
+        // echo '\n pagador';
+        // print_r($pagador);
+        // echo '\n cantidad';
+        // print_r($cantidad);
+        // echo '\n membersPago';
+        // print_r($membersPago);
 
         $gasto_repository = new GastoRepository($conexion);
         $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
 
-        //Insertar gastos
+        //TODO insertar deudores de la variable $members_gasto con el $id_gasto obtenido anteriormente
 
-        // $queryPago = $conexion->prepare("SELECT MAX(actividad_id_actividad) FROM gasto");
-        // $queryPago->execute();
-        // $id_gasto = $queryPago->fetch(PDO::FETCH_COLUMN);
-        // var_dump($id_gasto);
 
-        // foreach ($membersPago as $rowUsuario) :
-
-        //     $queryActividad1 = "INSERT INTO reparto (usuario_id_usuario,gasto_actividad_id_actividad,miembros,gasto, importe) VALUES (:rowUsuario,:idGasto,:miembros,:gasto,:importeA)";
-        //     $consultaActivitat1 = $conexion->prepare($queryActividad1);
-        //     $consultaActivitat1->bindParam(':rowUsuario', $rowUsuario);
-        //     $consultaActivitat1->bindParam(':cantidadA', $cantidad);
-        //     $consultaActivitat1->bindParam(':miembros', $miembros);
-        //     $importe = $cantidad / $countGasto;
-        //     $consultaActivitat1->bindParam(':importeA', $importe);
-        //     $auxPago = (int) $id_gasto;
-        //     $consultaActivitat1->bindParam(':idGasto', $auxPago);
-        //     $consultaActivitat1->execute();
-        // endforeach;
-
-        // Header("Location: reparto.php");
+        Header("Location: reparto.php?id_gasto=$id_gasto");
     }
 }
 ?>
@@ -100,6 +84,7 @@ if ((isset($_POST['enviarActivitat2']))) {
                     <label for="description">Importe</label>
                     <input type="number" placeholder="Elige un importe" class="form-control" id="importe" name="import">
 
+                    //Aqui mostrar todos los adscritos
                     <label for="mensaje">Pagador</label>
                     <select name="pagador" id="divisa" class="pagadores">
                         <option selected disabled value="" class="pagador">Elige un pagador</option>
@@ -107,15 +92,19 @@ if ((isset($_POST['enviarActivitat2']))) {
                         <option value="Joan" class="pagador">Joan</option>
                         <option value="Samuel" class="pagador">Samuel</option>
                     </select>
+                    //Aqui mostrar todos los adscritos
                     <label for="tipusAct">Miembros</label>
                     <label id="user" for="">Oscar
                         <input type="checkbox" value="Oscar" name="members[]" id="users" class="users">
+                        <input type="hidden" name="id_adscrito[]" value="1">
                     </label>
                     <label id="user" for="">Joan
                         <input type="checkbox" value="Joan" name="members[]" id="users" class="users">
+                        <input type="hidden" name="id_adscrito[]" value="2">
                     </label>
                     <label id="user" for="">Samuel
                         <input type="checkbox" value="Samuel" name="members[]" id="users" class="users">
+                        <input type="hidden" name="id_adscrito[]" value="3">
                     </label>
                         <input type="hidden" name="actividad_id_actividad" value="<?php echo $actividad_id_actividad  ?>">
                     <button class="btn-card" name="enviarActivitat2">GUARDAR</button>

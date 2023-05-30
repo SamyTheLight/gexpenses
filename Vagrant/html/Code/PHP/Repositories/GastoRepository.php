@@ -45,5 +45,6 @@ class GastoRepository{
 
     public function listarGasto($id_usuario){
 
+        
     }
 } 

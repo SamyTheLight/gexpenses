@@ -3,22 +3,61 @@ session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 
-$queryPago = $conexion->prepare("SELECT cantidad FROM gasto order by actividad_id_actividad DESC");
+if(isset($_GET['id_gasto'])){
+    $id_gasto = $_GET["id_gasto"];
+    var_dump("id_gasto");
+}
 
-$queryPago->execute();
+// //TODO obtenemos de BD todos los datos de gasto
+// $queryGasto = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
+// $consultaGasto->$this->conexionDB->preprare($queryGasto);
+// $consultaGasto->bindParam(':id_gasto', $id_gasto);
+// $consultaGasto->execute();
+// $gasto = $consultaGasto->fetch(PDO::FETCH_ASSOC);
 
-$cantidad = $queryPago->fetch(PDO::FETCH_OBJ);
+// //Obtener de BD un array con los deudores al pago
+// usando el repositoryoi de deudores
+// $queryAdscritos = "SELECT * FROM adscritos WHERE actividad_id_actividad = :actividad_id_actividad";
+// $consultaAdscritos->$this->conexionDB->preprare($queryAdscritos);
+// $consultaAdscritos->bindParam(':actividad_id_actividad', $actividad_id_actividad);
+// $consultaAdscritos->execute();
+// $adscritos = $consultaAdscritos->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($cantidad as $rowImport) :
-    $queryReparto = $conexion->prepare("SELECT usuario_id_usuario, importe FROM reparto 
-                                        WHERE gasto = :gasto");
+$deudores = array(
+    array(
+        'id_adscrito' => 1,
+        'nombre' => 'Oscar'
+    ),
+    array(
+        'id_adscrito' => 2,
+        'nombre' => 'Joan'
+    ),
+    array(
+        'id_adscrito' => 3,
+        'nombre' => 'Samuel'
+    )
+);
 
-    $queryReparto->bindParam(':gasto', $rowImport->cantidad);
-    $queryReparto->execute();
+$deuda_a_repartir = 100;
 
-    $reparto = $queryReparto->fetchAll(PDO::FETCH_OBJ);
-    var_dump($reparto);
-endforeach;
+
+
+// $queryPago = $conexion->prepare("SELECT cantidad FROM gasto order by actividad_id_actividad DESC");
+
+// $queryPago->execute();
+
+// $cantidad = $queryPago->fetch(PDO::FETCH_OBJ);
+
+// foreach ($cantidad as $rowImport) :
+//     $queryReparto = $conexion->prepare("SELECT usuario_id_usuario, importe FROM reparto 
+//                                         WHERE gasto = :gasto");
+
+//     $queryReparto->bindParam(':gasto', $rowImport->cantidad);
+//     $queryReparto->execute();
+
+//     $reparto = $queryReparto->fetchAll(PDO::FETCH_OBJ);
+//     var_dump($reparto);
+// endforeach;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,17 +94,14 @@ endforeach;
                 <div id="reparto" class="oculto">
                     <div class="pago-total">
                         <label for="" class="despesa_total">Pago total: </label>
-
-                        <?php foreach ($cantidad as $row) : ?>
-                        <input type="number" value="<?php echo $row; ?>" id="despesaTotal" readOnly=true>
-                        <?php endforeach; ?>
+                        <input type="number" value="<?php echo $deuda_a_repartir; ?>" id="despesaTotal" readOnly=true>
                     </div>
                     <hr>
                     <div class="pago-individual">
-                        <?php foreach ($reparto as $rowReparto) : ?>
-                        <label for="" id="memberind"><?php echo  $rowReparto->usuario_id_usuario ?></label>
-                        <input type="number" value="<?php echo $rowReparto->importe; ?>" id="despesaTotal"
-                            readOnly=true><br>
+                        <?php foreach ($deudores as $deudor) : ?>
+                        <label for="" id="id_adscrito"><?php echo $deudor['id_adscrito']?></label>
+                        <label for="" id="nombre"><?php echo  $deudor['nombre']; ?></label>
+                        <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
                         <?php endforeach; ?>
                     </div>
                 </div>

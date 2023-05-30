@@ -3,6 +3,7 @@ session_start();
 include 'nav.php';
 include 'ConexionDB.php';
 include 'Repositories/GastoRepository.php';
+include 'Repositories/ActividadRepository.php';
 
 if(isset($_GET['id_actividad'])){
     $id_actividad = $_GET['id_actividad'];
@@ -10,11 +11,9 @@ if(isset($_GET['id_actividad'])){
 
 //Consulta para seleccionar la fecha de la actividad del usuario
 // TODO Cambiar por ActividadRepository consultarActividad
-$query = "SELECT fecha, id_actividad FROM actividad
-          WHERE usuario_id_usuario='" . $_SESSION['id_usuario'] . "' ORDER BY fecha DESC";
+$actividadRepository = new ActividadRepository($conexion);
+// $registros = $actividadRepository->consultarActividad($id_actividad);
 
-$stmt = $conexion->query($query);
-$registros = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 //TODO usar el GastoRepository con el ListarGasto
 
@@ -29,7 +28,7 @@ $resultado = 0;
 foreach ($registroImporte as $rowImportes) :
     $resultado += ($rowImportes->cantidad);
 endforeach;
-?>
+// ?>
 
 <!DOCTYPE html>
 <html lang="en">
