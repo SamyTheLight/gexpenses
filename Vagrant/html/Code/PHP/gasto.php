@@ -47,7 +47,7 @@ if ((isset($_POST['enviarActivitat2']))) {
         //TODO insertar deudores de la variable $members_gasto con el $id_gasto obtenido anteriormente
 
 
-        Header("Location: reparto.php?id_gasto=$id_gasto");
+        header("Location: reparto.php?id_gasto=" . urlencode($id_gasto));
     }
 }
 

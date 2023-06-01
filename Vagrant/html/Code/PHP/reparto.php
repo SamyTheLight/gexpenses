@@ -3,9 +3,9 @@ session_start();
 include 'nav.php';
 include 'conexion_db.php';
 
-if(isset($_GET['id_gasto'])){
-    $id_gasto = $_GET["id_gasto"];
-    var_dump("id_gasto");
+if (isset($_GET['id_gasto'])) {
+    $id_gasto = $_GET['id_gasto'];
+    var_dump($id_gasto);
 }
 
 
