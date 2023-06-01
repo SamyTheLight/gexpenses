@@ -17,7 +17,7 @@ $actividadRepository = new ActividadRepository($conexion);
 
 //TODO usar el GastoRepository con el ListarGasto
 
-$queryPago1 = $conexion->prepare("SELECT concepto,pagador,cantidad FROM gasto WHERE actividad_id_actividad = $id_actividad ORDER BY fecha DESC ");
+$queryPago1 = $conexion->prepare("SELECT id_gasto, concepto,pagador,cantidad FROM gasto WHERE actividad_id_actividad = $id_actividad ORDER BY fecha DESC ");
 $queryPago1->execute();
 $registros11 = $queryPago1->fetchAll(PDO::FETCH_OBJ);
 $queryImporte = $conexion->prepare("SELECT cantidad FROM gasto");
@@ -77,14 +77,16 @@ endforeach;
                 <table class="registros">
                     <tr id="rows">
                         <th class="concepto1"><b>Concepto</b></th>
+                        <th class="cantidad1"><b>Repartir</b></th>
                         <th class="cantidad1"><b>Cantidad</b></th>
                         <th class="pagador1"><b>Pagador</b></th>
                     </tr>
                     <?php foreach ($registros11 as $rowPago) : ?>
-                    <tr>
+                    <tr>                        
                         <th class="concepto"><?php echo ($rowPago->concepto) ?></th>
-                        <th class="pagador"><?php echo $rowPago->pagador ?></th>
+                        <th class="cantidad"><a href="reparto.php?id_gasto="<?php echo $rowPago->id_gasto; ?>>Repartir gasto</a></th>
                         <th class="cantidad"><?php echo $rowPago->cantidad ?></th>
+                        <th class="pagador"><?php echo $rowPago->pagador ?></th>
                     </tr>
                     <?php endforeach; ?>
                 </table>

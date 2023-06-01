@@ -165,3 +165,10 @@ CREATE TABLE IF NOT EXISTS `deudor` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+INSERT INTO usuario(`nombre`, `contrasena`, `email`) VALUES ('pepe', '$2y$10$.lH91mQ9s2pGqlstsP35wO0zlSQv/nSyBuiZKoQi7QFfiCddQjZhW', 'pepe@gmail.com');
+INSERT INTO actividad(`usuario_id_usuario`, `nombre`, `descripcion`, `divisa`, `tipo_actividad`) VALUES (1, 'Jugar', 'Jugar a futbol', '$', 'Deportes');
+INSERT INTO adscrito(`usuario_id_usuario`, `nombre_adscrito`, `actividad_id_actividad`) VALUES (1, 'pepe', 1);
+INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('paco', 1);
+INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('jose', 1);

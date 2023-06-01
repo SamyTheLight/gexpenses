@@ -1,0 +1,61 @@
+document.addEventListener("DOMContentLoaded", function() {
+  var totalRepartir = Number(document.getElementById("totalRepartir").dataset.total);
+  var totalFaltante = totalRepartir;
+
+  document.getElementById("botonRepartir").addEventListener("click", function(){
+      var cantidad = totalRepartir / document.getElementsByClassName('inputCantidad').length;
+      Array.from(document.getElementsByClassName('inputCantidad')).forEach(function(input) {
+          input.value = cantidad;
+      });
+      totalFaltante = 0;
+      document.getElementById('totalFaltante').innerText = 'Cantidad faltante: ' + totalFaltante;
+      document.getElementById('btnEnviar').style.display = 'block'; // Mostrar el botón de envío cuando se haya repartido todo
+  });
+
+  Array.from(document.getElementsByClassName("inputCantidad")).forEach(function(input) {
+      input.addEventListener("change", function(){
+          totalFaltante = totalRepartir;
+          Array.from(document.getElementsByClassName("inputCantidad")).forEach(function(input) {
+              totalFaltante -= Number(input.value);
+          });
+          document.getElementById('totalFaltante').innerText = 'Cantidad faltante: ' + totalFaltante;
+          if (totalFaltante === 0) {
+              document.getElementById("btnEnviar").style.display = 'block'; // Mostrar el botón de envío cuando se haya repartido todo
+          } else {
+              document.getElementById("btnEnviar").style.display = 'none'; // Ocultar el botón de envío si aún queda algo por repartir
+          }
+      });
+  });
+
+  document.getElementById("act-form1").addEventListener("submit", function(event) {
+      if (totalFaltante !== 0) {
+          alert('Las cantidades no cuadran. Por favor revise.');
+          event.preventDefault();
+          return false;
+      }
+      return true;
+  });
+});
+
+<div id="reparto">
+    <div class="pago-total">
+        <div id="totalRepartir" data-total="<?php echo $totalRepartir; ?>">Total a repartir: <?php echo $totalRepartir; ?></div>
+        <div id='totalFaltante'>Cantidad faltante: <?php echo $totalRepartir; ?></div>
+    </div>
+    <hr>
+    <div class="pago-individual">
+    <table id='tablaPagadores'>
+        <?php foreach($pagadores as $pagador): ?>
+            <?php
+            $id = $pagador['id_pagador']; // Reemplaza con tus campos correspondientes
+            $nombre = $pagador['nombre']; // Reemplaza con tus campos correspondientes
+            ?>
+            <tr id='pagador_<?php echo $id; ?>'>
+                <td><?php echo $nombre; ?></td>
+                <td><input type='number' value='0' min='0' max='<?php echo $totalRepartir; ?>' id='input_<?php echo $id; ?>' class='inputCantidad'></td>
+            </tr>
+        <?php endforeach; ?>
+        </table>
+    </table>
+    </div>
+</div>

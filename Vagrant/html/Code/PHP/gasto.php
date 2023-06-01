@@ -3,6 +3,7 @@ session_start();
 include 'nav.php';
 include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
+include 'Repositories/AdscritoRepository.php';
 //inclusdo deudor repository
 
 if(isset($_GET['actividad_id_actividad'])){
@@ -42,12 +43,16 @@ if ((isset($_POST['enviarActivitat2']))) {
         $gasto_repository = new GastoRepository($conexion);
         $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
 
+
         //TODO insertar deudores de la variable $members_gasto con el $id_gasto obtenido anteriormente
 
 
         Header("Location: reparto.php?id_gasto=$id_gasto");
     }
 }
+
+$adscrito_repository = new AdscritoRepository($conexion);
+$adscritos = $adscrito_repository->listarAdscrito($actividad_id_actividad);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,31 +94,25 @@ if ((isset($_POST['enviarActivitat2']))) {
                     <label for="mensaje">Pagador</label>
                     <select name="pagador" id="divisa" class="pagadores">
                         <option selected disabled value="" class="pagador">Elige un pagador</option>
-                        <option value="Oscar" class="pagador">Oscar</option>
-                        <option value="Joan" class="pagador">Joan</option>
-                        <option value="Samuel" class="pagador">Samuel</option>
+                        <?php foreach ($adscritos as $adscrito){ ?>
+                        <option value=<?php echo $adscrito->id_adscrito;?> class="pagador"><?php echo $adscrito->nombre_adscrito;?></option>
+                        <?php } ?>
                     </select>
                     //Aqui mostrar todos los adscritos
                     <label for="tipusAct">Miembros</label>
-                    <label id="user" for="">Oscar
-                        <input type="checkbox" value="Oscar" name="members[]" id="users" class="users">
-                        <input type="hidden" name="id_adscrito[]" value="1">
+                    <?php foreach ($adscritos as $adscrito){ ?>
+                    <label id="user" for=""><?php echo $adscrito->nombre_adscrito;?>
+                        <input type="checkbox" value="<?php echo $adscrito->nombre_adscrito;?>" name="members[]" id="users" class="users">
+                        <input type="hidden" name="id_adscrito[]" value="<?php echo $adscrito->id_adscrito;?>">
                     </label>
-                    <label id="user" for="">Joan
-                        <input type="checkbox" value="Joan" name="members[]" id="users" class="users">
-                        <input type="hidden" name="id_adscrito[]" value="2">
-                    </label>
-                    <label id="user" for="">Samuel
-                        <input type="checkbox" value="Samuel" name="members[]" id="users" class="users">
-                        <input type="hidden" name="id_adscrito[]" value="3">
-                    </label>
-                        <input type="hidden" name="actividad_id_actividad" value="<?php echo $actividad_id_actividad  ?>">
+                    <?php } ?>
+                    <input type="hidden" name="actividad_id_actividad" value="<?php echo $actividad_id_actividad  ?>">
                     <button class="btn-card" name="enviarActivitat2">GUARDAR</button>
                 </div>
             </form>
         </div>
 </body>
-<!-- <script src="../Scripts/pagos.js"></script> -->
+<!-- <script src="../Scripts/gasto.js"></script> -->
 <?php
 include 'footer.php';
 ?>

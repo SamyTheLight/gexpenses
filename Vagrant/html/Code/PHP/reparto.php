@@ -8,6 +8,7 @@ if(isset($_GET['id_gasto'])){
     var_dump("id_gasto");
 }
 
+
 // //TODO obtenemos de BD todos los datos de gasto
 // $queryGasto = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
 // $consultaGasto->$this->conexionDB->preprare($queryGasto);

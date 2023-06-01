@@ -122,7 +122,7 @@ if (!empty($emailE)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitaciones</title>
-    <link rel="stylesheet" href="../Styles/Invitaciones.css">
+    <link rel="stylesheet" href="../Styles/invitacion.css">
 </head>
 
 <body>
@@ -160,7 +160,7 @@ if (!empty($emailE)) {
     </form>
 
 </body>
-<script src="../Scripts/Invitaciones.js"></script>
+<script src="../Scripts/invitacion.js"></script>
 
 </html>
 <?php

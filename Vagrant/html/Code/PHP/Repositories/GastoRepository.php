@@ -40,11 +40,21 @@ class GastoRepository{
     }
 
     public function consultarGasto($id_gasto){
-
+        $query = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
+        $consulta->$this->conexionDB->preprare($query);
+        $consulta->bindParam(':id_gasto', $id_gasto);
+        $consulta->execute();
+        
+        return $consulta -> fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarGasto($id_usuario){
+    public function listarGasto($actividad_id_actividad){
 
-        
+        $query = "SELECT * FROM gasto WHERE actividad_id_actividad = :actividad_id_actividad";
+        $consulta = $this->conexionDB->prepare($query);
+        $consulta->bindParam(':actividad_id_actividad', $actividad_id_actividad);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 } 
