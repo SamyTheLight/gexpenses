@@ -4,22 +4,27 @@ include 'nav.php';
 include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/AdscritoRepository.php';
-//inclusdo deudor repository
+include 'Repositories/RepartoRepository.php';
+
 
 if(isset($_GET['actividad_id_actividad'])){
     $actividad_id_actividad = $_GET["actividad_id_actividad"];
     var_dump("actividad_id_actividad");
 }
 
-//TODO del id_actividad obtener los adscritos
-//con esos datos rellenar el formulario de miembros
+$adscrito_repository = new AdscritoRepository($conexion);
+$adscritos = $adscrito_repository->listarAdscrito($actividad_id_actividad);
+
+echo "<script type='text/javascript'>console.log('POST data: " . json_encode($adscritos) . "');</script>";
 
 
-if ((isset($_POST['enviarActivitat2']))) {
+//TODO del POST obtener los ID de los deudores -> lógica para insertar el gasto
+if(isset($_POST['id_deudor'])){
+    $ids = $_POST['id_deudor'];
+    //habría que comprobar si los ids son correctos
 
-    if ((!empty($_POST['concepto'])) && (!empty($_POST['import']))) {
-
-        $actividad_id_actividad = $_GET["actividad_id_actividad"];
+    //código para mostrar por consola
+    echo "<script type='text/javascript'>console.log('POST data: " . json_encode($deudores) . "');</script>";    
         var_dump("actividad_id_actividad");
         $concepto = $_POST["concepto"];
         var_dump("concepto");
@@ -27,32 +32,34 @@ if ((isset($_POST['enviarActivitat2']))) {
         var_dump("pagador");
         $cantidad = $_POST["import"];
         var_dump("import");
-        $members_gasto = $_POST["members"];
-
-        // echo '\n actividad_id_actividad';
-        // print_r($actividad_id_actividad);
-        // echo '\n concepto';
-        // print_r($concepto);
-        // echo '\n pagador';
-        // print_r($pagador);
-        // echo '\n cantidad';
-        // print_r($cantidad);
-        // echo '\n membersPago';
-        // print_r($membersPago);
 
         $gasto_repository = new GastoRepository($conexion);
         $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
 
+        // insertar en tabla deudores
+        $deudor_repository = new DeudorRepository($conexion);
+        foreach($ids as $id) {
+            $deudor_repository->insertarDeudor($id, $id_gasto);
+        }
 
-        //TODO insertar deudores de la variable $members_gasto con el $id_gasto obtenido anteriormente
+        // header("Location: reparto.php?id_gasto=" . urlencode($id_gasto));
+}
 
 
-        header("Location: reparto.php?id_gasto=" . urlencode($id_gasto));
+echo "<script type='text/javascript'>console.log('SERVER');</script>";
+//código para desarrollo para saber qué hay en un POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo "<script type='text/javascript'>console.log('POST data: " . json_encode($_POST) . "');</script>";
+}
+
+if ((isset($_POST['enviarActivitat2']))) {
+
+    if ((!empty($_POST['concepto'])) && (!empty($_POST['import']))) {
+
+        
     }
 }
 
-$adscrito_repository = new AdscritoRepository($conexion);
-$adscritos = $adscrito_repository->listarAdscrito($actividad_id_actividad);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,8 +109,7 @@ $adscritos = $adscrito_repository->listarAdscrito($actividad_id_actividad);
                     <label for="tipusAct">Miembros</label>
                     <?php foreach ($adscritos as $adscrito){ ?>
                     <label id="user" for=""><?php echo $adscrito->nombre_adscrito;?>
-                        <input type="checkbox" value="<?php echo $adscrito->nombre_adscrito;?>" name="members[]" id="users" class="users">
-                        <input type="hidden" name="id_adscrito[]" value="<?php echo $adscrito->id_adscrito;?>">
+                        <input type="checkbox" value="<?php echo $adscrito->id_adscrito;?>" name="id_deudor[]" id="users" class="users">
                     </label>
                     <?php } ?>
                     <input type="hidden" name="actividad_id_actividad" value="<?php echo $actividad_id_actividad  ?>">

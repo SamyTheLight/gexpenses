@@ -1,5 +1,5 @@
 <?php
-class GastoRepository{
+class RepartoRepository{
 
     private $conexionDB;
 
@@ -7,18 +7,18 @@ class GastoRepository{
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad){
+    public function insertarReparto($id_reparto, $gasto_id_gasto, $usuario_id_usuario, $deuda){
         
         try {
             // Crear y ejecutar la consulta
             echo ' insertarGasto ';
-            $queryActividad = "INSERT INTO gasto (actividad_id_actividad, concepto, pagador, cantidad) VALUES (:actividad_id_actividad, :concepto, :pagador, :cantidad)";
+            $queryActividad = "INSERT INTO reparto (id_reparto, gasto_id_gasto, usuario_id_usuario, deuda) VALUES (:id_reparto, :gasto_id_gasto, :usuario_id_usuario, :deuda)";
             echo ' prepare ';
             $consultaActivitat = $this->conexionDB->prepare($queryActividad);
-            $consultaActivitat->bindParam(':actividad_id_actividad', $actividad_id_actividad);
-            $consultaActivitat->bindParam(':concepto', $concepto);
-            $consultaActivitat->bindParam(':pagador', $pagador);
-            $consultaActivitat->bindParam(':cantidad', $cantidad);
+            $consultaActivitat->bindParam(':id_reparto', $id_reparto);
+            $consultaActivitat->bindParam(':gasto_id_gasto', $gasto_id_gasto);
+            $consultaActivitat->bindParam(':usuario_id_usuario', $usuario_id_usuario);
+            $consultaActivitat->bindParam(':deuda', $deuda);
             echo ' execute ';
             $consultaActivitat->execute();
 
@@ -27,7 +27,7 @@ class GastoRepository{
 
                 $idInsertado = $this->conexionDB->lastInsertId();
 
-                echo 'return id_actividad';
+                echo 'return id_reparto';
                 return $idInsertado;
             } else {
                 return false;
@@ -39,20 +39,21 @@ class GastoRepository{
         return false;       
     }
 
-    public function consultarGasto($id_gasto){
-        $query = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
+    public function consultarReparto($id_reparto){
+        $query = "SELECT * FROM reparto WHERE id_reparto = :id_reparto";
         $consulta->$this->conexionDB->preprare($query);
-        $consulta->bindParam(':id_gasto', $id_gasto);
+        $consulta->bindParam(':id_reparto', $id_reparto);
         $consulta->execute();
         
         return $consulta -> fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarGasto($actividad_id_actividad){
+    //Listar repartos en una tabla ?
+    public function listarReparto($gasto_id_gasto){
 
-        $query = "SELECT * FROM gasto WHERE actividad_id_actividad = :actividad_id_actividad";
+        $query = "SELECT * FROM reparto WHERE gasto_id_gasto = :gasto_id_gasto";
         $consulta = $this->conexionDB->prepare($query);
-        $consulta->bindParam(':actividad_id_actividad', $actividad_id_actividad);
+        $consulta->bindParam(':gasto_id_gasto', $gasto_id_gasto);
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);

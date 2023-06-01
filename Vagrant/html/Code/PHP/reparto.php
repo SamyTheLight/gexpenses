@@ -5,24 +5,41 @@ include 'conexion_db.php';
 
 if (isset($_GET['id_gasto'])) {
     $id_gasto = $_GET['id_gasto'];
-    var_dump($id_gasto);
+    var_dump("id_gasto");
+}
+
+//Obtener de la tabla deudores, los ids (adscrito_id_adscrito) de los deudores de este gasto
+//Obtener de adscritos los datos de los deudores
+
+//código para desarrollo para saber qué hay en un POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo "<script type='text/javascript'>console.log('POST data: " . json_encode($_POST) . "');</script>";
+}
+
+if(isset($_POST['despesaTotal']) && isset($_POST['id_deudor'])){
+    // Para insertar en BD el reparto entre los deudores (adscritos) recibiendo los datos desde el html y js
+
+
+
+    // //TODO obtenemos de BD todos los datos de gasto
+    // $queryGasto = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
+    // $consultaGasto->$this->conexionDB->preprare($queryGasto);
+    // $consultaGasto->bindParam(':id_gasto', $id_gasto);
+    // $consultaGasto->execute();
+    // $gasto = $consultaGasto->fetch(PDO::FETCH_ASSOC);
+
+    // //Obtener de BD un array con los deudores al pago
+    // usando el repository de deudores
+    // $queryAdscritos = "SELECT * FROM adscritos WHERE actividad_id_actividad = :actividad_id_actividad";
+    // $consultaAdscritos->$this->conexionDB->preprare($queryAdscritos);
+    // $consultaAdscritos->bindParam(':actividad_id_actividad', $actividad_id_actividad);
+    // $consultaAdscritos->execute();
+    // $adscritos = $consultaAdscritos->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
-// //TODO obtenemos de BD todos los datos de gasto
-// $queryGasto = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
-// $consultaGasto->$this->conexionDB->preprare($queryGasto);
-// $consultaGasto->bindParam(':id_gasto', $id_gasto);
-// $consultaGasto->execute();
-// $gasto = $consultaGasto->fetch(PDO::FETCH_ASSOC);
 
-// //Obtener de BD un array con los deudores al pago
-// usando el repositoryoi de deudores
-// $queryAdscritos = "SELECT * FROM adscritos WHERE actividad_id_actividad = :actividad_id_actividad";
-// $consultaAdscritos->$this->conexionDB->preprare($queryAdscritos);
-// $consultaAdscritos->bindParam(':actividad_id_actividad', $actividad_id_actividad);
-// $consultaAdscritos->execute();
-// $adscritos = $consultaAdscritos->fetchAll(PDO::FETCH_ASSOC);
+
 
 $deudores = array(
     array(
@@ -40,7 +57,6 @@ $deudores = array(
 );
 
 $deuda_a_repartir = 100;
-
 
 
 // $queryPago = $conexion->prepare("SELECT cantidad FROM gasto order by actividad_id_actividad DESC");
@@ -95,7 +111,7 @@ $deuda_a_repartir = 100;
                 <div id="reparto" class="oculto">
                     <div class="pago-total">
                         <label for="" class="despesa_total">Pago total: </label>
-                        <input type="number" value="<?php echo $deuda_a_repartir; ?>" id="despesaTotal" readOnly=true>
+                        <input type="number" value="<?php echo $deuda_a_repartir; ?>" id="despesaTotal" name="despesaTotal" readOnly=true>
                     </div>
                     <hr>
                     <div class="pago-individual">
@@ -103,6 +119,7 @@ $deuda_a_repartir = 100;
                         <label for="" id="id_adscrito"><?php echo $deudor['id_adscrito']?></label>
                         <label for="" id="nombre"><?php echo  $deudor['nombre']; ?></label>
                         <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
+                        <input type="hidden" value=<?php echo $deudor['id_adscrito']?> id="deuda" name="id_deudor[]">
                         <?php endforeach; ?>
                     </div>
                 </div>

@@ -7,13 +7,11 @@ class DeudorRepository{
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarDeudor($id_deudor, $cantidad_deuda, $adscrito_id_adscrito, $gasto_id_gasto){
+    public function insertarDeudor( $cantidad_deuda, $adscrito_id_adscrito, $gasto_id_gasto){
         
-        $query = "INSERT INTO deudor (id_deudor, cantidad_deuda, adscrito_id_adscrito, gasto_id_gasto) VALUES (:id_deudor, :cantidad_deuda, :divisa, :adscrito_id_adscrito, :gasto_id_gasto)";
+        $query = "INSERT INTO deudor ( adscrito_id_adscrito, gasto_id_gasto) VALUES (:adscrito_id_adscrito, :gasto_id_gasto)";
 
         $consulta = $this->conexionDB->prepare($query);
-        $consulta->bindParam(':id_deudor', $id_deudor);
-        $consulta->bindParam(':cantidad_deuda', $cantidad_deuda);
         $consulta->bindParam(':adscrito_id_adscrito', $adscrito_id_adscrito);
         $consulta->bindParam(':gasto_id_gasto', $gasto_id_gasto);
 
