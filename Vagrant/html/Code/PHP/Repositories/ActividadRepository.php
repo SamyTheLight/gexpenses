@@ -1,14 +1,17 @@
 <?php
-class ActividadRepository{
+class ActividadRepository
+{
 
     private $conexionDB;
 
-    public function __construct($conexionDB) {
+    public function __construct($conexionDB)
+    {
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarActividad($nombre, $descripcion, $divisa, $tipo_actividad, $id_usuario){
-        
+    public function insertarActividad($nombre, $descripcion, $divisa, $tipo_actividad, $id_usuario)
+    {
+
         //Insertamos una nueva actividad a la BD
         $queryActividad = "INSERT INTO actividad (nombre, descripcion, divisa, tipo_actividad, usuario_id_usuario) VALUES (:nombre, :descripcion, :divisa, :tipo_actividad, :usuario_id_usuario)";
 
@@ -19,20 +22,29 @@ class ActividadRepository{
         $consulta->bindParam(':tipo_actividad', $tipo_actividad);
         $consulta->bindParam(':usuario_id_usuario', $id_usuario);
 
-        return $consulta->execute();
+        $resultado = $consulta->execute();
+
+        if ($resultado) {
+            $idInsertado = $this->conexionDB->lastInsertId();
+            return $idInsertado;
+        } else {
+            return false;
+        }
     }
 
-    public function consultarActividad($id_actividad){
+    public function consultarActividad($id_actividad)
+    {
         //Consulta para recuperar todas las actividades del usuario
         $query = "SELECT * FROM actividad WHERE id_actividad = :id_actividad ORDER BY fecha DESC";
-        $consulta->$this->conexionDB->preprare($query);
+        $consulta = $this->conexionDB->preprare($query);
         $consulta->bindParam(':id_actividad', $id_actividad);
         $consulta->execute();
-        
-        return $consulta -> fetchAll(PDO::FETCH_OBJ);
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarActividades($id_usuario){
+    public function listarActividades($id_usuario)
+    {
         $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha DESC";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_usuario', $id_usuario);
@@ -40,4 +52,4 @@ class ActividadRepository{
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
-} 
+}

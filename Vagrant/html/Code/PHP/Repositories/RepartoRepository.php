@@ -1,14 +1,17 @@
 <?php
-class RepartoRepository{
+class RepartoRepository
+{
 
     private $conexionDB;
 
-    public function __construct($conexionDB) {
+    public function __construct($conexionDB)
+    {
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarReparto($id_reparto, $gasto_id_gasto, $usuario_id_usuario, $deuda){
-        
+    public function insertarReparto($id_reparto, $gasto_id_gasto, $usuario_id_usuario, $deuda)
+    {
+
         try {
             // Crear y ejecutar la consulta
             echo ' insertarGasto ';
@@ -36,20 +39,22 @@ class RepartoRepository{
             // Manejo del error
             echo "Error en la consulta: " . $e->getMessage();
         }
-        return false;       
+        return false;
     }
 
-    public function consultarReparto($id_reparto){
+    public function consultarReparto($id_reparto)
+    {
         $query = "SELECT * FROM reparto WHERE id_reparto = :id_reparto";
-        $consulta->$this->conexionDB->preprare($query);
+        $consulta = $this->conexionDB->preprare($query);
         $consulta->bindParam(':id_reparto', $id_reparto);
         $consulta->execute();
-        
-        return $consulta -> fetchAll(PDO::FETCH_OBJ);
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
     //Listar repartos en una tabla ?
-    public function listarReparto($gasto_id_gasto){
+    public function listarReparto($gasto_id_gasto)
+    {
 
         $query = "SELECT * FROM reparto WHERE gasto_id_gasto = :gasto_id_gasto";
         $consulta = $this->conexionDB->prepare($query);
@@ -58,4 +63,6 @@ class RepartoRepository{
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
-} 
+
+    //TODO función update Reparto (id_gasto, id_adscrito, cantidad)
+}

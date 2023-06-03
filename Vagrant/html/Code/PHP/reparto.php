@@ -8,7 +8,7 @@ if (isset($_GET['id_gasto'])) {
     var_dump("id_gasto");
 }
 
-//Obtener de la tabla deudores, los ids (adscrito_id_adscrito) de los deudores de este gasto
+//TODO Obtener de la tabla deudores, los ids (adscrito_id_adscrito) de los deudores de este gasto
 //Obtener de adscritos los datos de los deudores
 
 //código para desarrollo para saber qué hay en un POST
@@ -16,30 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<script type='text/javascript'>console.log('POST data: " . json_encode($_POST) . "');</script>";
 }
 
-if(isset($_POST['despesaTotal']) && isset($_POST['id_deudor'])){
-    // Para insertar en BD el reparto entre los deudores (adscritos) recibiendo los datos desde el html y js
-
-
-
-    // //TODO obtenemos de BD todos los datos de gasto
-    // $queryGasto = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
-    // $consultaGasto->$this->conexionDB->preprare($queryGasto);
-    // $consultaGasto->bindParam(':id_gasto', $id_gasto);
-    // $consultaGasto->execute();
-    // $gasto = $consultaGasto->fetch(PDO::FETCH_ASSOC);
-
-    // //Obtener de BD un array con los deudores al pago
-    // usando el repository de deudores
-    // $queryAdscritos = "SELECT * FROM adscritos WHERE actividad_id_actividad = :actividad_id_actividad";
-    // $consultaAdscritos->$this->conexionDB->preprare($queryAdscritos);
-    // $consultaAdscritos->bindParam(':actividad_id_actividad', $actividad_id_actividad);
-    // $consultaAdscritos->execute();
-    // $adscritos = $consultaAdscritos->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_POST['']) && isset($_POST[''])) {
+    // hacer un update id deudor (que es en realidad adscrito_id_adscrito), id_gasto, deuda
 }
-
-
-
-
 
 $deudores = array(
     array(
@@ -58,23 +37,6 @@ $deudores = array(
 
 $deuda_a_repartir = 100;
 
-
-// $queryPago = $conexion->prepare("SELECT cantidad FROM gasto order by actividad_id_actividad DESC");
-
-// $queryPago->execute();
-
-// $cantidad = $queryPago->fetch(PDO::FETCH_OBJ);
-
-// foreach ($cantidad as $rowImport) :
-//     $queryReparto = $conexion->prepare("SELECT usuario_id_usuario, importe FROM reparto 
-//                                         WHERE gasto = :gasto");
-
-//     $queryReparto->bindParam(':gasto', $rowImport->cantidad);
-//     $queryReparto->execute();
-
-//     $reparto = $queryReparto->fetchAll(PDO::FETCH_OBJ);
-//     var_dump($reparto);
-// endforeach;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,13 +75,18 @@ $deuda_a_repartir = 100;
                         <label for="" class="despesa_total">Pago total: </label>
                         <input type="number" value="<?php echo $deuda_a_repartir; ?>" id="despesaTotal" name="despesaTotal" readOnly=true>
                     </div>
+                    <div class="pago-total">
+                        <label for="" class="despesa_total">Total a repartir: </label>
+                        <input type="number" value="<?php echo $deuda_a_repartir; ?>" id="despesa_a_repartir" name="despesa_a_repartir" readOnly=true>
+                    </div>
+                    <input type="hidden" value=<?php echo $id_gasto ?> id="id_gasto" name="id_gasto">
                     <hr>
                     <div class="pago-individual">
                         <?php foreach ($deudores as $deudor) : ?>
-                        <label for="" id="id_adscrito"><?php echo $deudor['id_adscrito']?></label>
-                        <label for="" id="nombre"><?php echo  $deudor['nombre']; ?></label>
-                        <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
-                        <input type="hidden" value=<?php echo $deudor['id_adscrito']?> id="deuda" name="id_deudor[]">
+                            <label for="" id="id_adscrito"><?php echo $deudor['id_adscrito'] ?></label>
+                            <label for="" id="nombre"><?php echo  $deudor['nombre']; ?></label>
+                            <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
+                            <input type="hidden" value=<?php echo $deudor['id_adscrito'] ?> id="deuda" name="id_deudor[]">
                         <?php endforeach; ?>
                     </div>
                 </div>

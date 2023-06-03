@@ -1,14 +1,17 @@
 <?php
-class GastoRepository{
+class GastoRepository
+{
 
     private $conexionDB;
 
-    public function __construct($conexionDB) {
+    public function __construct($conexionDB)
+    {
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad){
-        
+    public function insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad)
+    {
+
         try {
             // Crear y ejecutar la consulta
             echo ' insertarGasto ';
@@ -36,19 +39,21 @@ class GastoRepository{
             // Manejo del error
             echo "Error en la consulta: " . $e->getMessage();
         }
-        return false;       
+        return false;
     }
 
-    public function consultarGasto($id_gasto){
+    public function consultarGasto($id_gasto)
+    {
         $query = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
-        $consulta->$this->conexionDB->preprare($query);
+        $consulta = $this->conexionDB->preprare($query);
         $consulta->bindParam(':id_gasto', $id_gasto);
         $consulta->execute();
-        
-        return $consulta -> fetchAll(PDO::FETCH_OBJ);
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function listarGasto($actividad_id_actividad){
+    public function listarGasto($actividad_id_actividad)
+    {
 
         $query = "SELECT * FROM gasto WHERE actividad_id_actividad = :actividad_id_actividad";
         $consulta = $this->conexionDB->prepare($query);
@@ -57,4 +62,4 @@ class GastoRepository{
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
-} 
+}

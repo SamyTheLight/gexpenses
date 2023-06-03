@@ -1,14 +1,17 @@
 <?php
-class DeudorRepository{
+class DeudorRepository
+{
 
     private $conexionDB;
 
-    public function __construct($conexionDB) {
+    public function __construct($conexionDB)
+    {
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarDeudor( $cantidad_deuda, $adscrito_id_adscrito, $gasto_id_gasto){
-        
+    public function insertarDeudor($adscrito_id_adscrito, $gasto_id_gasto)
+    {
+
         $query = "INSERT INTO deudor ( adscrito_id_adscrito, gasto_id_gasto) VALUES (:adscrito_id_adscrito, :gasto_id_gasto)";
 
         $consulta = $this->conexionDB->prepare($query);
@@ -18,22 +21,24 @@ class DeudorRepository{
         return $consulta->execute();
     }
 
-    public function consultarDeudor($id_deudor){
+    public function consultarDeudor($id_deudor)
+    {
         //Consulta para recuperar todas las actividades del usuario
         $query = "SELECT * FROM deudor WHERE id_deudor = :id_deudor";
-        $consulta->$this->conexionDB->preprare($query);
-        $consulta->bindParam(':id_deudor', $id_deudor);
-        $consulta->execute();
-        
-        return $consulta -> fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function listarDeudor($id_adscrito){
-        $query = "SELECT * FROM deudor WHERE adscrito_id_adscrito = :id_adscrito";
         $consulta = $this->conexionDB->prepare($query);
-        $consulta->bindParam(':id_adscrito', $id_adscrito);
+        $consulta->bindParam(':id_deudor', $id_deudor);
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
-} 
+
+    public function listarDeudor($gasto_id_gasto)
+    {
+        $query = "SELECT * FROM deudor WHERE gasto_id_gasto = :gasto_id_gasto";
+        $consulta = $this->conexionDB->prepare($query);
+        $consulta->bindParam(':gasto_id_gasto', $gasto_id_gasto);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+}
