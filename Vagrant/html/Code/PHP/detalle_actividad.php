@@ -5,7 +5,7 @@ include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/ActividadRepository.php';
 
-if(isset($_GET['id_actividad'])){
+if (isset($_GET['id_actividad'])) {
     $id_actividad = $_GET['id_actividad'];
 }
 
@@ -28,10 +28,15 @@ $resultado = 0;
 foreach ($registroImporte as $rowImportes) :
     $resultado += ($rowImportes->cantidad);
 endforeach;
-// ?>
+
+$queryAdscritos = $conexion->prepare("SELECT nombre_adscrito FROM adscrito WHERE actividad_id_actividad = $id_actividad");
+$queryAdscritos->execute();
+$adscritos = $queryAdscritos->fetchAll(PDO::FETCH_COLUMN);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,28 +54,19 @@ endforeach;
             </div>
             <div class="buttonPayment">
                 <!-- TODO cambiar el botón por un link al que se le puede pasar una variable como en el caso del link DETAILS de home-->
-                <button id="btn-gasto">Añadir Gasto +</button>
+                <!-- <button id="btn-gasto">Añadir Gasto +</button> -->
+                <button id="btn-gasto" class="link"><a href="gasto.php?id_actividad=<?php echo $row->id_actividad?>"><b>Añadir Gasto +</b></a></button>
             </div>
             <div class="import">
                 <h3><?php echo $resultado; ?></h3>
             </div>
             <div class="members">
-                <span class="material-icons">person</span>
-                    <span class="material-icons">person</span>
+                <?php foreach ($adscritos as $adscrito) : ?>
+                    <div class="member">
                         <span class="material-icons">person</span>
-                        <?php
-                        if (isset($_GET['aceptat'])) {
-                        ?>
-                        <?php
-                        if ($_GET['aceptat'] === '1') {
-                        ?>
-                        <span class="material-icons">person</span>
-                        <?php
-                        }
-                        ?>
-                        <?php
-                        }
-                        ?>
+                        <span class="adscrito"><?php echo $adscrito; ?></span>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
             <div class="paymentsList">
@@ -82,12 +78,12 @@ endforeach;
                         <th class="pagador1"><b>Pagador</b></th>
                     </tr>
                     <?php foreach ($registros11 as $rowPago) : ?>
-                    <tr>                        
-                        <th class="concepto"><?php echo ($rowPago->concepto) ?></th>
-                        <th class="cantidad"><a href="reparto.php?id_gasto="<?php echo $rowPago->id_gasto; ?>>Repartir gasto</a></th>
-                        <th class="cantidad"><?php echo $rowPago->cantidad ?></th>
-                        <th class="pagador"><?php echo $rowPago->pagador ?></th>
-                    </tr>
+                        <tr>
+                            <th class="concepto"><?php echo ($rowPago->concepto) ?></th>
+                            <th class="cantidad"><a href="reparto.php?id_gasto=" <?php echo $rowPago->id_gasto; ?>>Repartir gasto</a></th>
+                            <th class="cantidad"><?php echo $rowPago->cantidad ?></th>
+                            <th class="pagador"><?php echo $rowPago->pagador ?></th>
+                        </tr>
                     <?php endforeach; ?>
                 </table>
             </div>
@@ -98,4 +94,5 @@ endforeach;
 <?php
 include 'footer.php';
 ?>
+
 </html>

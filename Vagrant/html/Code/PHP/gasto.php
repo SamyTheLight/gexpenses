@@ -5,6 +5,7 @@ include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/AdscritoRepository.php';
 include 'Repositories/RepartoRepository.php';
+include 'Repositories/DeudorRepository.php';
 
 
 if (isset($_GET['actividad_id_actividad'])) {
@@ -24,22 +25,21 @@ if (isset($_POST['id_deudor'])) {
     //habría que comprobar si los ids son correctos
 
     //código para mostrar por consola
-    echo "<script type='text/javascript'>console.log('POST data: " . json_encode($deudores) . "');</script>";
-    var_dump("actividad_id_actividad");
+    echo "<script type='text/javascript'>console.log('ids: " . json_encode($ids) . "');</script>";
     $concepto = $_POST["concepto"];
-    var_dump("concepto");
     $pagador = $_POST["pagador"];
-    var_dump("pagador");
     $cantidad = $_POST["import"];
-    var_dump("import");
 
     $gasto_repository = new GastoRepository($conexion);
     $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
 
+    echo "<script type='text/javascript'>console.log('id_gasto insertado: " . json_encode($id_gasto) . "');</script>";
     // insertar en tabla deudores
     $deudor_repository = new DeudorRepository($conexion);
     foreach ($ids as $id_adscrito) {
-        $deudor_repository->insertarDeudor($id_adscrito, $id_gasto);
+        echo "<script type='text/javascript'>console.log('id_adscrito: " . json_encode($id_adscrito) . "');</script>";
+        $nuevo_id_deudor = $deudor_repository->insertarDeudor($id_adscrito, $id_gasto);
+        echo "<script type='text/javascript'>console.log('nuevo_id_deudor: " . json_encode($nuevo_id_deudor) . "');</script>";
     }
 
     header("Location: reparto.php?id_gasto=" . urlencode($id_gasto));
@@ -86,7 +86,7 @@ if ((isset($_POST['enviarActivitat2']))) {
                 </section>
             </section>
             <form action="" id="act-form" method="POST">
-                <h2>Actividad 3</h2>
+                <h2>Actividad <?php echo $actividad_id_actividad; ?></h2>
                 <div class=" user_info">
                     <label for="names">Concepto </label>
                     <input type="text" id="concepto" placeholder="Elige un concepto" class="form-control" name="concepto">
@@ -94,7 +94,7 @@ if ((isset($_POST['enviarActivitat2']))) {
                     <label for="description">Importe</label>
                     <input type="number" placeholder="Elige un importe" class="form-control" id="importe" name="import">
 
-                    //Aqui mostrar todos los adscritos
+                    <!-- Aqui mostrar todos los adscritos -->
                     <label for="mensaje">Pagador</label>
                     <select name="pagador" id="divisa" class="pagadores">
                         <option selected disabled value="" class="pagador">Elige un pagador</option>
@@ -102,7 +102,7 @@ if ((isset($_POST['enviarActivitat2']))) {
                             <option value=<?php echo $adscrito->id_adscrito; ?> class="pagador"><?php echo $adscrito->nombre_adscrito; ?></option>
                         <?php } ?>
                     </select>
-                    //Aqui mostrar todos los adscritos
+                    <!-- Aqui mostrar todos los adscritos -->
                     <label for="tipusAct">Miembros</label>
                     <?php foreach ($adscritos as $adscrito) { ?>
                         <label id="user" for=""><?php echo $adscrito->nombre_adscrito; ?>

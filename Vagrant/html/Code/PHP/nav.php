@@ -36,7 +36,6 @@ include 'ConexionDB.php';
                 <ul class="navbar-bar">
                     <a class="nav-item" href="#"><?php echo "Bienvenido, " . $_SESSION['usuario']; ?></a>
                     <li><a class="nav-item" href="home.php">Home</a></li>
-                    <li><a class="nav-item" href="gasto.php">gasto</a></li>
                     <li><a class="nav-item" href="cerrar_sesion.php">Logout</a></li>
                 </ul>
 

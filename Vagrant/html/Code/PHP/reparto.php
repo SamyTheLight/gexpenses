@@ -2,40 +2,51 @@
 session_start();
 include 'nav.php';
 include 'conexion_db.php';
-
-if (isset($_GET['id_gasto'])) {
-    $id_gasto = $_GET['id_gasto'];
-    var_dump("id_gasto");
-}
-
-//TODO Obtener de la tabla deudores, los ids (adscrito_id_adscrito) de los deudores de este gasto
-//Obtener de adscritos los datos de los deudores
+include 'Repositories/DeudorRepository.php';
+include 'Repositories/AdscritoRepository.php';
+include 'Repositories/GastoRepository.php';
 
 //código para desarrollo para saber qué hay en un POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<script type='text/javascript'>console.log('POST data: " . json_encode($_POST) . "');</script>";
 }
 
-if (isset($_POST['']) && isset($_POST[''])) {
-    // hacer un update id deudor (que es en realidad adscrito_id_adscrito), id_gasto, deuda
+echo "<script type='text/javascript'>console.log('deudores: " . json_encode($deudores) . "');</script>";
+
+if (isset($_GET['id_gasto'])) {
+    $id_gasto = $_GET['id_gasto'];
+    var_dump("id_gasto");
 }
 
-$deudores = array(
-    array(
-        'id_adscrito' => 1,
-        'nombre' => 'Oscar'
-    ),
-    array(
-        'id_adscrito' => 2,
-        'nombre' => 'Joan'
-    ),
-    array(
-        'id_adscrito' => 3,
-        'nombre' => 'Samuel'
-    )
-);
+//TODO Obtener de la tabla adscritos, los ids (adscrito_id_adscrito) de los deudores de este gasto
+//Obtener de adscritos los datos de los deudores 
+// para rellenar la variable $deudores
+$adscrito_repository = new AdscritoRepository($conexion);
+$deudor_repository = new DeudorRepository($conexion);
+$gasto_repository = new GastoRepository($conexion);
 
-$deuda_a_repartir = 100;
+//obtener los detalles del gasto
+$gasto = $gasto_repository->consultarGasto($id_gasto);
+$gasto = $gasto[0];
+
+$lista_deudores = $deudor_repository->listarDeudor($id_gasto);
+
+echo "<script type='text/javascript'>console.log('gasto: " . json_encode($gasto) . "');</script>";
+$deudores = array();
+// $deudores = $adscrito_repository->listarAdscrito($gasto->actividad_id_actividad);
+foreach($lista_deudores as $deudor) {
+    echo "<script type='text/javascript'>console.log('dentro del foreach');</script>";
+    $adscrito = $adscrito_repository->consultarAdscrito($deudor->adscrito_id_adscrito);
+    echo "<script type='text/javascript'>console.log('adscrito: " . json_encode($adscrito) . "');</script>";
+    $deudores[] = $adscrito;
+}
+echo "<script type='text/javascript'>console.log('deudores: " . json_encode($deudores) . "');</script>";
+
+// if (isset($_POST['']) && isset($_POST[''])) {
+//     // hacer un update id_adscrito (que es en realidad adscrito_id_adscrito), id_gasto, deuda.
+// }
+
+$deuda_a_repartir = $gasto->cantidad;
 
 ?>
 <!DOCTYPE html>
@@ -81,12 +92,13 @@ $deuda_a_repartir = 100;
                     </div>
                     <input type="hidden" value=<?php echo $id_gasto ?> id="id_gasto" name="id_gasto">
                     <hr>
+
                     <div class="pago-individual">
                         <?php foreach ($deudores as $deudor) : ?>
                             <label for="" id="id_adscrito"><?php echo $deudor['id_adscrito'] ?></label>
-                            <label for="" id="nombre"><?php echo  $deudor['nombre']; ?></label>
+                            <label for="" id="nombre"><?php echo  $deudor['nombre_adscrito']; ?></label>
                             <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
-                            <input type="hidden" value=<?php echo $deudor['id_adscrito'] ?> id="deuda" name="id_deudor[]">
+                            <input type="hidden" value=<?php echo $deudor['id_adscrito'] ?> id="deuda" name="id_adscrito[]">
                         <?php endforeach; ?>
                     </div>
                 </div>

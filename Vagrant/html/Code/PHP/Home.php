@@ -65,15 +65,6 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
             <?php foreach ($registros as $row) : ?>
             <div class="card">
             <div class="face front">
-                    <?php
-                        /*$tiposActivitat = $_POST["tipusActivitat"];
-                        $queryEmail = $conexion->prepare("SELECT TipusAct FROM activitat ");
-
-                        $queryEmail->bindParam(":tiposA", $tiposActivitat);
-            
-                        $queryEmail->execute();
-                        $user = $queryLogin->fetch(PDO::FETCH_ASSOC);*/
-                        ?>
                     <img src="Images/Viaje_Combinado.png" alt="">
                     
                     <h3><?php echo strtoupper($row->nombre) ?></h3>
@@ -82,8 +73,7 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
                     <h1><?php echo strtoupper($row->nombre) ?></h1>
                     <p id="description"><?php echo $row->descripcion ?></p>
                     <p class="divisa"><b>Divisa: </b><?php echo $row->divisa ?></p>
-                    <div class="link"><a href="detalle_actividad.php?id_actividad=<?php echo $row->id_actividad?>"><b>DETAILS</b></a>
-                    </div>
+                    <div class="link"><a href="detalle_actividad.php?id_actividad=<?php echo $row->id_actividad?>"><b>DETAILS</b></a></div>
                 </div>
 
             </div>
