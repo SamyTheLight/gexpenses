@@ -18,12 +18,18 @@ class DeudorRepository
         $consulta->bindParam(':adscrito_id_adscrito', $adscrito_id_adscrito);
         $consulta->bindParam(':gasto_id_gasto', $gasto_id_gasto);
 
-        return $consulta->execute();
+        $consulta->execute();
+        if ($consulta) {
+            $idInsertado = $this->conexionDB->lastInsertId();
+
+            return $idInsertado;
+        } else {
+            return 0;
+        }
     }
 
     public function consultarDeudor($id_deudor)
     {
-        //Consulta para recuperar todas las actividades del usuario
         $query = "SELECT * FROM deudor WHERE id_deudor = :id_deudor";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_deudor', $id_deudor);

@@ -24,12 +24,13 @@ class AdscritoRepository
 
     public function consultarAdscrito($id_adscrito)
     {
+        echo "<script type='text/javascript'>console.log('condultar_adscrito: " . $id_adscrito . "');</script>";
         $query = "SELECT * FROM adscrito WHERE id_adscrito = :id_adscrito";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_adscrito', $id_adscrito);
         $consulta->execute();
 
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
+        return $consulta->fetch(PDO::FETCH_OBJ);
     }
 
     public function listarAdscrito($actividad_id_actividad)
@@ -39,6 +40,6 @@ class AdscritoRepository
         $consulta->bindParam(':actividad_id_actividad', $actividad_id_actividad);
         $consulta->execute();
 
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
+        return $consulta->fetch(PDO::FETCH_OBJ);
     }
 }

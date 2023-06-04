@@ -26,11 +26,8 @@ class GastoRepository
             $consultaActivitat->execute();
 
             if ($consultaActivitat) {
-                echo ' lastInsertId ';
-
                 $idInsertado = $this->conexionDB->lastInsertId();
 
-                echo 'return id_actividad';
                 return $idInsertado;
             } else {
                 return false;
@@ -45,7 +42,7 @@ class GastoRepository
     public function consultarGasto($id_gasto)
     {
         $query = "SELECT * FROM gasto WHERE id_gasto = :id_gasto";
-        $consulta = $this->conexionDB->preprare($query);
+        $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_gasto', $id_gasto);
         $consulta->execute();
 
