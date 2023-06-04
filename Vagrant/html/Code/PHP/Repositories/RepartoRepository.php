@@ -65,4 +65,28 @@ class RepartoRepository
     }
 
     //TODO función update Reparto (id_gasto, id_adscrito, cantidad)
+
+    public function updateReparto($id_reparto, $deuda)
+    {
+        try {
+            // Crear y ejecutar la consulta
+            $query = "UPDATE reparto SET deuda = :deuda WHERE id_reparto = :id_reparto";
+            $consulta = $this->conexionDB->prepare($query);
+            $consulta->bindParam(':deuda', $deuda);
+            $consulta->bindParam(':id_reparto', $id_reparto);
+            $consulta->execute();
+
+            // Verificar si la consulta se ejecutó correctamente
+            if ($consulta->rowCount() > 0) {
+                return true; // Actualización exitosa
+            } else {
+                return false; // No se encontró el registro o no se realizó ninguna actualización
+            }
+        } catch (Exception $e) {
+            // Manejo del error
+            echo "Error en la consulta: " . $e->getMessage();
+        }
+
+        return false; // Actualización fallida
+    }
 }
