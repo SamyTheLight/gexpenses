@@ -46,7 +46,7 @@ class GastoRepository
         $consulta->bindParam(':id_gasto', $id_gasto);
         $consulta->execute();
 
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
+        return $consulta->fetch(PDO::FETCH_OBJ);
     }
 
     public function listarGasto($actividad_id_actividad)

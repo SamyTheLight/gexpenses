@@ -172,3 +172,4 @@ INSERT INTO actividad(`usuario_id_usuario`, `nombre`, `descripcion`, `divisa`, `
 INSERT INTO adscrito(`usuario_id_usuario`, `nombre_adscrito`, `actividad_id_actividad`) VALUES (1, 'pepe', 1);
 INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('paco', 1);
 INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('jose', 1);
+INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('pedro', 1);

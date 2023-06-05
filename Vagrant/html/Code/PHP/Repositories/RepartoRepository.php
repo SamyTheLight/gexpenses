@@ -45,7 +45,7 @@ class RepartoRepository
     public function consultarReparto($id_reparto)
     {
         $query = "SELECT * FROM reparto WHERE id_reparto = :id_reparto";
-        $consulta = $this->conexionDB->preprare($query);
+        $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_reparto', $id_reparto);
         $consulta->execute();
 
@@ -64,7 +64,7 @@ class RepartoRepository
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    //TODO función update Reparto (id_gasto, id_adscrito, cantidad)
+    //TODO función update Reparto (gasto_id_gasto, adscrito_id_adscrito, cantidad)
 
     public function updateReparto($id_reparto, $deuda)
     {

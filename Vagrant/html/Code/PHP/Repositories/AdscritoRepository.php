@@ -40,6 +40,6 @@ class AdscritoRepository
         $consulta->bindParam(':actividad_id_actividad', $actividad_id_actividad);
         $consulta->execute();
 
-        return $consulta->fetch(PDO::FETCH_OBJ);
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 }

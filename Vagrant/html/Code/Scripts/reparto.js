@@ -53,8 +53,8 @@ btn_sel.addEventListener("click", function (e) {
 });
 
 // Evento click para el botón de aceptar la actividad que nos redirige a la página detalle_actividad
-btn_acc.addEventListener("click", function (e) {
-  e.preventDefault();
-  window.location = "detalle_actividad.php";
-});
+// btn_acc.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   window.location = "detalle_actividad.php";
+// });
 
