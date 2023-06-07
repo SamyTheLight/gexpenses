@@ -36,7 +36,7 @@ class ActividadRepository
     {
         //Consulta para recuperar todas las actividades del usuario
         $query = "SELECT * FROM actividad WHERE id_actividad = :id_actividad ORDER BY fecha DESC";
-        $consulta = $this->conexionDB->preprare($query);
+        $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_actividad', $id_actividad);
         $consulta->execute();
 

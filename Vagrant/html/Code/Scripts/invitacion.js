@@ -49,7 +49,7 @@ function validarCorreo(mail) {
 document.querySelector(".btn-email").addEventListener("click", (e) => {
   const correo = document.getElementById("mails").value;
   e.preventDefault();
-  validarCorreo(correo);
+  // validarCorreo(correo);
 });
 document.getElementById("emails").addEventListener("click", function (e) {
   deleteAct(e.target);

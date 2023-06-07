@@ -4,6 +4,12 @@ if (!isset($_SESSION)) {
 }
 include 'nav.php';
 include 'conexion_db.php';
+include 'Repositories/InvitacionRepository.php';
+include 'Repositories/ActividadRepository.php';
+include 'Repositories/AdscritoRepository.php';
+
+
+$actividad = $actividad
 
 $queryRegistro = "SELECT * FROM actividad ORDER BY id_actividad DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
@@ -93,8 +99,10 @@ if (!empty($emailE)) {
             $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
             var_dump($idUserInvitacio1);
 
+            $token = bin2hex(openssl_random_pseudo_bytes(16));
+
             insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1);
-            guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
+            // guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
 
             $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
             $queryEmail->bindParam(':emailP', $rowEmail);

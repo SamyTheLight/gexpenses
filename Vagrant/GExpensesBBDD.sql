@@ -32,6 +32,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id_usuario`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `sesion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sesion`;
+
+CREATE TABLE if NOT EXISTS `sesion` (
+    id_sesion INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id_usuario INT NOT NULL,
+    fecha_inicio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_fin TIMESTAMP NULL,
+    token CHAR(32) NOT NULL,
+    FOREIGN KEY (usuario_id_usuario) REFERENCES `usuario`(id_usuario)
+);
 
 -- -----------------------------------------------------
 -- Table `actividad`
@@ -87,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `invitacion` (
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `descripcion` VARCHAR(255) NULL DEFAULT NULL,
   `email` VARCHAR(255) NULL DEFAULT NULL,
+  `token` CHAR(32) NOT NULL,
   PRIMARY KEY (`usuario_id_usuario`, `actividad_id_actividad`),
   CONSTRAINT `fk_usuario_has_actividad_actividad1`
     FOREIGN KEY (`actividad_id_actividad`)

@@ -2,12 +2,15 @@
 include 'caduca_sesion.php';
 session_start();
 include 'conexion_db.php';
+include 'Repositories/SesionRepository.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $registered = false;
+
+
 
 function validarDadesFormulari($firstname, $email, $passwordReg, $valid)
 {
@@ -77,6 +80,12 @@ if ((isset($_POST['buttonLogin']))) {
     if (password_verify($passwordL, $user['contrasena'])) {
         $_SESSION['usuario'] = $nameuserL;
         $_SESSION['id_usuario'] = $user['id_usuario'];
+
+        //TODO insertar sesión
+        $sesion_repository = new SesionRepository($conexion);
+        $token = $sesion_repository->insertarSesion($_SESSION['id_usuario']);
+        //TODO guardar id_usuario y token en $_SESSION
+        $_SESSION['token'] = $token;
 
         header("location: PHP/home.php");
     }

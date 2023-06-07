@@ -4,10 +4,20 @@ include 'nav.php';
 include 'conexion_db.php';
 include 'user_is_logued.php';
 include 'Repositories/ActividadRepository.php';
+include 'Repositories/SesionRepository.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+//TODO antes de hacer ninguna otra cosa, comprobar la sesión
+$sesion_repository = new SesionRepository($conexion);
+$res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
+if($res == false) {
+    $_SESSION['token'] = null;
+    $_SESSION['id_usuario'] = null;
+    header("location: ../index.php");
+}
 
 //Crear instancia clase ActividadRepository
 $actividadRepository = new ActividadRepository($conexion);
@@ -20,9 +30,10 @@ if ((isset($_POST['enviarActivitat']))) {
         $tipoDivisa = $_POST["divisa"];
         $tipoActividad = $_POST["tipusActivitat"];
 
-        if ($actividadRepository->insertarActividad($nombreActividad, $descripcioActivitat, $tipoDivisa, $tipoActividad, $_SESSION['id_usuario'])) {
+        $id_actividad = $actividadRepository->insertarActividad($nombreActividad, $descripcioActivitat, $tipoDivisa, $tipoActividad, $_SESSION['id_usuario']);
+        if ($id_actividad <> 0) {
             echo 'Envio bien';
-            Header("Location: invitacion.php");
+            Header("Location: invitacion.php?id_actividad=" . $id_actividad);
             exit();
         }
     }
