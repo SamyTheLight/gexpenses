@@ -33,7 +33,7 @@ if ((isset($_POST['enviarActivitat']))) {
         $id_actividad = $actividadRepository->insertarActividad($nombreActividad, $descripcioActivitat, $tipoDivisa, $tipoActividad, $_SESSION['id_usuario']);
         if ($id_actividad <> 0) {
             echo 'Envio bien';
-            Header("Location: invitacion.php?id_actividad=" . $id_actividad);
+            Header("Location: invitacion.php?actividad_id_actividad=" . $id_actividad);
             exit();
         }
     }

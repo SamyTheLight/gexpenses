@@ -8,20 +8,19 @@ include 'Repositories/InvitacionRepository.php';
 include 'Repositories/ActividadRepository.php';
 include 'Repositories/AdscritoRepository.php';
 
+if (isset($_GET['actividad_id_actividad'])) {
+    $actividad_id_actividad = $_GET["actividad_id_actividad"];
+    var_dump("actividad_id_actividad");
+}
 
-$actividad = $actividad
+$actividad_repository = new ActividadRepository($conexion);
 
 $queryRegistro = "SELECT * FROM actividad ORDER BY id_actividad DESC limit 1";
 $stmtRegistro = $conexion->query($queryRegistro);
-$registroInvitacio = $stmtRegistro->fetchAll(PDO::FETCH_OBJ);
+$registroInvitacio = $actividad_repository->consultarActividad($actividad_id_actividad);
 
-$nombreActividadR = "";
-$descripcionActividadR = "";
-
-foreach ($registroInvitacio as $row) {
-    $nombreActividadR = $row->nombre;
-    $descripcionActividadR = $row->descripcion;
-}
+$nombreActividadR = $registroInvitacio->nombre;
+$descripcionActividadR = $registroInvitacio->descripcion;
 
 function idUserInvitacion($conexion, $emailI)
 {
@@ -37,60 +36,20 @@ $emailE = $_POST['emailEnviados'];
 
 $cont = 0;
 
-function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR, $idUserInvitacio1)
+function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR, $idUserInvitacio1, $actividad_id_actividad)
 {
     $nombreI = $nombreActividadR;
     $descripcioI =  $descripcionActividadR;
     $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
 
-    $queryInvitacio = "INSERT INTO invitacion (usuario_id_usuario,nombre,descripcion,email) VALUES (:userIdA,:nombreI,:descripcioI,:emailI)";
-    $consultaInvitacio = $conexion->prepare($queryInvitacio);
-    $consultaInvitacio->bindParam(':nombreI', $nombreI);
-    $consultaInvitacio->bindParam(':descripcioI', $descripcioI);
-    $consultaInvitacio->bindParam(':emailI', $mail);
-
-    $nullV = null;
-
-    if ($idUserInvitacio1 == false) $consultaInvitacio->bindParam(':userIdA',  $nullV);
-    else {
-        $aux = (int) $idUserInvitacio1;
-        $consultaInvitacio->bindParam(':userIdA', $aux);
+    $usuario_id_usuario = null;
+    if ($idUserInvitacio1 <> false){
+        $usuario_id_usuario =  (int) $idUserInvitacio1;
     }
 
-    if ($consultaInvitacio->execute())
-        echo 'Execute correcte';
+    $invitacion_repository = new InvitacionRepository($conexion);
+    $invitacion_repository->insertarInvitacion($usuario_id_usuario, $actividad_id_actividad, $nombreI, $descripcioI, $mail);
 }
-
-function generateToken($length = 10)
-{
-    return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
-}
-/*
-$tokenI = generateToken($length = 10);
-
-function guardarToken($conexion, $token, $idUserInvitacio1, $rowEmail)
-{
-    $boolCreat = 1;
-
-    $idUserInvitacio1 = idUserInvitacion($conexion, $rowEmail);
-    $CurrentDateInv = date_create("now")->format("Y-m-d H:i:s");
-
-    $queryToken = "INSERT INTO Token (token,invitacio_id,fecha,estado,EmailInvitacio) VALUES (:tokenI,:invitacio_idI,:fechaInv,:estadoI,:emailInvitacio)";
-
-    $consultaToken = $conexion->prepare($queryToken);
-    $consultaToken->bindParam(':tokenI', $token);
-
-    $auxInvit = (int) $idUserInvitacio1;
-    var_dump($idUserInvitacio1);
-
-    $consultaToken->bindParam(':invitacio_idI', $auxInvit);
-    $consultaToken->bindParam(':fechaInv', $CurrentDateInv);
-    $consultaToken->bindParam(':estadoI', $boolCreat);
-    $consultaToken->bindParam(':emailInvitacio', $rowEmail);
-
-    $consultaToken->execute();
-}
-*/
 
 if (!empty($emailE)) {
     foreach ($emailE as $rowEmail) :
@@ -101,8 +60,7 @@ if (!empty($emailE)) {
 
             $token = bin2hex(openssl_random_pseudo_bytes(16));
 
-            insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1);
-            // guardarToken($conexion, $tokenI, $idUserInvitacio1, $rowEmail);
+            insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1, $actividad_id_actividad);
 
             $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
             $queryEmail->bindParam(':emailP', $rowEmail);
@@ -138,7 +96,7 @@ if (!empty($emailE)) {
         <div class="card">
             <img class="card-image" src="./Images/Viaje_Combinado.png">
             <div class="card-text">
-                <span class="date">4 days ago</span>
+                <span class="date">  </span>
 
                 <?php foreach ($registroInvitacio as $rowR) { ?>
                 <h1><?php echo $rowR->Nombre;
@@ -153,12 +111,9 @@ if (!empty($emailE)) {
                     <input type="email" class="mails" name="emailEnviados[]" id="mails" placeholder="EMAIL">
                     <button class="btn-email" id="btn-emial">+</button>
                 </div>
-                <div class="missage-error" id="missage-error">
-                    <p id="error">¡El correo no es correcto, porfavor introduzca los carácteres necesarios!</p>
-                </div>
                 <hr>
                 <div class="emails" id="emails">
-                    <h3 id="title-emails">¡ESTOS SON LOS CORREOS A LOS QUE DESEAS ENVIAR LA INVITACIÓN!</h3>
+                    <h3 id="title-emails">¡AÑADE PARTICIPANTES A LA ACTIVIDAD!</h3>
                 </div>
             </div>
             <div class="card-stats">

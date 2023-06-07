@@ -3,14 +3,15 @@ include 'caduca_sesion.php';
 session_start();
 include 'conexion_db.php';
 include 'Repositories/SesionRepository.php';
+include 'Repositories/UsuarioRepository.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$usuario_repository=new UsuarioRepository($conexion);
+
 $registered = false;
-
-
 
 function validarDadesFormulari($firstname, $email, $passwordReg, $valid)
 {
@@ -33,7 +34,7 @@ function validarDadesFormulari($firstname, $email, $passwordReg, $valid)
     return $valid;
 }
 
-if ((!empty($_POST))) {
+if ((!empty($_POST['email']))) {
 
 
     $firstname = $_POST["username"];
@@ -46,14 +47,10 @@ if ((!empty($_POST))) {
 
     if ($resultatvalidacio == true) {
         $hash_password = password_hash($passwordReg, PASSWORD_DEFAULT);
-        $query = "INSERT INTO usuario (nombre,contrasena,email) VALUES (:nombre,:contrasena,:email)";
+        
+        $res = $usuario_repository->insertarUsuario($firstname, $hash_password, $email);
 
-        $consulta = $conexion->prepare($query);
-        $consulta->bindParam(':nombre', $firstname);
-        $consulta->bindParam(':contrasena', $hash_password);
-        $consulta->bindParam(':email', $email);
-
-        if ($consulta->execute()) {
+        if ($res<> false) {
             $registered = true;
         }
     }
@@ -65,21 +62,11 @@ if ((isset($_POST['buttonLogin']))) {
 
     $passwordL = $_POST['passwordLogin'];
 
-    $hash_passwordLogin = password_hash($passwordL, PASSWORD_DEFAULT);
+    $user = $usuario_repository->consultarUsuarioPorNombre($nameuserL);
 
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $queryLogin = $conexion->prepare("SELECT id_usuario,contrasena FROM usuario WHERE nombre = :nombreUser");
-
-    $queryLogin->bindParam(':nombreUser', $nameuserL);
-
-    $queryLogin->execute();
-
-    $user = $queryLogin->fetch(PDO::FETCH_ASSOC);
-
-    if (password_verify($passwordL, $user['contrasena'])) {
+    if (password_verify($passwordL, $user->contrasena)) {
         $_SESSION['usuario'] = $nameuserL;
-        $_SESSION['id_usuario'] = $user['id_usuario'];
+        $_SESSION['id_usuario'] = $user->id_usuario;
 
         //TODO insertar sesión
         $sesion_repository = new SesionRepository($conexion);
@@ -88,6 +75,8 @@ if ((isset($_POST['buttonLogin']))) {
         $_SESSION['token'] = $token;
 
         header("location: PHP/home.php");
+    }else{
+        //TODO hacer algo con la falta de validación
     }
 }
 

@@ -35,9 +35,6 @@ Una vez el usuario haya iniciado sesión, se le redirigirá a la página princip
 
 Una vez le da click, aparecerá un pop-up "Añade una actividad" donde el usuario podrá rellenar los siguientes campos: 
 
-
-
-
 === Detalle actividad
 
 Una vez el usuario esté en nuestra Landing page se le mostrarán todas las actividades asociadas a dicho usuario, en ellas, podrá ver un pequeño resumen de la actividad. En la tarjeta aparecerá un botón “Details” donde si el usuario lo pulsa, se le redireccionará a la página de Detalles.
@@ -46,7 +43,6 @@ Cuando el usuario esté en esta página, se le mostrará un contenedor con vario
 
 También podrá consultar los usuarios que están en la actividad y por último, encontrará un botón “añadir gasto”.
 
-    
 
 === Invitaciones
 
@@ -66,6 +62,10 @@ Una vez el usuario haya introducido estos datos, se le redirigirá a una página
 
 Por último el usuario deberá pulsar el botón “aceptar”, para que se le redirigirá  a la página de detalles nuevamente, pero con el nuevo pago añadido a la “lista de gasto”.
 
+== Pago avanzado
+
+Si tengo que añadir un nuevo usuario, solo necesito su nombre (no me hacer falta su email porque no tengo que enviarle nada) para poder posteriormente hacer el reparto en el pago
+avanzado. En el sprint 8, me pide asignar usuarios no registrados a una actividad sin necesidad de email, por tanto, yo lo hago solo a través del nombre del usuario. 
 
 = Guia de estilo
 
