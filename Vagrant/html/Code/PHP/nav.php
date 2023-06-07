@@ -48,7 +48,7 @@ include 'ConexionDB.php';
         </div>
 
     </div>
-    <script src="Scripts/nav.js"></script>
+    <script src="../Scripts/nav.js"></script>
 </body>
 
 </html>
