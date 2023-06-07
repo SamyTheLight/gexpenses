@@ -39,6 +39,7 @@ if ((isset($_POST['enviarActivitat']))) {
     }
 }
 
+
 // Obtener lista de actividades
 $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
 
@@ -60,7 +61,7 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
     <div class="act-card">
         <div class="btn-form">
             <button id="form-btn" class="form-btn">AÑADIR</button>
-            <button name="asc" id="btn-ordenar">ASC</button>
+            <button name="asc" id="btn-ordenar">ORDENAR</button>
         </div>
         <?php        
         if ((isset($_POST['asc']))) {
