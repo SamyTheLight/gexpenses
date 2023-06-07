@@ -4,6 +4,16 @@ include 'nav.php';
 include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/ActividadRepository.php';
+include 'Repositories/SesionRepository.php';
+
+//TODO antes de hacer ninguna otra cosa, comprobar la sesión
+$sesion_repository = new SesionRepository($conexion);
+$res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
+if($res == false) {
+    $_SESSION['token'] = null;
+    $_SESSION['id_usuario'] = null;
+    header("location: ../index.php");
+}
 
 if (isset($_GET['id_actividad'])) {
     $id_actividad = $_GET['id_actividad'];

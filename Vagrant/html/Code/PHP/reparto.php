@@ -6,7 +6,16 @@ include 'Repositories/DeudorRepository.php';
 include 'Repositories/AdscritoRepository.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/RepartoRepository.php';
+include 'Repositories/SesionRepository.php';
 
+//TODO antes de hacer ninguna otra cosa, comprobar la sesión
+$sesion_repository = new SesionRepository($conexion);
+$res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
+if($res == false) {
+    $_SESSION['token'] = null;
+    $_SESSION['id_usuario'] = null;
+    header("location: ../index.php");
+}
 
 $adscrito_repository = new AdscritoRepository($conexion);
 $deudor_repository = new DeudorRepository($conexion);
