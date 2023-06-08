@@ -2,82 +2,80 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+
 include 'nav.php';
 include 'conexion_db.php';
-include 'Repositories/InvitacionRepository.php';
 include 'Repositories/ActividadRepository.php';
 include 'Repositories/AdscritoRepository.php';
 
+// Obtener el id de la actividad si está presente en la URL
 if (isset($_GET['actividad_id_actividad'])) {
     $actividad_id_actividad = $_GET["actividad_id_actividad"];
-    var_dump("actividad_id_actividad");
 }
 
+// Consultar la última actividad
 $actividad_repository = new ActividadRepository($conexion);
-
-$queryRegistro = "SELECT * FROM actividad ORDER BY id_actividad DESC limit 1";
-$stmtRegistro = $conexion->query($queryRegistro);
 $registroInvitacio = $actividad_repository->consultarActividad($actividad_id_actividad);
 
 $nombreActividadR = $registroInvitacio->nombre;
 $descripcionActividadR = $registroInvitacio->descripcion;
 
-function idUserInvitacion($conexion, $emailI)
-{
-    $queryUserInvitacio = $conexion->prepare("SELECT id_usuario FROM usuario WHERE email =:emailUserInvitacio ");
-    $queryUserInvitacio->bindParam(":emailUserInvitacio", $emailI);
-    $queryUserInvitacio->execute();
-    $userIdInvitacio =  $queryUserInvitacio->fetch(PDO::FETCH_ASSOC);
-
-    return $userIdInvitacio;
-}
-
-$emailE = $_POST['emailEnviados'];
-
-$cont = 0;
-
-function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR, $idUserInvitacio1, $actividad_id_actividad)
-{
-    $nombreI = $nombreActividadR;
-    $descripcioI =  $descripcionActividadR;
-    $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
-
-    $usuario_id_usuario = null;
-    if ($idUserInvitacio1 <> false){
-        $usuario_id_usuario =  (int) $idUserInvitacio1;
+if(isset($_POST['nombre_adscritos'])) {
+    $adscrito_repository = new AdscritoRepository($conexion);
+    $nombres = $_POST['nombre_adscritos'];
+    foreach($nombres as $nombre){
+        $adscrito_repository->insertarAdscrito(null, $nombre, $actividad_id_actividad);
     }
 
-    $invitacion_repository = new InvitacionRepository($conexion);
-    $invitacion_repository->insertarInvitacion($usuario_id_usuario, $actividad_id_actividad, $nombreI, $descripcioI, $mail);
+    header('location:home.php');
 }
 
-if (!empty($emailE)) {
-    foreach ($emailE as $rowEmail) :
-        if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
+// $emailE = $_POST['emailEnviados'];
 
-            $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
-            var_dump($idUserInvitacio1);
+// $cont = 0;
 
-            $token = bin2hex(openssl_random_pseudo_bytes(16));
+// Función para insertar una invitación en la base de datos
+// function insertarInvitacio($conexion, $mail,  $nombreActividadR, $descripcionActividadR, $idUserInvitacio1, $actividad_id_actividad)
+// {
+//     $nombreI = $nombreActividadR;
+//     $descripcioI =  $descripcionActividadR;
+//     $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
 
-            insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1, $actividad_id_actividad);
+//     $usuario_id_usuario = null;
+//     if ($idUserInvitacio1 <> false){
+//         $usuario_id_usuario =  (int) $idUserInvitacio1;
+//     }
+//     $invitacion_repository = new InvitacionRepository($conexion);
+//     $invitacion_repository->insertarInvitacion($usuario_id_usuario, $actividad_id_actividad, $nombreI, $descripcioI, $mail);
+// }
 
-            $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
-            $queryEmail->bindParam(':emailP', $rowEmail);
-            $queryEmail->execute();
+// if (!empty($emailE)) {
+//     foreach ($emailE as $rowEmail) :
+//         if (filter_var($rowEmail, FILTER_VALIDATE_EMAIL)) {
 
-            $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+//             $idUserInvitacio1 = idUserInvitacion($conexion, $mail);
+//             var_dump($idUserInvitacio1);
 
-            $_SESSION['mailEnviat'] = $trobat;
-            if ($trobat == false) {
-                include 'sendMailRegister.php';
-            } else {
-                include 'sendMailVerify.php';
-                echo 'enviado correctamente';
-            }
-        }
-    endforeach;
-}
+//             $token = bin2hex(openssl_random_pseudo_bytes(16));
+
+//             insertarInvitacio($conexion, $rowEmail, $nombreActividadR, $descripcionActividadR, $idUserInvitacio1, $actividad_id_actividad);
+
+//             $queryEmail = $conexion->prepare("SELECT email FROM usuario WHERE email = :emailP ");
+//             $queryEmail->bindParam(':emailP', $rowEmail);
+//             $queryEmail->execute();
+
+//             $trobat = $queryEmail->fetch(PDO::FETCH_ASSOC);
+
+//             $_SESSION['mailEnviat'] = $trobat;
+//             if ($trobat == false) {
+//                 include 'sendMailRegister.php';
+//             } else {
+//                 include 'sendMailVerify.php';
+//                 echo 'enviado correctamente';
+//             }
+//         }
+//     endforeach;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -96,20 +94,18 @@ if (!empty($emailE)) {
         <div class="card">
             <img class="card-image" src="./Images/Viaje_Combinado.png">
             <div class="card-text">
-                <span class="date">  </span>
-
                 <?php foreach ($registroInvitacio as $rowR) { ?>
-                <h1><?php echo $rowR->Nombre;
+                <h1><?php echo $rowR->nombre;
                         ?></h1>
                 <hr>
                 <div class="ex1">
-                    <p id="description"><?php echo $rowR->Descripcion;?></p>
+                    <p id="description"><?php echo $rowR->descripcion;?></p>
                 </div>
                 <?php }
                 ?>
-                <div class="afegir-mail" id="addmail">
-                    <input type="email" class="mails" name="emailEnviados[]" id="mails" placeholder="EMAIL">
-                    <button class="btn-email" id="btn-emial">+</button>
+                <div class="afegir-mail" id="addAdscrito">
+                    <input type="text" class="mails" name="nombre" id="nombre" placeholder="NOMBRE">
+                    <div class="btn-email" id="btn-adscrito">+</div>
                 </div>
                 <hr>
                 <div class="emails" id="emails">

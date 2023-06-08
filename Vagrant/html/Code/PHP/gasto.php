@@ -11,7 +11,7 @@ include 'Repositories/SesionRepository.php';
 //TODO antes de hacer ninguna otra cosa, comprobar la sesión
 $sesion_repository = new SesionRepository($conexion);
 $res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
-if($res == false) {
+if ($res == false) {
     $_SESSION['token'] = null;
     $_SESSION['id_usuario'] = null;
     header("location: ../index.php");
@@ -112,12 +112,16 @@ if ((isset($_POST['enviarActivitat2']))) {
                         <?php } ?>
                     </select>
                     <!-- Aqui mostrar todos los adscritos -->
-                    <label for="tipusAct">Miembros</label>
-                    <?php foreach ($adscritos as $adscrito) { ?>
-                        <label id="user" for=""><?php echo $adscrito->nombre_adscrito; ?>
-                            <input type="checkbox" value="<?php echo $adscrito->id_adscrito; ?>" name="id_deudor[]" id="users" class="users">
-                        </label>
-                    <?php } ?>
+                    <div id="contenedor-miembros">
+                        //TODO buscar este div con el js. cada vez que se cambie el valor del select "pagador" eliminar
+                        //todos los miembros y volver a escribirlos menos el de id seleccionado
+                        <label for="tipusAct">Miembros</label>
+                        <?php foreach ($adscritos as $adscrito) { ?>
+                            <label id="user" for=""><?php echo $adscrito->nombre_adscrito; ?>
+                                <input type="checkbox" value="<?php echo $adscrito->id_adscrito; ?>" name="id_deudor[]" id="users" class="users">
+                            </label>
+                        <?php } ?>
+                    </div>
                     <input type="hidden" name="actividad_id_actividad" value="<?php echo $actividad_id_actividad  ?>">
                     <button class="btn-card" name="enviarActivitat2">GUARDAR</button>
                 </div>

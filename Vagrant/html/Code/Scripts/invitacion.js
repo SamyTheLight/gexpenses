@@ -1,8 +1,10 @@
-const error = document.getElementById("error");
-error.className = "error";
+// const error = document.getElementById("error");
+// error.className = "error";
 
-function addAct() {
-  const value = document.getElementById("mails").value;
+
+
+function addAdscrito() {
+  const value = document.getElementById("nombre").value;
   const actList = document.getElementById("emails");
   const element = document.createElement("div");
   const btn = document.createElement("btn");
@@ -13,7 +15,7 @@ function addAct() {
   input.type = "text";
   input.classList.add("input-mail");
   input.setAttribute("id", "input-mail");
-  input.name = "emailEnviados[]";
+  input.name = "nombre_adscritos[]";
   input.value = value;
   element.appendChild(input);
   btn.classList.add("btn-mail");
@@ -21,6 +23,8 @@ function addAct() {
   btn.name = "btn-mail";
   btn.append("BORRAR");
   element.appendChild(btn);
+
+  document.getElementById("nombre").value = "";
 }
 
 function deleteAct(element) {
@@ -29,28 +33,8 @@ function deleteAct(element) {
   }
 }
 
-function validarCorreo(mail) {
-  const expReg =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-  const esValido = expReg.test(mail);
-  console.log(mail);
-  console.log(esValido);
+document.getElementById("btn-adscrito").addEventListener("click", addAdscrito);
 
-  if (esValido == true) {
-    error.className = "error";
-    addAct();
-    const mail = document.getElementById("mails");
-    mail.value = "";
-  } else if (esValido == false) {
-    error.className = "mostrar-error";
-  }
-}
-
-document.querySelector(".btn-email").addEventListener("click", (e) => {
-  const correo = document.getElementById("mails").value;
-  e.preventDefault();
-  // validarCorreo(correo);
-});
 document.getElementById("emails").addEventListener("click", function (e) {
   deleteAct(e.target);
 });

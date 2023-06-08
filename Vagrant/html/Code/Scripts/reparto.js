@@ -7,7 +7,9 @@ const despesa_total = document.getElementById("despesaTotal").value;
 //Obtenemos los inputs del reparto
 const inputs_reparto = Array.from(document.getElementsByName("deuda[]"));
 
-let despesa_a_repartir = document.getElementById("despesaTotal").value;
+const despesa_a_repartir_total = despesa_total - (despesa_total / (inputs_reparto.length + 1));
+
+let despesa_a_repartir = despesa_a_repartir_total;
 
 // Evento click para el botón de selección de actividad
 btn_sel.addEventListener("click", function (e) {
@@ -25,7 +27,7 @@ btn_sel.addEventListener("click", function (e) {
     btn_acc.classList.replace("btn-card2", "visible1");
 
     inputs_reparto.forEach( (input)=>{
-      input.value = despesa_total / inputs_reparto.length;
+      input.value = despesa_total / (inputs_reparto.length + 1);
     } );
 
     // Si el valor seleccionado es "Pago avanzado" ...
@@ -44,17 +46,11 @@ btn_sel.addEventListener("click", function (e) {
           let valor = parseFloat(input.value);
           sumatorio += isNaN(valor) ? 0 : valor;
         } );
-        despesa_a_repartir = despesa_total - sumatorio;
+        despesa_a_repartir = despesa_a_repartir_total - sumatorio;
         const input_despesa_repartir = document.getElementById("despesa_a_repartir");
         input_despesa_repartir.value = despesa_a_repartir;
       });      
     } );
   }
 });
-
-// Evento click para el botón de aceptar la actividad que nos redirige a la página detalle_actividad
-// btn_acc.addEventListener("click", function (e) {
-//   e.preventDefault();
-//   window.location = "detalle_actividad.php";
-// });
 

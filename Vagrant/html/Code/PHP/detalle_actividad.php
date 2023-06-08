@@ -65,7 +65,7 @@ $adscritos = $queryAdscritos->fetchAll(PDO::FETCH_COLUMN);
             <div class="buttonPayment">
                 <!-- TODO cambiar el botón por un link al que se le puede pasar una variable como en el caso del link DETAILS de home-->
                 <!-- <button id="btn-gasto">Añadir Gasto +</button> -->
-                <button id="btn-gasto" class="link"><a href="gasto.php?id_actividad=<?php echo $row->id_actividad?>"><b>Añadir Gasto +</b></a></button>
+                <button id="btn-gasto" class="link"><a href="gasto.php?actividad_id_actividad=<?php echo $id_actividad?>"><b>Añadir Gasto +</b></a></button>
             </div>
             <div class="import">
                 <h3><?php echo $resultado; ?></h3>
