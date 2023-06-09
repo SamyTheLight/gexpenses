@@ -10,7 +10,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-//TODO antes de hacer ninguna otra cosa, comprobar la sesión
+//antes de hacer ninguna otra cosa, comprobar la sesión
+echo "<script type='text/javascript'>console.log('comprobar sesion');</script>";
 $sesion_repository = new SesionRepository($conexion);
 $res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
 if($res == false) {
@@ -40,7 +41,7 @@ if ((isset($_POST['enviarActivitat']))) {
 }
 
 $sort_fecha = "creacion";
-// Obtener lista de actividades
+// Obtener cómo estará ordenada la lista de actividades, por creación o por última modificación
 if ($_GET['sort_fecha']){
     $sort_fecha = $_GET['sort_fecha'];
 }
@@ -66,17 +67,8 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario'], $s
         <div class="btn-form">
             <button id="form-btn" class="form-btn">AÑADIR</button>
             <button name="fecha" id="btn-ordenar-fecha" class="form-btn">ORDENAR FECHA</button>
-            <button name="modificacion" id="btn-ordenar-modificacion" class="form-btn">ORDENAR MODIFICACIÓN</button>
+            <button name="modificacion" id="btn-ordenar-modificacion" class="form-btn">ORDENAR MODIF.</button>
         </div>
-        <?php        
-        if ((isset($_POST['asc']))) {
-            $btn = $_POST['asc'];
-            var_dump($btn);
-            $queryasc = "SELECT * FROM actividad ORDER BY fecha ASC";
-            $stmt = $conexion->query($queryasc);
-            $ordena = $stmt->fetchAll(PDO::FETCH_OBJ);
-        }
-        ?>
         <!-- CARDS DE LES ACTIVITATS -->
         <div id="act-list">
             <?php foreach ($registros as $row) : ?>

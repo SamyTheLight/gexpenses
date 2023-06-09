@@ -62,9 +62,9 @@ document.getElementById("form-btn").addEventListener("click", function () {
 });
 
 document.getElementById("btn-ordenar-fecha").addEventListener("click", function () {
-    window.location.href = "home.php?sort=creacion";
+    window.location.href = "home.php?sort_fecha=creacion";
 });
 
 document.getElementById("btn-ordenar-modificacion").addEventListener("click", function () {
-    window.location.href = "home.php?sort=modificacion";
+    window.location.href = "home.php?sort_fecha=modificacion";
 });

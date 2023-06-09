@@ -41,6 +41,36 @@ body {
     cursor: pointer;
 }
 
+#btn-ordenar-fecha{
+    position: relative;
+    margin-top: 30px;
+    width: 180px;
+    background: #1C3144;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    align-self: flex-end;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#btn-ordenar-modificacion{
+    position: relative;
+    margin-top: 30px;
+    width: 180px;
+    background: #1C3144;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    align-self: flex-end;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .btn-form{
     margin-top: 80px;
     height: 100px;

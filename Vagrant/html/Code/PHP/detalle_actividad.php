@@ -21,12 +21,7 @@ if (isset($_GET['id_actividad'])) {
 }
 
 //Consulta para seleccionar la fecha de la actividad del usuario
-// TODO Cambiar por ActividadRepository consultarActividad
 
-// $registros = $actividadRepository->consultarActividad($id_actividad);
-
-
-//TODO usar el GastoRepository con el ListarGasto
 
 $gasto_repository = new GastoRepository($conexion);
 $gastos = $gasto_repository->listarGasto($id_actividad);

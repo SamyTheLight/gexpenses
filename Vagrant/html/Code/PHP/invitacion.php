@@ -7,6 +7,17 @@ include 'nav.php';
 include 'conexion_db.php';
 include 'Repositories/ActividadRepository.php';
 include 'Repositories/AdscritoRepository.php';
+include 'Repositories/SesionRepository.php';
+
+//antes de hacer ninguna otra cosa, comprobar la sesión
+echo "<script type='text/javascript'>console.log('comprobar sesion');</script>";
+$sesion_repository = new SesionRepository($conexion);
+$res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
+if($res == false) {
+    $_SESSION['token'] = null;
+    $_SESSION['id_usuario'] = null;
+    header("location: ../index.php");
+}
 
 // Obtener el id de la actividad si está presente en la URL
 if (isset($_GET['actividad_id_actividad'])) {

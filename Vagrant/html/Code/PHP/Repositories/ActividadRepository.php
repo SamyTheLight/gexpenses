@@ -53,23 +53,18 @@ class ActividadRepository
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_usuario', $id_usuario);
         $consulta->execute();
-
+        
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function modificarActividad($id_actividad) 
     {
-        echo "<script type='text/javascript'>console.log('query');</script>";
+        
         $query = "UPDATE actividad SET fecha_ultima_modificacion = NOW() where id_actividad = :id_actividad";
-
-        echo "<script type='text/javascript'>console.log('prepare');</script>";
         $consulta = $this->conexionDB->prepare($query);
-        echo "<script type='text/javascript'>console.log('bind param');</script>";
         $consulta->bindParam(':id_actividad', $id_actividad);
-        echo "<script type='text/javascript'>console.log('execute');</script>";
         $consulta->execute();
 
-        echo "<script type='text/javascript'>console.log('rowcount');</script>";
         return $consulta->rowCount();
     }
 }
