@@ -41,33 +41,30 @@ class GastoRepositoryTest extends TestCase
     public function testInsertarGasto()
     {
         // Ejecutar la función a probar
-        $resultado = $this->gasto_repository->insertarGasto($this->actividad_id_actividad, $this->concepto, $this->pagador, $this->cantidad, $this->id_gasto);
+        $id_gasto = $this->gasto_repository->insertarGasto($this->actividad_id_actividad, $this->concepto, $this->pagador, $this->cantidad);
 
         // Verificar el resultado
-        $this->assertIsInt($this->id_gasto);
-        $this->assertGreaterThan(0, $this->id_gasto);
-        $this->assertTrue($resultado <> false);
+        $this->assertGreaterThan(0, $id_gasto);
+        $this->assertEquals(1, $id_gasto);
+        $this->assertTrue($id_gasto <> false);
 
-        $this->id_gasto = $resultado;
-
-        $query = $this->conexionDB->query('SELECT * FROM gasto WHERE id_gasto = :id_gasto');
-        $gasto = $query->fetch(PDO::FETCH_OBJ);
+        $query ="SELECT * FROM gasto WHERE id_gasto = :id_gasto";
+        $consulta = $this->conexionDB->prepare($query);
+        $consulta->bindParam(':id_gasto', $id_gasto);
+        $consulta->execute();
+        $gasto = $consulta->fetch(PDO::FETCH_OBJ);
 
         $this->assertEquals($this->actividad_id_actividad, $gasto->actividad_id_actividad);
         $this->assertEquals($this->concepto, $gasto->concepto);
         $this->assertEquals($this->pagador, $gasto->pagador);
         $this->assertEquals($this->cantidad, $gasto->cantidad);
-        $this->assertEquals($this->id_gasto, $gasto->id_gasto);
+        $this->assertEquals($id_gasto, $gasto->id_gasto);
     }
 
     public function testConsultarGasto(){
         $this->id_gasto = $this->gasto_repository->insertarGasto($this->actividad_id_actividad, $this->concepto, $this->pagador, $this->cantidad, $this->id_gasto);
 
-        $gastos = $this->gasto_repository->consultargasto($this->id_gasto);
-
-        $this->assertTrue(count($gastos) == 1);
-
-        $gasto = $gastos[0];
+        $gasto = $this->gasto_repository->consultargasto($this->id_gasto);
 
         $this->assertEquals($this->id_gasto, $gasto->id_gasto);
         $this->assertEquals($this->actividad_id_actividad, $gasto->actividad_id_actividad);

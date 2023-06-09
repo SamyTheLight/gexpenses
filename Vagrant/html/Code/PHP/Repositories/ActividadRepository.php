@@ -34,22 +34,42 @@ class ActividadRepository
 
     public function consultarActividad($id_actividad)
     {
-        //Consulta para recuperar todas las actividades del usuario
-        $query = "SELECT * FROM actividad WHERE id_actividad = :id_actividad ORDER BY fecha DESC";
+        //Consulta de una actividad en concreto
+        $query = "SELECT * FROM actividad WHERE id_actividad = :id_actividad LIMIT 1";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_actividad', $id_actividad);
         $consulta->execute();
 
-        return $consulta->fetchAll(PDO::FETCH_OBJ);
+        return $consulta->fetch(PDO::FETCH_OBJ);
     }
 
-    public function listarActividades($id_usuario)
+    public function listarActividades($id_usuario, $modo = "creacion")
     {
         $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha DESC";
+        if ($modo == "modificacion"){
+            $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha_ultima_modificacion DESC";
+        }
+        
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_usuario', $id_usuario);
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function modificarActividad($id_actividad) 
+    {
+        echo "<script type='text/javascript'>console.log('query');</script>";
+        $query = "UPDATE actividad SET fecha_ultima_modificacion = NOW() where id_actividad = :id_actividad";
+
+        echo "<script type='text/javascript'>console.log('prepare');</script>";
+        $consulta = $this->conexionDB->prepare($query);
+        echo "<script type='text/javascript'>console.log('bind param');</script>";
+        $consulta->bindParam(':id_actividad', $id_actividad);
+        echo "<script type='text/javascript'>console.log('execute');</script>";
+        $consulta->execute();
+
+        echo "<script type='text/javascript'>console.log('rowcount');</script>";
+        return $consulta->rowCount();
     }
 }

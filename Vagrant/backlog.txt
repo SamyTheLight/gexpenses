@@ -1,0 +1,16 @@
+Arerglar Bugs:
+    - Botón repartir gasto en detalle actividad -> debe incluir el id_gasto
+    - Botno cerrar reparto "X" -> debe redirigir a detalle_actividad
+    - error en login cuando los inputs estan vacios "Warning: Attempt to read property "contrasena" on bool in /var/www/html/PHP/login_register.php on line 67".
+    - importe 40 en detalle actividad
+    - Arreglar valor cantidad en detalle actividad
+
+Desarrollos:
+    - Botón ordenar-> falta ordenar por fecha de última modificación.
+    - Mostrar fecha creacion de gasto en detalle actividad.
+    - usar repositorios en detalle_actividad
+    - Ocultar miembro si se ha seleccionado como pagador en gasto.php
+    - Valor reparto truncar a 2 decimales
+    - Hacer delete e insert cuando le de al boton Repartir gasto en detalle actividad
+    - Control de sesion valida en todas las paginas
+    - Cierre de sesion cuando se hace logout

@@ -39,9 +39,13 @@ if ((isset($_POST['enviarActivitat']))) {
     }
 }
 
-
+$sort_fecha = "creacion";
 // Obtener lista de actividades
-$registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
+if ($_GET['sort_fecha']){
+    $sort_fecha = $_GET['sort_fecha'];
+}
+
+$registros = $actividadRepository->listarActividades($_SESSION['id_usuario'], $sort_fecha);
 
 ?>
 
@@ -61,7 +65,8 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario']);
     <div class="act-card">
         <div class="btn-form">
             <button id="form-btn" class="form-btn">AÑADIR</button>
-            <button name="asc" id="btn-ordenar">ORDENAR</button>
+            <button name="fecha" id="btn-ordenar-fecha" class="form-btn">ORDENAR FECHA</button>
+            <button name="modificacion" id="btn-ordenar-modificacion" class="form-btn">ORDENAR MODIFICACIÓN</button>
         </div>
         <?php        
         if ((isset($_POST['asc']))) {

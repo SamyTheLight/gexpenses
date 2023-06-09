@@ -60,3 +60,11 @@ document.getElementById("form-btn").addEventListener("click", function () {
       window.location.href = "invitacion.php";
     });
 });
+
+document.getElementById("btn-ordenar-fecha").addEventListener("click", function () {
+    window.location.href = "home.php?sort=creacion";
+});
+
+document.getElementById("btn-ordenar-modificacion").addEventListener("click", function () {
+    window.location.href = "home.php?sort=modificacion";
+});

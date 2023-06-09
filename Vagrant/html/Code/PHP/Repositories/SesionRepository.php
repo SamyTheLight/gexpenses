@@ -47,7 +47,7 @@ class SesionRepository
 
     public function cerrarSesion($token, $usuario_id_usuario)
     {
-        $query = "UPDATE sesion SET fecha_fin = datetime('now') WHERE token = :token AND usuario_id_usuario = :usuario_id_usuario AND fecha_fin IS NULL";
+        $query = "UPDATE sesion SET fecha_fin = NOW() WHERE token = :token AND usuario_id_usuario = :usuario_id_usuario AND fecha_fin IS NULL";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':token', $token);
         $consulta->bindParam(':usuario_id_usuario', $usuario_id_usuario);

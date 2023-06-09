@@ -31,7 +31,8 @@ class ActividadRepositoryTest extends TestCase
                 divisa TEXT,
                 tipo_actividad TEXT,
                 usuario_id_usuario INTEGER,
-                fecha DATETIME DEFAULT (datetime('now'))
+                fecha DATETIME DEFAULT (datetime('now')),
+                fecha_ultima_modificacion DATETIME DEFAULT (datetime('now'))
             )
         ");
 
@@ -58,11 +59,7 @@ class ActividadRepositoryTest extends TestCase
     public function testConsultarActividad(){
         $this->id_actividad = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario);
 
-        $actividades = $this->actividadRepository->consultarActividad($this->id_actividad, $this->id_usuario);
-
-        $this->assertTrue(count($actividades) == 1);
-
-        $actividad = $actividades[0];
+        $actividad = $this->actividadRepository->consultarActividad($this->id_actividad, $this->id_usuario);
 
         $this->assertEquals($this->id_actividad, $actividad->id_actividad);
         $this->assertEquals($this->nombre, $actividad->nombre);
@@ -73,9 +70,10 @@ class ActividadRepositoryTest extends TestCase
     }
 
     public function testListarActividades(){
-        $this->id_actividad = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario);
-        $this->id_actividad = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario);
-        $this->id_actividad = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario + 1);
+        $id_actividad1 = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario);
+        sleep(1);
+        $id_actividad2 = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario);
+        $id_actividad3 = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario + 1);
 
         $resultado = $this->actividadRepository->listarActividades( $this->id_usuario);
 
@@ -88,5 +86,41 @@ class ActividadRepositoryTest extends TestCase
         $resultado = $this->actividadRepository->listarActividades( $this->id_usuario + 2);
 
         $this->assertTrue(count($resultado) == 0);
+
+
+        $actividades = $this->actividadRepository->listarActividades( $this->id_usuario);
+
+        $this->assertTrue($actividades[0]->id_actividad == $id_actividad2);
+
+        sleep(1);
+
+        $this->actividadRepository->modificarActividad($id_actividad1);
+        $lista = $this->actividadRepository->listarActividades( $this->id_usuario);
+        $lista_modificada = $this->actividadRepository->listarActividades( $this->id_usuario, "modificacion");
+
+        $this->assertTrue($lista[0]->id_actividad == $id_actividad2);
+        $this->assertTrue($lista_modificada[0]->id_actividad == $id_actividad1);
+    }
+
+    public function testModificarActividad(){
+
+        $this->id_actividad = $this->actividadRepository->insertarActividad($this->nombre, $this->descripcion, $this->divisa, $this->tipo_actividad, $this->id_usuario);
+
+        $actividad = $this->actividadRepository->consultarActividad($this->id_actividad);
+
+        $fecha_inicial = $actividad->fecha_ultima_modificacion;
+
+        sleep(1);
+
+        $this->actividadRepository->modificarActividad($this->id_actividad);
+
+        $actividad_modificada = $this->actividadRepository->consultarActividad($this->id_actividad);
+
+        json_encode($actividad_modificada);
+
+        $fecha_modificada = $actividad_modificada->fecha_ultima_modificacion;
+
+        $this->assertTrue($fecha_modificada>$fecha_inicial);
+
     }
 }

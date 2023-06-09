@@ -4,8 +4,8 @@ include 'nav.php';
 include 'conexion_db.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/AdscritoRepository.php';
-include 'Repositories/RepartoRepository.php';
 include 'Repositories/DeudorRepository.php';
+include 'Repositories/ActividadRepository.php';
 include 'Repositories/SesionRepository.php';
 
 //TODO antes de hacer ninguna otra cosa, comprobar la sesión
@@ -41,8 +41,14 @@ if (isset($_POST['id_deudor'])) {
 
     $gasto_repository = new GastoRepository($conexion);
     $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
+    
+    echo "<script type='text/javascript'>console.log('new ActividadR');</script>";
+    //modificar la fecha de ultima modificación en la actividad
+    $actividad_repository = new ActividadRepository($conexion);
+    echo "<script type='text/javascript'>console.log('actividad_id_actividad: " . $actividad_id_actividad. "');</script>";
+    $actividad_repository->modificarActividad($actividad_id_actividad);
 
-    echo "<script type='text/javascript'>console.log('id_gasto insertado: " . json_encode($id_gasto) . "');</script>";
+    echo "<script type='text/javascript'>console.log('actividad modificada');</script>";
     // insertar en tabla deudores
     $deudor_repository = new DeudorRepository($conexion);
     foreach ($ids as $id_adscrito) {

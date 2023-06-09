@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `actividad` (
   `divisa` CHAR(1) NOT NULL,
   `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo_actividad` VARCHAR(45) NULL DEFAULT NULL,
+  `fecha_ultima_modificacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_actividad`),
   CONSTRAINT `fk_actividad_usuario1`
     FOREIGN KEY (`usuario_id_usuario`)
@@ -187,3 +188,4 @@ INSERT INTO adscrito(`usuario_id_usuario`, `nombre_adscrito`, `actividad_id_acti
 INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('paco', 1);
 INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('jose', 1);
 INSERT INTO adscrito(`nombre_adscrito`, `actividad_id_actividad`) VALUES ('pedro', 1);
+INSERT INTO actividad(`usuario_id_usuario`, `nombre`, `descripcion`, `divisa`, `tipo_actividad`) VALUES (1, 'segunda', 'viajar al japón', '$', 'Deportes');
