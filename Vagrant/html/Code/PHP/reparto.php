@@ -105,7 +105,8 @@ $deuda_a_repartir = $gasto->cantidad;
                     <select name="tipusActivitat" id="tipusActivitat1" class="form-control1">
                         <option value="" selected disabled>Selecciona un pago</option>
                         <option value="Pago básico">Pago básico</option>
-                        <option value="Pago avanzado">Pago avanzado</option>
+                        <option value="Pago avanzado por importe">Pago avanzado por importe</option>
+                        <option value="Pago avanzado por proporciones">Pago avanzado por proporciones</option>
                     </select>
                 </div>
                 <div id="reparto" class="oculto">
@@ -122,8 +123,6 @@ $deuda_a_repartir = $gasto->cantidad;
 
                     <div class="pago-individual">
                         <?php foreach ($deudores as $deudor) : ?>
-                            <?php echo "<script type='text/javascript'>console.log('deudor: " . json_encode($deudor) . "');</script>";?>
-                            <label for="" id="id_adscrito"><?php echo $deudor->id_adscrito; ?></label>
                             <label for="" id="nombre"><?php echo  $deudor->nombre_adscrito; ?></label>
                             <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
                             <input type="hidden" id="id_adscrito" value="<?php echo $deudor->id_adscrito; ?>" name="id_adscrito[]">

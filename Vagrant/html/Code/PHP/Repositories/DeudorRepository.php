@@ -12,7 +12,7 @@ class DeudorRepository
     public function insertarDeudor($adscrito_id_adscrito, $gasto_id_gasto)
     {
 
-        $query = "INSERT INTO deudor ( adscrito_id_adscrito, gasto_id_gasto) VALUES (:adscrito_id_adscrito, :gasto_id_gasto)";
+        $query = "INSERT INTO deudor (adscrito_id_adscrito, gasto_id_gasto) VALUES (:adscrito_id_adscrito, :gasto_id_gasto)";
 
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':adscrito_id_adscrito', $adscrito_id_adscrito);

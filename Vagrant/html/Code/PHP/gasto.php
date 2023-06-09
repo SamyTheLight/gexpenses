@@ -113,8 +113,8 @@ if ((isset($_POST['enviarActivitat2']))) {
                     </select>
                     <!-- Aqui mostrar todos los adscritos -->
                     <div id="contenedor-miembros">
-                        //TODO buscar este div con el js. cada vez que se cambie el valor del select "pagador" eliminar
-                        //todos los miembros y volver a escribirlos menos el de id seleccionado
+                        <!-- TODO buscar este div con el js. cada vez que se cambie el valor del select "pagador" eliminar
+                        todos los miembros y volver a escribirlos menos el de id seleccionado -->
                         <label for="tipusAct">Miembros</label>
                         <?php foreach ($adscritos as $adscrito) { ?>
                             <label id="user" for=""><?php echo $adscrito->nombre_adscrito; ?>

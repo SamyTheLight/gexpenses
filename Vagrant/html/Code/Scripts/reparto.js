@@ -11,46 +11,57 @@ const despesa_a_repartir_total = despesa_total - (despesa_total / (inputs_repart
 
 let despesa_a_repartir = despesa_a_repartir_total;
 
-// Evento click para el botón de selección de actividad
-btn_sel.addEventListener("click", function (e) {
-  e.preventDefault(); // Evita que el formulario se envíe automáticamente
-  const select =
-    document.getElementById("tipusActivitat1").options[ 
-      document.getElementById("tipusActivitat1").selectedIndex
-    ].value;
+// Evento change para el menú desplegable
+document.getElementById("tipusActivitat1").addEventListener("change", function () {
+  const select = this.value;
 
-  // Si el valor seleccionado es "Pago básico", mostramos un div y cambiamos la clase de los botones 
+  // Si el valor seleccionado es "Pago básico", mostramos un div y cambiamos la clase de los botones
   if (select == "Pago básico") {
     const div = document.getElementById("reparto");
     div.classList.replace("oculto", "visible");
     btn_sel.classList.replace("btn-card1", "btn-oculto");
     btn_acc.classList.replace("btn-card2", "visible1");
 
-    inputs_reparto.forEach( (input)=>{
+    inputs_reparto.forEach((input) => {
       input.value = despesa_total / (inputs_reparto.length + 1);
-    } );
+      input.readOnly = true;
+    });
 
-    // Si el valor seleccionado es "Pago avanzado" ...
-  } else if (select == "Pago avanzado") {
+    // Si el valor seleccionado es "Pago avanzado por importe" ...
+  } else if (select == "Pago avanzado por importe") {
     const div = document.getElementById("reparto");
     div.classList.replace("oculto", "visible");
     btn_sel.classList.replace("btn-card1", "btn-oculto");
     btn_acc.classList.replace("btn-card2", "visible1");
 
-    
-    inputs_reparto.forEach( (input)=>{
+    inputs_reparto.forEach((input) => {
       input.readOnly = false;
       input.addEventListener("input", function (e) {
         let sumatorio = 0;
-        inputs_reparto.forEach( (input)=>{
+        inputs_reparto.forEach((input) => {
           let valor = parseFloat(input.value);
           sumatorio += isNaN(valor) ? 0 : valor;
-        } );
+        });
         despesa_a_repartir = despesa_a_repartir_total - sumatorio;
         const input_despesa_repartir = document.getElementById("despesa_a_repartir");
         input_despesa_repartir.value = despesa_a_repartir;
-      });      
-    } );
+      });
+    });
+
+    // Si el valor seleccionado es "Pago avanzado por proporciones" ...
+  } else if (select == "Pago avanzado por proporciones") {
+    const div = document.getElementById("reparto");
+    div.classList.replace("oculto", "visible");
+    btn_sel.classList.replace("btn-card1", "btn-oculto");
+    btn_acc.classList.replace("btn-card2", "visible1");
+
+    inputs_reparto.forEach((input) => {
+      input.value = ""; // Vaciar los valores de los inputs
+      input.readOnly = false;
+    });
+
+    const input_despesa_repartir = document.getElementById("despesa_a_repartir");
+    input_despesa_repartir.value = despesa_a_repartir_total;
   }
 });
 
