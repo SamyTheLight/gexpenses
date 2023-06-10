@@ -79,4 +79,22 @@ class DeudorRepository
         
         return $consulta->rowCount();
     }
+
+    public function getListaDetallesDeudor($gasto_id_gasto){
+        $query = "SELECT
+            a.nombre_adscrito, 
+            d.cantidad_deuda
+        FROM
+            deudor d,
+            adscrito a
+        WHERE
+            d.adscrito_id_adscrito = a.id_adscrito 
+            AND d.gasto_id_gasto = :gasto_id_gasto";
+
+        $consulta = $this->conexionDB->prepare($query);
+        $consulta->bindParam(':gasto_id_gasto', $gasto_id_gasto);
+
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_OBJ);
+    } 
 }

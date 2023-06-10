@@ -1,0 +1,1 @@
+//TODO evento en el botón volver que valla detalle_actividad?id_activadad= ...... <-el id de actividad del php

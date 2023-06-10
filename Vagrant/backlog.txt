@@ -13,5 +13,5 @@ Desarrollos:
     - Ocultar miembro si se ha seleccionado como pagador en gasto.php
     - Valor reparto truncar a 2 decimales HECHO ********************
     - Hacer delete e insert cuando le de al boton Repartir gasto en detalle actividad
-    - Control de sesion válida en todas las paginas
+    - Control de sesion válida en todas las paginas HECHO ********************
     - Cierre de sesion cuando se hace logout
