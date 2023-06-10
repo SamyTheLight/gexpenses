@@ -55,5 +55,4 @@ class SesionRepository
 
         return $consulta->rowCount();
     }
-
 }

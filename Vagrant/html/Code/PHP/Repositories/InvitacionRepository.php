@@ -16,7 +16,7 @@ class InvitacionRepository
             // Crear y ejecutar la consulta
             $query = "INSERT INTO invitacion (usuario_id_usuario, actividad_id_actividad, nombre, descripcion, email) 
                         VALUES (:usuario_id_usuario, :actividad_id_actividad, :nombre, :descripcion, :email)";
-                        
+
             $consulta = $this->conexionDB->prepare($query);
             $consulta->bindParam(':usuario_id_usuario', $usuario_id_usuario);
             $consulta->bindParam(':actividad_id_actividad', $actividad_id_actividad);
@@ -34,7 +34,6 @@ class InvitacionRepository
 
     public function consultarInvitacion($id_adscrito)
     {
-        echo "<script type='text/javascript'>console.log('consultar_adscrito: " . $id_adscrito . "');</script>";
         $query = "SELECT * FROM adscrito WHERE id_adscrito = :id_adscrito";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_adscrito', $id_adscrito);

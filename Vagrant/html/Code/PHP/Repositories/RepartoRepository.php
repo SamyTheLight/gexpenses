@@ -14,23 +14,19 @@ class RepartoRepository
 
         try {
             // Crear y ejecutar la consulta
-            echo ' insertarGasto ';
+
             $queryActividad = "INSERT INTO reparto (id_reparto, gasto_id_gasto, usuario_id_usuario, deuda) VALUES (:id_reparto, :gasto_id_gasto, :usuario_id_usuario, :deuda)";
-            echo ' prepare ';
+
             $consultaActivitat = $this->conexionDB->prepare($queryActividad);
             $consultaActivitat->bindParam(':id_reparto', $id_reparto);
             $consultaActivitat->bindParam(':gasto_id_gasto', $gasto_id_gasto);
             $consultaActivitat->bindParam(':usuario_id_usuario', $usuario_id_usuario);
             $consultaActivitat->bindParam(':deuda', $deuda);
-            echo ' execute ';
+
             $consultaActivitat->execute();
 
             if ($consultaActivitat) {
-                echo ' lastInsertId ';
-
                 $idInsertado = $this->conexionDB->lastInsertId();
-
-                echo 'return id_reparto';
                 return $idInsertado;
             } else {
                 return false;
@@ -64,7 +60,7 @@ class RepartoRepository
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    //TODO función update Reparto (gasto_id_gasto, adscrito_id_adscrito, cantidad)
+    //Función update Reparto (gasto_id_gasto, adscrito_id_adscrito, cantidad)
 
     public function updateReparto($id_reparto, $deuda)
     {

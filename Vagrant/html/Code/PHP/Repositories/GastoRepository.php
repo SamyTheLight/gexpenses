@@ -15,7 +15,7 @@ class GastoRepository
         try {
             // Crear y ejecutar la consulta
             $queryActividad = "INSERT INTO gasto (actividad_id_actividad, concepto, pagador, cantidad) VALUES (:actividad_id_actividad, :concepto, :pagador, :cantidad)";
-            
+
             $consultaActivitat = $this->conexionDB->prepare($queryActividad);
             $consultaActivitat->bindParam(':actividad_id_actividad', $actividad_id_actividad);
             $consultaActivitat->bindParam(':concepto', $concepto);
