@@ -46,20 +46,20 @@ class ActividadRepository
     public function listarActividades($id_usuario, $modo = "creacion")
     {
         $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha DESC";
-        if ($modo == "modificacion"){
+        if ($modo == "modificacion") {
             $query = "SELECT * FROM actividad WHERE usuario_id_usuario = :id_usuario ORDER BY fecha_ultima_modificacion DESC";
         }
-        
+
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_usuario', $id_usuario);
         $consulta->execute();
-        
+
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function modificarActividad($id_actividad) 
+    public function modificarActividad($id_actividad)
     {
-        
+
         $query = "UPDATE actividad SET fecha_ultima_modificacion = NOW() where id_actividad = :id_actividad";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_actividad', $id_actividad);

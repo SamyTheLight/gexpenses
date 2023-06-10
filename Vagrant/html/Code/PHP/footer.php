@@ -9,9 +9,9 @@
 </head>
 <body>
     <footer>
-         <p class="p">Membres: Oscar Ramirez, Joan Canals, Samuel Garcia</p>
+         <p class="p">Membres: Samuel García Domínguez</p>
          <p class="p">Año de creación: 2022</p>
-         <p class="p">Año actual:2022</p>
+         <p class="p">Año actual:2023</p>
     </footer>
 </body>
 </html>

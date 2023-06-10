@@ -43,24 +43,40 @@ echo "<script type='text/javascript'>console.log('" . json_encode($pagador) . "'
 
 <body>
 
-    <div id="contenedor" class="visible">
-        <div id="botonera">
-            <a class="btn-card2" id="aceptar" href="detalle_actividad.php?id_actividad=<?php echo $id_actividad; ?>">volver</a>
-        </div>
+    <div id="form-act">
+        <section class="cantact_info">
+            <section class="info_title">
+                <h2>DETALLE GASTO</h2>
+                <section class="info_items">
+                    <p>Aquí puedes ver la información del reparto creado</p>
+                </section>
+            </section>
+        </section>
 
-        <div class="pago-total">
-            <label for="" id="nombre"><?php echo  $gasto->concepto; ?></label>
-            <label for="" class="despesa_total">Pagador: <?php echo $pagador->nombre_adscrito; ?> </label>
-            <label for="" class="despesa_total">Pago total: <?php echo $gasto->cantidad; ?> </label>
-        </div>
-        <hr>
-        <div class="pago-individual">
-            <?php foreach ($deudores as $deudor) : ?>
-                <label for="" id="nombre"><?php echo  $deudor->nombre_adscrito; ?></label>
-                <label for="" id="nombre"><?php echo  $deudor->cantidad_deuda; ?></label>
-            <?php endforeach; ?>
+        <div id="act-form">
+            <h2>Concepto: <?php echo  $gasto->concepto; ?></h2>
+            <div class=" user_info">
+                <label for="names">Pagador: <?php echo $pagador->nombre_adscrito; ?></label>
+
+
+                <label for="description">Miembros: </label>
+
+
+                <!-- Aqui mostrar todos los adscritos -->
+                <div id="contenedor-miembros">
+                    <?php foreach ($deudores as $deudor) : ?>
+                        <label for="tipusAct" id="nombre"><?php echo  $deudor->nombre_adscrito; ?></label>
+                        <label for="tipusAct" id="nombre">Importe : <?php echo  $deudor->cantidad_deuda; ?></label>
+                    <?php endforeach; ?>
+                </div>
+
+                <a class="btn-card" name="enviarActivitat2" href="detalle_actividad.php?id_actividad=<?php echo $id_actividad; ?>">Volver</a>
+            </div>
         </div>
     </div>
+
+
+
 </body>
 
 <?php

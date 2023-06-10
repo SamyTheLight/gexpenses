@@ -48,7 +48,7 @@ class DeudorRepository
         return $consulta->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function updateDeudor($gasto_id_gasto, $adscrito_id_adscrito, $cantidad) 
+    public function updateDeudor($gasto_id_gasto, $adscrito_id_adscrito, $cantidad)
     {
         try {
             echo "<script type='text/javascript'>console.log('dentro del update');</script>";
@@ -66,21 +66,18 @@ class DeudorRepository
                 $errorInfo = $consulta->errorInfo();
                 $errorCode = $errorInfo[0];
                 $errorMessage = $errorInfo[2];
-                echo "<script type='text/javascript'>console.log('Error en la consulta: " .[$errorCode] . " " . $errorMessage . "');</script>";
                 echo "Error en la consulta: [$errorCode] $errorMessage";
             }
-    
-           
         } catch (PDOException $e) {
             echo "<script type='text/javascript'>console.log('error " .  $e->getMessage() . "');</script>";
-            // echo "Error en la consulta: " . $e->getMessage();
         }
-        
-        
+
+
         return $consulta->rowCount();
     }
 
-    public function getListaDetallesDeudor($gasto_id_gasto){
+    public function getListaDetallesDeudor($gasto_id_gasto)
+    {
         $query = "SELECT
             a.nombre_adscrito, 
             d.cantidad_deuda
@@ -96,5 +93,5 @@ class DeudorRepository
 
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_OBJ);
-    } 
+    }
 }
