@@ -113,14 +113,16 @@ $deuda_a_repartir = $gasto->cantidad;
                     <hr>
 
                     <div class="pago-individual">
+                        <?php $contador = 0;?>
                         <?php foreach ($deudores as $deudor) : ?>
+                            <?php $contador = $contador + 1;?>
                             <label for="" id="nombre"><?php echo  $deudor->nombre_adscrito; ?></label>
+                            <input type="number" value=0 id="proporcion_<?php echo $contador;?>" maxlength="3" name="proporcion[]">
                             <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
                             <input type="hidden" id="id_adscrito" value="<?php echo $deudor->id_adscrito; ?>" name="id_adscrito[]">
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <button class="btn-card1" id="afegirActivitat1">SELECCIONAR</button>
                 <button class="btn-card2" id="aceptar">ACEPTAR</button>
         </div>
         </form>
