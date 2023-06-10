@@ -55,7 +55,7 @@ document
         document.getElementsByName("proporcion[]")
       );
 
-      inputs_reparto.forEach((i)=>{
+      inputs_reparto.forEach((i) => {
         i.value = 0;
       });
 
@@ -71,10 +71,9 @@ document
             let partes_proporcionales =
               parseFloat(i.value) == NaN ? 0 : parseFloat(i.value);
 
-              //deuda_proporcional es lo que hay que escribir en el input de deuda[] adyacente al input de proporcion[] que se está trabajando
+            //deuda_proporcional es lo que hay que escribir en el input de deuda[] adyacente al input de proporcion[] que se está trabajando
             let deuda_proporcional =
-              (partes_proporcionales * despesa_a_repartir_total) /
-              total_partes;
+              (partes_proporcionales * despesa_a_repartir_total) / total_partes;
 
             let input_deuda = i.nextElementSibling;
             if (

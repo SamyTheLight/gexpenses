@@ -7,10 +7,10 @@ include 'Repositories/ActividadRepository.php';
 include 'Repositories/SesionRepository.php';
 include 'Repositories/AdscritoRepository.php';
 
-//TODO antes de hacer ninguna otra cosa, comprobar la sesión
+//Antes de hacer ninguna otra cosa, comprobar la sesión
 $sesion_repository = new SesionRepository($conexion);
 $res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
-if($res == false) {
+if ($res == false) {
     $_SESSION['token'] = null;
     $_SESSION['id_usuario'] = null;
     header("location: ../index.php");
@@ -21,8 +21,6 @@ if (isset($_GET['id_actividad'])) {
 }
 
 //Consulta para seleccionar la fecha de la actividad del usuario
-
-
 $gasto_repository = new GastoRepository($conexion);
 $gastos = $gasto_repository->listarGasto($id_actividad);
 
@@ -54,9 +52,7 @@ $adscritos = $adscritoRepository->listarAdscrito($id_actividad);
                 <h3><?php echo $registros[0]->Fecha; ?></h3>
             </div>
             <div class="buttonPayment">
-                <!-- TODO cambiar el botón por un link al que se le puede pasar una variable como en el caso del link DETAILS de home-->
-                <!-- <button id="btn-gasto">Añadir Gasto +</button> -->
-                <button id="btn-gasto" class="link"><a href="gasto.php?actividad_id_actividad=<?php echo $id_actividad?>"><b>Añadir Gasto +</b></a></button>
+                <button id="btn-gasto" class="link"><a href="gasto.php?actividad_id_actividad=<?php echo $id_actividad ?>"><b>Añadir Gasto +</b></a></button>
             </div>
             <div class="import">
                 <h3><?php echo $sumatorio_gastos; ?></h3>
@@ -91,7 +87,6 @@ $adscritos = $adscritoRepository->listarAdscrito($id_actividad);
         </div>
     </div>
 </body>
-<script src="../Scripts/detalle_actividad.js"></script>
 <?php
 include 'footer.php';
 ?>

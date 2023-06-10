@@ -1,8 +1,3 @@
-// const error = document.getElementById("error");
-// error.className = "error";
-
-
-
 function addAdscrito() {
   const value = document.getElementById("nombre").value;
   const actList = document.getElementById("emails");

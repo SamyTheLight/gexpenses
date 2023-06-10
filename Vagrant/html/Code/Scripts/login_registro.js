@@ -18,7 +18,8 @@ const password = document.getElementById("input-password2-register");
 const buttonRegister = document.getElementById("buttonRegister");
 // Expresiones regulares para validar el correo electrónico y la contraseña
 const exprMail = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-const exprPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+const exprPassword =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
 
 // Variable para controlar si los datos del formulario son válidos o no
 let validR = 0;
@@ -33,9 +34,10 @@ else loguear(true);
 
 // Función que valida los datos del formulario de registro
 function validarDades(email, password, validR) {
-  if (exprMail.test(email.value)) { // Si el correo electrónico es válido
+  if (exprMail.test(email.value)) {
+    // Si el correo electrónico es válido
     email.style.backgroundColor = "green"; // Marcamos el campo como válido
-    validR = 0; 
+    validR = 0;
   } else {
     email.style.backgroundColor = "red"; // Marcamos el campo como inválido
     validR = 1; // Actualizamos la variable
@@ -53,11 +55,12 @@ function validarDades(email, password, validR) {
 
 // Event listener para el botón de enviar el formulario de registro
 formRegistre.addEventListener("submit", (e) => {
-  e.preventDefault(); 
+  e.preventDefault();
 
   let dadesvalidades = validarDades(email, password, validR); // Validamos los datos del formulario
 
-  if (dadesvalidades == 0) { // Si los datos son válidos ...
+  if (dadesvalidades == 0) {
+    // Si los datos son válidos ...
     formRegistre.submit(); // Enviamos el formulario
   }
 

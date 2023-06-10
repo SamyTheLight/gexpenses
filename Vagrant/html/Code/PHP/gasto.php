@@ -25,43 +25,36 @@ if (isset($_GET['actividad_id_actividad'])) {
 $adscrito_repository = new AdscritoRepository($conexion);
 $adscritos = $adscrito_repository->listarAdscrito($actividad_id_actividad);
 
-echo "<script type='text/javascript'>console.log('POST data: " . json_encode($adscritos) . "');</script>";
-
-
-//TODO del POST obtener los ID de los deudores -> lógica para insertar el gasto
+//Del POST obtener los ID de los deudores -> lógica para insertar el gasto
 if (isset($_POST['id_deudor'])) {
     $ids = $_POST['id_deudor'];
     //habría que comprobar si los ids son correctos
 
     //código para mostrar por consola
     echo "<script type='text/javascript'>console.log('ids: " . json_encode($ids) . "');</script>";
+
     $concepto = $_POST["concepto"];
     $pagador = $_POST["pagador"];
     $cantidad = $_POST["import"];
 
     $gasto_repository = new GastoRepository($conexion);
+
     $id_gasto = $gasto_repository->insertarGasto($actividad_id_actividad, $concepto, $pagador, $cantidad);
-    
-    echo "<script type='text/javascript'>console.log('new ActividadR');</script>";
+
     //modificar la fecha de ultima modificación en la actividad
     $actividad_repository = new ActividadRepository($conexion);
-    echo "<script type='text/javascript'>console.log('actividad_id_actividad: " . $actividad_id_actividad. "');</script>";
+
     $actividad_repository->modificarActividad($actividad_id_actividad);
 
-    echo "<script type='text/javascript'>console.log('actividad modificada');</script>";
     // insertar en tabla deudores
     $deudor_repository = new DeudorRepository($conexion);
     foreach ($ids as $id_adscrito) {
-        echo "<script type='text/javascript'>console.log('id_adscrito: " . json_encode($id_adscrito) . "');</script>";
         $nuevo_id_deudor = $deudor_repository->insertarDeudor($id_adscrito, $id_gasto);
-        echo "<script type='text/javascript'>console.log('nuevo_id_deudor: " . json_encode($nuevo_id_deudor) . "');</script>";
     }
 
     header("Location: reparto.php?id_gasto=" . urlencode($id_gasto));
 }
 
-
-echo "<script type='text/javascript'>console.log('SERVER');</script>";
 //código para desarrollo para saber qué hay en un POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<script type='text/javascript'>console.log('POST data: " . json_encode($_POST) . "');</script>";
@@ -119,7 +112,7 @@ if ((isset($_POST['enviarActivitat2']))) {
                     </select>
                     <!-- Aqui mostrar todos los adscritos -->
                     <div id="contenedor-miembros">
-                        <!-- TODO buscar este div con el js. cada vez que se cambie el valor del select "pagador" eliminar
+                        <!-- TODO Buscar este div con el js. cada vez que se cambie el valor del select "pagador" eliminar
                         todos los miembros y volver a escribirlos menos el de id seleccionado -->
                         <label for="tipusAct">Miembros</label>
                         <?php foreach ($adscritos as $adscrito) { ?>

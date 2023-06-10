@@ -11,7 +11,7 @@ include 'Repositories/SesionRepository.php';
 //TODO antes de hacer ninguna otra cosa, comprobar la sesión
 $sesion_repository = new SesionRepository($conexion);
 $res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
-if($res == false) {
+if ($res == false) {
     $_SESSION['token'] = null;
     $_SESSION['id_usuario'] = null;
     header("location: ../index.php");
@@ -25,22 +25,20 @@ $reparto_repository = new RepartoRepository($conexion);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['deuda']) && isset($_POST['id_adscrito']) && isset($_POST['id_gasto'])) {
-        //TODO añadir a base de datos las deudas de los deudores una a una
+        //Añadir a base de datos las deudas de los deudores una a una
         $deudas = $_POST['deuda'];
         $adscritos = $_POST['id_adscrito'];
         $id_gasto = $_POST['id_gasto'];
 
         $longitud = count($deudas);
-        for($i = 0; $i <$longitud; $i++) 
-        {
+        for ($i = 0; $i < $longitud; $i++) {
             $deudor_repository->updateDeudor($id_gasto, $adscritos[$i], $deudas[$i]);
         }
 
         //después de hacer los update, no vamos a detalle actividad.
         //necesitamos el id_actividad
-        $gasto=$gasto_repository->consultarGasto($id_gasto);
+        $gasto = $gasto_repository->consultarGasto($id_gasto);
         header("location:detalle_actividad.php?id_actividad=" . $gasto->actividad_id_actividad);
-        
     }
 }
 
@@ -113,11 +111,11 @@ $deuda_a_repartir = $gasto->cantidad;
                     <hr>
 
                     <div class="pago-individual">
-                        <?php $contador = 0;?>
+                        <?php $contador = 0; ?>
                         <?php foreach ($deudores as $deudor) : ?>
-                            <?php $contador = $contador + 1;?>
+                            <?php $contador = $contador + 1; ?>
                             <label for="" id="nombre"><?php echo  $deudor->nombre_adscrito; ?></label>
-                            <input type="number" value=0 id="proporcion_<?php echo $contador;?>" maxlength="3" name="proporcion[]">
+                            <input type="number" value=0 id="proporcion_<?php echo $contador; ?>" maxlength="3" name="proporcion[]">
                             <input type="number" value=0 id="deuda" name="deuda[]" readOnly=true><br>
                             <input type="hidden" id="id_adscrito" value="<?php echo $deudor->id_adscrito; ?>" name="id_adscrito[]">
                         <?php endforeach; ?>

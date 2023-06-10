@@ -1,8 +1,5 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-
+session_start();
 include 'nav.php';
 include 'conexion_db.php';
 include 'Repositories/ActividadRepository.php';
@@ -10,10 +7,9 @@ include 'Repositories/AdscritoRepository.php';
 include 'Repositories/SesionRepository.php';
 
 //antes de hacer ninguna otra cosa, comprobar la sesión
-echo "<script type='text/javascript'>console.log('comprobar sesion');</script>";
 $sesion_repository = new SesionRepository($conexion);
 $res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
-if($res == false) {
+if ($res == false) {
     $_SESSION['token'] = null;
     $_SESSION['id_usuario'] = null;
     header("location: ../index.php");
@@ -28,10 +24,10 @@ if (isset($_GET['actividad_id_actividad'])) {
 $actividad_repository = new ActividadRepository($conexion);
 $actividad = $actividad_repository->consultarActividad($actividad_id_actividad);
 
-if(isset($_POST['nombre_adscritos'])) {
+if (isset($_POST['nombre_adscritos'])) {
     $adscrito_repository = new AdscritoRepository($conexion);
     $nombres = $_POST['nombre_adscritos'];
-    foreach($nombres as $nombre){
+    foreach ($nombres as $nombre) {
         $adscrito_repository->insertarAdscrito(null, $nombre, $actividad_id_actividad);
     }
 
@@ -57,10 +53,10 @@ if(isset($_POST['nombre_adscritos'])) {
             <img class="card-image" src="./Images/Viaje_Combinado.png">
             <div class="card-text">
                 <h1><?php echo $actividad->nombre;
-                        ?></h1>
+                    ?></h1>
                 <hr>
                 <div class="ex1">
-                    <p id="description"><?php echo $actividad->descripcion;?></p>
+                    <p id="description"><?php echo $actividad->descripcion; ?></p>
                 </div>
                 <div class="afegir-mail" id="addAdscrito">
                     <input type="text" class="mails" name="nombre" id="nombre" placeholder="NOMBRE">

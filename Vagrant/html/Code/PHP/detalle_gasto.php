@@ -6,9 +6,18 @@ include 'Repositories/DeudorRepository.php';
 include 'Repositories/ActividadRepository.php';
 include 'Repositories/GastoRepository.php';
 include 'Repositories/AdscritoRepository.php';
+include 'Repositories/SesionRepository.php';
 
-//página para mostrar los detalles de un gasto con sus deudores
+//Antes de hacer ninguna otra cosa, comprobar la sesión
+$sesion_repository = new SesionRepository($conexion);
+$res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
+if ($res == false) {
+    $_SESSION['token'] = null;
+    $_SESSION['id_usuario'] = null;
+    header("location: ../index.php");
+}
 
+//Página para mostrar los detalles de un gasto con sus deudores
 if (isset($_GET['id_gasto']) && isset($_GET['id_actividad'])) {
     $id_gasto = $_GET['id_gasto'];
     $id_actividad = $_GET['id_actividad'];
@@ -20,15 +29,13 @@ $deudor_repo = new DeudorRepository($conexion);
 $adscrito_repo = new AdscritoRepository($conexion);
 
 $deudores = $deudor_repo->getListaDetallesDeudor($id_gasto);
-echo "<script type='text/javascript'>console.log('" . json_encode($deudores) . "');</script>";
 
 $actividad = $act_repo->consultarActividad($id_actividad);
-echo "<script type='text/javascript'>console.log('" . json_encode($actividad) . "');</script>";
+
 $gasto = $gasto_repo->consultarGasto($id_gasto);
-echo "<script type='text/javascript'>console.log('" . json_encode($gasto) . "');</script>";
 
 $pagador = $adscrito_repo->consultarAdscrito($gasto->pagador);
-echo "<script type='text/javascript'>console.log('" . json_encode($pagador) . "');</script>";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,11 +65,8 @@ echo "<script type='text/javascript'>console.log('" . json_encode($pagador) . "'
             <div class=" user_info">
                 <label for="names">Pagador: <?php echo $pagador->nombre_adscrito; ?></label>
 
-
                 <label for="description">Miembros: </label>
 
-
-                <!-- Aqui mostrar todos los adscritos -->
                 <div id="contenedor-miembros">
                     <?php foreach ($deudores as $deudor) : ?>
                         <label for="tipusAct" id="nombre"><?php echo  $deudor->nombre_adscrito; ?></label>

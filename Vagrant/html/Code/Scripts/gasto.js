@@ -29,7 +29,7 @@ const formulario = `
 const btn_form = document.getElementById("btn-form");
 const form_act1 = document.getElementById("form-act");
 
-// Función "repartir" que calcula el importe a pagar por cada miembro 
+// Función "repartir" que calcula el importe a pagar por cada miembro
 // dadas la cantidad total y el número de miembros
 function repartir(importe, miembros) {
   const resultado = importe / miembros;

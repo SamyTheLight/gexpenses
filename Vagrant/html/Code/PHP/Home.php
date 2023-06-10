@@ -2,7 +2,6 @@
 session_start();
 include 'nav.php';
 include 'conexion_db.php';
-include 'user_is_logued.php';
 include 'Repositories/ActividadRepository.php';
 include 'Repositories/SesionRepository.php';
 
@@ -14,7 +13,7 @@ error_reporting(E_ALL);
 echo "<script type='text/javascript'>console.log('comprobar sesion');</script>";
 $sesion_repository = new SesionRepository($conexion);
 $res = $sesion_repository->consultarSesion($_SESSION['token'], $_SESSION['id_usuario']);
-if($res == false) {
+if ($res == false) {
     $_SESSION['token'] = null;
     $_SESSION['id_usuario'] = null;
     header("location: ../index.php");
@@ -42,7 +41,7 @@ if ((isset($_POST['enviarActivitat']))) {
 
 $sort_fecha = "creacion";
 // Obtener cómo estará ordenada la lista de actividades, por creación o por última modificación
-if ($_GET['sort_fecha']){
+if ($_GET['sort_fecha']) {
     $sort_fecha = $_GET['sort_fecha'];
 }
 
@@ -72,20 +71,20 @@ $registros = $actividadRepository->listarActividades($_SESSION['id_usuario'], $s
         <!-- CARDS DE LES ACTIVITATS -->
         <div id="act-list">
             <?php foreach ($registros as $row) : ?>
-            <div class="card">
-            <div class="face front">
-                    <img src="Images/Viaje_Combinado.png" alt="">
-                    
-                    <h3><?php echo strtoupper($row->nombre) ?></h3>
-                </div>
-                <div class="face back">
-                    <h1><?php echo strtoupper($row->nombre) ?></h1>
-                    <p id="description"><?php echo $row->descripcion ?></p>
-                    <p class="divisa"><b>Divisa: </b><?php echo $row->divisa ?></p>
-                    <div class="link"><a href="detalle_actividad.php?id_actividad=<?php echo $row->id_actividad?>"><b>DETAILS</b></a></div>
-                </div>
+                <div class="card">
+                    <div class="face front">
+                        <img src="Images/Viaje_Combinado.png" alt="">
 
-            </div>
+                        <h3><?php echo strtoupper($row->nombre) ?></h3>
+                    </div>
+                    <div class="face back">
+                        <h1><?php echo strtoupper($row->nombre) ?></h1>
+                        <p id="description"><?php echo $row->descripcion ?></p>
+                        <p class="divisa"><b>Divisa: </b><?php echo $row->divisa ?></p>
+                        <div class="link"><a href="detalle_actividad.php?id_actividad=<?php echo $row->id_actividad ?>"><b>DETAILS</b></a></div>
+                    </div>
+
+                </div>
             <?php endforeach; ?>
         </div>
 

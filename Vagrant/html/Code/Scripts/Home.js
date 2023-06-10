@@ -46,12 +46,12 @@ const btn_form = document.querySelector(".btn-form");
 const div = document.querySelector(".face");
 const face_card = document.querySelector(".img-card");
 
-// Se añade un event listener al botón 'form-btn' que inserta el formulario en el DOM 
+// Se añade un event listener al botón 'form-btn' que inserta el formulario en el DOM
 //cuando se hace clic en él.
 document.getElementById("form-btn").addEventListener("click", function () {
   btn_form.insertAdjacentHTML("afterend", formulario);
   const act = document.getElementById("tipusActivitat");
-  //Se añade otro event listener al botón 'afegirActivitat' que redirige 
+  //Se añade otro event listener al botón 'afegirActivitat' que redirige
   //a la página invitacion.php.
   document
     .getElementById("afegirActivitat")
@@ -61,10 +61,14 @@ document.getElementById("form-btn").addEventListener("click", function () {
     });
 });
 
-document.getElementById("btn-ordenar-fecha").addEventListener("click", function () {
+document
+  .getElementById("btn-ordenar-fecha")
+  .addEventListener("click", function () {
     window.location.href = "home.php?sort_fecha=creacion";
-});
+  });
 
-document.getElementById("btn-ordenar-modificacion").addEventListener("click", function () {
+document
+  .getElementById("btn-ordenar-modificacion")
+  .addEventListener("click", function () {
     window.location.href = "home.php?sort_fecha=modificacion";
-});
+  });
