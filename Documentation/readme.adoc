@@ -521,7 +521,15 @@ No he podido incluir el test de los adscritos y de los repartos debido a un desp
 
 - Envío de emails de la aplicación
 
-La aplicación GExpenses no envia emails. La funcionalidad de enviar emails cuando un usuario, al crear una actividad, invita a una persona, no se le notificará a éste por correo electrónico y, por lo tanto, no se pueden añadir correos electrónicos en la pantalla “Invitación”. Como en el sprint de recuperación se pedía añadir adscritos sin necesidad de correo electrónico, he decidido quitar esta implementación para entregar un producto estable.
+La aplicación GExpenses no envia emails. La funcionalidad de enviar emails cuando un usuario, al crear una actividad, invita a una persona, no se le notificará a éste por correo electrónico y, por lo tanto, no se pueden añadir correos electrónicos en la pantalla “Invitación”. Como en el sprint de recuperación se pedía añadir adscritos sin necesidad de correo electrónico, he decidido quitar esta implementación para entregar un producto estable. No obstante, mi base de datos está preparada para poder obtener usuarios tanto por email como por nombre, lo cual podría aplicar esta funcionalidad en un futuro.
+
+- Página de balance
+
+Debido a un imprevisto en la última semana donde he tenido que refactorizar el código del reparto avanzado, no he podido llegar a implementar la página de balance. Si tuviese que plantear como desarrollar ésta página, haría lo siguiente:
+
+Primero, diseñaria la pantalla de balance, dividiendola en 2 bloques, uno para mostrar la lista de deudas (almacenadas actualmente en mi base de datos) y otro bloque donde mostraria mensajes de información donde se especificaría que usuario debe a quién. Para desarrollar la lógica, usaria los repositorios DeudaRepository, AdscritoRepository y ActividadRepository para poder mostrar las deudas que deben los adscritos de una actividad, para, posteriormente, recoger en mi base de datos las deudas a saldar.
+
+Por PhP crearia unos inputs para que el usuario introdujera la deuda a pagar y, si la cantidad de la deuda es correcta, por JavaScript y CSS mostraria un nuevo mensaje en verde poniendo "Felicidades, has saldado la deuda" y si la cantidad no es correcta, resaltaria en rojo el mensaje donde dice la deuda que debe saldar el adscrito
 
 == Conclusión
 
