@@ -94,7 +94,7 @@ image::imagesMemoria/semana_7.png[]
 
 Para que se pueda ejecutar y probar el proyecto, hay que tener en consideración que GExpenses está subido en un entorno Vagrant y, por lo tanto, se debe tener conocimientos previos de esta herramienta. Si se tiene instalado Vagrant y VirtualBox en la máquina local, los pasos que hay que seguir para ejecutar el producto son los siguientes:
 
-. Descargar la rama main del repositorio github: https://github.com/SamyTheLight/gexpenses[repositorio github]
+. Descargar la rama producto_final del repositorio github: https://github.com/SamyTheLight/gexpenses[repositorio github]
 y abrirlo en un editor de código.
 
 . Toda la lógica del producto y todo el código necesario para que funcione se encuentra en la carpeta Vagrant, por lo tanto: redirigir a ruta cd/vagrant
