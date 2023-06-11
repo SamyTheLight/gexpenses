@@ -27,9 +27,6 @@ systemctl restart mysql
 sudo apt-get install sqlite3 -y
 sudo apt-get install php8.1-sqlite3 -y
 
-# Crea la base de datos SQLite
-#sqlite3 /var/www/html/GExpenses.db < /vagrant/GExpensesLite.db
-
 # Instalamos PHPUnit
 wget https://phar.phpunit.de/phpunit-9.phar
 chmod +x phpunit-9.phar

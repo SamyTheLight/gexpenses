@@ -9,7 +9,7 @@ class SesionRepository
         $this->conexionDB = $conexionDB;
     }
 
-    public function insertarSesion($usuario_id_usuario,)
+    public function insertarSesion($usuario_id_usuario)
     {
 
         try {

@@ -5,9 +5,9 @@ use PHPUnit\Framework\TestCase;
 
 class SesionRepositoryTest extends TestCase
 {
+    //Declaro la conexion a la base de datos, instancio la clase SesionRepository y incluyo el id del usuario
     private $conexionDB;
     private $sesionRepository;
-
     private $usuario_id_usuario;
 
     public function setUp(): void
