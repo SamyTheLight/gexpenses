@@ -42,25 +42,70 @@ Fase 7: elaboración de la memória y vídeo.
 
 Teniendo en consideración que me informaron de recuperar el día 13 de abril  y que parte de requisitos del producto ya estaban en desarrollo, he calculado invertir unas 3 horas diarias para poder llegar a entregar el producto final el día 11/06/2023.
 
-https://github.com/SamyTheLight/gexpenses/tree/entorno-pre-produccion/Documentation/imagesMemoria
+image::imagesMemoria/planificacion.png[]
+
+Además, he creado un trello para que el profesorado pueda monitorear en todo momento las tareas que estoy realizando y las horas que he tardado en realizarlas. Este Trello lo he organizado en  7 tarjetas llamadas SPRINTS# donde se explica el trabajo por hacer de cada una. Para finalizar, he dividido el Trello en 5 apartados: PLANIFICACIÓN, BACKLOG, LISTA COSAS POR HACER, LISTA COSAS HACIENDO Y LISTA COSAS HECHAS.
+
+image::imagesMemoria/trello.png[]
 
 ==  Seguimiento del proyecto
 
 === Semana 1.
 
+Durante esta semana me he centrado en estudiar y repasar php y javascript para poder realizar el proyecto. Empecé leyendo el temario de php / javascript y empecé a estudiar el estado del producto.
+
 === Semana 2.
+
+Durante esta semana he creado un Trello para empezar a organizar mi trabajo. El Trello lo he organizado en SPRINTS con colores para identificarlos más fácilmente. He empezado a analizar todas las tareas por hacer y he empezado a diseñar una nueva base de datos para guardar bien los datos de la aplicación.
+
+image::imagesMemoria/semana_2.png[]
 
 === Semana 3.
 
+Durante esta semana he acabado de definir una primera base de datos, y he creado una tabla llamada “sesion” para guardar en ésta todos los usuarios que hacen login en mi aplicación. Además, he arreglado problemas con el css como hacer fixed el footer y mostrar correctamente los botones.
+
+image::imagesMemoria/semana_3.png[]
+
 === Semana 4.
+
+Durante esta semana he refactorizado todo el código del archivo home.php, creando un repositorio ActividadRepository.php  para separar toda la lógica a la hora de insertar y visualizar una actividad del resto del código.  Además he arreglado el botón ORDENAR, sustituyéndolo por los botones ORDENAR FECHA y ORDENAR MOD. Además, he vuelto a hacer funcional el botón AÑADIR.
+
+image::imagesMemoria/semana_4.png[]
 
 === Semana 5.
 
+Esta semana la he aprovechado para acabar de organizar y arreglar todo el código de la página, creando los repositorios AdscritoRepositor.php, GastoRepository.php y InvitacionRepository.php para acabar de refactorizar todo el código encargado de añadir personas a una actividad, añadir gastos a una actividad, y insertar los adscritos de la actividad en base de datos.
+
+image::imagesMemoria/semana_5.png[]
+
 === Semana 6.
+
+Esta semana he dedicado la mayor parte del tiempo a pensar cómo hacer los repartos avanzados por importe y por proporciones. He arreglado el pago simple refactorizando el código reparto.js para calcular el tipo de reparto en función de si el usuario selecciona “Pago básico”, “Pago avanzado por importes” o “Pago avanzado por proporciones”.
+
+image::imagesMemoria/semana_6.png[]
 
 === Semana 7.
 
+Esta semana la he dedicado únicamente a acabar el pago avanzado por importe y por proporciones. Asimismo, he arreglado y documentado todos los bugs que he ido encontrando al finalizar el producto. He logrado acabar los requisitos extra que se pedían en el SPRINT#8 y he elaborado la memoria final .
+
+image::imagesMemoria/semana_7.png[]
+
 == Manual de instalación
+
+Para que se pueda ejecutar y probar el proyecto, hay que tener en consideración que GExpenses está subido en un entorno Vagrant y, por lo tanto, se debe tener conocimientos previos de esta herramienta. Si se tiene instalado Vagrant y VirtualBox en la máquina local, los pasos que hay que seguir para ejecutar el producto son los siguientes:
+
+. Descargar la rama main del repositorio github: https://github.com/SamyTheLight/gexpenses[repositorio github]
+y abrirlo en un editor de código.
+
+. Toda la lógica del producto y todo el código necesario para que funcione se encuentra en la carpeta Vagrant, por lo tanto: redirigir a ruta cd/vagrant
+
+. Una vez dentro de la carpeta Vagrant, ejecutar el comando en la terminal vagrant up
+
+. Una vez ejecutado el comando, la máquina ya se habrá creado. Si accedemos al archivo vagrantfile, podremos ver que la máquina hace uso de una conexión privada con la siguiente ip: 172.16.0.10, si ponemos esta ip en nuestro navegador, podremos acceder a la página de login y registro.
+
+. Una vez finalizado los pasos anteriores, faltará leer el manual de usuario para usar la aplicación.
+
+
 
 ==  Manual de usuario
 
