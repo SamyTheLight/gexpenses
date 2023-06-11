@@ -527,9 +527,9 @@ La aplicación GExpenses no envia emails. La funcionalidad de enviar emails cuan
 
 Debido a un imprevisto en la última semana donde he tenido que refactorizar el código del reparto avanzado, no he podido llegar a implementar la página de balance. Si tuviese que plantear como desarrollar ésta página, haría lo siguiente:
 
-Primero, diseñaria la pantalla de balance, dividiendola en 2 bloques, uno para mostrar la lista de deudas (almacenadas actualmente en mi base de datos) y otro bloque donde mostraria mensajes de información donde se especificaría que usuario debe a quién. Para desarrollar la lógica, usaria los repositorios DeudaRepository, AdscritoRepository y ActividadRepository para poder mostrar las deudas que deben los adscritos de una actividad, para, posteriormente, recoger en mi base de datos las deudas a saldar.
+Primero, diseñaría la pantalla de balance, dividiéndola en 2 bloques, uno para mostrar la lista de deudas (almacenadas actualmente en mi base de datos) y otro bloque para mostrar los mensajes de información donde se especificará qué usuario debe a quién. Para desarrollar la lógica, usaría los repositorios DeudaRepository, AdscritoRepository y ActividadRepository para poder mostrar las deudas que deben los adscritos de una actividad, para, posteriormente, recoger en mi base de datos las deudas a saldar.
 
-Por PhP crearia unos inputs para que el usuario introdujera la deuda a pagar y, si la cantidad de la deuda es correcta, por JavaScript y CSS mostraria un nuevo mensaje en verde poniendo "Felicidades, has saldado la deuda" y si la cantidad no es correcta, resaltaria en rojo el mensaje donde dice la deuda que debe saldar el adscrito
+Por PhP crearía unos inputs para que el usuario introdujera la deuda a pagar y, si la cantidad de la deuda es correcta, por JavaScript y CSS mostraría un nuevo mensaje en verde poniendo "Felicidades, has saldado la deuda" y si la cantidad no es correcta, resaltará en rojo el mensaje donde dice la deuda que debe saldar el adscrito
 
 == Conclusión
 
