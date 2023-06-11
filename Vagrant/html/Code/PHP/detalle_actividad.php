@@ -49,7 +49,7 @@ $adscritos = $adscritoRepository->listarAdscrito($id_actividad);
     <div class="details">
         <div class="activityDetails">
             <div class="date">
-                <h3><?php echo $registros[0]->Fecha; ?></h3>
+                <h3>Lista de adscritos</h3>
             </div>
             <div class="buttonPayment">
                 <button id="btn-gasto" class="link"><a href="gasto.php?actividad_id_actividad=<?php echo $id_actividad ?>"><b>Añadir Gasto +</b></a></button>
@@ -77,7 +77,7 @@ $adscritos = $adscritoRepository->listarAdscrito($id_actividad);
                     <?php foreach ($gastos as $g) : ?>
                         <tr>
                             <th class="concepto"><?php echo ($g->concepto) ?></th>
-                            <th class="cantidad"><a href="detalle_gasto.php?id_gasto=<?php echo $g->id_gasto; ?>&id_actividad=<?php echo $id_actividad; ?>">Repartir gasto</a></th>
+                            <th class="cantidad"><a href="detalle_gasto.php?id_gasto=<?php echo $g->id_gasto; ?>&id_actividad=<?php echo $id_actividad; ?>">Detalle gasto</a></th>
                             <th class="cantidad"><?php echo $g->cantidad ?></th>
                             <th class="pagador"><?php echo $g->pagador ?></th>
                         </tr>
