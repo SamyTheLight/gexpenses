@@ -105,25 +105,90 @@ y abrirlo en un editor de código.
 
 . Una vez finalizado los pasos anteriores, faltará leer el manual de usuario para usar la aplicación.
 
-
-
 ==  Manual de usuario
+
+En el siguiente apartado se explicará el funcionamiento de la aplicación por parte de lo que visualizará el usuario.
 
 === Página de registro e inicio de sesión
 
+Al entrar en la aplicación, la primera página que podremos visualizar es el login y registro, donde el usuario podrá introducir un nombre, un correo electrónico y una contraseña. La contraseña debe cumplir los siguientes requisitos: (1)8 caracteres máximo, (2)1 letra mayúscula y 1 minúscula, (3) un carácter especial. En mi caso, suelo usar esta contraseña para testear: aA12345678*.
+
+image::imagesMemoria/registro.png[]
+
+Una vez registrado, solo quedará ir al apartado de login dando clic en el botón Login, e introducir el NOMBRE (no correo electrónico) y CONTRASEÑA.
+
+image::imagesMemoria/login.png[]
+
 === Página home - creación de actividades 
+
+Una vez logueado, nos redirigirá a la página Home, donde podremos ver una interfaz donde se muestran los botones AÑADIR, ORDENAR FECHA y ORDENAR MODIFICACIÓN. 
+
+image::imagesMemoria/home_1.png[]
+
+Si damos click en AÑADIR, nos mostrará un POP-UP donde podremos ver un formulario para añadir una actividad introduciendo el nombre, la descripción, el tipo de divisa a usar y el tipo de actividad. 
+
+image::imagesMemoria/anadir_actividad.png[]
+
+Rellenamos el formulario y presionamos el botón AÑADIR ACTIVIDAD
 
 === Página invitaciones
 
+image::imagesMemoria/invitacion.png[]
+
+Nos redireccionará a la página invitaciones, donde podremos asignar adscritos a la actividad que hemos creado, pudiendo añadirlos y borrarlos de forma dinámica. Le damos al botón enviar.
+
 === Página home - visualización de actividades 
+
+image::imagesMemoria/home_2.png[]
+
+Como puede apreciarse, nos ha redirigido a la página home y ahora nos muestra una carta que corresponde a la actividad creada, si ponemos nuestro cursor encima de la carta y damos al botón details.
+
+image::imagesMemoria/detalle_actividad_1.png[]
+
+En la página de detalles, nos mostrará por pantalla dos bloques: uno donde se visualizan los adscritos a la actividad, y otro donde se mostrarán los gastos de la actividad. Para crear un gasto, le damos al botón “Añadir gasto +”
 
 === Página de gastos - añadir gastos y adscritos
 
+image::imagesMemoria/anadir_gasto.png[]
+
+Podremos añadir un gasto poniendo un concepto, una cantidad a pagar total, el pagador (la persona que pagará toda la actividad) y los miembros (adscritos a la actividad). En este caso, el pagador será pedro y los miembros juan y jose. Damos al botón GUARDAR.
+
 === Página de reparto
+
+image::imagesMemoria/reparto.png[]
+
+Nos redirigirá a la página reparto, donde podremos elegir entre tres tipos de reparto:
+
+- Pago básico: divide la cantidad del total a repartir entre el número de integrantes.
+
+image::imagesMemoria/pago_basico.png[]
+
+Se puede apreciar que el pago total es 15, pero el total a repartir es igual a 10. Esto se debe a que la lógica de reparto contempla que la persona que se ha seleccionado como pagador (en este caso, pedro) ya se ha repartido su parte proporcional del pago total, que sería en este caso 5 euros.
+Entonces, a los miembros se les repartirá equitativamente el resto del pago (total a repartir).
+
+- Pago avanzado por importes: en esta sección, el usuario tendrá la opción de introducir en los inputs de los miembros la cantidad a pagar de forma manual. Cuando se introduce el valor, se modifica el campo del total a repartir de forma dinámica.
+
+image::imagesMemoria/pago_avanzado_importe.png[]
+
+- Pago avanzado por proporciones: se podrá definir por proporciones el total del pago a repartir que pagará cada miembro. En los inputs de la izquierda se introduce la proporción a repartir y, en los inputs de la derecha, se muestra el valor de la proporción, siendo en este caso donde juan pagará 3,33 euros y manuel pagará 6,67 euros
+
+image::imagesMemoria/pago_avanzado_proporciones.png[]
+
+Damos al botón ACEPTAR en cualquiera de los 3 casos.
 
 === Página de detalle de actividades
 
+Nos redirigirá de nuevo a la página detalle actividad, donde podemos ver como se muestran los conceptos del gasto creados y un sumatorio de todos los conceptos.
+
+image::imagesMemoria/detalle_actividad_2.png[]
+
+Damos click en Detalle gasto.
+
 === Página de detalle del concepto
+
+Nos mostrará la información del concepto, quien es el pagador, y los miembros involucrados en el concepto mostrando la cantidad que van a pagar.
+
+image::imagesMemoria/detalle_concepto.png[]
 
 == Guía de estilos
 
