@@ -17,23 +17,110 @@ Como finalidad principal, GExpenses se encarga de gestionar los pagos de un grup
 
 GExpenses está formado por los siguientes componentes:
 
-- Una base de datos para guardar toda la información.
-- Unos repositorios que llevan la lógica del producto.
-- El framework PHPUnit para realizar los testeos unitarios de los repositorios y validar la    lógica de la ejecución de código.
-- Un entorno de producción Vagrant.
+. Una base de datos para guardar toda la información.
+. Una base de datos para guardar toda la información.
+. El framework PHPUnit para realizar los testeos unitarios de los repositorios y validar la lógica de la ejecución de código.
+. Un entorno de producción Vagrant.
 
 === Planificación del trabajo
 
 La planificación de trabajo que se ha seguido para poder desarrollar este producto se ha dividido en varias fases.
 
 Fase 1: análisis de los requisitos que se piden en el producto.
+
 Fase 2: estudio de las tecnologías necesarias para desarrollar el producto. 
+
 Fase 3: diseño del producto (sketchings, wireframes y mockups).
+
 Fase 4: creación del entorno de trabajo Vagrant y diseño de la base de datos.
+
 Fase 5: implementación de las funcionalidades del producto
+
 Fase 6: pruebas y testeos unitarios.
+
 Fase 7: elaboración de la memória y vídeo.
 
 Teniendo en consideración que me informaron de recuperar el día 13 de abril  y que parte de requisitos del producto ya estaban en desarrollo, he calculado invertir unas 3 horas diarias para poder llegar a entregar el producto final el día 11/06/2023.
 
 
+==  Seguimiento del proyecto
+
+=== Semana 1.
+
+=== Semana 2.
+
+=== Semana 3.
+
+=== Semana 4.
+
+=== Semana 5.
+
+=== Semana 6.
+
+=== Semana 7.
+
+== Manual de instalación
+
+==  Manual de usuario
+
+=== Página de registro e inicio de sesión
+
+=== Página home - creación de actividades 
+
+=== Página invitaciones
+
+=== Página home - visualización de actividades 
+
+=== Página de gastos - añadir gastos y adscritos
+
+=== Página de reparto
+
+=== Página de detalle de actividades
+
+=== Página de detalle del concepto
+
+== Guía de estilos
+
+== Base de datos
+
+== Vagrant
+
+== Funcionalidades de la aplicación
+
+=== Sesion
+
+==== SesionRepository
+
+==== SesionRepositoryTest
+
+=== Actividad
+
+==== ActividadRepository
+
+==== ActividadRepositoryTest
+
+=== Adscritos
+
+==== AdscritoRepository
+
+=== Gasto
+
+==== GastoRepository
+
+==== GastoRepositoryTest
+
+=== Reparto
+
+==== RepartoRepository
+
+==  Bugs y mejoras implementadas
+
+=== Bugs sin arreglar
+
+=== Bugs arreglados
+
+=== Mejoras implementadas
+
+=== Funcionalidades no implementadas
+
+== Conclusión
