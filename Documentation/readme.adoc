@@ -192,7 +192,44 @@ image::imagesMemoria/detalle_concepto.png[]
 
 == Guía de estilos
 
+Hemos elegido el azul como color principal, ya que hace un contraste que nos recuerda al cielo o al mar. Así como que transmite naturaleza y pureza. Creemos que un color así le dará un buen contraste según qué botones.
+Por otro lado, elegimos el azul oscuro y el negro para así dar un toque de elegáncia y refinez.
+Por último, elegimos el blanco para hacer un contraste y poder jugar con los colores más oscuros así como para poder aplicarlo en la letra.
+
+Cada pantalla tendrá sus respectivos apartados, tanto wireframe como mockup. 
+
+.Tipo de pantallas:
+[NOTE]
+====
+Cada pantalla tendrá sus respectivos apartados, tanto scketching, wireframe y mockup.
+
+. Pantalla de login y registro.
+
+. Pantalla Home.
+
+. Pantalla Añadir actividad
+
+. Pantalla Invitación actividad
+
+. Pantalla Detalle actividad
+
+. Pantalla Añadir gasto
+
+. Pantalla Repartir gasto
+
+. Pantalla detalle gasto
+
+====
+
+El siguiente enlace muestra tanto las pantallas maquetadas como la guía de estilos hecho en un figma:   https://acortar.link/6fCVym[enlace figma]
+
+
 == Base de datos
+
+Al principio del desarrollo del proyecto, la base de datos que tenía ya creada no era funcional, y tuve que rediseñar las tablas y campos para que guardase la información de la aplicación de forma correcta.
+
+El diseño de la primera base de datos mostraba diversos errores:
+
 
 == Vagrant
 
