@@ -42,7 +42,7 @@ Fase 7: elaboración de la memória y vídeo.
 
 Teniendo en consideración que me informaron de recuperar el día 13 de abril  y que parte de requisitos del producto ya estaban en desarrollo, he calculado invertir unas 3 horas diarias para poder llegar a entregar el producto final el día 11/06/2023.
 
-
+https://github.com/SamyTheLight/gexpenses/tree/entorno-pre-produccion/Documentation/imagesMemoria
 
 ==  Seguimiento del proyecto
 
