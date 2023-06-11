@@ -24,7 +24,6 @@ class AdscritoRepository
 
     public function consultarAdscrito($id_adscrito)
     {
-        echo "<script type='text/javascript'>console.log('condultar_adscrito: " . $id_adscrito . "');</script>";
         $query = "SELECT * FROM adscrito WHERE id_adscrito = :id_adscrito";
         $consulta = $this->conexionDB->prepare($query);
         $consulta->bindParam(':id_adscrito', $id_adscrito);

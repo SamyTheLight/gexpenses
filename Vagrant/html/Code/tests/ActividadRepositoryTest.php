@@ -17,7 +17,7 @@ class ActividadRepositoryTest extends TestCase
 
     public function setUp(): void
     {
-        // Aquí debes crear un objeto PDO que se conecte a una base de datos de prueba SQLite.
+        // Aquí se debe crear un objeto PDO que se conecte a una base de datos de prueba SQLite.
         // Esta base de datos se crea en memoria y se destruye después de cada prueba.
         $this->conexionDB = new PDO('sqlite::memory:');
         $this->conexionDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
